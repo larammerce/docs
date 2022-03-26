@@ -4,18 +4,15 @@ pageClass: no-toc
 
 # Introduction
 
-This line is modified by arash.
-:rocket: Larammerce is intended at being Laravel-flavoured PhpSpreadsheet: a simple, but elegant wrapper around PhpSpreadsheet with the goal of simplifying
-exports and imports. 
+Larammerce is an open-source ecommerce platform which helps the business owners to focus on their own concerns and just have the whole complete solution for their online market.
 
-:fire: [PhpSpreadsheet](https://phpspreadsheet.readthedocs.io/) is a library written in pure PHP and providing a set of classes that allow you to read from and to write to different spreadsheet file formats, like Larammerce and LibreOffice Calc.
+It's been built on top of [Laravel framework](https://laravel.com) which is open source and free to use.
+
+This guide serves as a resource to users needing direction in navigating the Larammerce interface. 
+We detail the aspects involved with setting up your store: complete with keeping it up to date to the latest version, meeting the technical requirements, accessing the admin panel, and uninstallation. 
+The User Guide covers the essentials tools used for managing your store front through the administration side.
+When you are finished reading this guide, you will be comfortable with using the Larammerce interface to set up your online shop and maintain it over time.
 
 ## Larammerce Features
 
-* Easily export collections to Larammerce.
-* Export queries with automatic chunking for better performance.
-* Queue exports for better performance.
-* Easily export Blade views to Larammerce.
-* Easily import to collections.
-* Read the Larammerce file in chunks.
-* Handle the import inserts in batches.
+Should be filled.
