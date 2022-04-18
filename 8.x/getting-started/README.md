@@ -13,6 +13,6 @@ We detail the aspects involved with setting up your store: complete with keeping
 The User Guide covers the essentials tools used for managing your store front through the administration side.
 When you are finished reading this guide, you will be comfortable with using the Larammerce interface to set up your online shop and maintain it over time.
 
-## Larammerce Features
+# Features
 
-Should be filled.
+Features are described in features section.
