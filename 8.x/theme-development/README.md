@@ -67,7 +67,7 @@ And enter this command to deploy the resources to the backend directory:
 ```
 Open the admin panel in the browser and in the list of directories:
 
- Click the Plus button ![Plus button](/plus-button.png), then create a new folder ![Plus button](/new-folder.png).
+Click the Plus button ![Plus button](/plus-button.png), then create a new folder ![Plus button](/new-folder.png).
 
 The new folder settings are as follows:
 
@@ -84,3 +84,4 @@ Finally, click the **Edit webpage button** and select the blade page.
 
 Go to the URL of your blade page and see the page created.
 >localhost/8080/min-5
+
