@@ -48,13 +48,11 @@ Unlike existing heavy word processing software, content generated in markdown fo
 > **Heading**  
 > ...and after a heading.
 
-
 ***3.*** **larammerce in each document provides examples to better understand the code that follows the structure (##### Level 5 heading), so you follow this structure.**
 
 :white_check_mark: ***Do this:***
 
 > ##### Example:
-
 
 ```
 ##### Level 5 heading
@@ -63,7 +61,6 @@ Unlike existing heavy word processing software, content generated in markdown fo
 :x: ***Don't do this:***
 
 > ### Example:
-
 
 ```
 ### Level 3 heading
@@ -93,10 +90,6 @@ Unlike existing heavy word processing software, content generated in markdown fo
 :x: ***Don't do this:***
 
 >>> Don't put tabs or spaces in front of your paragraphs.
-
-
-
-
 
 ## Emphasis
 
@@ -145,11 +138,9 @@ Note that the title of the table row should be bold, and if the table rows are i
 | Syntax      | Description |
 | ----------- | ----------- |
 
-
 ### Italic
 
 ***1.*** **If you want to create sub-descriptions or for more information, quotes from personalities, etc. in documents, you should use blockquotes, which are italics in larammerce documents.**
-
 
 :white_check_mark: ***Do this:***    
 
@@ -158,7 +149,6 @@ Note that the title of the table row should be bold, and if the table rows are i
 :x: ***Don't do this:***
 
 > **After creating the user story, team members are required to create their own tasks.**
-
 
 ### Bold and Italic
 
@@ -203,7 +193,6 @@ Note that the title of the table row should be bold, and if the table rows are i
 :white_check_mark: ***Do this:***                        
 
 > ***NOTE***: Here the **stable** branch is actually the name of the main branch of our project that we can not modify.
-
 
 :x: ***Don't do this:***
 
@@ -263,7 +252,6 @@ git commit -a -m "test code"
 git push #Uploaded file on github
 ```
 > *It is better to use comments to understand the codes.*
-   
 
 ***2.*** **To create code blocks, indent every line of the block by at least four spaces or one tab.**
 
@@ -308,22 +296,3 @@ blockquotes | \*blockquotes* | *blockquotes*
 numbers | \*\*\*1*\*\* - \*\*\*2*\*\*  - \*\*\*3*\*\* |  ***1*** - ***2*** - ***3*** 
 Code | \`echo "Hello World";\` | `echo "Hello World";`
 File names | \`TEST.php\` | `TEST.php`
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-
-
-
-
-
