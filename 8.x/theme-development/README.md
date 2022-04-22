@@ -3,9 +3,9 @@ pageClass: no-toc
 ---
 
 ## :rocket: 5 minute quick start
-Larammerce is using the Laravel framework as its core system and obviously inherits all Laravel features. for example, Larammerce uses Blade, Laravel’s templating engine, to easily create a standard page template, or layout.
+Larammerce is using the Laravel framework as its core system and obviously inherits all Laravel features. for example, Larammerce uses Blade (Laravel’s templating engine), to easily create a standard page template, or layout.
 
-The complete directory structure of the template for this project is shown here.
+The complete directory structure of the template for this project is shown below.
 
 ```
 |---node_modules/
@@ -30,7 +30,7 @@ The complete directory structure of the template for this project is shown here.
 The template directory has two subdirectories, **public** and **resources**, which are the Boilerplate of this project.
 >a boilerplate is a unit of writing that can be reused over and over without change.
 
-In the **public** directory, there are two subdirectory, **HCMS-assets** and **views**. and `./deploy.sh` command to deploy the **HCMS-assets** and **views** directories to the backend directory.
+In the **public** directory, there are two subdirectories, **HCMS-assets** and **views**. and `./deploy.sh` command to deploy the **HCMS-assets** and **views** directories to the backend directory.
 ```
 |---public/
      |---HCMS-assets/
@@ -82,6 +82,6 @@ Activate the **Show in menu button** and **Show in mobile app button** to displa
 
 Finally, click the **Edit webpage button** and select the blade page.
 
-Go to the URL of your blade page and see the page created.
+After all you can check to the URL of your web page in a browser and see the page is created with the desired contents:
 >localhost/8080/min-5
 
