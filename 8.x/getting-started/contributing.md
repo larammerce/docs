@@ -51,9 +51,12 @@ whether or not your feature is likely to be used by other users of the project.
 
 ## Project management
 
-**Taiga** is the tool which is used as the project management system, and also larammerce backlog board is publicly visible for people to check.
+Here you can learn about how larammerce manages user stories and features to be developed and released.
+use a project management tool called **taiga** where the project backlog is publicly available. You can see the backlog and the list of user stories at the following address:
 
 Taiga project management system is used as the main management tool for the project user stories, also it should be mentioned that Scrum is chosen as the management methodology for this project.
+
+You can allways access the project's backlog publicly on the address below:
 
 > [tree.taiga.io/project/a-khajelou-larammerce/bakelog](https://tree.taiga.io/project/a-khajelou-larammerce/bakelog)
 
@@ -73,7 +76,6 @@ It is interesting to know that **Mike Cohn**, who is one of the main inventors o
 With the user story approach, you are content with **just enough** design instead of large and comprehensive design. user story reduces the time required to write comprehensive documentation by emphasizing customer-centric conversations. As a result, user story enables teams to deliver quality software faster.
 
 User story method will save time; Because it is modified and improved according to the users. As a result, the quality in the process of software development or other products has increased and the upcoming project will be liked by the customer.
-
 
 #### Working with user story:
 
@@ -185,12 +187,12 @@ Design the pages.
 TG-449 #ready-for-test 
 ```
 **AND**
+
 ```bash
 git status #See the changes using the git status command
 [feature/docs-boilerplate (root-commit) cc04ebe] Design the pages
  1 file changed, 3 insertions(+)
  create mode 100644 TEST.php
-
 ```
 
 ***5.*** **you put the desired file in github using the following command:**
@@ -213,8 +215,6 @@ In this section, you enter the user story **title** grammatically, and also in t
 ![merge request: title & description](https://github.com/Cena313/Hello-world/blob/master/20220419_163546.jpg?raw=true)
 
 After clicking the Create merge request button, you must check to see if there is a **conflict**. If there is no conflict, you are done and you will have to wait for the team experimenter to review the user story done by you.
-
-
 
 ### Conclusion
 
