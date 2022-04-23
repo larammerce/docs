@@ -117,7 +117,8 @@ Meetings are held according to the scrum structure in the larammerce team, which
 
 #### How to create a new task?
 
-After the user stories are created, the person (programmer) is obliged to create their tasks. For this purpose, you can use online tools like **[taiga.io](https://www.taiga.io/)**. To create the task (for example: **task 449**), you enter the desired sprint section. And you do things based on priority, and the order of priority is done for you by the project manager.
+As you know the smallest doable part of user story is the task, so is order to create a task you have to enter the current sprint, then click on the specific user story which belongs to you and after all click on the create task button. so there are new tasks created under the user story section.
+Please note that user stories must have at least one task underneath.
 
 When you **first** clone the project, you are on the project banch **master** by default, once the user story is entrusted to you to create the code, you can never make changes to the **main branch** of the project, therefore, you need to create a **sub-branch** of the main branch of the cloned project.
 
