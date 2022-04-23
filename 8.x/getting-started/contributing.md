@@ -120,9 +120,31 @@ Meetings are held according to the scrum structure in the larammerce team, which
 As you know the smallest doable part of user story is the task, so is order to create a task you have to enter the current sprint, then click on the specific user story which belongs to you and after all click on the create task button. so there are new tasks created under the user story section.
 Please note that user stories must have at least one task underneath.
 
-When you **first** clone the project, you are on the project banch **master** by default, once the user story is entrusted to you to create the code, you can never make changes to the **main branch** of the project, therefore, you need to create a **sub-branch** of the main branch of the cloned project.
+**Once the project** is cloned (or you cloned and worked on it before), to begin the process of development or writing code to do the assigned user story, you have to update the project. so after updating your project to the upstream, you can make a new branch from the **main brach** (named master or main) by the commend below:
 
-> *For this purpose, in this section, to better understand you, we will go through the steps of creating a task together:*
+```bash
+git checkout -b feature/the-title-of-the-feature
+```
+
+***NOTE***: note that naming the new branch follows the hierarchical naming rules. A user story is about one of the follwing:
+
+***1.*** Feature
+
+***2.*** Issue
+
+***3.*** Enhance
+
+***4.*** Fix
+
+***5.*** Hotfix
+
+So if you want to name the working branch follow the naming rules.
+
+`prefix/name-of-the-user-story-title`
+
+### Start to code
+
+For this purpose, in this section, to better understand you, we will go through the steps of creating a task together:
 
 ***1.*** **In this step you create a sub-branch on our main project:**
 
