@@ -103,7 +103,7 @@ Meetings are held according to the scrum structure in the larammerce team, which
 ***3.*** There are discussions among larammerce team members about how to better do the user story. | ***3.*** Every user story is discussed one by one and the estimation process begins, so every teammate announces the point of view and finally a point for the weigh of each user story is assigned.
 ***4.***  And finally the user story is ready for being estimated in sprint upcoming sessions. | ***4.*** And finally enters the execution cycle.
 
-> *After creating the user story, team members are required to create their own tasks.*
+> *The first thing after every sprint session is that every team member is responsible about writing notes in their own user stories according to what is mentioned in the sessions, and after that the most necessary thing is that they must create the tasks of each owned user story right after sprint sessions.*
 
 > ***User story & task:***
 >
