@@ -100,7 +100,7 @@ Meetings are held according to the scrum structure in the larammerce team, which
 ----------------------|--------------------
 ***1.*** In this type of meetings, which are held on saturdays, we discuss technical issues.| ***1.*** These meetings are held periodically on mondays.
 ***2.*** In these sessions, user stories are created and divided into smaller sections. | ***2.*** In these meetings, teammates make decision about user stories, make them viable and then it's time to assign the user stories to specific team members. so every team member is responsible about their own user stories.
-***3.*** There are discussions among larammerce team members about how to better do the user story. | ***3.*** The amount of points to perform the user story assigned to the person in the team is specified.
+***3.*** There are discussions among larammerce team members about how to better do the user story. | ***3.*** Every user story is discussed one by one and the estimation process begins, so every teammate announces the point of view and finally a point for the weigh of each user story is assigned.
 ***4.*** And finally the user story is ready to run. | ***4.*** And finally enters the execution cycle.
 
 > *After creating the user story, team members are required to create their own tasks.*
