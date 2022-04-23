@@ -52,11 +52,8 @@ whether or not your feature is likely to be used by other users of the project.
 ## Project management
 
 Here you can learn about how larammerce manages user stories and features to be developed and released.
-use a project management tool called **taiga** where the project backlog is publicly available. You can see the backlog and the list of user stories at the following address:
 
-Taiga project management system is used as the main management tool for the project user stories, also it should be mentioned that Scrum is chosen as the management methodology for this project.
-
-You can allways access the project's backlog publicly on the address below:
+**Taiga** is the tool which is used as the project management system, and also larammerce backlog board is publicly visible for people to check. also it should be mentioned that Scrum is chosen as the management methodology for this project.
 
 > [tree.taiga.io/project/a-khajelou-larammerce/bakelog](https://tree.taiga.io/project/a-khajelou-larammerce/bakelog)
 
