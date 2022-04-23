@@ -72,7 +72,7 @@ It is interesting to know that **Mike Cohn**, who is one of the main inventors o
 
 With the user story approach, you are content with **just enough** design instead of large and comprehensive design. user story reduces the time required to write comprehensive documentation by emphasizing customer-centric conversations. As a result, user story enables teams to deliver quality software faster.
 
-User story method will save time; Because it is modified and improved according to the users. As a result, the quality in the process of software development or other products has increased and the upcoming project will be liked by the customer.
+User story method will save time Because it is modified and improved according to the users. As a result, the quality in the process of software development or other products has increased and the upcoming project will be liked by the customer.
 
 #### Working with user story:
 
