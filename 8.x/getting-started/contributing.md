@@ -84,7 +84,7 @@ The user's story is written in simple language that must pursue a specific purpo
 
 ***3.*** Why is it important?
 
-However, we must say that the user's story is in fact a process during which needs are discovered and should not be used as a document to analyze needs. In traditional methods, the system analyst usually tried to understand the customer's needs, but in modern methods, the following steps must be followed to identify the User Story:
+However, the user's story is in fact a process during which needs are discovered and should not be used as a document to analyze needs. In traditional methods, the system analyst usually tried to understand the customer's needs, but in modern methods, the following steps must be followed to identify the User Story:
 
 ***1.*** You need to talk to users.
 
@@ -98,7 +98,7 @@ Meetings are held according to the scrum structure in the larammerce team, which
 
 **Grooming sessions** | **Sprint sessions**
 ----------------------|--------------------
-***1.*** In this type of meetings, which are held on saturdays, we discuss technical issues.| ***1.*** These meetings are held periodically on mondays.
+***1.*** In this type of meetings, which are held on saturdays, team Larammerce discuss technical issues.| ***1.*** These meetings are held periodically on mondays.
 ***2.*** In these sessions, user stories are created and divided into smaller sections. | ***2.*** In these meetings, teammates make decision about user stories, make them viable and then it's time to assign the user stories to specific team members. so every team member is responsible about their own user stories.
 ***3.*** There are discussions among larammerce team members about how to better do the user story. | ***3.*** Every user story is discussed one by one and the estimation process begins, so every teammate announces the point of view and finally a point for the weigh of each user story is assigned.
 ***4.***  And finally the user story is ready for being estimated in sprint upcoming sessions. | ***4.*** And finally enters the execution cycle.
@@ -144,11 +144,11 @@ So if you want to name the working branch follow the naming rules.
 
 ### Start to code
 
-For this purpose, in this section, to better understand you, we will go through the steps of creating a task together:
+For this purpose, in this section, to better understand you, The larammerce team will go through the steps of creating a task with you in this section.
 
 ***1.*** **In this step you create a sub-branch on our main project:**
 
-   ***NOTE***: Here the **stable** branch is actually the name of the main branch of our project that we can not modify.
+   ***NOTE***: Here the **stable** branch is the name of the main branch of the project that you can not modify.
 
 ##### Example:
 
@@ -158,9 +158,9 @@ git chekout -b feature/docs-boilerplate #you create a sub-branch.
 Switched to a new branch 'feature/docs-boilerplate'
 ```
 
-***2.*** **In this step, you enter the desired code in our project or change it:**
+***2.*** **In this step you can start to code, create/modify/update/delete specific files to achieve the desired goals of the user story:**
 
-   ***NOTE***: You make these changes to the `TEST.php` file.
+ For example you can make some modifications on the file `test.php`.
 
 ##### Example:
 
@@ -176,19 +176,21 @@ Switched to a new branch 'feature/docs-boilerplate'
 git add TEST.php
 ```
 
-***4.*** **In this step you commit our changes:**
+***4.*** **After all you can save your changes to the git tree by committing them:**
 
 ##### Example:
 
 ```bash
 git commit -a #Execute the commit step with the help of this command.
 ```
-   ***NOTE***: Make sure your commit message is concise, and that the commit message should include grammatical verbs.
+   ***NOTE***: Make sure that the first line of your commit message is concise and also imperative.
 
-   ***NOTE***: In the third line you can write a brief description of the task performed.
+   ***NOTE***: After a brief description, you can pass the notes that is necessary for taiga platform to detect that you've done the specific task. So please note that how it is done:
+
+   Also you can read the docs provided by taiga team to know more about this integration feature. [taiga docs](https://docs.taiga.io/integrations-github.html)
 
    ***NOTE***: In the third line you can have a brief description of the work done. Here is a requirement that you suggest you do:
-If in the third line you write and save the command `TG-449 #in-progress` or `TG-449 #ready-for-rest `, when you enter the taiga site in the taskbar in the browser, you will see that our task number **449** has been entered from the new section in progress or ready for testing.
+If in the third line you write and save the command `TG-449 #in-progress` or `TG-449 #ready-for-rest `, when you enter the taiga site in the taskbar in the browser, you will see that task number **449** has been entered from the new section in progress or ready for testing.
 
    ***NOTE:*** A very important point in handling tasks that should be mentioned here is that only one person named tester can put the task in close or need info mode.
 
@@ -223,18 +225,24 @@ git status #See the changes using the git status command
 git push --set-upstream origin feature/docs-boilerplate
 ```
 
-***6.*** **Finally, you enter the merge request stage, which proceeds as follows:**
+***6.*** **Here you have to mention that there is differences between github and gitlab projects in this stage:**
 
-To do a merge request is just a very simple task, just after each commit you have done, click on the link that gitlab creates for you to enter the gitlab site and create a merge request for the user story.
+in github you create pull requests and in gitlab create merge requests. so let's describe them one by one.
+
+Creating a merger request is just a very simple task, just after each commit you have done, click on the link that gitlab creates for you to enter the gitlab site and create a merge request for the user story.
 After clicking on the link provided by gitlab, you will enter the following page on the gitlab site:
 
 ![merge request: title & description](https://github.com/Cena313/Hello-world/blob/master/20220419_163618.jpg?raw=true)
 
-In this section, you enter the user story **title** grammatically, and also in the **description** section, you enter a summary description of the user story. Finally, click on the **Create merge request** button.
+In this section, you enter the user story **title** Commandly, and also in the **description** section, you enter a summary description of the user story. Finally, click on the **Create merge request** button.
 
 ![merge request: title & description](https://github.com/Cena313/Hello-world/blob/master/20220419_163546.jpg?raw=true)
 
 After clicking the Create merge request button, you must check to see if there is a **conflict**. If there is no conflict, you are done and you will have to wait for the team experimenter to review the user story done by you.
+
+You can refer to the following link to learn how to pull a request:
+
+> [how to pull a request?](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
 
 ### Conclusion
 
@@ -246,7 +254,7 @@ The following is a brief description of how to participate in larammerce.
 
 ***1.*** Our sprints are now once every **two weeks**, if you are given a user story you have two weeks to execute the desired user story, but this does not mean that you end user stories at the end to run 30% sprint, **team members have to tell a series of user stories every weekend.**
 
-***2.*** Currently we have an average of **8 points** for the user story to be done.
+***2.*** Currently Larammerce have an average of **8 points** for the user story to be done.
 
 ***3.*** **Team members must have completed (8 points) merge request by the end of each week**, and this is an important rule in the larammerce team.
 
