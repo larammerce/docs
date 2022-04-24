@@ -146,7 +146,7 @@ So if you want to name the working branch follow the naming rules.
 
 For this purpose, in this section, to better understand you, The Larammerce team will go through the steps of creating a task with you in this section.
 
-***1.*** **In this step you create a sub-branch on our main project:**
+***1.*** **In this step, you create a sub-branch on the main project:**
 
    ***NOTE***: Here the **stable** branch is the name of the main branch of the project that you can not modify.
 
@@ -252,7 +252,7 @@ The following is a brief description of how to participate in Larammerce.
 
 #### Team rules:
 
-***1.*** Our sprints are now once every **two weeks**, if you are given a user story you have two weeks to execute the desired user story, but this does not mean that you end user stories at the end to run 30% sprint, **team members have to tell a series of user stories every weekend.**
+***1.*** Team Larammerce sprints are now once every **two weeks**, if you are given a user story you have two weeks to execute the desired user story, but this does not mean that you end user stories at the end to run 30% sprint, **team members have to tell a series of user stories every weekend.** 
 
 ***2.*** Currently Larammerce have an average of **8 points** for the user story to be done.
 
