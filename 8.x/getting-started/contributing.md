@@ -94,13 +94,13 @@ However, the user's story is in fact a process during which needs are discovered
 
 ### Team procedures to manage
 
-Meetings are held according to the scrum structure in the larammerce team, which includes grooming and sprint sessions:
+Meetings are held according to the scrum structure in the Larammerce team, which includes grooming and sprint sessions:
 
 **Grooming sessions** | **Sprint sessions**
 ----------------------|--------------------
 ***1.*** In this type of meetings, which are held on saturdays, team Larammerce discuss technical issues.| ***1.*** These meetings are held periodically on mondays.
 ***2.*** In these sessions, user stories are created and divided into smaller sections. | ***2.*** In these meetings, teammates make decision about user stories, make them viable and then it's time to assign the user stories to specific team members. so every team member is responsible about their own user stories.
-***3.*** There are discussions among larammerce team members about how to better do the user story. | ***3.*** Every user story is discussed one by one and the estimation process begins, so every teammate announces the point of view and finally a point for the weigh of each user story is assigned.
+***3.*** There are discussions among Larammerce team members about how to better do the user story. | ***3.*** Every user story is discussed one by one and the estimation process begins, so every teammate announces the point of view and finally a point for the weigh of each user story is assigned.
 ***4.***  And finally the user story is ready for being estimated in sprint upcoming sessions. | ***4.*** And finally enters the execution cycle.
 
 > *The first thing after every sprint session is that every team member is responsible about writing notes in their own user stories according to what is mentioned in the sessions, and after that the most necessary thing is that they must create the tasks of each owned user story right after sprint sessions.*
@@ -144,7 +144,7 @@ So if you want to name the working branch follow the naming rules.
 
 ### Start to code
 
-For this purpose, in this section, to better understand you, The larammerce team will go through the steps of creating a task with you in this section.
+For this purpose, in this section, to better understand you, The Larammerce team will go through the steps of creating a task with you in this section.
 
 ***1.*** **In this step you create a sub-branch on our main project:**
 
@@ -246,9 +246,9 @@ You can refer to the following link to learn how to pull a request:
 
 ### Conclusion
 
-In this document, the larammerce team has done its best to share a brief introduction of Larammerce, as well as how to participate in it, as well as user stories, and by example, how to assign a user story as well as how to perform tasks. To show you dear friends.
+how to contribute in developing or maintaining Larammerce.
 
-The following is a brief description of how to participate in larammerce.
+The following is a brief description of how to participate in Larammerce.
 
 #### Team rules:
 
@@ -256,7 +256,7 @@ The following is a brief description of how to participate in larammerce.
 
 ***2.*** Currently Larammerce have an average of **8 points** for the user story to be done.
 
-***3.*** **Team members must have completed (8 points) merge request by the end of each week**, and this is an important rule in the larammerce team.
+***3.*** **Team members must have completed (8 points) merge request by the end of each week**, and this is an important rule in the Larammerce team.
 
 ***4.*** At least one **commit** must be made for each **task**.
 
@@ -268,6 +268,6 @@ The following is a brief description of how to participate in larammerce.
 
 ***8.*** Also, after **monday** sessions, which are in scrum mode, each member of the team is required to add user story related tasks.
 
-***9.*** Finally, you enter the **payment cycle** discussion where larammerce pays you based on the number of points **([Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number))** done.
+***9.*** Finally, you enter the **payment cycle** discussion where Larammerce pays you based on the number of points **([Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number))** done.
 
-***10.*** Every document that is written and placed in the **documentation** section of the larammerce site, **the members of the larammerce team are obliged to read it.**
+***10.*** Every document that is written and placed in the **documentation** section of the Larammerce site, **the members of the Larammerce team are obliged to read it.**
