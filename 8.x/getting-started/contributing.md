@@ -75,7 +75,7 @@ With the user story approach, you are content with **just enough** design instea
 
 The user story method will save time Because it is modified and improved according to the users. As a result, the quality in the process of software development or other products has increased and the upcoming project will be liked by the customer.
 
-#### Working with user story:
+#### Working with user story
 
 The user's story is written in simple language that must pursue a specific purpose and have a specific reason. The user in the story must be real and not a member of the development team. There may be multiple user stories in the system that have the same benefits. This is normal. It's a good idea to start drafting a user story. The draft must first meet your essential needs. That:
 
@@ -151,7 +151,7 @@ For this purpose, in this section, to better understand you, The Larammerce team
 
    ***NOTE***: Here the **stable** branch is the name of the main branch of the project that you can not modify.
 
-##### Example:
+##### Example
 
 ```bash
 git chekout stable #you get out of the stable brunch.
@@ -163,7 +163,7 @@ Switched to a new branch 'feature/docs-boilerplate'
 
  For example you can make some modifications on the file `test.php`.
 
-##### Example:
+##### Example
 
 ```php
 #this is a test line to create a test commit.
@@ -171,7 +171,7 @@ Switched to a new branch 'feature/docs-boilerplate'
 
 ***3.*** Each time you complete a piece of work, you must add the files to a staging environment:
 
-##### Example:
+##### Example
 
 ```bash
 git add TEST.php
@@ -179,7 +179,7 @@ git add TEST.php
 
 ***4.*** After all, you can save your changes to the git tree by committing them:
 
-##### Example:
+##### Example
 
 ```bash
 git commit -a #Execute the commit step with the help of this command.
@@ -195,7 +195,7 @@ If in the third line you write and save the command `TG-449 #in-progress` or `TG
 
    ***NOTE:*** A very important point in handling tasks that should be mentioned here is that only one person named the tester can put the task in close or need info mode.
 
-##### Example:
+##### Example
 
 ```bash
 Design the pages.
@@ -220,7 +220,7 @@ git status #See the changes using the git status command
 
 ***5.*** you put the desired file in GitHub using the following command:
 
-##### Example:
+##### Example
 
 ```bash
 git push --set-upstream origin feature/docs-boilerplate
@@ -251,7 +251,7 @@ How to contribute to developing or maintaining Larammerce.
 
 The following is a brief description of how to participate in Larammerce.
 
-#### Team rules:
+#### Team rules
 
 ***1.*** Team Larammerce sprints are now once every **two weeks**, if you are given a user story you have two weeks to execute the desired user story, but this does not mean that you end-user stories at the end to run a 30% sprint, **team members have to tell a series of user stories every weekend.**
 
