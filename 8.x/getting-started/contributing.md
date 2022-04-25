@@ -97,7 +97,7 @@ However, the user's story is a process during which needs are discovered and sho
 
 Meetings are held according to the scrum structure in the Larammerce team, which includes grooming and sprint sessions:
 
-**Grooming sessions** | **Sprint sessions**
+Grooming sessions | Sprint sessions
 ----------------------|--------------------
 ***1.*** In this type of meeting, which is held on Saturdays, team Larammerce discusses technical issues.| ***1.*** These meetings are held periodically on Mondays.
 ***2.*** In these sessions, user stories are created and divided into smaller sections. | ***2.*** In these meetings, teammates make a decision about user stories, make them viable, and then it's time to assign the user stories to specific team members. so every team member is responsible for their own user stories.
@@ -191,7 +191,7 @@ git commit -a #Execute the commit step with the help of this command.
    Also, you can read the docs provided by the taiga team to know more about this integration feature. [taiga docs](https://docs.taiga.io/integrations-github.html)
 
    ***NOTE***: In the third line, you can have a brief description of the work done. Here is a requirement that you suggest you do:
-If in the third line you write and save the command `TG-449 #in-progress` or `TG-449 #ready-for-rest `when you enter the taiga site in the taskbar in the browser, you will see that task number **449** has been entered from the new section in progress or ready for testing.
+If in the third line you write and save the command `TG-449 #in-progress` or `TG-449 #ready-for-rest `when you enter the taiga site in the taskbar in the browser, you will see that task number 449 has been entered from the new section in progress or ready for testing.
 
    ***NOTE:*** A very important point in handling tasks that should be mentioned here is that only one person named the tester can put the task in close or need info mode.
 
@@ -235,11 +235,11 @@ After clicking on the link provided by GitLab, you will enter the following page
 
 ![merge request: title & description](https://github.com/Cena313/Hello-world/blob/master/20220419_163618.jpg?raw=true)
 
-In this section, you enter the user story **title** Command, and also in the **description** section, you enter a summary description of the user story. Finally, click on the **Create merge request** button.
+In this section, you enter the user story **title** Command, and also in the **description** section, you enter a summary description of the user story. Finally, click on the Create merge request button.
 
 ![merge request: title & description](https://github.com/Cena313/Hello-world/blob/master/20220419_163546.jpg?raw=true)
 
-After clicking the Create merge request button, you must check to see if there is a **conflict**. If there is no conflict, you are done and you will have to wait for the team experimenter to review the user story done by you.
+After clicking the Create merge request button, you must check to see if there is a conflict. If there is no conflict, you are done and you will have to wait for the team experimenter to review the user story done by you.
 
 You can refer to the following link to learn how to pull a request:
 
@@ -253,11 +253,11 @@ The following is a brief description of how to participate in Larammerce.
 
 #### Team rules
 
-***1.*** Team Larammerce sprints are now once every **two weeks**, if you are given a user story you have two weeks to execute the desired user story, but this does not mean that you end-user stories at the end to run a 30% sprint, **team members have to tell a series of user stories every weekend.**
+***1.*** Team Larammerce sprints are now once every **two weeks**, if you are given a user story you have two weeks to execute the desired user story, but this does not mean that you end-user stories at the end to run a 30% sprint, team members have to tell a series of user stories every weekend.
 
 ***2.*** Presently, Larammerce has an average of 8 points for the user history to do.
 
-***3.*** **Team members must have completed (8 pts) merge requests by the end of each week**, and this is an important rule in the Larammerce team.
+***3.*** Team members must have completed **(8 pts)** merge requests by the end of each week, and this is an important rule in the Larammerce team.
 
 ***4.*** At least one **commit** must be made for each **task**.
 
@@ -265,10 +265,10 @@ The following is a brief description of how to participate in Larammerce.
 
 ***6.*** On the **Saturday morning** before the meeting, team members should review 10 to 15 backlog user stories and prepare their comments and questions for the meeting.
 
-***7.*** After performing the user story, the person testing the user story, or the team members' code, **moves the user story from the ready for test column to the closed column if there is no user story problem.** This means that the user story is complete.
+***7.*** After performing the user story, the person testing the user story, or the team members' code, moves the user story from the ready for test column to the closed column if there is no user story problem. This means that the user story is complete.
 
-***8.*** Also, after **Monday** sessions, which are in scrum mode, each member of the team is required to add user story-related tasks.
+***8.*** Also, after Monday sessions, which are in scrum mode, each member of the team is required to add user story-related tasks.
 
-***9.*** Finally, you enter the **payment cycle** discussion where Larammerce pays you based on the number of points **([Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number))** done.
+***9.*** Finally, you enter the payment cycle discussion where Larammerce pays you based on the number of points ([Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number)) done.
 
-***10.*** For every document that is written and placed in the **documentation** section of the Larammerce site, **the members of the Larammerce team are obliged to read it.**
+***10.*** For every document that is written and placed in the documentation section of the Larammerce site, the members of the Larammerce team are obliged to read it.
