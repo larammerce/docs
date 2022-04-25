@@ -230,7 +230,7 @@ git push --set-upstream origin feature/docs-boilerplate
 
 in GitHub, you create pull requests and in GitLab create merge requests. so let's describe them one by one.
 
-Creating a merger request is just a very simple task, just after each commit you have done, click on the link that GitLab creates for you to enter the GitLab site and create a merge request for the user story.
+Creating a merge request is just a very simple task, just after each commit you have done, click on the link that GitLab creates for you to enter the GitLab site and create a merge request for the user story.
 After clicking on the link provided by GitLab, you will enter the following page on the GitLab site:
 
 ![merge request: title & description](https://github.com/Cena313/Hello-world/blob/master/20220419_163618.jpg?raw=true)
@@ -243,7 +243,7 @@ After clicking the Create merge request button, you must check to see if there i
 
 You can refer to the following link to learn how to pull a request:
 
-> [how to pull a request?](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
+> [How to create merge request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
 
 ### Conclusion
 
