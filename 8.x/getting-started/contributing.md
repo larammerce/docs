@@ -147,7 +147,7 @@ So if you want to name the working branch follow the naming rules.
 
 For this purpose, in this section, to better understand you, The Larammerce team will go through the steps of creating a task with you in this section.
 
-***1.*** **In this step, you create a sub-branch on the main project:**
+***1.*** In this step, you create a sub-branch on the main project:
 
    ***NOTE***: Here the **stable** branch is the name of the main branch of the project that you can not modify.
 
@@ -159,7 +159,7 @@ git chekout -b feature/docs-boilerplate #you create a sub-branch.
 Switched to a new branch 'feature/docs-boilerplate'
 ```
 
-***2.*** **In this step, you can start to code, create/modify/update/delete specific files to achieve the desired goals of the user story:**
+***2.*** In this step, you can start to code, create/modify/update/delete specific files to achieve the desired goals of the user story:
 
  For example you can make some modifications on the file `test.php`.
 
@@ -169,7 +169,7 @@ Switched to a new branch 'feature/docs-boilerplate'
 #this is a test line to create a test commit.
 ```
 
-***3.*** **Each time you complete a piece of work, you must add the files to a staging environment:**
+***3.*** Each time you complete a piece of work, you must add the files to a staging environment:
 
 ##### Example:
 
@@ -177,7 +177,7 @@ Switched to a new branch 'feature/docs-boilerplate'
 git add TEST.php
 ```
 
-***4.*** **After all, you can save your changes to the git tree by committing them:**
+***4.*** After all, you can save your changes to the git tree by committing them:
 
 ##### Example:
 
@@ -218,7 +218,7 @@ git status #See the changes using the git status command
  create mode 100644 TEST.php
 ```
 
-***5.*** **you put the desired file in GitHub using the following command:**
+***5.*** you put the desired file in GitHub using the following command:
 
 ##### Example:
 
@@ -226,7 +226,7 @@ git status #See the changes using the git status command
 git push --set-upstream origin feature/docs-boilerplate
 ```
 
-***6.*** **Here you have to mention that there are differences between GitHub and GitLab projects in this stage:**
+***6.*** Here you have to mention that there are differences between GitHub and GitLab projects in this stage:
 
 in GitHub, you create pull requests and in GitLab create merge requests. so let's describe them one by one.
 
@@ -255,9 +255,9 @@ The following is a brief description of how to participate in Larammerce.
 
 ***1.*** Team Larammerce sprints are now once every **two weeks**, if you are given a user story you have two weeks to execute the desired user story, but this does not mean that you end-user stories at the end to run a 30% sprint, **team members have to tell a series of user stories every weekend.**
 
-***2.*** Currently, Larammerce has an average of **8 points** for the user story to be done.
+***2.*** Presently, Larammerce has an average of 8 points for the user history to do.
 
-***3.*** **Team members must have completed (8 points) merge requests by the end of each week**, and this is an important rule in the Larammerce team.
+***3.*** **Team members must have completed (8 pts) merge requests by the end of each week**, and this is an important rule in the Larammerce team.
 
 ***4.*** At least one **commit** must be made for each **task**.
 
