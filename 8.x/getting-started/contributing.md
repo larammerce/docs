@@ -230,20 +230,54 @@ git push --set-upstream origin feature/docs-boilerplate
 
 in GitHub, you create pull requests and in GitLab create merge requests. so let's describe them one by one.
 
+#### Creating the merge request
+___
+
 Creating a merge request is just a very simple task, just after each commit you have done, click on the link that GitLab creates for you to enter the GitLab site and create a merge request for the user story.
 After clicking on the link provided by GitLab, you will enter the following page on the GitLab site:
 
 ![merge request: title & description](https://github.com/Cena313/Hello-world/blob/master/20220419_163618.jpg?raw=true)
 
-In this section, you enter the user story **title** Command, and also in the **description** section, you enter a summary description of the user story. Finally, click on the Create merge request button.
+In this section, you enter the user story title Command, and also in the description section, you enter a summary description of the user story. Finally, click on the Create merge request button.
 
 ![merge request: title & description](https://github.com/Cena313/Hello-world/blob/master/20220419_163546.jpg?raw=true)
 
 After clicking the Create merge request button, you must check to see if there is a conflict. If there is no conflict, you are done and you will have to wait for the team experimenter to review the user story done by you.
 
-You can refer to the following link to learn how to pull a request:
+You can refer to the following link to learn how to merge request:
 
-> [How to create merge request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
+> [How to create merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
+
+#### Creating the pull request
+___
+
+If you want to create a new branch to request your traction and you do not have permission to write to the repository, you must first fork the repository. For more information, see "[Creating a traction request from a fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)" and "[About forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks)".
+
+***NOTE:*** To open a pull request in a public repository, you must have write access to the head or the source branch or, for organization-owned repositories, you must be a member of the organization that owns the repository to open a pull request.
+
+***1.*** On GitHub.com, navigate to the main page of the repository.
+
+***2.*** In the "Branch" menu, choose the branch that contains your commits.
+
+![choose the branch that contains your commits.](https://github.com/Cena313/Hello-world/blob/master/1.jpg?raw=true)
+
+***3.*** At the top of the file list, click **Pull request** and then **New pull request**.
+
+![click Pull request and then New pull request](https://github.com/Cena313/Hello-world/blob/master/2.jpg?raw=true)
+
+***4.*** Use the base branch dropdown menu to select the branch you'd like to merge your changes into, then use the compare branch drop-down menu to choose the topic branch you made your changes in.
+
+![choose the topic branch you made your changes in.](https://github.com/Cena313/Hello-world/blob/master/3.jpg?raw=true)
+
+***5.*** Type a title and description for your pull request.
+
+![Type a title and description](https://github.com/Cena313/Hello-world/blob/master/4.jpg?raw=true)
+
+***6.*** To create a pull request that is ready for review, click **Create Pull Request**.
+
+![To create a pull request that is ready for review](https://github.com/Cena313/Hello-world/blob/master/5.jpg?raw=true)
+
+> [How to create pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
 
 ### Conclusion
 
