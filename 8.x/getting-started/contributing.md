@@ -277,6 +277,8 @@ If you want to create a new branch to request your traction and you do not have 
 
 ![To create a pull request that is ready for review](https://github.com/Cena313/Hello-world/blob/master/5.jpg?raw=true)
 
+You can refer to the following link to learn how to pull request:
+
 > [How to create pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
 
 ### Conclusion
