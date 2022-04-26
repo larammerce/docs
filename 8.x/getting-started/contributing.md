@@ -30,7 +30,7 @@ whether or not your feature is likely to be used by other users of the project.
 
 - Check the codebase to ensure that your feature doesn't already exist.
 - Check the pull requests to ensure that another person hasn't already submitted the feature or fix.
-- Use the [pull request template](https://github.com/larammerce/larammerce/blob/8.x/.github/PULL_REQUEST_TEMPLATE.md).
+- Use the "[pull request template](https://github.com/larammerce/larammerce/blob/8.x/.github/PULL_REQUEST_TEMPLATE.md)".
 
 ## How to report a bug?
 
@@ -38,15 +38,15 @@ whether or not your feature is likely to be used by other users of the project.
 - Check to make sure your bug report isn't already present within the project.
 - Check the pull requests tab to ensure that the bug doesn't have a fix in progress.
 - Check the pull requests tab to ensure that the feature isn't already in progress.
-- Use the [issue template](https://github.com/larammerce/larammerce/blob/8.x/.github/ISSUE_TEMPLATE.md).
+- Use the "[issue template](https://github.com/larammerce/larammerce/blob/8.x/.github/ISSUE_TEMPLATE.md)".
 
 ## PR Requirements
-- The PR **must** apply to [PSR-2 Coding Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md). StyleCI help you detect code style issues.
+- The PR **must** apply to "[PSR-2 Coding Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)". StyleCI help you detect code style issues.
 - The PR **must** be as clean as possible. Try to remove all inline TODOs and unneeded comments. They are noise and distraction for the reviewer. Use Github's (inline) comment system to start a discussion about a change.
 - The existing tests **must** not fail after your changes. This would indicate that existing functionality is broken and should be addressed before a review is started. You can run the test by running `vendor/bin/phpunit`
 - The changes **must** be backed-up with tests. 
 - The PR **must** only have one feature. Split up multiple features in multiple PRs, so they can be individually reviewed and merged.
-- The PR **must** be accompanied by a PR to the docs in case of new features. Documentation is located in the [https://github.com/larammerce/docs](https://github.com/larammerce/docs) repository.
+- The PR **must** be accompanied by a PR to the docs in case of new features. Documentation is located in the "[https://github.com/larammerce/docs](https://github.com/larammerce/docs)" repository.
 - The PR should contain meaningful commit messages.
 
 ## Project management
@@ -62,6 +62,7 @@ Here you can learn about how larammerce manages user stories and features to be 
 As mentioned before, scrum is used as the main methodology, so let's describe it briefly:
 
 #### What is user story?
+___
 
 **User Story** is usually a term in software development and management in various fields that will be collected to describe customer needs. In software development and product management, the user story is an informal, natural language description that describes one or more features of the software system. a user story is a tool used in **Agile** software development to describe a software feature from an end-user perspective. User story users describe what they want and why. a user story helps to create a simple description of a need.
 
@@ -70,28 +71,30 @@ It is interesting to know that **Mike Cohn**, who is one of the main inventors o
 > *Every user story consists of one or two sentences written and, more importantly, a series of conversations about optimal performance.*
 
 #### Why user story?
+___
 
 With the user story approach, you are content with **just enough** design instead of a large and comprehensive design. user story reduces the time required to write comprehensive documentation by emphasizing customer-centric conversations. As a result, user story enables teams to deliver quality software faster.
 
 The user story method will save time Because it is modified and improved according to the users. As a result, the quality in the process of software development or other products has increased and the upcoming project will be liked by the customer.
 
 #### Working with user story
+___
 
 The user's story is written in simple language that must pursue a specific purpose and have a specific reason. The user in the story must be real and not a member of the development team. There may be multiple user stories in the system that have the same benefits. This is normal. It's a good idea to start drafting a user story. The draft must first meet your essential needs. That:
 
-***1.*** Who is it designed for?
+**1.** Who is it designed for?
 
-***2.*** What are the expectations from the system?
+**2.** What are the expectations from the system?
 
-***3.*** Why is it important?
+**3.** Why is it important?
 
 However, the user's story is a process during which needs are discovered and should not be used as a document to analyze needs. In traditional methods, the system analyst usually tried to understand the customer's needs, but in modern methods, the following steps must be followed to identify the User Story:
 
-***1.*** You need to talk to users.
+**1.** You need to talk to users.
 
-***2.*** User needs are written as a user story. This post should specify what the user needs and what the goal is.
+**2.** User needs are written as a user story. This post should specify what the user needs and what the goal is.
 
-***3.*** After writing the needs, you will be faced with a source of user needs that must be fully understood and reviewed by the team.
+**3.** After writing the needs, you will be faced with a source of user needs that must be fully understood and reviewed by the team.
 
 ### Team procedures to manage
 
@@ -99,10 +102,10 @@ Meetings are held according to the scrum structure in the Larammerce team, which
 
 Grooming sessions | Sprint sessions
 ----------------------|--------------------
-***1.*** In this type of meeting, which is held on Saturdays, team Larammerce discusses technical issues.| ***1.*** These meetings are held periodically on Mondays.
-***2.*** In these sessions, user stories are created and divided into smaller sections. | ***2.*** In these meetings, teammates make a decision about user stories, make them viable, and then it's time to assign the user stories to specific team members. so every team member is responsible for their own user stories.
-***3.*** There are discussions among Larammerce team members about how to better do the user story. | ***3.*** Every user story is discussed one by one and the estimation process begins, so every teammate announces the point of view and finally, a point for the weight of each user story is assigned.
-***4.***  And finally, the user story is ready for being estimated in sprint upcoming sessions. | ***4.*** And finally enters the execution cycle.
+**1.** In this type of meeting, which is held on Saturdays, team Larammerce discusses technical issues.| **1.** These meetings are held periodically on Mondays.
+**2.** In these sessions, user stories are created and divided into smaller sections. | **2.** In these meetings, teammates make a decision about user stories, make them viable, and then it's time to assign the user stories to specific team members. so every team member is responsible for their own user stories.
+**3.** There are discussions among Larammerce team members about how to better do the user story. | **3.** Every user story is discussed one by one and the estimation process begins, so every teammate announces the point of view and finally, a point for the weight of each user story is assigned.
+**4.**  And finally, the user story is ready for being estimated in sprint upcoming sessions. | **4.** And finally enters the execution cycle.
 
 > *The first thing after every sprint session is that every team member is responsible for writing notes in their own user stories according to what is mentioned in the sessions, and after that, the most necessary thing is that they must create the tasks of each owned user story right after sprint sessions.*
 
@@ -117,6 +120,7 @@ Grooming sessions | Sprint sessions
 > *The user story can be created by anyone and also the person who creates the user story is required to add a brief description.*
 
 #### How to create a new task?
+___
 
 As you know the smallest doable part of a user story is the task, so to create a task you have to enter the current sprint, then click on the specific user story which belongs to you, and after all click on the create task button. so there are new tasks created under the user story section.
 Please note that user stories must have at least one task underneath.
@@ -129,15 +133,15 @@ git checkout -b feature/the-title-of-the-feature
 
 ***NOTE***: note that naming the new branch follows the hierarchical naming rules. A user story is about one of the following:
 
-***1.*** Feature
+**1.** Feature
 
-***2.*** Issue
+**2.** Issue
 
-***3.*** Enhance
+**3.** Enhance
 
-***4.*** Fix
+**4.** Fix
 
-***5.*** Hotfix
+**5.** Hotfix
 
 So if you want to name the working branch follow the naming rules.
 
@@ -147,9 +151,9 @@ So if you want to name the working branch follow the naming rules.
 
 For this purpose, in this section, to better understand you, The Larammerce team will go through the steps of creating a task with you in this section.
 
-***1.*** In this step, you create a sub-branch on the main project:
+**1.** In this step, you create a sub-branch on the main project:
 
-   ***NOTE***: Here the **stable** branch is the name of the main branch of the project that you can not modify.
+   **NOTE:** Here the **stable** branch is the name of the main branch of the project that you can not modify.
 
 ##### Example
 
@@ -159,7 +163,7 @@ git chekout -b feature/docs-boilerplate #you create a sub-branch.
 Switched to a new branch 'feature/docs-boilerplate'
 ```
 
-***2.*** In this step, you can start to code, create/modify/update/delete specific files to achieve the desired goals of the user story:
+**2.** In this step, you can start to code, create/modify/update/delete specific files to achieve the desired goals of the user story:
 
  For example you can make some modifications on the file `test.php`.
 
@@ -169,7 +173,7 @@ Switched to a new branch 'feature/docs-boilerplate'
 #this is a test line to create a test commit.
 ```
 
-***3.*** Each time you complete a piece of work, you must add the files to a staging environment:
+**3.** Each time you complete a piece of work, you must add the files to a staging environment:
 
 ##### Example
 
@@ -177,23 +181,25 @@ Switched to a new branch 'feature/docs-boilerplate'
 git add TEST.php
 ```
 
-***4.*** After all, you can save your changes to the git tree by committing them:
+**4.** After all, you can save your changes to the git tree by committing them:
 
 ##### Example
 
 ```bash
 git commit -a #Execute the commit step with the help of this command.
 ```
-   ***NOTE***: Make sure that the first line of your commit message is concise and also imperative.
+   **NOTE:** Make sure that the first line of your commit message is concise and also imperative.
 
-   ***NOTE***: After a brief description, you can pass the notes that are necessary for the taiga platform to detect that you've done the specific task. So please note how it is done:
+   **NOTE:** After a brief description, you can pass the notes that are necessary for the taiga platform to detect that you've done the specific task. So please note how it is done:
 
-   Also, you can read the docs provided by the taiga team to know more about this integration feature. [taiga docs](https://docs.taiga.io/integrations-github.html)
+   Also, you can read the docs provided by the taiga team to know more about this integration feature.
+   
+> [taiga docs](https://docs.taiga.io/integrations-github.html)
 
-   ***NOTE***: In the third line, you can have a brief description of the work done. Here is a requirement that you suggest you do:
+   **NOTE:** In the third line, you can have a brief description of the work done. Here is a requirement that you suggest you do:
 If in the third line you write and save the command `TG-449 #in-progress` or `TG-449 #ready-for-rest `when you enter the taiga site in the taskbar in the browser, you will see that task number 449 has been entered from the new section in progress or ready for testing.
 
-   ***NOTE:*** A very important point in handling tasks that should be mentioned here is that only one person named the tester can put the task in close or need info mode.
+   **NOTE:** A very important point in handling tasks that should be mentioned here is that only one person named the tester can put the task in close or need info mode.
 
 ##### Example
 
@@ -218,7 +224,7 @@ git status #See the changes using the git status command
  create mode 100644 TEST.php
 ```
 
-***5.*** you put the desired file in GitHub using the following command:
+**5.** you put the desired file in GitHub using the following command:
 
 ##### Example
 
@@ -226,7 +232,7 @@ git status #See the changes using the git status command
 git push --set-upstream origin feature/docs-boilerplate
 ```
 
-***6.*** Here you have to mention that there are differences between GitHub and GitLab projects in this stage:
+**6.** Here you have to mention that there are differences between GitHub and GitLab projects in this stage:
 
 in GitHub, you create pull requests and in GitLab create merge requests. so let's describe them one by one.
 
@@ -253,27 +259,27 @@ ___
 
 If you want to create a new branch to request your traction and you do not have permission to write to the repository, you must first fork the repository. For more information, see "[Creating a traction request from a fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)" and "[About forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks)".
 
-***NOTE:*** To open a pull request in a public repository, you must have write access to the head or the source branch or, for organization-owned repositories, you must be a member of the organization that owns the repository to open a pull request.
+**NOTE:** To open a pull request in a public repository, you must have write access to the head or the source branch or, for organization-owned repositories, you must be a member of the organization that owns the repository to open a pull request.
 
-***1.*** On GitHub.com, navigate to the main page of the repository.
+**1.** On GitHub.com, navigate to the main page of the repository.
 
-***2.*** In the "Branch" menu, choose the branch that contains your commits.
+**2.** In the "Branch" menu, choose the branch that contains your commits.
 
 ![choose the branch that contains your commits.](https://github.com/Cena313/Hello-world/blob/master/1.jpg?raw=true)
 
-***3.*** At the top of the file list, click **Pull request** and then **New pull request**.
+**3.** At the top of the file list, click **Pull request** and then **New pull request**.
 
 ![click Pull request and then New pull request](https://github.com/Cena313/Hello-world/blob/master/2.jpg?raw=true)
 
-***4.*** Use the base branch dropdown menu to select the branch you'd like to merge your changes into, then use the compare branch drop-down menu to choose the topic branch you made your changes in.
+**4.** Use the base branch dropdown menu to select the branch you'd like to merge your changes into, then use the compare branch drop-down menu to choose the topic branch you made your changes in.
 
 ![choose the topic branch you made your changes in.](https://github.com/Cena313/Hello-world/blob/master/3.jpg?raw=true)
 
-***5.*** Type a title and description for your pull request.
+**5.** Type a title and description for your pull request.
 
 ![Type a title and description](https://github.com/Cena313/Hello-world/blob/master/4.jpg?raw=true)
 
-***6.*** To create a pull request that is ready for review, click **Create Pull Request**.
+**6.** To create a pull request that is ready for review, click **Create Pull Request**.
 
 ![To create a pull request that is ready for review](https://github.com/Cena313/Hello-world/blob/master/5.jpg?raw=true)
 
@@ -288,23 +294,24 @@ How to contribute to developing or maintaining Larammerce.
 The following is a brief description of how to participate in Larammerce.
 
 #### Team rules
+___
 
-***1.*** Team Larammerce sprints are now once every **two weeks**, if you are given a user story you have two weeks to execute the desired user story, but this does not mean that you end-user stories at the end to run a 30% sprint, team members have to tell a series of user stories every weekend.
+**1.** Team Larammerce sprints are now once every **two weeks**, if you are given a user story you have two weeks to execute the desired user story, but this does not mean that you end-user stories at the end to run a 30% sprint, team members have to tell a series of user stories every weekend.
 
-***2.*** Presently, Larammerce has an average of 8 points for the user history to do.
+**2.** Presently, Larammerce has an average of 8 points for the user history to do.
 
-***3.*** Team members must have completed **(8 pts)** merge requests by the end of each week, and this is an important rule in the Larammerce team.
+**3.** Team members must have completed **(8 pts)** merge requests by the end of each week, and this is an important rule in the Larammerce team.
 
-***4.*** At least one **commit** must be made for each **task**.
+**4.** At least one **commit** must be made for each **task**.
 
-***5.*** Team members must have at least one committed by **Friday night** to be tested by the team tester on **Saturday morning**.
+**5.** Team members must have at least one committed by **Friday night** to be tested by the team tester on **Saturday morning**.
 
-***6.*** On the **Saturday morning** before the meeting, team members should review 10 to 15 backlog user stories and prepare their comments and questions for the meeting.
+**6.** On the **Saturday morning** before the meeting, team members should review 10 to 15 backlog user stories and prepare their comments and questions for the meeting.
 
-***7.*** After performing the user story, the person testing the user story, or the team members' code, moves the user story from the ready for test column to the closed column if there is no user story problem. This means that the user story is complete.
+**7.** After performing the user story, the person testing the user story, or the team members' code, moves the user story from the ready for test column to the closed column if there is no user story problem. This means that the user story is complete.
 
-***8.*** Also, after Monday sessions, which are in scrum mode, each member of the team is required to add user story-related tasks.
+**8.** Also, after Monday sessions, which are in scrum mode, each member of the team is required to add user story-related tasks.
 
-***9.*** Finally, you enter the payment cycle discussion where Larammerce pays you based on the number of points ([Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number)) done.
+**9.** Finally, you enter the payment cycle discussion where Larammerce pays you based on the number of points "[Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number)" done.
 
-***10.*** For every document that is written and placed in the documentation section of the Larammerce site, the members of the Larammerce team are obliged to read it.
+**10.** For every document that is written and placed in the documentation section of the Larammerce site, the members of the Larammerce team are obliged to read it.
