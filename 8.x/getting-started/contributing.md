@@ -30,7 +30,7 @@ whether or not your feature is likely to be used by other users of the project.
 
 - Check the codebase to ensure that your feature doesn't already exist.
 - Check the pull requests to ensure that another person hasn't already submitted the feature or fix.
-- Use the "[pull request template](https://github.com/larammerce/larammerce/blob/8.x/.github/PULL_REQUEST_TEMPLATE.md)".
+- Use the [pull request template](https://github.com/larammerce/larammerce/blob/8.x/.github/PULL_REQUEST_TEMPLATE.md).
 
 ## How to report a bug?
 
@@ -38,24 +38,22 @@ whether or not your feature is likely to be used by other users of the project.
 - Check to make sure your bug report isn't already present within the project.
 - Check the pull requests tab to ensure that the bug doesn't have a fix in progress.
 - Check the pull requests tab to ensure that the feature isn't already in progress.
-- Use the "[issue template](https://github.com/larammerce/larammerce/blob/8.x/.github/ISSUE_TEMPLATE.md)".
+- Use the [issue template](https://github.com/larammerce/larammerce/blob/8.x/.github/ISSUE_TEMPLATE.md).
 
 ## PR Requirements
-- The PR **must** apply to "[PSR-2 Coding Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)". StyleCI help you detect code style issues.
+- The PR **must** apply to [PSR-2 Coding Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md). StyleCI help you detect code style issues.
 - The PR **must** be as clean as possible. Try to remove all inline TODOs and unneeded comments. They are noise and distraction for the reviewer. Use Github's (inline) comment system to start a discussion about a change.
 - The existing tests **must** not fail after your changes. This would indicate that existing functionality is broken and should be addressed before a review is started. You can run the test by running `vendor/bin/phpunit`
 - The changes **must** be backed-up with tests. 
 - The PR **must** only have one feature. Split up multiple features in multiple PRs, so they can be individually reviewed and merged.
-- The PR **must** be accompanied by a PR to the docs in case of new features. Documentation is located in the "[https://github.com/larammerce/docs](https://github.com/larammerce/docs)" repository.
+- The PR **must** be accompanied by a PR to the docs in case of new features. Documentation is located in the [https://github.com/Larammerce/docs](https://github.com/larammerce/docs) repository.
 - The PR should contain meaningful commit messages.
 
 ## Project management
 
-Here you can learn about how larammerce manages user stories and features to be developed and released.
+Here you can learn about how Larammerce manages user stories and features to be developed and released.
 
-**Taiga** is the tool that is used as the project management system, and also larammerce backlog board is publicly visible for people to check. also, it should be mentioned that Scrum is chosen as the management methodology for this project.
-
-> [tree.taiga.io/project/a-khajelou-larammerce/bakelog](https://tree.taiga.io/project/a-khajelou-larammerce/bakelog)
+**Taiga** is the tool that is used as the project management system, and also [Larammerce backlog board](https://tree.taiga.io/project/a-khajelou-larammerce/backlog) is publicly visible for people to check. also, it should be mentioned that Scrum is chosen as the management methodology for this project.
 
 ### A brief about scrum
 
@@ -73,7 +71,7 @@ It is interesting to know that **Mike Cohn**, who is one of the main inventors o
 #### Why user story?
 ___
 
-With the user story approach, you are content with **just enough** design instead of a large and comprehensive design. user story reduces the time required to write comprehensive documentation by emphasizing customer-centric conversations. As a result, user story enables teams to deliver quality software faster.
+With the user story approach, you are content with just enough design instead of a large and comprehensive design. user story reduces the time required to write comprehensive documentation by emphasizing customer-centric conversations. As a result, user story enables teams to deliver quality software faster.
 
 The user story method will save time Because it is modified and improved according to the users. As a result, the quality in the process of software development or other products has increased and the upcoming project will be liked by the customer.
 
@@ -102,22 +100,21 @@ Meetings are held according to the scrum structure in the Larammerce team, which
 
 Grooming sessions | Sprint sessions
 ----------------------|--------------------
-**1.** In this type of meeting, which is held on Saturdays, team Larammerce discusses technical issues.| **1.** These meetings are held periodically on Mondays.
+**1.** In this type of meeting, which is held on Saturdays, team Larammerce discusses technical issues.| **1.** These meetings are held periodically on Sunday .
 **2.** In these sessions, user stories are created and divided into smaller sections. | **2.** In these meetings, teammates make a decision about user stories, make them viable, and then it's time to assign the user stories to specific team members. so every team member is responsible for their own user stories.
 **3.** There are discussions among Larammerce team members about how to better do the user story. | **3.** Every user story is discussed one by one and the estimation process begins, so every teammate announces the point of view and finally, a point for the weight of each user story is assigned.
 **4.**  And finally, the user story is ready for being estimated in sprint upcoming sessions. | **4.** And finally enters the execution cycle.
 
-> *The first thing after every sprint session is that every team member is responsible for writing notes in their own user stories according to what is mentioned in the sessions, and after that, the most necessary thing is that they must create the tasks of each owned user story right after sprint sessions.*
+**NOTE:** The first thing after every sprint session is that every team member is responsible for writing notes in their own user stories according to what is mentioned in the sessions, and after that, the most necessary thing is that they must create the tasks of each owned user story right after sprint sessions.
 
-> ***User story & task:***
->
->***To explain this difference, here is a quote from Mike Cohn:***
->
+**NOTE:** The user story can be created by anyone and also the person who creates the user story is required to add a brief description.
+
+**NOTE:** The interesting thing here is that there is a difference between a user story and a task, to understand this difference we focus on a quote from **Mike Cohn**.
+
 > *User stories are in the product backlog, and tasks are identified during sprint scheduling and become part of the sprint backlog.*
 >
-> *the better distinction is that stories contain multiple types of work (e.g., programming, testing, database design, user interface design, analysis, etc.) while tasks are restricted to a single type of work.*
+> *the better distinction is that stories contain multiple types of work (e.g., programming, testing, database design, user interface design, analysis, etc.) while tasks are restricted to a single type of work.* *<sup>[1](#1)</sup>*
 
-> *The user story can be created by anyone and also the person who creates the user story is required to add a brief description.*
 
 #### How to create a new task?
 ___
@@ -125,13 +122,13 @@ ___
 As you know the smallest doable part of a user story is the task, so to create a task you have to enter the current sprint, then click on the specific user story which belongs to you, and after all click on the create task button. so there are new tasks created under the user story section.
 Please note that user stories must have at least one task underneath.
 
-**Once the project** is cloned (or you cloned and worked on it before), to begin the process of development or writing code to do the assigned user story, you have to update the project. so after updating your project to the upstream, you can make a new branch from the **main brach** (named master or main) by the commend below:
+**Once the project is cloned** (or you cloned and worked on it before), to begin the process of development or writing code to do the assigned user story, you have to update the project. so after updating your project to the upstream, you can make a new branch from the **main brach** (named master or main) by the commend below:
 
 ```bash
 git checkout -b feature/the-title-of-the-feature
 ```
 
-***NOTE***: note that naming the new branch follows the hierarchical naming rules. A user story is about one of the following:
+**NOTE:** note that naming the new branch follows the hierarchical naming rules. A user story is about one of the following:
 
 **1.** Feature
 
@@ -153,7 +150,7 @@ For this purpose, in this section, to better understand you, The Larammerce team
 
 **1.** In this step, you create a sub-branch on the main project:
 
-   **NOTE:** Here the **stable** branch is the name of the main branch of the project that you can not modify.
+**NOTE:** Here the stable branch is the name of the main branch of the project that you can not modify.
 
 ##### Example
 
@@ -188,18 +185,17 @@ git add TEST.php
 ```bash
 git commit -a #Execute the commit step with the help of this command.
 ```
-   **NOTE:** Make sure that the first line of your commit message is concise and also imperative.
+**NOTE:** Make sure that the first line of your commit message is concise and also imperative.
 
-   **NOTE:** After a brief description, you can pass the notes that are necessary for the taiga platform to detect that you've done the specific task. So please note how it is done:
+**NOTE:** After a brief description, you can pass the notes that are necessary for the taiga platform to detect that you've done the specific task. So please note how it is done:
 
-   Also, you can read the docs provided by the taiga team to know more about this integration feature.
-   
-> [taiga docs](https://docs.taiga.io/integrations-github.html)
+Also, you can read the [docs provided by the taiga team](https://docs.taiga.io/integrations-github.html) to know more about this integration feature.
 
-   **NOTE:** In the third line, you can have a brief description of the work done. Here is a requirement that you suggest you do:
-If in the third line you write and save the command `TG-449 #in-progress` or `TG-449 #ready-for-rest `when you enter the taiga site in the taskbar in the browser, you will see that task number 449 has been entered from the new section in progress or ready for testing.
+**NOTE:** You can have a brief description of the work done.
 
-   **NOTE:** A very important point in handling tasks that should be mentioned here is that only one person named the tester can put the task in close or need info mode.
+There is a requirement here that you can fulfill. If in the third line you write and save the command `TG-449 #in-progress` or `TG-449 #ready-for-rest `when you enter the taiga site in the taskbar in the browser, you will see that task number 449 has been entered from the new section in progress or ready for testing.
+
+**NOTE:** A very important point in handling tasks that should be mentioned here is that only one person named the tester can put the task in close or need info mode.
 
 ##### Example
 
@@ -208,20 +204,25 @@ Design the pages.
 
 TG-449 #in-progress
 ```
-**OR**
+
+##### Example
 
 ```bash
 Design the pages.
 
 TG-449 #ready-for-test 
 ```
-**AND**
+
+And then we use the git status command to see the changes:
+
+##### Example
 
 ```bash
-git status #See the changes using the git status command
-[feature/docs-boilerplate (root-commit) cc04ebe] Design the pages
- 1 file changed, 3 insertions(+)
- create mode 100644 TEST.php
+git status 
+#And below you see the output of the above command.
+#[feature/docs-boilerplate (root-commit) cc04ebe] Design the pages
+#1 file changed, 3 insertions(+)
+#create mode 100644 TEST.php
 ```
 
 **5.** you put the desired file in GitHub using the following command:
@@ -242,22 +243,20 @@ ___
 Creating a merge request is just a very simple task, just after each commit you have done, click on the link that GitLab creates for you to enter the GitLab site and create a merge request for the user story.
 After clicking on the link provided by GitLab, you will enter the following page on the GitLab site:
 
-![merge request: title & description](https://github.com/Cena313/Hello-world/blob/master/20220419_163618.jpg?raw=true)
+![merge request: title & description](/description.jpg)
 
 In this section, you enter the user story title Command, and also in the description section, you enter a summary description of the user story. Finally, click on the Create merge request button.
 
-![merge request: title & description](https://github.com/Cena313/Hello-world/blob/master/20220419_163546.jpg?raw=true)
+![merge request: Create merge request](/merge.jpg)
 
 After clicking the Create merge request button, you must check to see if there is a conflict. If there is no conflict, you are done and you will have to wait for the team experimenter to review the user story done by you.
 
-You can refer to the following link to learn how to merge request:
+You can also see [How to create merge requests](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html) on the GitLab site.
 
-> [How to create merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-
-#### Creating the pull request
+#### Creating the pull request *<sup>[2](#2)</sup>*
 ___
 
-If you want to create a new branch to request your traction and you do not have permission to write to the repository, you must first fork the repository. For more information, see "[Creating a traction request from a fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)" and "[About forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks)".
+If you want to create a new branch to request your traction and you do not have permission to write to the repository, you must first fork the repository. For more information, see [Creating a traction request from a fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) and [About forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks).
 
 **NOTE:** To open a pull request in a public repository, you must have write access to the head or the source branch or, for organization-owned repositories, you must be a member of the organization that owns the repository to open a pull request.
 
@@ -265,27 +264,25 @@ If you want to create a new branch to request your traction and you do not have 
 
 **2.** In the "Branch" menu, choose the branch that contains your commits.
 
-![choose the branch that contains your commits.](https://github.com/Cena313/Hello-world/blob/master/1.jpg?raw=true)
+![pull request: choose the branch](/branch.jpg)
 
 **3.** At the top of the file list, click **Pull request** and then **New pull request**.
 
-![click Pull request and then New pull request](https://github.com/Cena313/Hello-world/blob/master/2.jpg?raw=true)
+![pull request: click Pull request](/request.jpg)
 
 **4.** Use the base branch dropdown menu to select the branch you'd like to merge your changes into, then use the compare branch drop-down menu to choose the topic branch you made your changes in.
 
-![choose the topic branch you made your changes in.](https://github.com/Cena313/Hello-world/blob/master/3.jpg?raw=true)
+![pull request: choose the topic branch](/topic.jpg)
 
 **5.** Type a title and description for your pull request.
 
-![Type a title and description](https://github.com/Cena313/Hello-world/blob/master/4.jpg?raw=true)
+![pull request: Type a title and description](/title1.jpg)
 
 **6.** To create a pull request that is ready for review, click **Create Pull Request**.
 
-![To create a pull request that is ready for review](https://github.com/Cena313/Hello-world/blob/master/5.jpg?raw=true)
+![pull request: create a pull request](/create.jpg)
 
-You can refer to the following link to learn how to pull request:
-
-> [How to create pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
+You can also see [How to create pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) on the GitHub site.
 
 ### Conclusion
 
@@ -310,8 +307,17 @@ ___
 
 **7.** After performing the user story, the person testing the user story, or the team members' code, moves the user story from the ready for test column to the closed column if there is no user story problem. This means that the user story is complete.
 
-**8.** Also, after Monday sessions, which are in scrum mode, each member of the team is required to add user story-related tasks.
+**8.** Also, after Sunday  sessions, which are in scrum mode, each member of the team is required to add user story-related tasks.
 
-**9.** Finally, you enter the payment cycle discussion where Larammerce pays you based on the number of points "[Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number)" done.
+**9.** Finally, you enter the payment cycle discussion where Larammerce pays you based on the number of points [Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number) done.
 
 **10.** For every document that is written and placed in the documentation section of the Larammerce site, the members of the Larammerce team are obliged to read it.
+
+#### Reference
+___
+
+*1. <a name="1">[difference between a user story and a task](https://www.mountaingoatsoftware.com/blog/the-difference-between-a-story-and-a-task)</a>*
+
+*2. <a name="2">[Creating the pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)</a>*
+
+___
