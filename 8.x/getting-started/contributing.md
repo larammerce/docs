@@ -109,10 +109,8 @@ Grooming sessions | Sprint sessions
 
 **NOTE:** The user story can be created by anyone and also the person who creates the user story is required to add a brief description.
 
-> ***User story & task:***
->
->***To explain this difference, here is a quote from Mike Cohn:***
->
+**NOTE:** The interesting thing here is that there is a difference between a user story and a task, to understand this difference we focus on a quote from **Mike Cohn**.
+
 > *User stories are in the product backlog, and tasks are identified during sprint scheduling and become part of the sprint backlog.*
 >
 > *the better distinction is that stories contain multiple types of work (e.g., programming, testing, database design, user interface design, analysis, etc.) while tasks are restricted to a single type of work.*
@@ -123,7 +121,7 @@ ___
 As you know the smallest doable part of a user story is the task, so to create a task you have to enter the current sprint, then click on the specific user story which belongs to you, and after all click on the create task button. so there are new tasks created under the user story section.
 Please note that user stories must have at least one task underneath.
 
-**Once the project** is cloned (or you cloned and worked on it before), to begin the process of development or writing code to do the assigned user story, you have to update the project. so after updating your project to the upstream, you can make a new branch from the **main brach** (named master or main) by the commend below:
+**Once the project is cloned** (or you cloned and worked on it before), to begin the process of development or writing code to do the assigned user story, you have to update the project. so after updating your project to the upstream, you can make a new branch from the **main brach** (named master or main) by the commend below:
 
 ```bash
 git checkout -b feature/the-title-of-the-feature
