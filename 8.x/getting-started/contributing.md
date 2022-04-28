@@ -102,7 +102,7 @@ Meetings are held according to the scrum structure in the Larammerce team, which
 
 Grooming sessions | Sprint sessions
 ----------------------|--------------------
-**1.** In this type of meeting, which is held on Saturdays, team Larammerce discusses technical issues.| **1.** These meetings are held periodically on Sunday.
+**1.** In this type of meeting, which is held on Saturdays, team Larammerce discusses technical issues.| **1.** These meetings are held periodically on Sunday .
 **2.** In these sessions, user stories are created and divided into smaller sections. | **2.** In these meetings, teammates make a decision about user stories, make them viable, and then it's time to assign the user stories to specific team members. so every team member is responsible for their own user stories.
 **3.** There are discussions among Larammerce team members about how to better do the user story. | **3.** Every user story is discussed one by one and the estimation process begins, so every teammate announces the point of view and finally, a point for the weight of each user story is assigned.
 **4.**  And finally, the user story is ready for being estimated in sprint upcoming sessions. | **4.** And finally enters the execution cycle.
@@ -310,7 +310,7 @@ ___
 
 **7.** After performing the user story, the person testing the user story, or the team members' code, moves the user story from the ready for test column to the closed column if there is no user story problem. This means that the user story is complete.
 
-**8.** Also, after Sunday sessions, which are in scrum mode, each member of the team is required to add user story-related tasks.
+**8.** Also, after Sunday  sessions, which are in scrum mode, each member of the team is required to add user story-related tasks.
 
 **9.** Finally, you enter the payment cycle discussion where Larammerce pays you based on the number of points "[Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number)" done.
 
