@@ -128,7 +128,7 @@ Please note that user stories must have at least one task underneath.
 git checkout -b feature/the-title-of-the-feature
 ```
 
-**NOTE**: note that naming the new branch follows the hierarchical naming rules. A user story is about one of the following:
+**NOTE:** note that naming the new branch follows the hierarchical naming rules. A user story is about one of the following:
 
 **1.** Feature
 
