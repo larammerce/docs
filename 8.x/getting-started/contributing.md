@@ -30,7 +30,7 @@ whether or not your feature is likely to be used by other users of the project.
 
 - Check the codebase to ensure that your feature doesn't already exist.
 - Check the pull requests to ensure that another person hasn't already submitted the feature or fix.
-- Use the "[pull request template](https://github.com/larammerce/larammerce/blob/8.x/.github/PULL_REQUEST_TEMPLATE.md)".
+- Use the [pull request template](https://github.com/larammerce/larammerce/blob/8.x/.github/PULL_REQUEST_TEMPLATE.md).
 
 ## How to report a bug?
 
@@ -38,24 +38,22 @@ whether or not your feature is likely to be used by other users of the project.
 - Check to make sure your bug report isn't already present within the project.
 - Check the pull requests tab to ensure that the bug doesn't have a fix in progress.
 - Check the pull requests tab to ensure that the feature isn't already in progress.
-- Use the "[issue template](https://github.com/larammerce/larammerce/blob/8.x/.github/ISSUE_TEMPLATE.md)".
+- Use the [issue template](https://github.com/larammerce/larammerce/blob/8.x/.github/ISSUE_TEMPLATE.md).
 
 ## PR Requirements
-- The PR **must** apply to "[PSR-2 Coding Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)". StyleCI help you detect code style issues.
+- The PR **must** apply to [PSR-2 Coding Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md). StyleCI help you detect code style issues.
 - The PR **must** be as clean as possible. Try to remove all inline TODOs and unneeded comments. They are noise and distraction for the reviewer. Use Github's (inline) comment system to start a discussion about a change.
 - The existing tests **must** not fail after your changes. This would indicate that existing functionality is broken and should be addressed before a review is started. You can run the test by running `vendor/bin/phpunit`
 - The changes **must** be backed-up with tests. 
 - The PR **must** only have one feature. Split up multiple features in multiple PRs, so they can be individually reviewed and merged.
-- The PR **must** be accompanied by a PR to the docs in case of new features. Documentation is located in the "[https://github.com/larammerce/docs](https://github.com/larammerce/docs)" repository.
+- The PR **must** be accompanied by a PR to the docs in case of new features. Documentation is located in the [https://github.com/Larammerce/docs](https://github.com/larammerce/docs) repository.
 - The PR should contain meaningful commit messages.
 
 ## Project management
 
-Here you can learn about how larammerce manages user stories and features to be developed and released.
+Here you can learn about how Larammerce manages user stories and features to be developed and released.
 
-**Taiga** is the tool that is used as the project management system, and also larammerce backlog board is publicly visible for people to check. also, it should be mentioned that Scrum is chosen as the management methodology for this project.
-
-> [tree.taiga.io/project/a-khajelou-larammerce/bakelog](https://tree.taiga.io/project/a-khajelou-larammerce/bakelog)
+**Taiga** is the tool that is used as the project management system, and also [Larammerce backlog board](https://tree.taiga.io/project/a-khajelou-larammerce/backlog) is publicly visible for people to check. also, it should be mentioned that Scrum is chosen as the management methodology for this project.
 
 ### A brief about scrum
 
@@ -192,10 +190,8 @@ git commit -a #Execute the commit step with the help of this command.
 
    **NOTE:** After a brief description, you can pass the notes that are necessary for the taiga platform to detect that you've done the specific task. So please note how it is done:
 
-   Also, you can read the docs provided by the taiga team to know more about this integration feature.
+   Also, you can read the [docs provided by the taiga team](https://docs.taiga.io/integrations-github.html) to know more about this integration feature.
    
-> [taiga docs](https://docs.taiga.io/integrations-github.html)
-
    **NOTE:** In the third line, you can have a brief description of the work done. Here is a requirement that you suggest you do:
 If in the third line you write and save the command `TG-449 #in-progress` or `TG-449 #ready-for-rest `when you enter the taiga site in the taskbar in the browser, you will see that task number 449 has been entered from the new section in progress or ready for testing.
 
@@ -250,14 +246,12 @@ In this section, you enter the user story title Command, and also in the descrip
 
 After clicking the Create merge request button, you must check to see if there is a conflict. If there is no conflict, you are done and you will have to wait for the team experimenter to review the user story done by you.
 
-You can refer to the following link to learn how to merge request:
-
-> [How to create merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
+You can also see [How to create merge requests](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html) on the GitLab site.
 
 #### Creating the pull request
 ___
 
-If you want to create a new branch to request your traction and you do not have permission to write to the repository, you must first fork the repository. For more information, see "[Creating a traction request from a fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)" and "[About forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks)".
+If you want to create a new branch to request your traction and you do not have permission to write to the repository, you must first fork the repository. For more information, see [Creating a traction request from a fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) and [About forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks).
 
 **NOTE:** To open a pull request in a public repository, you must have write access to the head or the source branch or, for organization-owned repositories, you must be a member of the organization that owns the repository to open a pull request.
 
@@ -283,9 +277,7 @@ If you want to create a new branch to request your traction and you do not have 
 
 ![To create a pull request that is ready for review](https://github.com/Cena313/Hello-world/blob/master/5.jpg?raw=true)
 
-You can refer to the following link to learn how to pull request:
-
-> [How to create pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
+You can also see [How to create pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) on the GitHub site.
 
 ### Conclusion
 
@@ -312,6 +304,6 @@ ___
 
 **8.** Also, after Sunday  sessions, which are in scrum mode, each member of the team is required to add user story-related tasks.
 
-**9.** Finally, you enter the payment cycle discussion where Larammerce pays you based on the number of points "[Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number)" done.
+**9.** Finally, you enter the payment cycle discussion where Larammerce pays you based on the number of points [Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number) done.
 
 **10.** For every document that is written and placed in the documentation section of the Larammerce site, the members of the Larammerce team are obliged to read it.
