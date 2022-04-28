@@ -113,7 +113,8 @@ Grooming sessions | Sprint sessions
 
 > *User stories are in the product backlog, and tasks are identified during sprint scheduling and become part of the sprint backlog.*
 >
-> *the better distinction is that stories contain multiple types of work (e.g., programming, testing, database design, user interface design, analysis, etc.) while tasks are restricted to a single type of work.*
+> *the better distinction is that stories contain multiple types of work (e.g., programming, testing, database design, user interface design, analysis, etc.) while tasks are restricted to a single type of work.* *<sup>[1](#1)</sup>*
+
 
 #### How to create a new task?
 ___
@@ -252,7 +253,7 @@ After clicking the Create merge request button, you must check to see if there i
 
 You can also see [How to create merge requests](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html) on the GitLab site.
 
-#### Creating the pull request
+#### Creating the pull request *<sup>[2](#2)</sup>*
 ___
 
 If you want to create a new branch to request your traction and you do not have permission to write to the repository, you must first fork the repository. For more information, see [Creating a traction request from a fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) and [About forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks).
@@ -311,3 +312,12 @@ ___
 **9.** Finally, you enter the payment cycle discussion where Larammerce pays you based on the number of points [Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number) done.
 
 **10.** For every document that is written and placed in the documentation section of the Larammerce site, the members of the Larammerce team are obliged to read it.
+
+#### Reference
+___
+
+*1. <a name="1">[difference between a user story and a task](https://www.mountaingoatsoftware.com/blog/the-difference-between-a-story-and-a-task)</a>*
+
+*2. <a name="2">[Creating the pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)</a>
+
+___
