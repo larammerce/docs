@@ -263,15 +263,15 @@ If you want to create a new branch to request your traction and you do not have 
 
 **2.** In the "Branch" menu, choose the branch that contains your commits.
 
-![choose the branch that contains your commits.](https://github.com/Cena313/Hello-world/blob/master/1.jpg?raw=true)
+![choose the branch](https://github.com/Cena313/Hello-world/blob/master/1.jpg?raw=true)
 
 **3.** At the top of the file list, click **Pull request** and then **New pull request**.
 
-![click Pull request and then New pull request](https://github.com/Cena313/Hello-world/blob/master/2.jpg?raw=true)
+![click Pull request](https://github.com/Cena313/Hello-world/blob/master/2.jpg?raw=true)
 
 **4.** Use the base branch dropdown menu to select the branch you'd like to merge your changes into, then use the compare branch drop-down menu to choose the topic branch you made your changes in.
 
-![choose the topic branch you made your changes in.](https://github.com/Cena313/Hello-world/blob/master/3.jpg?raw=true)
+![choose the topic branch](https://github.com/Cena313/Hello-world/blob/master/3.jpg?raw=true)
 
 **5.** Type a title and description for your pull request.
 
@@ -279,7 +279,7 @@ If you want to create a new branch to request your traction and you do not have 
 
 **6.** To create a pull request that is ready for review, click **Create Pull Request**.
 
-![To create a pull request that is ready for review](https://github.com/Cena313/Hello-world/blob/master/5.jpg?raw=true)
+![create a pull request](https://github.com/Cena313/Hello-world/blob/master/5.jpg?raw=true)
 
 You can also see [How to create pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) on the GitHub site.
 
