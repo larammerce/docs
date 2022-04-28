@@ -318,6 +318,6 @@ ___
 
 *1. <a name="1">[difference between a user story and a task](https://www.mountaingoatsoftware.com/blog/the-difference-between-a-story-and-a-task)</a>*
 
-*2. <a name="2">[Creating the pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)</a>
+*2. <a name="2">[Creating the pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)</a>*
 
 ___
