@@ -71,7 +71,7 @@ It is interesting to know that **Mike Cohn**, who is one of the main inventors o
 #### Why user story?
 ___
 
-With the user story approach, you are content with **just enough** design instead of a large and comprehensive design. user story reduces the time required to write comprehensive documentation by emphasizing customer-centric conversations. As a result, user story enables teams to deliver quality software faster.
+With the user story approach, you are content with just enough design instead of a large and comprehensive design. user story reduces the time required to write comprehensive documentation by emphasizing customer-centric conversations. As a result, user story enables teams to deliver quality software faster.
 
 The user story method will save time Because it is modified and improved according to the users. As a result, the quality in the process of software development or other products has increased and the upcoming project will be liked by the customer.
 
@@ -151,7 +151,7 @@ For this purpose, in this section, to better understand you, The Larammerce team
 
 **1.** In this step, you create a sub-branch on the main project:
 
-   **NOTE:** Here the **stable** branch is the name of the main branch of the project that you can not modify.
+**NOTE:** Here the stable branch is the name of the main branch of the project that you can not modify.
 
 ##### Example
 
@@ -186,16 +186,17 @@ git add TEST.php
 ```bash
 git commit -a #Execute the commit step with the help of this command.
 ```
-   **NOTE:** Make sure that the first line of your commit message is concise and also imperative.
+**NOTE:** Make sure that the first line of your commit message is concise and also imperative.
 
-   **NOTE:** After a brief description, you can pass the notes that are necessary for the taiga platform to detect that you've done the specific task. So please note how it is done:
+**NOTE:** After a brief description, you can pass the notes that are necessary for the taiga platform to detect that you've done the specific task. So please note how it is done:
 
-   Also, you can read the [docs provided by the taiga team](https://docs.taiga.io/integrations-github.html) to know more about this integration feature.
-   
-   **NOTE:** In the third line, you can have a brief description of the work done. Here is a requirement that you suggest you do:
-If in the third line you write and save the command `TG-449 #in-progress` or `TG-449 #ready-for-rest `when you enter the taiga site in the taskbar in the browser, you will see that task number 449 has been entered from the new section in progress or ready for testing.
+Also, you can read the [docs provided by the taiga team](https://docs.taiga.io/integrations-github.html) to know more about this integration feature.
 
-   **NOTE:** A very important point in handling tasks that should be mentioned here is that only one person named the tester can put the task in close or need info mode.
+**NOTE:** You can have a brief description of the work done.
+
+There is a requirement here that you can fulfill. If in the third line you write and save the command `TG-449 #in-progress` or `TG-449 #ready-for-rest `when you enter the taiga site in the taskbar in the browser, you will see that task number 449 has been entered from the new section in progress or ready for testing.
+
+**NOTE:** A very important point in handling tasks that should be mentioned here is that only one person named the tester can put the task in close or need info mode.
 
 ##### Example
 
@@ -204,20 +205,25 @@ Design the pages.
 
 TG-449 #in-progress
 ```
-**OR**
+
+##### Example
 
 ```bash
 Design the pages.
 
 TG-449 #ready-for-test 
 ```
-**AND**
+
+And then we use the git status command to see the changes:
+
+##### Example
 
 ```bash
-git status #See the changes using the git status command
-[feature/docs-boilerplate (root-commit) cc04ebe] Design the pages
- 1 file changed, 3 insertions(+)
- create mode 100644 TEST.php
+git status 
+#And below you see the output of the above command.
+#[feature/docs-boilerplate (root-commit) cc04ebe] Design the pages
+#1 file changed, 3 insertions(+)
+#create mode 100644 TEST.php
 ```
 
 **5.** you put the desired file in GitHub using the following command:
