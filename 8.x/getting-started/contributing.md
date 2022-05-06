@@ -124,6 +124,8 @@ Please note that user stories must have at least one task underneath.
 
 **Once the project is cloned** (or you cloned and worked on it before), to begin the process of development or writing code to do the assigned user story, you have to update the project. so after updating your project to the upstream, you can make a new branch from the **main brach** (named master or main) by the commend below:
 
+##### PATTERN
+
 ```bash
 git checkout -b feature/the-title-of-the-feature
 ```
@@ -142,7 +144,16 @@ git checkout -b feature/the-title-of-the-feature
 
 So if you want to name the working branch follow the naming rules.
 
-`prefix/name-of-the-user-story-title`
+##### PATTERN
+
+```
+prefix/name-of-the-user-story-title
+```
+
+##### EXAMPLE
+```
+git chekout -b feature/docs-boilerplate
+```
 
 ### Start to code
 
@@ -152,19 +163,19 @@ For this purpose, in this section, to better understand you, The Larammerce team
 
 **NOTE:** Here the stable branch is the name of the main branch of the project that you can not modify.
 
-##### Example
+##### SOURCE
 
 ```bash
 git chekout stable #you get out of the stable brunch.
 git chekout -b feature/docs-boilerplate #you create a sub-branch.
-Switched to a new branch 'feature/docs-boilerplate'
+#Switched to a new branch 'feature/docs-boilerplate'
 ```
 
 **2.** In this step, you can start to code, create/modify/update/delete specific files to achieve the desired goals of the user story:
 
  For example you can make some modifications on the file `test.php`.
 
-##### Example
+##### EXAMPLE
 
 ```php
 #this is a test line to create a test commit.
@@ -172,7 +183,7 @@ Switched to a new branch 'feature/docs-boilerplate'
 
 **3.** Each time you complete a piece of work, you must add the files to a staging environment:
 
-##### Example
+##### SOURCE
 
 ```bash
 git add TEST.php
@@ -180,7 +191,7 @@ git add TEST.php
 
 **4.** After all, you can save your changes to the git tree by committing them:
 
-##### Example
+##### SOURCE
 
 ```bash
 git commit -a #Execute the commit step with the help of this command.
@@ -197,7 +208,7 @@ There is a requirement here that you can fulfill. If in the third line you write
 
 **NOTE:** A very important point in handling tasks that should be mentioned here is that only one person named the tester can put the task in close or need info mode.
 
-##### Example
+##### EXAMPLE
 
 ```bash
 Design the pages.
@@ -205,7 +216,7 @@ Design the pages.
 TG-449 #in-progress
 ```
 
-##### Example
+##### EXAMPLE
 
 ```bash
 Design the pages.
@@ -215,7 +226,7 @@ TG-449 #ready-for-test
 
 And then we use the git status command to see the changes:
 
-##### Example
+##### SOURCE
 
 ```bash
 git status 
@@ -227,7 +238,7 @@ git status
 
 **5.** you put the desired file in GitHub using the following command:
 
-##### Example
+##### SOURCE
 
 ```bash
 git push --set-upstream origin feature/docs-boilerplate
