@@ -2,11 +2,13 @@
 
 [[toc]]
 
-In this tutorial, the basics of the Larammerce Template Engine will be explained. As you know, Larammerce is based on Laravel, and if you check a Larammerce template, you see that Larammerce blade files are the same as Laravel blade files. In the previous tutorial, a blade page was created, but in this tutorial, the general rules will be explained and then the template will be developed.
+In this tutorial, the basics of the Larammerce Template Engine will be explained. As you know, Larammerce is based on Laravel, and if you check a Larammerce template, you see that Larammerce blade files are the same as Laravel blade files. On the previous page, you learned about the templating system in a nutshell, so if you wanna know more about the system and dive deeper, please continue reading this page and other listed documents in the templating system index.
 
-.blade.php files are in the following directory `public/views/example.blade.php`.
+This document covers the rules and main development concepts of the templating system in Larammerce.
 
-There are three types of blad files in this template engine.
+`.blade.php` files are in the following directory `public/views/example.blade.php`.
+
+There are three types of blade files in the template engine as shown below:
 
 ![blade-files](/blade-files-1-2.png)
 
@@ -14,18 +16,18 @@ There are three types of blad files in this template engine.
 
 2- File name does not start with underscore
 
-NOTE: A blade partial is similar to include or require in PHP. It’s an easy way to include contents of another file inside of a template.
+NOTE: A partial blade file is a part of a template view that is reusable but can not be used directory, These partial files are the same as partial files in the SCSS lang. It's an easy way to make a part of a template reusable and make the debug process faster.
 
-For example,  using the following commands extends the **_base.blade.php** page to other pages:
+For example, Using the following piece of code tells the blade template engine to use the **_base.blade.php** file as the current page's layout.
 ```php
-@extends('_base') # Write this command in the about.blade.php file.
+@extends('_base') # Write this code in the about.blade.php file.
 ```
-And to use the  **_meta_tags.blade.php** page on other pages using the following commands:
+And to use the  **_meta_tags.blade.php** page on other pages using the following code:
 ```php
 @section('meta_tags')
     @include('_meta_tags', ['obj' => $web_page])
     <meta property="og:type" content="website">
-@endsection # Write this command in the index.blade.php file.
+@endsection # Write this code in the index.blade.php file.
 ```
 So to create a layout that extends to all pages, put an underscore at the beginning of the page's name.
 
@@ -35,23 +37,39 @@ So to create a layout that extends to all pages, put an underscore at the beginn
 
 As you know, responsive web design works through CSS, using various settings to different style properties depending on the screen size of the user’s device. Sometimes the design structure of pages on mobile and desktop is different, so create a file with the **_mobile** extension to be displayed on mobile pages with this structure. And for mobile applications, the system provides **_app** pages.
 
-Blade pages are reviewed below. Some pages are required and should be in the template, but some pages are optional.
+Blade pages are reviewed below. 
 
-## About page
-![about](/about.png)
+## Required blade files
+Some files are needed by the system and you have to place them in your project, As below:
 
-This page is optional and you can create this page if needed on the project.
+**Adress page, Auth page, Blog page, Cart page, Error page, Invoice page, Mail page, Order page, Profile page, Sms page, Product page**.
+
+And other files are not necessary and you can add them on demand in the template, As below:
+**About page, Buy guide page, Contact page, Faq page, Index page, Privacy page, Register page, Rules page, Shipping page, Privacy page, Support page, Wish list page, Unreachable page**.
 
 ## Address page
-![address](/address.png)
-
-These pages must be created and In these pages, there is a form with post method and inputs: state_id, city_id, superscription, phone_number, zipcode, transferee_name. And be sure to add  **csrf_field** inside the form.
+```
+|---views/
+    |---address-add.blade.php
+    |---address-edit.blade.php
+    |---address-add.blade.php
+    |---address-edit.blade.php
+```
+In these pages, there is a form with post method and inputs: state_id, city_id, superscription, phone_number, zipcode, transferee_name. And be sure to add  **csrf_field** inside the form.
 
 These inputs are required and if one of the inputs is not filled, there is an error when sending to the **customer.address.store** rout. Form information should not be changed if the form design is changed.
 
 ## Auth page
-![auth](/auth.png)
-
+```
+|---views/
+    |---auth-email-check.blade.php
+    |---auth-email-register.blade.php
+    |---auth-email-show.blade.php
+    |---auth-mobile-check.blade.php
+    |---auth-mobile-password.blade.php
+    |---auth-mobile-register.blade.php
+    |---auth-mobile-show.blade.php
+```
 To authenticate in the system:
 
 First, enter the phone number or email in the **auth-mobile-show.blade.php** or **auth-email-show.blade.php** page.
@@ -81,9 +99,11 @@ In this page, there is a form with post method and inputs: name, family, email, 
 These pages must be created and the inputs inside the pages are mandatory and should not be changed. Only the design of the pages can be changed.If there are changes in the structure of ecommerce, it will be announced in the documents of the next version.
 
 ## Blog page
-![blog](/blog.png)
-
-**blog-list.blade.php** page is required and must be created.
+```
+|---views/
+    |---blog-list.blade.php
+    |---blog-single.blade.php
+```
 
 On each page of the blog list there is a series of categories after entering one of the them, passing the $article variable from the controller to blade. Then with foreach display these article features: image, title, create_at, short_content.
 
@@ -112,13 +132,12 @@ Go to the article model and see the properties of this object. It can display th
 
 On this page, the **$article** variable is passed from the controller to the blade, and the content of the article can be displayed using this variable.
 
-## Buy gide page
-![buy](/buy.png)
-
-This page is optional and you can create this page if needed on the project.
-
 ## Cart page
-![cart](/cart.png) 
+```
+|---views/   
+    |---cart_mobile.blade
+    |---cart.blade.php
+```
 
 On this page, the $cartRows variable is passed from the controller to the blade and product content can be displayed with **foreach**.
 
@@ -137,55 +156,132 @@ On this page, the $cartRows variable is passed from the controller to the blade 
   @property CustomerUser customer
   @property CustomerMetaItem customerMetaItem
 ```
-
-## Cantact page
-![contact](/contact.png)
-
-This page is optional and you can create this page if needed on the project.
-
 ## Error page
-![error](/error.png)
-
+```
+|---views/  
+    |---error.blade.php
+```
 On this page, if the system has any errors, such as 500 or 404 with the **$code** variable, can be displayed that error.
 
-## Faq page
-![faq](/faq.png)
-
-This page is optional and you can create this page if needed on the project.
-
-## Index page
-![index](/index.png)
-
-This page is optional and you can create this page if needed on the project.
-
 ## Invoice page
-![invoice](/invoice.png)
+```
+|---views/
+    |---invoice-checkout-pdf.blade.php
+    |---invoice-checkout.blade.php
+    |---invoice-payment_mobile.blade.php
+    |---invoice-payment.blade.php
+    |---invoice-shipment_mobile.blade.php
+    |---invoice-shipment.blade.php
+```
 
-After the shopping cart step, enter the **invoice-shipment.blade.php** page, add the address and choose the method of sending the product and you can see the name of the person for whom the invoice is created. then enter the **invoice-payment.blade.php** page. and you can see an overview of the products added to the shopping cart. After confirmation, you will enter the payment portal. Finally, you can see the final invoice on the **invoice-checkout.blade.php** page. Each file will be reviewed in separate documents
+After the shopping cart step, enter the **invoice-shipment.blade.php** page, add the address and choose the method of sending the product and you can see the name of the person for whom the invoice is created. then enter the **invoice-payment.blade.php** page. and you can see an overview of the products added to the shopping cart. After confirmation, you will enter the payment portal. Finally, you can see the final invoice on the **invoice-checkout.blade.php** page. Each file will be reviewed in separate documents.
 
 ## Mail page
-![mail](/mail.png)
+```
+|---views/
+    |---mail-auth-code.blade.php
+    |---mail-email-confirmation.blade.php
+    |---mail-product-make-disable.blade.php
+    |---mail-product-make-enable.blade.php
+```
+These pages are related to emails and can be edited without changing their structure.
 
-## Orders page
-![orders](/orders.png)
+Let's check the mail files:
 
+1- **mail-auth-code.blade.php** To send a one-time code.
+
+2- **mail-email-confirmation.blade.php**  To confirm the email account. 
+
+3- **mail-product-make-disable.blade.php** Missing product will be notified to the admin.
+
+4- **mail-product-make-enable.blade.php** Available products will be notified to the admin.
+
+
+## Order page
+```
+|---views/
+    |---orders.blade.php
+```
+On this page, you can see a list of previous orders.
+With the **get_invoices** helper function, the list of invoices can be received and displayed to the customer with **foreach**.
+
+## Payment-redirection page
+```
+|---views/
+    |---payment-redirection.blade.php
+```
+This page is displayed when the customer wants to be redirected to a payment gateway page. And can be customized for any payment gateway.
+
+The user does not do anything on this page. There is no action or button. The transfer to the payment gateway is done by the system script.
 ## Product page
-![product](/product.png)
+```
+|---views/
+    |---product-compare.blade.php
+    |---product-filter_mobile.blade.php
+    |---product-filter-seo.blade.php
+    |---product-filter.blade.php
+    |---product-landing.blade.php
+    |---product-list.blade.php
+    |---product-single_mobile.blade.php
+    |---product-single.blade.php
+    |---product.blade.php
+```
+
+**product-single.blade.php** page to display a single product, **$product** variable is passed from the controller to the blade.The product variable is the most important variable in this system. It has features that will be explored later.
 
 ## Profile page
-![profile](/profile.png)
+```
+|---views/
+    |---profile-edit.blade.php
+    |---profile.blade.php
+```
+Customers are redirected to the profile page with the **customer.profile.index** rout to display the profile. This page displays the customer information, and it is possible to edit this information.
 
-## Rules page
-![rules](/rules.png)
-
-## Shipping page
-![shipping](/shipping.png)
+In **profile-edit.blade.php** page there is a form with **customer.profile.update** action, post method and inputs: name, family, email, national_code, phone, birth-date, gender. And be sure to add  **csrf_field** inside the form.
 
 ## Sms page
-![sms](/sms.png)
+```
+|---views/
+    |---sms-auth-code.blade.php
+    |---sms-discount-percent.blade.php
+    |---sms-discount-toman.blade.php
+    |---sms-invoice-delivered.blade.php
+    |---sms-invoice-disabled.blade.php
+    |---sms-invoice-exit-tab.blade.php
+    |---sms-invoice-sending.blade.php
+    |---sms-invoice-submitted.blade.php
+    |---sms-need-list-available.blade.php
+```
+These blades can be used if a full text message is sent with the SMS driver.
 
-## Support page
-![support](/support.png)
+Let's check the sms files:
+
+1- **sms-auth-code.blade.php** To send a one-time code to the customer.
+
+2- **sms-discount-percent.blade.php** To send a discount percentage to the customer.
+
+3- **sms-invoice-delivered.blade.php** To inform that the order has been delivered.
+
+4- **sms-invoice-disabled.blade.php** To inform that the invoice has been deactivated and then activate the invoice and pay.
+
+5- **sms-invoice-exit-tab.blade.php** To inform that the exit form has been issued.
+
+6- **sms-invoice-sending.blade.php** To inform that the product has been sent.
+
+7- **sms-invoice-submitted.blade.php** To inform that the product registration in the system and the invoice that must be paid.
+
+8- **sms-need-list-available.blade.php** To inform the customer that a product is available.
 
 ## Wish list page
-![wish-list](/wish-list.png)
+```
+|---views/
+    |---wish-list.blade.php
+```
+On this page you can see the list of products that have been added to favorites.
+
+## Unreachable page
+```
+|---views/
+    |---unreachable.blade.php
+```
+This page can be shown to the customer when the site is unavailable.
