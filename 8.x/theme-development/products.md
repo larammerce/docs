@@ -2,13 +2,13 @@
 
 [[toc]]
 
-The **product** is a Laravel model and is attached to a table called database **products**, where Larammerce intends to explore its fields and properties with you.
+The `Product` is a Laravel model, and it's attached to a table named `products`. And this document is going to explain the model in a nutshell and help you use it correctly.
 
 When it comes to displaying product information on a website, you should use the tools and solutions that the Larammerce team explains in this document.
 
 ### Product properties table
 
-The product model includes a series of **properties**, which Larammerce presented to you in the tables below, along with its explanation and datatype.
+The product model includes a series of **properties**, which Larammerce presented to you in the table below, along with its explanation and datatype.
 
 Num   |Property               | Datatype    |Description
 ------|-----------------------|-------------|-------------
@@ -91,7 +91,7 @@ Num   |Property              | Datatype                         |Description
 **17**| `customerMetaCategor`  |CustomerMetaCategory              |Information the customer needs to provide to buy a particular product.
 **18**| `discountGroup`        |DiscountGroup                     |Plan of reducing the prices of the products.
 **19**| `priority`             |integer                           |Indicates the priority of the product stored within the system.
-**20**| `productPackage`       |ProductPackage                    |:question:
+**20**| `productPackage`       |ProductPackage                    |If there is a mixture of products creating a new product, you create a product package. So if one of the products in the database has a relation with a `ProductPackage`, it's understood that the product is a mixture.
 **21**| `productPackages`      |ProductPackage[]                  |:question:
 
 ### Display product properties
@@ -126,7 +126,7 @@ The complete directory structure of the template for this project is shown below
 Presently if you enter the product's single page, **how can you show the item properties?**
 Larammerce will tell you.
 
-if you click on a product in the store, you will enter a single page with a dedicated URL that displays content from the blade called `product-single.blade.php`. The procedure, in general, is as which if you enter the `product-single.blade.php` file in the `public/views` path of the Boilerplate template, you can display the properties on the single product page by calling the properties.
+if you click on a product in the store, you will enter a single page with a dedicated URL that displays content from the blade called `product-single.blade.php`. The procedure, in general, is as which if you enter the `product-single.blade.php` file in the `public/views` path of the template, you can display the properties on the single product page by calling the properties.
 
 **NOTE:** The `product-single.blade.php` and `product-single_mobile.blade.php` pages are for displaying single product pages.
 
@@ -181,7 +181,7 @@ And write in the terminal:
 ```
 Finally, go to the browser and refresh, you will see a product model and if you open the attributes field all the properties will be available to you. If you are not sure what properties to use, you can use this method.
 
-Now, you can display the product **title**, **product code**, **latest price**, **previous price**, and **Count**:
+Now, you can display the product **title**, **product code**, **latest price**, **previous price**, and **count**:
 
 ##### EXAMPLE
 
@@ -378,7 +378,7 @@ Below you can see the full example:
 <div>
    <ul>
       <li>Product code: {{$product->code}}</li> #Display product code
-      @if($product->has_discount)   #Examines the discount plan
+      @if($product->has_discount) #Examines the discount plan
         <li>previous price: {{$product->previous_price}} Toman</li>
       @endif
       <li>product price: {{$product->latest_price}} Toman</li> #Displays the latest price
@@ -416,14 +416,14 @@ Below you can see the full example:
 </div>
 ```
 
-With the help of the following command in the terminal, you can return to the default theme and see the following example in the default theme in order:
+With the help of the following command in the terminal, you can return the code state to the default theme and see the following example in the default theme:
 
 ```bash
 git checkout -- public/views/product-single.blade.php
 ./deploy.sh 
 ```
 
-**NOTE:** you are free at the front of the site and can use different modules and methods.
+**NOTE:**  It is important to mention that you are absolutely free to manage and design any of the template pages using Larammerce methods and helpers. So please feel free to make your pages and be aware of the page naming.
 
 
 
