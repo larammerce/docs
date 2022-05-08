@@ -309,11 +309,18 @@ url(ImageService::getImage($product_image, 'thumb'))
 
 **NOTE:** In Laravel, the relationships between objects, if you want to get the list of properties, **just write the name of the relationship**, Otherwise, if you want to create a new query on a relationship, use the "**()**" symbol and then write your query.
 
+##### PATTERN
+
+```php
+$properties->relationships
+$properties->relationships->new query
+```
+
 ##### EXAMPLE
 
 ```php
-$obj->relationships; #this returns a list of object related to specific object.
-$obj->relationships()->someExtraQuery()->get(); #this relationships() method returns a QueryBuilder object which helps the developer to create more complicated queries.
+$product->directory 
+$product->directory->getParentDirectories()
 ```
 
 Well, you can also put a **description** for the product, which is as follows:
