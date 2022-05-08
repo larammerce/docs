@@ -313,7 +313,7 @@ url(ImageService::getImage($product_image, 'thumb'))
 
 ```php
 $obj->relationships; #this returns a list of object related to specific object.
-$obj->relationships()->someExtraQuery()->get(); #this relationships() method returns a QueryBuilder object which helps the developer to create more complicated queries. 
+$obj->relationships()->someExtraQuery()->get(); #this relationships() method returns a QueryBuilder object which helps the developer to create more complicated queries.
 ```
 
 Well, you can also put a **description** for the product, which is as follows:
