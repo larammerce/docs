@@ -8,6 +8,7 @@ module.exports = [
             'installation',
             'upgrade',
             'contributing',
+            'documentation',
             'support',
         ]),
     },
@@ -20,6 +21,9 @@ module.exports = [
             'static-content',
             'galleries',
             'forms',
+            'products',
+            'articles',
+            'directories',
             'custom-queries',
             'custom-filters',
         ]),
@@ -106,21 +110,21 @@ module.exports = [
         'customer-requests',
         'shopping-process',
     ]), ...prefix('utils', [
-        'README',
-        'class-finder',
-        'enums',
-        'explore',
-        'platform-detection',
-        'history',
-        'image',
-        'message',
-        'sms',
-        'time',
-        'email',
-        'file',
-        'dates',
-        'forms'
-    ]),
+    'README',
+    'class-finder',
+    'enums',
+    'explore',
+    'platform-detection',
+    'history',
+    'image',
+    'message',
+    'sms',
+    'time',
+    'email',
+    'file',
+    'dates',
+    'forms'
+]),
     ...prefix('features', [
         'README',
         'explore',
@@ -144,7 +148,7 @@ module.exports = [
         'short-links'
     ])
 
-].forEach(function(item){
+].forEach(function (item) {
     console.log(item)
 });
 
