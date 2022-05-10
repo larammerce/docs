@@ -46,10 +46,10 @@ whether or not your feature is likely to be used by other users of the project.
 - The existing tests **must** not fail after your changes. This would indicate that existing functionality is broken and should be addressed before a review is started. You can run the test by running `vendor/bin/phpunit`
 - The changes **must** be backed-up with tests. 
 - The PR **must** only have one feature. Split up multiple features in multiple PRs, so they can be individually reviewed and merged.
-<<<<<<< HEAD
+
 - The PR **must** be accompanied by a PR to the docs in case of new features. Documentation is located in the [https://github.com/larammerce/docs](https://github.com/larammerce/docs) repository.
 - The PR should contain meaningful commit messages.
-=======
+
 - The PR **must** be accompanied by a PR to the docs in case of new features. Documentation is located in the [https://github.com/Larammerce/docs](https://github.com/larammerce/docs) repository.
 - The PR should contain meaningful commit messages.
 
@@ -336,4 +336,6 @@ ___
 *2. <a name="2">[Creating the pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)</a>*
 
 ___
->>>>>>> f03a7180fd528860f7116b72fd90fbe7375035b7
+
+- The PR **must** be accompanied by a PR to the docs in case of new features. Documentation is located in the [https://github.com/larammerce/docs](https://github.com/larammerce/docs) repository.
+- The PR should contain meaningful commit messages.
