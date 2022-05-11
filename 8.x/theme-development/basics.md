@@ -10,7 +10,20 @@ This document covers the rules and main development concepts of the templating s
 
 There are three types of blade files in the template engine as shown below:
 
-![blade-files](/blade-files-1-2.png)
+```
+|---views/
+    |---_base.blade.php
+    |---_cart-no-active-modal.blade.php
+    |---_comparison_item.blade.php
+    |---_customers.blade.php
+```
+```
+|---views/
+    |---about.blade.php
+    |---address-add.blade.php
+    |---address-edit.blade.php
+    |---auth-email-check.blade.php
+```
 
 1- File name starts with underscore (partial files)
 
@@ -33,7 +46,11 @@ So to create a layout that extends to all pages, put an underscore at the beginn
 
 3- The end of the file name is **_mobile** or **_app**.
 
-![blade-file-3](/blade-file-3.png)
+```
+|---views/
+    |---index_mobile.blade.php
+    |---index.blade.php
+```
 
 As you know, responsive web design works through CSS, using various settings to different style properties depending on the screen size of the user’s device. Sometimes the design structure of pages on mobile and desktop is different, so create a file with the **_mobile** extension to be displayed on mobile pages with this structure. And for mobile applications, the system provides **_app** pages.
 
