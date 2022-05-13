@@ -351,6 +351,8 @@ In the content of the article you can put the **title**, **parent category**, **
 ```
 You can use the helper function `get_article_related_articles()` to **display 4 articles related** to the current article:
 
+##### SOURCE
+
 ```php
 @foreach(get_article_related_articles($article, 4) as $relatedArticle)
    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
@@ -371,6 +373,8 @@ You can use the helper function `get_article_related_articles()` to **display 4 
 ```
 
 You can use your article information in a **rich snippet** file and put it in the `blog-single.blade.php` file:
+
+##### SOURCE
 
 ```php
 @section('extra_js')
