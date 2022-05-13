@@ -237,20 +237,158 @@ The content of a blog post is placed in a file called `blog-single.blade.php`. L
 
 Note that you definitely need to put **meta tags** in this file:
 
-##### EXAMPLE
+##### SOURCE
 
 ```php
+@section('meta_tags')
+   @include('_meta_tags', ['obj' => $article])
+   <meta property="og:type" content="article">
+@endsection
+```
 
+As you can see, the meta tags related to the SEO of the site are included in this file. If you click on the `_meta_tags` file, you will be redirected to the page that contains the meta tags, the source of which you can see below:
+
+##### SOURCE
+
+```php
+<link rel="canonical" href="{{ $obj->getFrontUrl() }}">
+
+   <meta name="description" content="{{ $obj->getSeoDescription() }}">
+   <meta name="keywords" content="{{ $obj->getSeoKeywords() }}">
+   <meta name="category" content="">
+   <meta itemprop="name" content="{{ $obj->getSeoTitle() }}  لارامرس -">
+   <meta itemprop="description" content="{{ $obj->getSeoDescription() }} ">
+   <meta itemprop="image" content="{{ env('APP_URL') . ImageService::getImage($obj, 'preview') }} ">
+   <meta property="og:url" content="{{ $obj->getFrontUrl() }} ">
+   <meta property="og:tltle" content="{{ $obj->getSeoTitle() }}  لارامرس -">
+   <meta property="og:image" content="{{ env('APP_URL') . ImageService::getImage($obj, 'preview') }} ">
+   <meta property="og:description" content="{{ $obj->getSeoDescription() }} ">
 ```
 
 **NOTE:** Articles are objects to which **SEO** functionality is attached. As a result, you can set SEO-related meta tags based on an article object on the page where the articles are displayed.
 
 **TIP:** *SEO stands for “search engine optimization”. In simple terms, it means the process of improving your site to increase its visibility when people search for products or services related to your business in Google, Bing, and other search engines.* *<sup>[1](#1)</sup>*
-___
 
+**TIP:** *Meta tags are snippets of code that tell search engines important information about your web page, such as how they should display it in search results. They also tell web browsers how to display it to visitors.* *<sup>[2](#2)</sup>*
+
+Next, in the main content of the page, with the help of the block code, `$article->directory->getParentDirectories()` you can create the **breadcrumb** of the page:
+
+##### SOURCE
+
+```php
+@foreach($article->directory->getParentDirectories() as $parentDirectory)
+   <li><a href="{{$parentDirectory->getFrontUrl()}}">{{$parentDirectory->title}}</a></li>
+@endforeach
+```
+
+To get **branch** or **subcategory categories**, you can use a helper function called `get_blog_categories()`:
+
+##### SOURCE
+
+```php
+@foreach(get_blog_categories($article->directory) as $blogCategory)
+   <li>
+      <a href="{{ $blogCategory->getFrontUrl() }}">
+         <i class="fa fa-angle-left"></i>
+         <h3 class="title">{{ $blogCategory->title }}</h3>
+      </a>
+   </li>
+@endforeach
+```
+
+**NOTE:** If you give the `get_blog_categories()` function the input of a `directory` if it has a directory, it shows the subdirectories, and if it does not have a subdirectory, it shows its rows or similar.
+
+**Tip:** *Helpers, as the name suggests, help you with tasks. Each helper file is simply a collection of functions in a particular category. There are URL Helpers, that assist in creating links, there are Form Helpers that help you create form elements, Text Helpers perform various text formatting routines, Cookie Helpers set and read cookies, File Helpers help you deal with files, etc.* *<sup>[3](#3)</sup>*
+
+You can also add an `hct-gallery`:
+
+For more information about hct gallery, see "[Template galleries](https://docs.larammerce.com/8.x/theme-development/galleries.html)".
+
+##### SOURCE
+
+```php
+<div hct-gallery="article_banners" hct-title='بنرها' hct-max-entry="1" hct-random-select>
+   <ul class="hidden-xl hidden-lg hidden-md hidden-sm hidden-xs hidden-xxs" hct-gallery-fields>
+      <li hct-gallery-field="banner_title" hct-title="عنوان بنر"></li>
+      <li hct-gallery-field="banner_link" hct-title="آدرس لینک"></li>
+   </ul>
+   <div class="side-item" hct-gallery-item>
+      <img  hct-attr-src="{%- prop:image_path %}"alt="{%- ex-prop:banner_title %}" class="img-fluid"/>
+      <a target="_blank" href="{%- ex-prop:banner_link %}" title="" class="absolute-link"></a>
+   </div>
+</div>
+```
+
+In the content of the article you can put the **title**, **parent category**, **date of creation**, **the original image or full size**, **short content**, and **text content**:
+
+##### SOURCE
+
+```php
+<div class="article-content">
+   <div class="header">
+      <h1 class="title">{{ $article->title }}</h1> #View article title
+      <div class="date">
+         {{ $article->directory->title }} / {{ TimeService::getDateFrom($article->created_at) }} #Show parent category title and Show article creation date:
+      </div>
+   </div>
+      <div class="pic">
+      <img src="{{ ImageService::getImage($article, 'original') }}" alt="{{ $article->title }}" class="img-fluid"> #View full size image
+   </div>
+   <div class="desc">
+      {{ $article->short_content }} #View short article content
+   <hr/>
+      {!! $article->full_text !!} #View full text content
+   </div>
+</div>
+```
+
+**NOTE:** Because the content of the **text contains** `HTML` tags, instead of the `{{}}` symbol, the `!!` symbol is used.
+
+##### EXAMPLE
+
+```php
+{!! $article->full_text !!} #View full text content
+```
+You can use the helper function `get_article_related_articles()` to **display 4 articles related** to the current article:
+
+```php
+@foreach(get_article_related_articles($article, 4) as $relatedArticle)
+   <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+      <div class="article-box">
+         <div class="pic">
+            <img src="{{ ImageService::getImage($relatedArticle, 'thumb') }}"
+                 alt="{{ $relatedArticle->title }}"
+                 class="img-fluid">
+         </div>
+         <a href="{{ $relatedArticle->getFrontUrl() }}">
+            <h5 class="title">{{ $relatedArticle->title }}</h5>
+         </a>
+         <div class="date">{{ TimeService::getFormalDateFrom($relatedArticle->created_at) }}</div>
+         <div class="short-desc">{{ $relatedArticle->short_content }}</div>
+      </div>
+   </div>
+@endforeach
+```
+
+You can use your article information in a **rich snippet** file and put it in the `blog-single.blade.php` file:
+
+```php
+@section('extra_js')
+    @include('_rich_snippet_article', compact('article'))
+@endsection
+```
+
+**TIP:** *Rich snippets are snippets that have a higher click-through rate. People just prefer to click on the results that give them more information. If the click-through rate of a snippet increases, you'll get more traffic from that search result*  *<sup>[4](#4)</sup>*
+
+**NOTE:** You should use the `$article` variable and helpers to display and design the blog post page, but note that you are completely free to pick and design objects on the page.
 
  #### Reference
 ___
 
 *1. <a name="1">[What Is SEO?](https://searchengineland.com/guide/what-is-seo)</a>*
 
+*2. <a name="2">[What Is meta tags?](https://ahrefs.com/blog/seo-meta-tags/)</a>*
+
+*3. <a name="3">[What Is helper?](https://codeigniter.com/userguide3/general/helpers.html)</a>*
+
+*4. <a name="4">[What Is Rich snippets?](https://yoast.com/what-are-rich-snippets/)</a>*
