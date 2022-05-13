@@ -12,13 +12,9 @@ Each blog post or article includes the following:
 * category
 * A set of tags
 
-**NOTE:** Articles are objects to which **SEO** functionality is attached. As a result, you can set SEO-related meta tags based on an article object on the page where the articles are displayed.
-
-**TIP:** *SEO stands for “search engine optimization”. In simple terms, it means the process of improving your site to increase its visibility when people search for products or services related to your business in Google, Bing, and other search engines.* *<sup>[1](#1)</sup>*
-
 ### Article properties table
 
-Articles are a system object in themselves and can display properties on article pages.
+The article is a system object in itself and can display properties on the pages of the article.
 
 On each page of the blog list, there is a series of categories after entering one of them, passing the `$article` variable from the controller to the blade. Then with `foreach` display, these article features `image`, `title`, `create_at`, and `short_content`.
 
@@ -45,7 +41,9 @@ Num   | Property           | Datatype     | Description
 
 **NOTE:** In Larammerce there is complete freedom of action so that the administrator can create directories as a tree and put a **product** or an **article** in each directory.
 
-For more information about the products, see "[Products](https://docs.larammerce.com/8.x/theme-development/products.html)".
+For more information about the products in Larammerce, see "[Products](https://docs.larammerce.com/8.x/theme-development/products.html)".
+
+**NOTE:** `content_type` is currently static, in the future the Larammerce team intends to create it dynamically.
 
 **NOTE:** `article` is a Laravel model, extends from Laravel `BaseModel`.
 
@@ -68,13 +66,15 @@ Num  | Property       | Datatype     | Description
 
 Well, if you are with Larammerce, you can see how articles are displayed on a theme.
 
-For the Larammerce system to be able to create a magazine for you, you **must** add three files to the system to make the system work properly. The file names are as follows:
+For the Larammerce system to be able to create a magazine for you, you **must** introduce **three** files to the system to make the system work properly. The files include the following:
 
 **1.** List of categories
 
 **2.** List of blog posts
 
 **3.** Single post blog
+
+For example, **to display a list of article categories**, you must add a `blog-categories.blade.php` file to the system using the `./deploy.sh` command.
 
 In the template directory below you will see the files `blog-categories.blade.php`, `blog-list.blade.php`, and `blog-single.blade.php` are placed.
 
@@ -88,7 +88,7 @@ In the template directory below you will see the files `blog-categories.blade.ph
           |---blog-single.blade.php
 ```
 
-For more information on template engine basics, see "[Template engine basics](https://docs.larammerce.com/8.x/theme-development/basics.html)".
+For more information about template engine basics in Larammerce, see "[Template engine basics](https://docs.larammerce.com/8.x/theme-development/basics.html)".
 
 Now let's display the content of these pages together. 
 
@@ -96,9 +96,9 @@ Now let's display the content of these pages together.
 ___
 
 
-For example, to display a **list on a category page**, you can do the following:
+You can create a list of **article categories** to click on each category to be taken to a page that contains a list of blog posts.
 
-**NOTE:** All system features that can be displayed have a URL. If the URL of a feature was required, for example, the product or article should be called the getFrontUrl() function. There is an important clause here that says that every object must use the `getFrontUrl()` function as a link.
+In the following example you can see how to create an article category in the `blog-categories.blade.php` file:
 
 ##### EXAMPLE
 
@@ -107,7 +107,7 @@ For example, to display a **list on a category page**, you can do the following:
 <ul>
    @foreach($directory->directories as $category)
       <li>
-         <a href="{{$category->getFrontUrl()}}">{{$category->title}}</a>
+         <a href="{{$category->getFrontUrl()}}">{{$category->title}}</a> #Category title as a link.
       </li>
    @endforeach
 </ul>
@@ -123,12 +123,15 @@ And write in the terminal:
 Note that `directories` are one of the properties of `directory` objects.
 Finally, you asked the `foreach` to print the title of each `category`.
 
+**NOTE:** All system features that can be displayed have a URL. If the URL of a feature was required, for example, the product or article should be called the `getFrontUrl()` function. There is an important clause here that says that every object must use the `getFrontUrl()` function as a link.
+
 #### List of blog posts
 ___
 
-You can also display **blog posts** :
+You can create a list of **blog post** previews to click on each blog post to take to a page that contains unique blog post content.
 
-**NOTE:** In `src=""` you have to use a service called `ImageService`, `ImageService` is defined in the backend site so you can input it and ask it to give you an image.
+In the following example you can see how to create a preview of blog posts in the `blog-categories.blade.php` file:
+
 
 ##### EXAMPLE
 
@@ -136,10 +139,10 @@ You can also display **blog posts** :
 <ul>
    @foreach($articles as $article)
       <li>
-         <a href="{{$article->getFrontUrl()}}">
-            <img style="max-width: 100px" src="{{url(ImageService::getImage($article, 'thumb'))}}">
-            <h5>{{$article->title}}</h5>
-            <p>{{$article->short_content}}</p>
+         <a href="{{$article->getFrontUrl()}}"> #Related article link.
+            <img style="max-width: 100px" src="{{url(ImageService::getImage($article, 'thumb'))}}"> #Blog post image preview.
+            <h5>{{$article->title}}</h5> #the title of the article.
+            <p>{{$article->short_content}}</p> #the opening description of each article.
          </a>
       </li>
    @endforeach
@@ -152,7 +155,11 @@ And write in the terminal:
 ./deploy.sh 
 ```
 
-**NOTE:** You can also have different sizes of blog images such as previews or full, for this purpose, You can refer to `config/cms/images.php` to find out what sizes are for the blog image.
+**In the example above**, you can see `<img>`, `<h5>`, `<p>` in "foreach" which contains a link to a blog post that takes you to a unique page. In the fact, `foreach` is asked to display an image, title, and text related to the blog post.
+
+**NOTE:** In `src=""` you have to use a service called `ImageService`, `ImageService` is defined in the backend site so you can input it and ask it to give you an image.
+
+**NOTE:** You can also have different sizes of blog images such as previews or full, for this purpose, you can refer to `config/cms/images.php` to find out what sizes are for the blog image.
 
 ##### SOURCE
 
@@ -171,11 +178,33 @@ And write in the terminal:
 url(ImageService::getImage($article, 'preview'))
 ```
 
-#### Single post blog
-___
+Now let's give a brief description of the contents of your `blog-list.blade.php` file:
+
+In the default theme of the site, you can see that a service has been used to display the **time**, which is as follows:
+
+##### EXAMPLE
+
+```php
+{{TimeService::getFormalDateFrom($article->created_at)}} #Show time in blog post.
+```
+
+**NOTE:** `TimeService` is defined in the backend site, if you want to display a part of a historical site, you must use a service called `TimeService`.
+
+**NOTE:** Time in Larammerce system is in **AD**.
+
+For more information about time in Larammerce, see "[Time](https://docs.larammerce.com/8.x/utils/time.html)".
+
+
 You can use pagination in the format or design of articles so that the user can click on it to be directed to the next or previous list of blog posts to be able to view them.
 
-You can also use Laravel pagination in the design of the frontend section of the site, Laravel has provided you with functions for pagination design, and in the table below you can see the complete Laravel pagination functions.
+##### EXAMPLE
+
+```php
+$articles->currentPage(), #Get the current page number.
+$articles->lastItem(), #Get the result number of the last item in the results.
+```
+
+**NOTE:** You can use Laravel pagination in the design of the frontend section of the site, Laravel has provided you with functions for pagination design, and in the table below you can see the complete Laravel pagination functions.
 
 
 Num   | Method                                   | Description           
@@ -201,25 +230,23 @@ Num   | Method                                   | Description
 
 For more information, see "[Database: Pagination](https://laravel.com/docs/8.x/pagination)"
 
-You can do this to create pagination:
+
+#### Single post blog
+
+The content of a blog post is placed in a file called `blog-single.blade.php`. Let's look at the content that should be in this file.
+
+Note that you definitely need to put **meta tags** in this file:
 
 ##### EXAMPLE
 
 ```php
-<ul>
-   @foreach($articles as $article)
-      <li>
-         <a href="{{$article->getFrontUrl()}}">
-            <img style="max-width: 100px" src="{{url(ImageService::getImage($article, 'thumb'))}}">
-            <h5>{{$article->title}}</h5>
-            <p>{{$article->short_content}}</p>
-         </a>
-      </li>
-   @endforeach
-</ul>
+
 ```
 
-Let's look at the `blog-list.blade.php` file:
+**NOTE:** Articles are objects to which **SEO** functionality is attached. As a result, you can set SEO-related meta tags based on an article object on the page where the articles are displayed.
+
+**TIP:** *SEO stands for “search engine optimization”. In simple terms, it means the process of improving your site to increase its visibility when people search for products or services related to your business in Google, Bing, and other search engines.* *<sup>[1](#1)</sup>*
+___
 
 
  #### Reference
