@@ -2,7 +2,8 @@
 
 [[toc]]
 
-On all sites, including store sites, there is a section where the content of the blog is introduced.
+On all sites, including store sites, there is a section where the content of the blog is introduced. A blog article is content written on a blog page. A blog page is an online journal or informational website usually belonging to a single individual or business that has its content displayed in reverse chronological order.
+
 The content of a magazine or blog in Larammerce is a separate entity that is defined and stored as an object that you can display in the layout design in different places.
 
 Each blog post or article includes the following:
