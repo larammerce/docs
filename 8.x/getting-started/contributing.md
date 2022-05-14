@@ -53,11 +53,13 @@ whether or not your feature is likely to be used by other users of the project.
 - The PR **must** be accompanied by a PR to the docs in case of new features. Documentation is located in the [https://github.com/Larammerce/docs](https://github.com/larammerce/docs) repository.
 - The PR should contain meaningful commit messages.
 
+**TIP:** *Public Relations is one of the most effective ways to build on marketing strategies and create a solid online reputation.* *<sup>[1](#1)</sup>*
+
 ## Project management
 
 Here you can learn about how Larammerce manages user stories and features to be developed and released.
 
-**Taiga** is the tool that is used as the project management system, and also [Larammerce backlog board](https://tree.taiga.io/project/a-khajelou-larammerce/backlog) is publicly visible for people to check. also, it should be mentioned that Scrum is chosen as the management methodology for this project.
+**Taiga** is the tool that is used as the project management system, and also [Larammerce backlog board](https://tree.taiga.io/project/a-khajelou-larammerce/backlog) is publicly visible for people to check. also, it should be mentioned that **Scrum** is chosen as the management methodology for this project.
 
 ### A brief about scrum
 
@@ -77,7 +79,7 @@ ___
 
 With the user story approach, you are content with just enough design instead of a large and comprehensive design. user story reduces the time required to write comprehensive documentation by emphasizing customer-centric conversations. As a result, user story enables teams to deliver quality software faster.
 
-The user story method will save time Because it is modified and improved according to the users. As a result, the quality in the process of software development or other products has increased and the upcoming project will be liked by the customer.
+The user story method will save time because it is modified and improved according to the users. As a result, the quality in the process of software development or other products has increased and the upcoming project will be liked by the customer.
 
 #### Working with user story
 ___
@@ -90,7 +92,7 @@ The user's story is written in simple language that must pursue a specific purpo
 
 **3.** Why is it important?
 
-However, the user's story is a process during which needs are discovered and should not be used as a document to analyze needs. In traditional methods, the system analyst usually tried to understand the customer's needs, but in modern methods, the following steps must be followed to identify the User Story:
+However, the user's story is a process during which needs are discovered and should not be used as a document to analyze needs. In traditional methods, the system analyst usually tried to understand the customer's needs, but in modern methods, the following steps must be followed to identify the user story:
 
 **1.** You need to talk to users.
 
@@ -117,7 +119,7 @@ Grooming sessions | Sprint sessions
 
 > *User stories are in the product backlog, and tasks are identified during sprint scheduling and become part of the sprint backlog.*
 >
-> *the better distinction is that stories contain multiple types of work (e.g., programming, testing, database design, user interface design, analysis, etc.) while tasks are restricted to a single type of work.* *<sup>[1](#1)</sup>*
+> *the better distinction is that stories contain multiple types of work (e.g., programming, testing, database design, user interface design, analysis, etc.) while tasks are restricted to a single type of work.* *<sup>[2](#2)</sup>*
 
 
 #### How to create a new task?
@@ -126,7 +128,7 @@ ___
 As you know the smallest doable part of a user story is the task, so to create a task you have to enter the current sprint, then click on the specific user story which belongs to you, and after all click on the create task button. so there are new tasks created under the user story section.
 Please note that user stories must have at least one task underneath.
 
-**Once the project is cloned** (or you cloned and worked on it before), to begin the process of development or writing code to do the assigned user story, you have to update the project. so after updating your project to the upstream, you can make a new branch from the **main brach** (named master or main) by the commend below:
+**Once the project is cloned** (or you cloned and worked on it before), to begin the process of development or writing code to do the assigned user story, you have to update the project. So after updating your project to the upstream, you can make a new branch from the **main brach** (named master or main) by the commend below:
 
 ##### PATTERN
 
@@ -208,7 +210,7 @@ Also, you can read the [docs provided by the taiga team](https://docs.taiga.io/i
 
 **NOTE:** You can have a brief description of the work done.
 
-There is a requirement here that you can fulfill. If in the third line you write and save the command `TG-449 #in-progress` or `TG-449 #ready-for-rest `when you enter the taiga site in the taskbar in the browser, you will see that task number 449 has been entered from the new section in progress or ready for testing.
+There is a requirement here that you can fulfill. If in the third line you write and save the command `TG-449 #in-progress` or `TG-449 #ready-for-test `when you enter the taiga site in the taskbar in the browser, you will see that task number "449" has been entered from the new section in progress or ready for testing.
 
 **NOTE:** A very important point in handling tasks that should be mentioned here is that only one person named the tester can put the task in close or need info mode.
 
@@ -250,54 +252,109 @@ git push --set-upstream origin feature/docs-boilerplate
 
 **6.** Here you have to mention that there are differences between GitHub and GitLab projects in this stage:
 
-in GitHub, you create pull requests and in GitLab create merge requests. so let's describe them one by one.
+in GitHub, you **create pull requests** and in GitLab **create merge requests**. so let's describe them one by one.
 
 #### Creating the merge request
 ___
 
-Creating a merge request is just a very simple task, just after each commit you have done, click on the link that GitLab creates for you to enter the GitLab site and create a merge request for the user story.
+There are several ways to create a merge request in **GitLab**.
+
+* [From the merge request list](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html#from-the-merge-request-list)
+* [When you add, edit, or upload a file](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html#when-you-add-edit-or-upload-a-file)
+* [When you create a branch](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html#when-you-create-a-branch)
+* [When you use Git commands locally](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html#when-you-use-git-commands-locally)
+* [When you work in a fork](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html#when-you-work-in-a-fork)
+* [By sending an email](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html#by-sending-an-email)
+
+But the way the Larammerce team submits the merge request is when when you use Git commands locally.
+
+Well let's see the steps:
+
+**1.** Create a branch:
+
+##### EXAMPLE
+
+```bash
+git checkout -b my-new-branch
+```
+
+**2.** Create, edit, or delete files. The stage and commit them:
+
+##### EXAMPLE
+
+```bash
+git add .
+git commit -m "My commit message"
+```
+
+**3.** Push your branch to GitLab:
+
+##### EXAMPLE
+
+```bash
+git push origin my-new-branch
+```
+
+GitLab prompts you with a direct link for creating a merge request:
+
+```bash
+...
+remote: To create a merge request for my-new-branch, visit:
+remote:   https://gitlab.example.com/my-group/my-project/merge_requests/new?merge_request%5Bsource_branch%5D=my-new-branch
+```
+
+**4.** Copy the link and paste it in your browser.
+
+As you can see, creating a merge request is just a very simple task, just after each commit you have done, click on the link that **GitLab** creates for you to enter the GitLab site and create a merge request for the user story.
 After clicking on the link provided by GitLab, you will enter the following page on the GitLab site:
+
+**5.** Type a **title** and **description** for your merge request, and  finally, click on the **create merge request** button:
 
 ![merge request: title & description](/description.jpg)
 
-In this section, you enter the user story title Command, and also in the description section, you enter a summary description of the user story. Finally, click on the Create merge request button.
+After clicking the create merge request button, you must check to see if there is a conflict. If there is no conflict, you are done and you will have to wait for the team experimenter to review the user story done by you.
 
 ![merge request: Create merge request](/merge.jpg)
 
-After clicking the Create merge request button, you must check to see if there is a conflict. If there is no conflict, you are done and you will have to wait for the team experimenter to review the user story done by you.
+For more information, see "[How to create merge requests](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)".
 
-You can also see [How to create merge requests](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html) on the GitLab site.
-
-#### Creating the pull request *<sup>[2](#2)</sup>*
+#### Creating the pull request
 ___
 
-If you want to create a new branch to request your traction and you do not have permission to write to the repository, you must first fork the repository. For more information, see [Creating a traction request from a fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) and [About forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks).
+You can create a traction request to suggest and collaborate on changes to a repository on **GitHub**. If you want to create a new branch to request your traction and you do not have permission to write to the repository, you must first fork the repository.
+
+**TIP:** *A fork is a copy of a repository that you manage. Forks let you make changes to a project without affecting the original repository. You can fetch updates from or submit changes to the original repository with pull requests.* *<sup>[3](#3)</sup>*
 
 **NOTE:** To open a pull request in a public repository, you must have write access to the head or the source branch or, for organization-owned repositories, you must be a member of the organization that owns the repository to open a pull request.
 
-**1.** On GitHub.com, navigate to the main page of the repository.
+Well let's see the steps:
 
-**2.** In the "Branch" menu, choose the branch that contains your commits.
+**1.** On "GitHub.com", navigate to the main page of the **repository**.
+
+**2.** In the **Branch menu**, choose the branch that contains your commits:
 
 ![pull request: choose the branch](/branch.jpg)
 
-**3.** At the top of the file list, click **Pull request** and then **New pull request**.
+**3.** At the top of the file list, click **Pull request** and then **New pull request**:
 
 ![pull request: click Pull request](/request.jpg)
 
-**4.** Use the base branch dropdown menu to select the branch you'd like to merge your changes into, then use the compare branch drop-down menu to choose the topic branch you made your changes in.
+**4.** Use the base branch dropdown menu to select the branch you'd like to merge your changes into, then use the compare branch drop-down menu to choose the topic branch you made your changes in:
 
 ![pull request: choose the topic branch](/topic.jpg)
 
-**5.** Type a title and description for your pull request.
+**5.** Type a **title** and **description** for your pull request:
 
 ![pull request: Type a title and description](/title1.jpg)
 
-**6.** To create a pull request that is ready for review, click **Create Pull Request**.
+**6.** To create a pull request that is ready for review, click **Create pull request**:
 
 ![pull request: create a pull request](/create.jpg)
 
-You can also see [How to create pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) on the GitHub site.
+For more information, see "[How to create pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)".
+
+
+After you create a pull request, you can ask a specific person to review your proposed changes. For more information, see "[Requesting a pull request review](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/requesting-a-pull-request-review)".
 
 ### Conclusion
 
@@ -320,9 +377,9 @@ ___
 
 **6.** On the **Saturday morning** before the meeting, team members should review 10 to 15 backlog user stories and prepare their comments and questions for the meeting.
 
-**7.** After performing the user story, the person testing the user story, or the team members' code, moves the user story from the ready for test column to the closed column if there is no user story problem. This means that the user story is complete.
+**7.** After performing the user story, the person testing the user story, or the team member's code, moves the user story from the ready for test column to the closed column if there is no user story problem. This means that the user story is complete.
 
-**8.** Also, after Sunday  sessions, which are in scrum mode, each member of the team is required to add user story-related tasks.
+**8.** Also, after Sunday sessions, which are in scrum mode, each member of the team is required to add user story-related tasks.
 
 **9.** Finally, you enter the payment cycle discussion where Larammerce pays you based on the number of points [Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number) done.
 
@@ -331,8 +388,9 @@ ___
 #### Reference
 ___
 
-*1. <a name="1">[difference between a user story and a task](https://www.mountaingoatsoftware.com/blog/the-difference-between-a-story-and-a-task)</a>*
+*1. <a name="1">[What is PR?](https://www.5wpr.com/new/what-is-public-relations-and-why-is-it-important/)</a>*
 
-*2. <a name="2">[Creating the pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)</a>*
+*2. <a name="2">[What is difference between a user story and a task?](https://www.mountaingoatsoftware.com/blog/the-difference-between-a-story-and-a-task)</a>*
 
-___
+*3. <a name="3">[What is fork in GitHub?](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks)</a>*
+
