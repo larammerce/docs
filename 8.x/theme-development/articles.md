@@ -4,6 +4,12 @@
 
 On all sites, including store sites, there is a section where the content of the blog is introduced. A blog article is content written on a blog page. A blog page is an online journal or informational website usually belonging to a single individual or business that has its content displayed in reverse chronological order.
 
+Blog articles are often well researched, articulated and edited so that the reader finds them helpful and engaging. Blog articles can have varying topics and different tones of writing. They can also be written for websites provided they have a section for it.
+
+Blog articles need to be relatable and the writers often express themselves. These articles also encourage the readers to engage with the writer and often include images that relate to the topic.
+
+Blog articles invite conversation so readers can engage. A website’s content is often made up of various images and text that inform and guide you through the website. Websites do sometimes have a blog section for their blog articles.
+
 The content of a magazine or blog in Larammerce is a separate entity that is defined and stored as an object that you can display in the layout design in different places.
 
 Each blog post or article includes the following:
@@ -12,6 +18,8 @@ Each blog post or article includes the following:
 * separate page
 * category
 * A set of tags
+
+Now that you are familiar with the nature of the article, let's look at the properties and how the article is displayed in the Larammerce system.
 
 ### Article properties table
 
