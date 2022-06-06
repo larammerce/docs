@@ -2,30 +2,22 @@
 
 [[toc]]
 
-On all sites, including store sites, there is a section where the content of the blog is introduced. A blog article is content written on a blog page. A blog page is an online journal or informational website usually belonging to a single individual or business that has its content displayed in reverse chronological order.
-
-Blog articles are often well researched, articulated and edited so that the reader finds them helpful and engaging. Blog articles can have varying topics and different tones of writing. They can also be written for websites provided they have a section for it.
-
-Blog articles need to be relatable and the writers often express themselves. These articles also encourage the readers to engage with the writer and often include images that relate to the topic.
-
-Blog articles invite conversation so readers can engage. A website’s content is often made up of various images and text that inform and guide you through the website. Websites do sometimes have a blog section for their blog articles.
+On every website, including e-commerce ones, there is a section to manage the blog posts related to the business. So Larammerce also has this too.
 
 The content of a magazine or blog in Larammerce is a separate entity that is defined and stored as an object that you can display in the layout design in different places.
 
 Each blog post or article includes the following:
 
 * Unique link
-* separate page
-* category
-* A set of tags
+* Separate page
+* Category
+* SEO description & tags
 
-Now that you are familiar with the nature of the article, let's look at the properties and how the article is displayed in the Larammerce system.
+Now that you are familiar with the nature of the article, let's look at the properties and how the article is managed in the Larammerce system.
 
 ### Article properties table
 
-The article is a system object in itself and can display properties on the pages of the article.
-
-On each page of the blog list, there is a series of categories after entering one of them, passing the `$article` variable from the controller to the blade. Then with `foreach` display, these article features `image`, `title`, `create_at`, and `short_content`.
+The article is a system entity(object) itself and can be modified/displayed by its properties on any Template project's pages.
 
 If you go to the article model, you can see the properties of this object. The properties of the article are shown in the table below:
 
@@ -48,13 +40,13 @@ Num   | Property           | Datatype     | Description
 **15**| `seo_keywords`     | mixed        | SEO keywords of a article.
 **16**| `is_suggested`     | boolean      | Specifies suggested articles.
 
-**NOTE:** In Larammerce there is complete freedom of action so that the administrator can create directories as a tree and put a **product** or an **article** in each directory.
+**NOTE:** In Larammerce there is complete freedom of action so that the administrator can create directories as a tree and put **products** and **article** in each directory.
 
 For more information about the products in Larammerce, see "[Products](https://docs.larammerce.com/8.x/theme-development/products.html)".
 
 **NOTE:** `content_type` is currently static, in the future the Larammerce team intends to create it dynamically.
 
-**NOTE:** `article` is a Laravel model, extends from Laravel `BaseModel`.
+**NOTE:** `Article` is a child of Laravel `Model`, So you can act and react like a Laravel `Model` with that. Also, it's important to mention that Article has all features existing in Laravel `Model`.
 
 ##### SOURCE
 
@@ -62,30 +54,20 @@ For more information about the products in Larammerce, see "[Products](https://d
 class Article extends BaseModel implements
 ```
 
-An article is related to objects, following, you can see these relationships in the table:
+An 'Article' has some relationships with other entity types existing in the system as shown below:
 
 Num  | Property       | Datatype     | Description
 -----|----------------|--------------|-----------
-**1**| `directory`    | Directory    | Specifies what category this article is in.
-**2**| `directories`  | Directory[]  | There is a list of parent directories that indicate in which other directories this article is manufactured, or (Short link of article in other directories).
-**3**| `tags`         | Tag[]        | article tags.
+**1**| `directory`    | Directory    | Specifies what category this article belongs to.
+**2**| `directories`  | Directory[]  | A list of parent categories indicates which other directories this article belongs to. (Also there are some symbolic links that are managed similarly.)
+**3**| `tags`         | Tag[]        | Article tags.
 **4**| `author`       | SystemUser   | The system user who created this article is the author.
 
 ### Display article properties
 
 Well, if you are with Larammerce, you can see how articles are displayed on a theme.
 
-For the Larammerce system to be able to create a magazine for you, you **must** introduce **three** files to the system to make the system work properly. The files include the following:
-
-**1.** List of categories
-
-**2.** List of blog posts
-
-**3.** Single post blog
-
-For example, **to display a list of article categories**, you must add a `blog-categories.blade.php` file to the system using the `./deploy.sh` command.
-
-In the template directory below you will see the files `blog-categories.blade.php`, `blog-list.blade.php`, and `blog-single.blade.php` are placed.
+For the Larammerce system to be able to create a magazine for you, you **must** put create **three** files to the system to make the system work properly. The files include the following:
 
 ```
 |---node_modules/
@@ -97,9 +79,8 @@ In the template directory below you will see the files `blog-categories.blade.ph
           |---blog-single.blade.php
 ```
 
-For more information about template engine basics in Larammerce, see "[Template engine basics](https://docs.larammerce.com/8.x/theme-development/basics.html)".
+For more information about template engine in Larammerce, see "[Template engine basics](https://docs.larammerce.com/8.x/theme-development/basics.html)".
 
-Now let's display the content of these pages together. 
 
 #### List of categories
 ___
@@ -107,7 +88,7 @@ ___
 
 You can create a list of **article categories** to click on each category to be taken to a page that contains a list of blog posts.
 
-In the following example you can see how to create an article category in the `blog-categories.blade.php` file:
+Let's look at a simple example in the `blog-categories.blade.php` file:
 
 ##### EXAMPLE
 
@@ -129,10 +110,10 @@ And write in the terminal:
 ```
 
 **In the example above**, `$directory->directories` in `foreach`, is considered as `$category`.
-Note that `directories` are one of the properties of `directory` objects.
+Note that `directories` are one of the properties of `directory` object.
 Finally, you asked the `foreach` to print the title of each `category`.
 
-**NOTE:** All system features that can be displayed have a URL. If the URL of a feature was required, for example, the product or article should be called the `getFrontUrl()` function. There is an important clause here that says that every object must use the `getFrontUrl()` function as a link.
+**NOTE:** All system features that can be displayed have a URL. There is an important clause here that says that every object must use the `getFrontUrl()` function as a link.
 
 #### List of blog posts
 ___
@@ -166,7 +147,7 @@ And write in the terminal:
 
 **In the example above**, you can see `<img>`, `<h5>`, `<p>` in "foreach" which contains a link to a blog post that takes you to a unique page. In the fact, `foreach` is asked to display an image, title, and text related to the blog post.
 
-**NOTE:** In `src=""` you have to use a service called `ImageService`, `ImageService` is defined in the backend site so you can input it and ask it to give you an image.
+**NOTE:** `ImageService` is defined in the backend site so you can input it and ask it to give you an image.
 
 **NOTE:** You can also have different sizes of blog images such as previews or full, for this purpose, you can refer to `config/cms/images.php` to find out what sizes are for the blog image.
 
