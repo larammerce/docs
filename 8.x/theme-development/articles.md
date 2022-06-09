@@ -46,7 +46,7 @@ For more information about the products in Larammerce, see "[Products](https://d
 
 **NOTE:** `content_type` is currently static, in the future the Larammerce team intends to create it dynamically.
 
-**NOTE:** `Article` is a child of Laravel `Model`, So you can act and react like a Laravel `Model` with that. Also, it's important to mention that Article has all features existing in Laravel `Model`.
+**NOTE:** `Article` is a child of Laravel `Model`, so you can act and react like a Laravel `Model` with that. Also, it's important to mention that Article has all features existing in Laravel `Model`.
 
 ##### SOURCE
 
@@ -54,7 +54,7 @@ For more information about the products in Larammerce, see "[Products](https://d
 class Article extends BaseModel implements
 ```
 
-An 'Article' has some relationships with other entity types existing in the system as shown below:
+An `Article` has some relationships with other entity types existing in the system as shown below:
 
 Num  | Property       | Datatype     | Description
 -----|----------------|--------------|-----------
@@ -85,8 +85,7 @@ For more information about template engine in Larammerce, see "[Template engine 
 #### List of categories
 ___
 
-
-You can create a list of **article categories** to click on each category to be taken to a page that contains a list of blog posts.
+Here, categories are used to organize article in your store.
 
 Let's look at a simple example in the `blog-categories.blade.php` file:
 
@@ -103,25 +102,20 @@ Let's look at a simple example in the `blog-categories.blade.php` file:
 </ul>
 ```
 
+**NOTE:** `getFrontUrl()` supports creating new links in the backend.
+
 And write in the terminal:
 
 ```bash
 ./deploy.sh 
 ```
 
-**In the example above**, `$directory->directories` in `foreach`, is considered as `$category`.
-Note that `directories` are one of the properties of `directory` object.
-Finally, you asked the `foreach` to print the title of each `category`.
-
-**NOTE:** All system features that can be displayed have a URL. There is an important clause here that says that every object must use the `getFrontUrl()` function as a link.
-
 #### List of blog posts
 ___
 
-You can create a list of **blog post** previews to click on each blog post to take to a page that contains unique blog post content.
+You can create a list of **blog post** previews.
 
-In the following example you can see how to create a preview of blog posts in the `blog-categories.blade.php` file:
-
+Let's look at a example in the `blog-list.blade.php` file:
 
 ##### EXAMPLE
 
@@ -139,17 +133,15 @@ In the following example you can see how to create a preview of blog posts in th
 </ul>
 ```
 
+**NOTE:** `ImageService` is defined in the backend site, So it returns the image.
+
 And write in the terminal:
 
 ```bash
 ./deploy.sh 
 ```
 
-**In the example above**, you can see `<img>`, `<h5>`, `<p>` in "foreach" which contains a link to a blog post that takes you to a unique page. In the fact, `foreach` is asked to display an image, title, and text related to the blog post.
-
-**NOTE:** `ImageService` is defined in the backend site so you can input it and ask it to give you an image.
-
-**NOTE:** You can also have different sizes of blog images such as previews or full, for this purpose, you can refer to `config/cms/images.php` to find out what sizes are for the blog image.
+**NOTE:** You can also have different sizes of blog images such as previews or full, for this purpose, you can refer to `config/cms/images.php`.
 
 ##### SOURCE
 
@@ -162,70 +154,9 @@ And write in the terminal:
  ],
  ```
 
-##### EXAMPLE
-
-```php
-url(ImageService::getImage($article, 'preview'))
-```
-
-Now let's give a brief description of the contents of your `blog-list.blade.php` file:
-
-In the default theme of the site, you can see that a service has been used to display the **time**, which is as follows:
-
-##### EXAMPLE
-
-```php
-{{TimeService::getFormalDateFrom($article->created_at)}} #Show time in blog post.
-```
-
-**NOTE:** `TimeService` is defined in the backend site, if you want to display a part of a historical site, you must use a service called `TimeService`.
-
-**NOTE:** Time in Larammerce system is in **AD**.
-
-For more information about time in Larammerce, see "[Time](https://docs.larammerce.com/8.x/utils/time.html)".
-
-
-You can use pagination in the format or design of articles so that the user can click on it to be directed to the next or previous list of blog posts to be able to view them.
-
-##### EXAMPLE
-
-```php
-$articles->currentPage(), #Get the current page number.
-$articles->lastItem(), #Get the result number of the last item in the results.
-```
-
-**NOTE:** You can use Laravel pagination in the design of the frontend section of the site, Laravel has provided you with functions for pagination design, and in the table below you can see the complete Laravel pagination functions.
-
-
-Num   | Method                                   | Description           
-------|------------------------------------------|-----------------------
-**1** | `$paginator->count()`                    | Get the number of items for the current page.
-**2** | `$paginator->currentPage()`              | Get the current page number.
-**3** | `$paginator->firstItem()`                | Get the result number of the first item in the results.
-**4** | `$paginator->getOptions()`               | Get the paginator options.
-**5** | `$paginator->getUrlRange($start, $end)`  | Create a range of pagination URLs.
-**6** | `$paginator->hasPages()`                 | Determine if there are enough items to split into multiple pages.
-**7** | `$paginator->hasMorePages()`             | Determine if there are more items in the data store.
-**8** | `$paginator->items()`                    | Get the items for the current page.
-**9** | `$paginator->lastItem()`                 | Get the result number of the last item in the results.
-**10**| `$paginator->lastPage()`                 | Get the page number of the last available page. (Not available when using `simplePaginate`).
-**11**| `$paginator->nextPageUrl()`              | Get the URL for the next page.
-**12**| `$paginator->onFirstPage()`              | Determine if the paginator is on the first page.
-**13**| `$paginator->perPage()`                  | The number of items to be shown per page.
-**14**| `$paginator->previousPageUrl()`          | Get the URL for the previous page.
-**15**| `$paginator->total()`                    | Determine the total number of matching items in the data store. (Not available when using `simplePaginate`).
-**16**| `$paginator->url($page)`                 | Get the URL for a given page number.
-**17**| `$paginator->getPageName()`              | Get the query string variable used to store the page.
-**18**| `$paginator->setPageName($name)`         | Get the query string variable used to store the page.
-
-For more information, see "[Database: Pagination](https://laravel.com/docs/8.x/pagination)"
-
-
 #### Single post blog
 
 The content of a blog post is placed in a file called `blog-single.blade.php`. Let's look at the content that should be in this file.
-
-Note that you definitely need to put **meta tags** in this file:
 
 ##### SOURCE
 
@@ -255,11 +186,7 @@ As you can see, the meta tags related to the SEO of the site are included in thi
    <meta property="og:description" content="{{ $obj->getSeoDescription() }} ">
 ```
 
-**NOTE:** Articles are objects to which **SEO** functionality is attached. As a result, you can set SEO-related meta tags based on an article object on the page where the articles are displayed.
-
-**TIP:** *SEO stands for “search engine optimization”. In simple terms, it means the process of improving your site to increase its visibility when people search for products or services related to your business in Google, Bing, and other search engines.* *<sup>[1](#1)</sup>*
-
-**TIP:** *Meta tags are snippets of code that tell search engines important information about your web page, such as how they should display it in search results. They also tell web browsers how to display it to visitors.* *<sup>[2](#2)</sup>*
+**TIP:** *Meta tags are snippets of code that tell search engines important information about your web page, such as how they should display it in search results. They also tell web browsers how to display it to visitors.* *<sup>[1](#1)</sup>*
 
 Next, in the main content of the page, with the help of the block code, `$article->directory->getParentDirectories()` you can create the **breadcrumb** of the page:
 
@@ -288,28 +215,8 @@ To get **branch** or **subcategory categories**, you can use a helper function c
 
 **NOTE:** If you give the `get_blog_categories()` function the input of a `directory` if it has a directory, it shows the subdirectories, and if it does not have a subdirectory, it shows its rows or similar.
 
-**Tip:** *Helpers, as the name suggests, help you with tasks. Each helper file is simply a collection of functions in a particular category. There are URL Helpers, that assist in creating links, there are Form Helpers that help you create form elements, Text Helpers perform various text formatting routines, Cookie Helpers set and read cookies, File Helpers help you deal with files, etc.* *<sup>[3](#3)</sup>*
 
-You can also add an `hct-gallery`:
-
-For more information about hct gallery, see "[Template galleries](https://docs.larammerce.com/8.x/theme-development/galleries.html)".
-
-##### SOURCE
-
-```php
-<div hct-gallery="article_banners" hct-title='بنرها' hct-max-entry="1" hct-random-select>
-   <ul class="hidden-xl hidden-lg hidden-md hidden-sm hidden-xs hidden-xxs" hct-gallery-fields>
-      <li hct-gallery-field="banner_title" hct-title="عنوان بنر"></li>
-      <li hct-gallery-field="banner_link" hct-title="آدرس لینک"></li>
-   </ul>
-   <div class="side-item" hct-gallery-item>
-      <img  hct-attr-src="{%- prop:image_path %}"alt="{%- ex-prop:banner_title %}" class="img-fluid"/>
-      <a target="_blank" href="{%- ex-prop:banner_link %}" title="" class="absolute-link"></a>
-   </div>
-</div>
-```
-
-In the content of the article you can put the **title**, **parent category**, **date of creation**, **the original image or full size**, **short content**, and **text content**:
+If you want to display the **title**, **parent category**, **date of creation**, **the original image or full size**, **short content**, and **text content** you can do the following:
 
 ##### SOURCE
 
@@ -318,7 +225,7 @@ In the content of the article you can put the **title**, **parent category**, **
    <div class="header">
       <h1 class="title">{{ $article->title }}</h1> #View article title
       <div class="date">
-         {{ $article->directory->title }} / {{ TimeService::getDateFrom($article->created_at) }} #Show parent category title and Show article creation date:
+         {{ $article->directory->title }} / {{ TimeService::getDateFrom($article->created_at) }} #Show parent category title and Show article creation date
       </div>
    </div>
       <div class="pic">
@@ -332,57 +239,22 @@ In the content of the article you can put the **title**, **parent category**, **
 </div>
 ```
 
-**NOTE:** Because the content of the **text contains** `HTML` tags, instead of the `{{}}` symbol, the `!!` symbol is used.
+**NOTE:** You may want to display a time. This can be done using the `TimeService` function. Time in Laramres is AD.
+For more information about time in Larammerce, see "[Time](https://docs.larammerce.com/8.x/utils/time.html)".
 
 ##### EXAMPLE
 
 ```php
+{{ TimeService::getDateFrom($article->created_at) }} #Show article creation date
+```
+
+**NOTE:** Beware that only instead of the `{{}}` symbol, the `!!` symbol is used, because the content of the **text contains** `HTML` tags.
+
+```php
 {!! $article->full_text !!} #View full text content
 ```
-You can use the helper function `get_article_related_articles()` to **display 4 articles related** to the current article:
-
-##### SOURCE
-
-```php
-@foreach(get_article_related_articles($article, 4) as $relatedArticle)
-   <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-      <div class="article-box">
-         <div class="pic">
-            <img src="{{ ImageService::getImage($relatedArticle, 'thumb') }}"
-                 alt="{{ $relatedArticle->title }}"
-                 class="img-fluid">
-         </div>
-         <a href="{{ $relatedArticle->getFrontUrl() }}">
-            <h5 class="title">{{ $relatedArticle->title }}</h5>
-         </a>
-         <div class="date">{{ TimeService::getFormalDateFrom($relatedArticle->created_at) }}</div>
-         <div class="short-desc">{{ $relatedArticle->short_content }}</div>
-      </div>
-   </div>
-@endforeach
-```
-
-You can use your article information in a **rich snippet** file and put it in the `blog-single.blade.php` file:
-
-##### SOURCE
-
-```php
-@section('extra_js')
-    @include('_rich_snippet_article', compact('article'))
-@endsection
-```
-
-**TIP:** *Rich snippets are snippets that have a higher click-through rate. People just prefer to click on the results that give them more information. If the click-through rate of a snippet increases, you'll get more traffic from that search result*  *<sup>[4](#4)</sup>*
-
-**NOTE:** You should use the `$article` variable and helpers to display and design the blog post page, but note that you are completely free to pick and design objects on the page.
 
  #### Reference
 ___
 
-*1. <a name="1">[What Is SEO?](https://searchengineland.com/guide/what-is-seo)</a>*
-
-*2. <a name="2">[What Is meta tags?](https://ahrefs.com/blog/seo-meta-tags/)</a>*
-
-*3. <a name="3">[What Is helper?](https://codeigniter.com/userguide3/general/helpers.html)</a>*
-
-*4. <a name="4">[What Is Rich snippets?](https://yoast.com/what-are-rich-snippets/)</a>*
+*1. <a name="1">[What Is meta tags?](https://ahrefs.com/blog/seo-meta-tags/)</a>*
