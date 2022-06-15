@@ -2,7 +2,7 @@
 
 [[toc]]
 
-In the Larammerce Template Engine, any section that is repetitive and the website admin wants to create a list of content and edit it uses the gallery.
+In the Larammerce Template Engine, any section that is repetitive and it's needed to be managed by the website admin to create/update/delete a list of them; Can be implemented by the template engine galleries.
 
 For example, the image below is the faq page. On this page, there is a fixed section of questions and answers but repetitive.
 ![faq-page.png](/faq-page.png)
@@ -14,7 +14,7 @@ First, one of the Larammerce template projects is reviewed, open the .blade file
 ```html
   <div class="top-line-content" hct-gallery="faqs" hct-title='پرسش وپاسخ ها' hct-max-entry="7" hct-random-select>
 ```
-In this tag there are attributes, each of which is described:
+In this tag there are attributes that each of them are described separately:
 ```html
 hct-gallery="faqs"
 ```
@@ -36,9 +36,9 @@ The gallery shows only seven of the contents created by the website admin.This v
 ```html
 hct-random-select
 ```
-That is, the order is random, if not set, in order of priority.
+This attribute tells the system to sort the gallery items in a random order; if not set, the order would be sorted by the priority of each item.
 
-There is an **ul** tag in the **div** tag, it must have a hidden class.
+There is an **ul** tag in the **div** tag, It must have a hidden class using bootstrap or any other frameworks or the display: none style in any implementation.
 
 ```html
 <ul class="hidden-xl hidden-lg hidden-md hidden-sm hidden-xs" hct-gallery-fields>
@@ -48,11 +48,7 @@ There is an **ul** tag in the **div** tag, it must have a hidden class.
 ```
 **hct-gallery-fields** specifies that each gallery item related to the faq gallery has fields called questions and answers.
 
-This table is an example to understand the difference between an item and an gallery item.
-
-gallery|gallery item
-----------|----------
-slider|Each of the sliders
+For example, if it's going to be used to manage a slider of photos on the website, the slider itself would be the gallery and each slide (containing its photo, title, link, etc.) goes to be the gallery item.
 
 The first hct-gallery-field is the question. With the title of the question.
 
@@ -134,5 +130,4 @@ Enter this command:
 ./deploy.sh
 ```
 After all you can check to the URL of your web page in a browser and see the page is created with the gallery:
->localhost/8080/faq
-
+>https://localhot:8080/faq
