@@ -83,5 +83,5 @@ Activate the **Show in menu button** and **Show in mobile app button** to displa
 Finally, click the **Edit webpage button** and select the blade page.
 
 After all you can check to the URL of your web page in a browser and see the page is created with the desired contents:
->localhost/8080/min-5
+>https://localhot:8080/min-5
 
