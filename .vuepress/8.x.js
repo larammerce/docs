@@ -26,6 +26,7 @@ module.exports = [
             'directories',
             'custom-queries',
             'custom-filters',
+            'helpers'
         ]),
     },
     {
