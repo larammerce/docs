@@ -3,7 +3,7 @@
 [[toc]]
 
 There are many different moving parts that come together to make the Larammerce platform work. 
-In fact, in a larammerce structure, all system natures are part of directories.
+In fact, in a larammerce structure, all system natures are part of directoriest. so, all categories and web pages are directories, otherwise they are objects of the article or product type.
 
 ### Directory structure
 The entire Larammerce philosophy revolves around having directories objects.
@@ -44,7 +44,7 @@ Num   | Property                     | Datatype     | Description
 **23**| `inaccessibility_type`       | integer      | It has two non-existent and inquiry modes.
 **24**| `notice`                     | string       | Display a notice for a directory.
 
-### Relationship database table
+### Relationship directory table
 
 An `directories` has some relationships with other entity types existing in the system as shown below:
 
