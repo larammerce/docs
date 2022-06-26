@@ -3,18 +3,10 @@
 [[toc]]
 
 There are many different parts that come together to make the Larammerce platform work. 
-In fact, in the base structure Larammerce, To maintain the class structure of directories in a database, we use the parent method of a tree pointer, a tree in which each object points to a parent. 
+In fact, in the base structure Larammerce, To maintain the class structure of directories in a database, you use the parent method of a tree pointer, a tree in which each object points to a parent. 
 
-### Directory structure
-The entire Larammerce philosophy revolves around having directories objects.
+Let's take a look at directory properties and relationships.
 
-The location of these directories classe could be as follows:
-```php
-.
-├── app
-│   ├── Models
-│   │   ├── Directory.php
-```
 ### Directories properties table
 
 Num   | Property                     | Datatype     | Description
@@ -41,7 +33,7 @@ Num   | Property                     | Datatype     | Description
 **20**| `description`                | string       | Specifies the product directory description.
 **21**| `cmc_id`                     | integer      | CMC (Customer Meta Category), checks whether information should be taken from the customer when buying the product or not purchasing the product.
 **22**| `force_show_landing`         | boolean      | Specifies whether this directory is displayed on the landing page by default or non-landing.
-**23**| `inaccessibility_type`       | integer      | Shows the different ways we deal with the non-existence of this directory.
+**23**| `inaccessibility_type`       | integer      | Shows the different ways you deal with the non-existence of this directory.
 **24**| `notice`                     | string       | Specifies a notification for each product in the directory.
 
 **NOTE:** Example of URL part and URL full:
@@ -56,7 +48,7 @@ Num   | Property                     | Datatype     | Description
 /path/to/the/specific/directory
 ```
 
-**NOTE:** Types `content_type`:
+**NOTE:** `content_type` stores the contents of the directory, which are three types. You can see them below:
 
 ```php
 class DirectoryType extends BaseEnum
@@ -84,6 +76,37 @@ Num   | Property              | Datatype              | Description
 **9** | `customerMetaCategory`| CustomerMetaCategory  | CMC (Customer Meta Category).
 **10**| `discountGroup`       | DiscountGroup         | Specifies a price reduction plan for a directory products.
 
+### Show directory properties
+
+`$directory` and `$web_page` variable is passed from the controller to the blade, and the content of the directory can be displayed using this variables.
+
+**NOTE:** The SEO of all you web pages is managed in directories, note that SEO information is stored in the `$web_page` object.
+
+Below you can see three SEO-related functions that are obtained using the "$web page" object:
+
+### getSeoDescription()
+
+This function Shows the description related to seo.
+
+```php
+<meta name="description" content="{{ $web_page->getSeoDescription() }}">
+```
+
+### getSeoKeywords()
+
+This function shows the keywords related to seo.
+
+```php
+<meta name="keywords" content="{{ $web_page->getSeoKeywords() }}">
+```
+
+### getSeoTitle()
+
+This function shows the title related to seo.
+
+```php
+<meta itemprop="name" content="{{ $web_page->getSeoTitle() }}">
+```
 
  #### Reference
 ___
