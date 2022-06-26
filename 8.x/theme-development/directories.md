@@ -82,6 +82,20 @@ Num   | Property              | Datatype              | Description
 
 **NOTE:** The SEO of all you web pages is managed in directories, note that SEO information is stored in the `$web_page` object.
 
+#### getParentDirectories()
+___
+This function returns a list of parents in the directory, which includes the directory itself.
+
+```php
+@foreach($directory->getParentDirectories() as $parentDirectory)
+   <li>
+      <a href="{{directory_url($parentDirectory)."/?landing=true"}}"
+         title="{{$parentDirectory->title}}">{{$parentDirectory->title}}
+      </a>
+   </li>
+@endforeach
+```
+
 Below you can see three SEO-related functions that are obtained using the `$web_page` object:
 
 #### getSeoDescription()
@@ -109,22 +123,6 @@ This function shows the title related to seo.
 
 ```php
 <meta itemprop="name" content="{{ $web_page->getSeoTitle() }}">
-```
-
-Below you can see the functions that are received using the `$directory` object.
-
-#### getParentDirectories()
-___
-This function returns a list of parents in the directory, which includes the directory itself.
-
-```php
-@foreach($directory->getParentDirectories() as $parentDirectory)
-   <li>
-      <a href="{{directory_url($parentDirectory)."/?landing=true"}}"
-         title="{{$parentDirectory->title}}">{{$parentDirectory->title}}
-      </a>
-   </li>
-@endforeach
 ```
 
  #### Reference
