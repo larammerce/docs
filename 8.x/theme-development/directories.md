@@ -2,10 +2,9 @@
 
 [[toc]]
 
-There are many different parts that come together to make the Larammerce platform work. 
-In fact, in the base structure Larammerce, To maintain the class structure of directories in a database, you use the parent method of a tree pointer, a tree in which each object points to a parent. 
+As the essential part, Directories are the system's main body; they represent the structure of dynamic routes and hold the content of related web pages so that everything shown in the e-commerce is a part of one or more directories or placed underneath one. 
 
-Let's take a look at directory properties and relationships.
+Directory is a Laravel model that extends Eloquent BaseModel to manage the content of directories existing in the system. Let's take a shallow look at the properties and relationships of the Directory class.
 
 ### Directories properties table
 
@@ -51,6 +50,11 @@ Num   | Property                     | Datatype     | Description
 **NOTE:** `content_type` stores the contents of the directory, which are three types. You can see them below:
 
 ```php
+namespace App\Models\Enums;
+
+
+use App\Utils\Common\BaseEnum;
+
 class DirectoryType extends BaseEnum
 {
     const REAL=1;
@@ -61,15 +65,15 @@ class DirectoryType extends BaseEnum
 
 ### Relationship directory table
 
-A `directorie` has some relationships with other entity types existing in the system as shown below:
+A `Directory` has some relationships with other entity types existing in the system as shown below:
 
 Num   | Property              | Datatype              | Description
 ------|-----------------------|-----------------------|-----------
 **1** | `parentDirectory`     | Directory             | Shows the parent directory.
 **2** | `directories`         | Directory[]           | Specifies hierarchically all the parents of a directory.
-**3** | `leafProducts`        | Product[]             | Specifies products node that has a link from its parent node.
+**3** | `leafProducts`        | Product[]             | Specifies product nodes that has a link from its parent node.
 **4** | `products`            | Product[]             | Shows products connected to this directory.
-**5** | `leafArticles`        | Article[]             | Specifies articles node that has a link from its parent node.
+**5** | `leafArticles`        | Article[]             | Specifies article nodes that has a link from its parent node.
 **6** | `articles`            | Article[]             | Shows articles connected to this directory.
 **7** | `tags`                | Tag[]                 | Specifies tags.
 **8** | `badges`              | Badge[]               | Specifies badges.
@@ -80,11 +84,11 @@ Num   | Property              | Datatype              | Description
 
 `$directory` and `$web_page` variable is passed from the controller to the blade, and the content of the directory can be displayed using this variables.
 
-**NOTE:** The SEO of all you web pages is managed in directories, note that SEO information is stored in the `$web_page` object.
+**NOTE:** If you are considering to show the SEO contents in the web pages, It's important to know that `seo_keywords` and `seo_description` of each web page is stored in the `$web_page` variable. So that if you want to get desired data use `$directory->webPage` or `$web_page` directly.
 
 #### getParentDirectories()
 ___
-This function returns a list of parents in the directory, which includes the directory itself.
+This function returns a list of parents to which the current directory belongs. Also, please note that the result list also consists of the current directory.
 
 ```php
 @foreach($directory->getParentDirectories() as $parentDirectory)
