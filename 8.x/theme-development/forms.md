@@ -8,6 +8,8 @@ For example, the image below is a contact web form that asks the user for inform
 
 ![contact us](/form.jpeg)
 
+To manage the forms in Larammerce, you can return the form in the site format automatically without writing back-end codes so that every time this form is submitted by each user of the system, a message will be added to the system's messages.
+
 Let's take a look at the schema of web forms in Larammerce.
 For example, let's look at the contact form.
 
