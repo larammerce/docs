@@ -22,6 +22,8 @@ Let's take a look at how the 'CustomQueries' work:
 
 For a description in a nutshell, it is important to mention that each of the 'CustomQueries' are persisted in a table named `product_queries`. The table consists of the fields described below:
 
+The source code below can be seen in the `app/models/productQuery.php` file.
+
 ##### SOURCE
 
 ```php
