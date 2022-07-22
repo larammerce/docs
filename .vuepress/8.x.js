@@ -27,7 +27,8 @@ module.exports = [
             'custom-queries',
             'custom-filters',
             'helpers',
-            'client-side-cart-module'
+            'client-side-cart-module',
+            'filter-service',
         ]),
     },
     {
