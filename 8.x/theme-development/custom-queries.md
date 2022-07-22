@@ -7,17 +7,13 @@ For example, you can use 'ProductQueries' to display best-selling, popular, and 
 
 This section will discuss the examination and use of 'ProductQueries'.
 
-To manage 'ProductQueries', enter the admin panel and click on the custom product icon in the store tab.
+To manage 'ProductQueries', enter the admin panel and enter on the custom product icon in the store tab.
 
 On the destination page, as seen in the picture below, there is a list of current existing 'CustomQueries' that the administrator can manage. Of course, a button helps the administrator add a new item.
 
 ![queries-3.png](/queries-3.png)
 
 Custom request settings can be changed if the edit icon is clicked.
-
-![queries-4.png](/queries-4.png)
-
-As you can see, each query includes an identifier code and a custom query title.
 
 As it can be seen, each 'CustomQuery' consists of a 'title' and an 'identifier'.
 Also, there is a SQL query builder with a graphical user interface (GUI).
