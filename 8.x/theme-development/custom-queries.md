@@ -34,7 +34,7 @@ protected $fillable = [
 ];
 ```
 
-To manage custom queries, two helper functions are provided to you are provided to you, which are defined in the (Larammerce project).
+There are two helper functions for managing custom queries, which are defined in the back-end (Larammerce project) of the site.
 
 #### 1. custom_query_products($identifier)
 
@@ -60,7 +60,7 @@ Enter this command:
 
 #### 2. custom_query_products_ids($identifier)
 
-You can use function `custom_query_products_ids($identifier)` to get a list of product IDs. This feature can be very useful during the lazy loading of the website.
+use function `custom_query_products_id($identifier)` to get a list of product IDs. This feature can be very useful during the lazy loading of the website.
 
 ```php
 <ul>
@@ -78,5 +78,58 @@ Enter this command:
 ./deploy.sh
 ```
 
-'CustomQueries' give you special features without coding in the back-end site.
+So, let's follow a few steps to create 'CustomQueries':
 
+1. First, create a .blade file named: `public/views/event.blade.php`
+
+2. Put the following in the file:
+
+```php
+<ul>
+@foreach(custom_query_products("event_1481_84") as $product)
+    <li>
+        <a href="{{$product->getFrontUrl}}">
+            <img src="{{ImageService::getImage($product, "thumb")}}" alt="{{$product->title}}">
+        </a>
+    </li>
+@endforeach
+</ul>
+```
+
+As it can be seen, the `custom_query_products("event_1481_84")‍` function, returns a list of proper products related to the specified 'ProductQuery' according to the passed `event_1481_84`.
+
+3. Open the admin panel in the browser and then create a new folder <img src="/new-folder.png" width="20"> with title 'Event 2' and URL 'evnt-2'. Also, make sure to create a 'CustomQueries' with an 'identifier' and 'title'.
+
+4. And enter this command:
+
+```bash
+./deploy.sh
+```
+
+To display the number of 'CustomQueries' products, proceed as follows:
+
+1. Put the following in the file:
+
+```php
+<ul>
+@php
+    $selected_products = custom_query_products("event_1401_84"); #Selection of products related to custom query "event_1401_84".
+    $count_of_selected_product = count($selected_products); #Returns the number of selected items.
+@endphp
+<h1>Count of products: {{$count_of_selected_product}}</h1>
+@foreach(custom_query_products as $product)
+    <li>
+        <a href="{{$product->getFrontUrl}}">
+            <img src="{{ImageService::getImage($product, "thumb")}}" alt="{{$product->title}}">
+            <h5>{{$product->title}}</h5>
+        </a>
+    </li>
+@endforeach
+</ul>
+```
+
+2. And enter this command:
+
+```bash
+./deploy.sh
+```
