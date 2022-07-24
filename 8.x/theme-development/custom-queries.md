@@ -2,29 +2,27 @@
 
 [[toc]]
 
-You can use custom product queries to display selective products on the site, for example, the best-selling products, the most popular brands, and the most visited products. 
+As it is necessary to have a system to help the website administrator make multiple lists of customized products to make offers for the website visitors, the Larammerce project proposes an approach named 'CustomQueries'. So that to create a query of products and show them on any of the website pages, a 'CustomQuery' must be added, and products would be selected by use of that.
+For example, you can use 'ProductQueries' to display best-selling, popular, and most visited products.
 
-This section will discuss the examination and use of custom product queries.
+This section will discuss the examination and use of 'ProductQueries'.
 
-To manage custom product queries, enter the admin panel and click on the custom product icon in the store tab.
+To manage 'ProductQueries', enter the admin panel and enter on the custom product icon in the store tab.
 
-![queries-2.png](/queries-2.png)
-
-In the image below, you can see a list of Custom product queries that can be deleted, edited, and added.
+On the destination page, as seen in the picture below, there is a list of current existing 'CustomQueries' that the administrator can manage. Of course, a button helps the administrator add a new item.
 
 ![queries-3.png](/queries-3.png)
 
 Custom request settings can be changed if the edit icon is clicked.
 
-![queries-4.png](/queries-4.png)
+As it can be seen, each 'CustomQuery' consists of a 'title' and an 'identifier'.
+Also, there is a SQL query builder with a graphical user interface (GUI).
 
-As you can see, each query includes an identifier code and a custom query title.
+Let's take a look at how the 'CustomQueries' work:
 
-**NOTE:** This page is a SQL query builder with a graphical appearance.
+For a description in a nutshell, it is important to mention that each of the 'CustomQueries' are persisted in a table named `product_queries`. The table consists of the fields described below:
 
-Let's take a look at how the custom product queries is made.
-
-**NOTE:** It should be noted here that every query after creation is placed as a database record in the ‍‍`product_queries` table and includes the following fields.
+The source code below can be seen in the `app/models/productQuery.php` file.
 
 ##### SOURCE
 
@@ -36,13 +34,13 @@ protected $fillable = [
 ];
 ```
 
-To manage custom queries, two types of helpers are provided to you, which are defined in the back end of the site.
+There are two helper functions for managing custom queries, which are defined in the back-end (Larammerce project) of the site.
 
-#### 1. custom_query_products()
+#### 1. custom_query_products($identifier)
 
-If a custom product query identifier is passed to the `Custom_Query_Products()`‍ helper, it can return a list of products related to the custom product request as output.
+If a 'CustomQuery' identifier is passed to the `custom_query_products($identifier)`‍ function, it returns a list of proper products related to the specified 'ProductQuery' according to the passed `$identifier`.
 
-In the example below, "home_page_last_views" is the identifier of the product's custom query.
+In the example below, "`home_page_last_views` is the identifier of the `CustomQueries`.
 
 ```php
 <ul>
@@ -60,9 +58,9 @@ Enter this command:
 ./deploy.sh
 ```
 
-#### 2. custom_query_products_ids()
+#### 2. custom_query_products_ids($identifier)
 
-You can use helper `custom_query_products_ids()` to get a list of product IDs. This feature can be very useful during the lazy loading of the website.
+use function `custom_query_products_id($identifier)` to get a list of product IDs. This feature can be very useful during the lazy loading of the website.
 
 ```php
 <ul>
@@ -80,4 +78,58 @@ Enter this command:
 ./deploy.sh
 ```
 
-Custom product queries give you special features without coding in the back-end site.
+So, let's follow a few steps to create 'CustomQueries':
+
+1. First, create a .blade file named: `public/views/event.blade.php`
+
+2. Put the following in the file:
+
+```php
+<ul>
+@foreach(custom_query_products("event_1481_84") as $product)
+    <li>
+        <a href="{{$product->getFrontUrl}}">
+            <img src="{{ImageService::getImage($product, "thumb")}}" alt="{{$product->title}}">
+        </a>
+    </li>
+@endforeach
+</ul>
+```
+
+As it can be seen, the `custom_query_products("event_1481_84")‍` function, returns a list of proper products related to the specified 'ProductQuery' according to the passed `event_1481_84`.
+
+3. Open the admin panel in the browser and then create a new folder <img src="/new-folder.png" width="20"> with title 'Event 2' and URL 'evnt-2'. Also, make sure to create a 'CustomQueries' with an 'identifier' and 'title'.
+
+4. And enter this command:
+
+```bash
+./deploy.sh
+```
+
+To display the number of 'CustomQueries' products, proceed as follows:
+
+1. Put the following in the file:
+
+```php
+<ul>
+@php
+    $selected_products = custom_query_products("event_1401_84"); #Selection of products related to custom query "event_1401_84".
+    $count_of_selected_product = count($selected_products); #Returns the number of selected items.
+@endphp
+<h1>Count of products: {{$count_of_selected_product}}</h1>
+@foreach(custom_query_products as $product)
+    <li>
+        <a href="{{$product->getFrontUrl}}">
+            <img src="{{ImageService::getImage($product, "thumb")}}" alt="{{$product->title}}">
+            <h5>{{$product->title}}</h5>
+        </a>
+    </li>
+@endforeach
+</ul>
+```
+
+2. And enter this command:
+
+```bash
+./deploy.sh
+```
