@@ -11,7 +11,7 @@ To manage 'ProductQueries', enter the admin panel and enter on the custom produc
 
 On the destination page, as seen in the picture below, there is a list of current existing 'CustomQueries' that the administrator can manage. Of course, a button helps the administrator add a new item.
 
-![CustomQueries-1.png](/CustomQueries-1.png)
+![queries-3.png](/queries-3.png)
 
 Custom request settings can be changed if the edit icon is clicked.
 
