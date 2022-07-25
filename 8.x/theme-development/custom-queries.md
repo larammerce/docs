@@ -11,7 +11,7 @@ To manage 'ProductQueries', enter the admin panel and enter on the custom produc
 
 On the destination page, as seen in the picture below, there is a list of current existing 'CustomQueries' that the administrator can manage. Of course, a button helps the administrator add a new item.
 
-![queries-3.png](/queries-3.png)
+![CustomQueries-1.png](/CustomQueries-1.png)
 
 Custom request settings can be changed if the edit icon is clicked.
 
@@ -60,7 +60,11 @@ Enter this command:
 
 #### 2. custom_query_products_ids($identifier)
 
-use function `custom_query_products_id($identifier)` to get a list of product IDs. This feature can be very useful during the lazy loading of the website.
+There may be a need to return a list of products ID instead than all products, for example, to implement lazy loading of a website. For this purpose, a function called `custom_query_products_id($identifier)` has been defined in the Larammerce project, which returns a list of product IDs.
+
+**TIP:** Lazy loading is the practice of delaying load or initialization of resources or objects until they're actually needed to improve performance and save system resources.
+
+In the example below, the function `custom_query_products_id($identifier)` just returns a list of product IDs without getting all the products.
 
 ```php
 <ul>
@@ -98,7 +102,7 @@ So, let's follow a few steps to create 'CustomQueries':
 
 As it can be seen, the `custom_query_products("event_1481_84")‍` function, returns a list of proper products related to the specified 'ProductQuery' according to the passed `event_1481_84`.
 
-3. Open the admin panel in the browser and then create a new folder <img src="/new-folder.png" width="20"> with title 'Event 2' and URL 'evnt-2'. Also, make sure to create a 'CustomQueries' with an 'identifier' and 'title'.
+3. Open the admin panel in the browser and then create a new folder <img src="/plus-button.png" width="20"> with title 'Event 2' and URL 'evnt-2'. Also, make sure to create a 'CustomQueries' with an 'identifier' and 'title'.
 
 4. And enter this command:
 
