@@ -2,11 +2,11 @@
 
 [[toc]]
 
-This document reviews the life cycle and progress of the **FilterService** module. This module has build-in JS to Loading and filter products.
+This document reviews the life cycle and progress of the `FilterService` module. This module has build-in JS to Loading and filter products.
 
-**FilterService** is placed in the `resources/assets/js/define/filter-service.js` file consisting of 451 lines of code.
+`FilterService` is placed in the `resources/assets/js/define/filter-service.js` file consisting of 451 lines of code.
 
-First, let's check what section the **FilterService** module manages:
+First, let's check what section the `FilterService` module manages:
 
 The image below is one of the websites created with Larammerce. This module manages six parts of this page: 
 
@@ -26,11 +26,11 @@ The image below is one of the websites created with Larammerce. This module mana
 
 As seen in the picture, the **can be used in the restaurant** filter is selected, so all the products related to this filter are displayed, the **restaurant** tag is placed in the active filters section, the total number of products is counted and the URL of the selection  filter is added.
 
-If this link is given to someone else, after entering it, this filter will be selected, and the selected products will be displayed. This feature is because the **FilterService**  module uses the **hashchange** module.To read more about **hashchange** module, refer to this address:[hashchange](http://benalman.com/code/projects/jquery-hashchange/docs/).
+If this link is given to someone else, after entering it, this filter will be selected, and the selected products will be displayed. This feature is because the `FilterService`  module uses the `hashchange` module.To read more about `hashchange` module, refer to this address:[hashchange](http://benalman.com/code/projects/jquery-hashchange/docs/).
 
-Now, let's check the **FilterService** module:
+Now, let's check the `FilterService` module:
 
-This module is defined as **requirejs** and has dependencies that can be seen in the code below.
+This module is defined as `requirejs` and has dependencies that can be seen in the code below.
 
 ```js
 define('filter_service',
@@ -43,25 +43,27 @@ In the next part, private variables are defined.
 
 ### Private variables
 
-**CurrentDirectoryId** variable shows what category of products you are in.
+`CurrentDirectoryId` variable shows what category of products you are in.
 ```js
 var currentDirectoryId = null;   
 ```
-**ProductCountContainer** variable is the number of products shown in the result container.
+
+`ProductCountContainer` variable is the number of products shown in the result container.
 ```js
 var productCountContainer = 0;
 ```
-**FilterTagsContainer** variable is for the tags displayed in the filter tag container.
+
+`FilterTagsContainer` variable is for the tags displayed in the filter tag container.
 ```js
 var filterTagsContainer = null;
 ```
 
-**LoadingContainer** variables are the elements that are displayed when the product container is scrolled. They don't have any products, and they do the loading process.
+`LoadingContainer` variables are the elements that are displayed when the product container is scrolled. They don't have any products, and they do the loading process.
 ```js
 var loadingContainer = null;  
 ```
 
-**resultContainer** variables are the filtered products that will be displayed.
+`resultContainer` variables are the filtered products that will be displayed.
 ```js
 var resultContainer = null; 
 ```
@@ -71,12 +73,12 @@ When a filter is selected, and the system is loading, clicking on another filter
 var loadingProtectorLayer = null; 
 ```
 
-**LoadResult** variable is an array that stores the Ajax output.
+`LoadResult` variable is an array that stores the Ajax output.
 ```js
 var loadedResult = null; 
 ```
 
-**fetchLock** variable is a boolean that indicates whether the products are being loaded or not.
+`fetchLock` variable is a boolean that indicates whether the products are being loaded or not.
 ```js
 var fetchLock = false;
 ```
@@ -100,7 +102,7 @@ This variable will be removed in the next version.
 ```js
 var discount = false; 
 ```
-After selecting a filter, if there are no products to display, an image shows no results found. In this part of the SVG file, the same image is placed as text, which is wrong and should be placed in an underscore file and used only here.To read more about **underscore**, refer to this address:[underscore](http://underscorejs.org/themplate).
+After selecting a filter, if there are no products to display, an image shows no results found. In this part of the SVG file, the same image is placed as text, which is wrong and should be placed in an underscore file and used only here.To read more about `underscore`, refer to this address:[underscore](http://underscorejs.org/themplate).
 ```js
 var noResult =<div> ... </div>; 
 ```
@@ -109,7 +111,7 @@ There are two types of filters in this module:
 
 1 - SELECT: like a color filter
 
-2 VALUE: like a sorting filter
+2 - VALUE: like a sorting filter
 ```js
 var filterTypes = { SELECT: 0, VALUE: 1 };
 ```
@@ -131,7 +133,7 @@ This function returns the specified parameters from the URL, which is the initia
 ```
 ### getTagValue
 
-The **getTagValue** function takes a value from the input; for example,  number 4.
+The `getTagValue` function takes a value from the input; for example,  number 4.
 First, splits the page's location with a slash and return the 4th part of the URL.
 ```js
  function getTagValue(part) {
@@ -142,7 +144,7 @@ First, splits the page's location with a slash and return the 4th part of the UR
 ```
 ### startLoading
 
-This function first sets fetchLock to true and activates **loadingContainer** and **loadingProtectorLayer**. As mentioned, when a filter is selected, the **loadingContainer** will be displayed, and another filter cannot be chosen because **loadingProtectorLayer** is activated at the same time.
+This function first sets fetchLock to true and activates `loadingContainer` and `loadingProtectorLayer`. As mentioned, when a filter is selected, the `loadingContainer` will be displayed, and another filter cannot be chosen because `loadingProtectorLayer` is activated at the same time.
 ```js
   function startLoading() {
             fetchLock = true;
@@ -153,7 +155,7 @@ This function first sets fetchLock to true and activates **loadingContainer** an
         }
 ```
 ### endLoading
-Six hundred milliseconds after the endLoading function is called, it sets fetchLock to false. That is, the lock is opened, and the layers that were activated in the previous step are deactivated.
+Six hundred milliseconds after the endLoading function is called, it sets `fetchLock` to false. That is, the lock is opened, and the layers that were activated in the previous step are deactivated.
 ```js
  function endLoading() {
             fetchLock = false;
@@ -180,7 +182,7 @@ if you look at the URL in the image below, you will notice that the selected fil
 
 ![FilterServiceURL.png](/FilterServiceURL.png)
 
-When a filter is selected, the **updateHash** function is called. This function foreach on the selected filters and calls the **generateValue** function, which defines the value of each filter. Finally, it appends to the hash of the final result and connects the key and value with a slash.
+When a filter is selected, the `updateHash` function is called. This function foreach on the selected filters and calls the `generateValue` function, which defines the value of each filter. Finally, it appends to the hash of the final result and connects the key and value with a slash.
 
 ### updateHash
 ```js
@@ -202,7 +204,7 @@ function updateHash(type = 'update') {
 
 ### updateValueIds
 
-This function iterates over all the filters. If the type was selected and the value was undefined, it foreach on the values and pushes to the valueIds. If the color filter was selected, it sets the valueIds equal to the color, and otherwise, it pushes the valueIds to the selectedValues.
+This function iterates over all the filters. If the type was selected and the value was undefined, it foreach on the values and pushes to the `valueIds`. If the color filter was selected, it sets the `valueIds` equal to the color, and otherwise, it pushes the `valueIds` to the `selectedValues`.
 
 ```js
      function updateValueIds() {
@@ -276,7 +278,7 @@ Now the function is checked.
 
 First, if something has not been loaded, a request is made to the server and takes the data.
 Or it has been loaded, and the next page was displayed again according to the filter in the result.
-First, if nothing is being loaded, the **startLoading** function is called, gets the apiUrl, and next_page is equal to one. If other pages have been loaded, next_page is incremented by one.
+First, if nothing is being loaded, the `startLoading` function is called, gets the `apiUrl`, and `next_page` is equal to one. If other pages have been loaded, `next_page` is incremented by one.
 
 
 ```js
@@ -322,7 +324,7 @@ Then it sorts the products based on the desc priority. Otherwise, it updates the
                     }
 
 ```
-And at the end, an Ajax request is made, the required data is filled, and it gives an output. The pushProducts function is called with the Ajax output; that is, it displays the products that were fetched on the page.
+And at the end, an Ajax request is made, the required data is filled, and it gives an output. The `pushProducts` function is called with the Ajax output; that is, it displays the products that were fetched on the page.
 ```js
                     jQuery.ajax({
                         url: apiUrl,
@@ -352,7 +354,7 @@ And at the end, an Ajax request is made, the required data is filled, and it giv
 ```
 ### pushProducts
 
-This function foreach on loadedResult and creates all the product boxes displayed in the result container.
+This function foreach on `loadedResult` and creates all the product boxes displayed in the result container.
 ```js
 function pushProducts() {
             if (loadedResult.data && loadedResult.data.length) {
@@ -406,7 +408,7 @@ This function first finds the containers on the page, reads the URL hash and set
 
 ### initHash
 
-The **initHash** function to read the URL. **init** function calls this function.
+The `initHash` function to read the URL. `init` function calls this function.
 ```js
  initHash: function () {
                 if (!isInitiated)
@@ -422,6 +424,7 @@ The **initHash** function to read the URL. **init** function calls this function
             },
 ```
 ### translateHash
+
 This function reads the hash and converts it into understandable content.
 ```js
   translateHash: function () {
