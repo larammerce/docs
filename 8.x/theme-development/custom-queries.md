@@ -40,7 +40,7 @@ There are two helper functions for managing custom queries, which are defined in
 
 If a 'CustomQuery' identifier is passed to the `custom_query_products($identifier)`‍ function, it returns a list of proper products related to the specified 'ProductQuery' according to the passed `$identifier`.
 
-In the example below, "`home_page_last_views` is the identifier of the `CustomQueries`.
+In the example below, `home_page_last_views` is the identifier of the `CustomQueries`.
 
 ```php
 <ul>
@@ -60,7 +60,7 @@ Enter this command:
 
 #### 2. custom_query_products_ids($identifier)
 
-There may be a need to return a list of products ID instead than all products, for example, to implement lazy loading of a website. For this purpose, a function called `custom_query_products_id($identifier)` has been defined in the Larammerce project, which returns a list of product IDs.
+There may be a need to return a list of products identifier instead of all products, for example, to implement lazy loading of a website. For this purpose, a function called `custom_query_products_id($identifier)` has been defined in the Larammerce project, which returns a list of product IDs.
 
 **TIP:** Lazy loading is the practice of delaying load or initialization of resources or objects until they're actually needed to improve performance and save system resources.
 
@@ -76,13 +76,35 @@ In the example below, the function `custom_query_products_id($identifier)` just 
 </ul>
 ```
 
-Enter this command:
+The list of product identifiers can be given to the web server (API)  in a specified number and the web server can be requested to return the list of identifiers in a paginated form. For this purpose, the list of product identifiers is placed in a script so that they can be called a certain number of times in JavaScript. 
+
+Pay attention to the following example:
+
+```php
+ <script>
+    window.ProductIds = {{json_encode(custom_query_product_ids("home_page_last_views"))}}
+ </script>
+```
+And enter this command:
 
 ```bash
 ./deploy.sh
 ```
 
-So, let's follow a few steps to create 'CustomQueries':
+**NOTE:** With the help of the `custom_query_products_ids($identifier)‍` ​​function, the list of product identifiers is provided to JavaScript.
+
+
+In the next step to understand more, enter "inspect" in the browser, and in the "Console" tab, with the help of the `window.productIds` command, the list of products identifiers will be displayed in a certain number (for example, twelve numbers).
+
+![queries-4.png](/queries-4.png)
+
+In this example, there are "12" product identifiers sent to the product query web server at the following address.
+
+```bash
+/api/v1/shop/query-products?directory_id=2&sort%5bfield%5D=id&sort%5Bmethod%5D=desc&price_range%5B%5D=0&price_range%5b%5D=999999999&paje=2
+```
+
+Now, let's follow a few steps to create 'CustomQueries':
 
 1. First, create a .blade file named: `public/views/event.blade.php`
 
