@@ -106,6 +106,11 @@ Pay attention to the following example:
     const neededProductIds = {{json_encode(custom_filter_product_ids("custom_product_filter_564"))}}
  </script>
 ```
+And enter this command:
+
+```bash
+./deploy.sh
+```
 
 **NOTE:** With the help of the `custom_filter_products_ids($identifier)‍` ​​function, the list of product identifiers is provided to JavaScript.
 
