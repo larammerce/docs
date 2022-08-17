@@ -2,12 +2,12 @@
 
 [[toc]]
 
-As you know, Larammerce is based on the [Laravel framework](https://laravel.com), and if you have seen the files and directory structure of the Larammerce project,
-you will notice the similarity, In the **Theme Development** section, *'front-end'* topics such as project theme installation were discussed,
+As you know, Larammerce is based on the [Laravel framework Version 8](https://laravel.com), and if you have seen the files and directory structure of the Larammerce project,
+you will notice the similarity, in the **Theme Development** section, *'front-end'* topics such as project theme installation were discussed,
 but in the **Core Concepts** section, the Larammerce team examines the *'back-end'* topics of the Larammerce project, so if you wanna know more about the system and dive deeper,
 please continue reading this page and other listed documents in the **Core concepts**  index.
 
-In this tutorial, the *'back-end"* basics of the Larammerce project will be explained, so, this document is divided into the following three parts:
+In this tutorial, the *'back-end'* basics of the Larammerce project will be explained, so, this document is divided into the following three parts:
 
 **1.** Receive the project
 
@@ -15,13 +15,17 @@ In this tutorial, the *'back-end"* basics of the Larammerce project will be expl
 
 **3.** Directory Structure
 
-let's take a look at the above:
+::: warning WARNING
+The tutorials in this document are based on Laravel **version 8.75**.
+:::
+
+Let's take a look at the above:
 
 ### Receive the project
 
-**1.** The first step is to get the Larammerce project, which is located in GitHub at the address [https://github.com/larammerce/larammerce](https://github.com/larammerce/larammerce).
+**1.** The first step is to get the Larammerce project, which is located in **GitHub** at the address [https://github.com/larammerce/larammerce](https://github.com/larammerce/larammerce).
 
-**2.** At this stage, the Larammerce project should be cloned into a directory.
+**2.** At this stage, the Larammerce project should be **cloned** into a directory.
 
 The address of the Larammerce project repository can be obtained in two formats, HTTPS and SSH, on Github.
 Also, if you don't want to use git, you can download the Larammerce project as a zip file.
@@ -50,7 +54,7 @@ Interpreter | Php8
 WebServer | Apache2/Nginx
 Cache DB | Redis
 Logs DB | MongoDB
-composer | V2.3.10
+Composer | V2.3.10
 Node.js| v16.16.0
 
 :::tip NOTE
@@ -67,7 +71,7 @@ So, let's take a deeper look at the project's directory and file structure.
 
 #### The Root Directory
 
-The root directory structure of the **Larammerce** project is generally as follows
+The root directory structure of the **Larammerce** project is generally as follows:
 
 ```php{1}
 |---larammerce/
@@ -101,10 +105,10 @@ The root directory structure of the **Larammerce** project is generally as follo
     |---webpack.mix.js
 ```
 
-#### The App Directory
+#### The App Directory 1!+
 
 The `app` directory contains the core code of the application.
-almost all of the classes in the application will be in this directory.
+Almost all of the classes in the application will be in this directory.
 
 ```php{1}
 |---app/
@@ -119,13 +123,62 @@ almost all of the classes in the application will be in this directory.
     |---Utils/
 ```
 
-1. Console
-2. Exceptions
-3. Http
-4. Jobs
-5. Models
-6. Providers
-7. TranslationModels
+##### Console
+___
+
+The `Console` directory includes commands necessary for Larammerce. It includes a directory named Commands, where all the commands are declared with the appropriate signature.
+The file `Kernal.php` calls the commands declared in `Inspire.php`.
+
+##### Exceptions
+___
+The `Exceptions` directory  contains all the methods needed to handle exceptions. It also contains the file `handle.php` that handles all the exceptions.
+#####  Http
+___
+The `Http` folder has sub-folders for `controllers`, `middleware`, and application requests.
+Since Larammerce is based on Laravel, it follows the **MVC** design pattern like Laravel, this folder contains **models**, **controllers** and **views** defined for specific directories.
+
+#####  Jobs
+___
+The `Jobs` directory maintains the activities queued for Laravel application.
+The base class is shared among all the Jobs and provides a central location to place them under one roof.
+
+#####  Models
+___
+The `Model` directory contains Laravel system models that are responsible for connecting to the database. 
+This directory is segregated into `enums`, `exceptions`, `globalScopes`, `interfaces`, `traits` and `wp` directories.
+#####  ProtectedModels
+___
+The `ProtectedModels` directory contains a product class, this class is sometimes used to get model data.
+#####  Providers
+___
+The `Providers` directory all the service providers needed to log events for the main servers and configure Larammerce.
+
+#####  Utils
+___
+The `Utils` directory contains all the source code written beyond the Laravel system, that's why we will examine it more deeply.
+`Utils` is one of the biggest folds of the Larammerce project, developed by the Larammerce team.
+
+```php{1}
+|---Utils/
+    |---CMS/
+    |---ClassFinder/
+    |---Common/
+    |---Comparison/
+    |---Composer/
+    |---DS/
+    |---FinancialManager/
+    |---Jalali/
+    |---Migrator/
+    |---NewsletterManager/
+    |---OneTimeCode/
+    |---PaymentManager/
+    |---PushNotification/
+    |---Reflection/
+    |---SMSManager/
+    |---ShipmentService/
+    |---Translation/
+    |---Validation/
+```
 
 #### The Bootstrap Directory
 
@@ -178,6 +231,7 @@ the training and review of each of the config directory files will be discussed.
     |---view.php
     |---wp.php
 ```
+
 The following files have been developed by **Larammerce** team and added to the config directory.
 
 * `wp.php`
@@ -200,6 +254,7 @@ he should refer to the **`.env`** file in the Larammerce project or to the **adm
 
 #### The Data Directory
 
+The `data` directory is the keeper of Larammerce project meta data, which is different for each project, make sure that all the contents of the data directory are gitignore.
 
 #### The Database Directory
 
@@ -212,33 +267,7 @@ The `database` directory contains your database migrations, model factories, and
     |---seeders/
 ```
 
-1. factories
-2. migrations
-3. seeders
-
-#### The Docs Directory
-
-
-```php{1}
-|---docs/
-    |---features/
-    |---reports/
-    |---deployment-notes.md
-    |---fin-man-webservices.md
-    |---hinza_ecommerce.gliffy
-    |---roles.md
-    |---update_demo_sever.md
-```
-
-1. features
-2. reports
-3. deployment-notes.md
-4. fin-man-webservices.md
-5. hinza_ecommerce.gliffy
-6. roles.md
-7. update_demo_sever.md
-
-#### The Public_html Directory
+#### The Public_html Directory 1!+
 
 The `public` directory contains the `index.php` file, which is the entry point for all requests entering your application and configures autoloading.
 This directory also houses your assets such as images, JavaScript, and CSS.
@@ -257,23 +286,34 @@ This directory also houses your assets such as images, JavaScript, and CSS.
     |---web.config
 ```
 
-1. HCMS-assets
-2. ResponsiveFilemanager
-3. admin_dashboard
-4. primary_data
-5. uploads
-6. .htaccess.example
-7. favicon.ico
-8. index.php
-9. manifest.json
-10. web.config
+##### HCMS-assets
+___
+##### ResponsiveFilemanager
+___
+##### admin_dashboard
+___
+##### primary_data
+___
+##### uploads
+___
+##### .htaccess.example
+___
+##### favicon.ico
+___
+##### index.php
+___
+##### manifest.json
+___
+##### web.config
+___
 
-#### The Resources Directory
+#### The Resources Directory 1!+
 
-The `resources` directory contains your **views** *<sup>[1](#1)</sup>* as well as your raw, un-compiled assets such as CSS or JavaScript.
+The resources folder contains **views** *<sup>[1](#1)</sup>* as well as raw and uncompiled resources, such as SASS, CSS or JavaScript.
+This directory also contains all your language files
 
 ```php{1}
-|---app/
+|---resources/
     |---assets/
     |---fonts/
     |---hc-template/
@@ -281,11 +321,16 @@ The `resources` directory contains your **views** *<sup>[1](#1)</sup>* as well a
     |---views/
 ```
 
-1. assets
-2. fonts
-3. hc-template
-4. lang
-5. views
+##### assets
+___
+##### fonts
+___
+##### hc-template
+___
+##### lang
+___
+##### views
+___
 
 #### The Routes Directory
 
@@ -299,13 +344,9 @@ The `routes` directory contains all of the route definitions for your applicatio
     |---web.php
 ```
 
-1. api.php
-2. channels.php
-3. console.php
-4. web.php
-
 #### The Runtimes Directory
 
+The `runtime` directory is related to dockerization of the Larammerce project.
 
 ```php{1}
 |---runtimes/
@@ -314,25 +355,15 @@ The `routes` directory contains all of the route definitions for your applicatio
     |---php-fpm/
 ```
 
-1. nginx/conf.d
-2. php-cli
-3. php-fpm
-
 #### The Scripts Directory
 
+The `script` directory separated from `bash` and `python`, the scripts needed to run and modify the Larammerce project are kept in this directory.
 
 ```php{1}
 |---scripts/
     |---bash/
     |---python/
-    |---sql/
-    |---general.regex
 ```
-
-1. bash
-2. python
-3. sql
-4. general.regex
 
 #### The Storage Directory
 
@@ -351,14 +382,7 @@ Finally, the `logs` directory contains your application's log files.
     |---tmp/
 ```
 
-1. app
-2. debugbar
-3. framework
-4. logs
-5. tmp
-
 #### The Tests Directory
-
 
 The `tests` directory contains your automated tests.
 
@@ -371,12 +395,6 @@ The `tests` directory contains your automated tests.
     |---TestCase.php
 ```
 
-1. Browser
-2. Feature
-3. Unit
-4. CreatesApplication.php
-5. TestCase.php
-
 #### The .editorconfig File
 
 #### The .env.example File
@@ -388,6 +406,117 @@ The `tests` directory contains your automated tests.
 #### The artisan File
 
 #### The composer.json File
+___
+
+The most important and basic part of the Larammerce project is the `composer.json` file,
+which includes dependencies and PHP packages installed by the Larammerce team, please note that two autoload files that are helper functions have also been added to this section.
+
+```php{10-47,64-65}
+{
+    "name": "laravel/laravel",
+    "description": "The Laravel Framework.",
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": "8.0.*",
+        "ext-bcmath": "*",
+        "ext-curl": "*",
+        "ext-imagick": "*",
+        "ext-json": "*",
+        "ext-pdo": "*",
+        "ext-simplexml": "*",
+        "ext-soap": "*",
+        "ext-xml": "*",
+        "ext-redis": "*",
+        "ext-mongodb": "*",
+        "ext-gd": "*",
+        "ext-mbstring": "*",
+        "albertcht/invisible-recaptcha": "^1.8",
+        "barryvdh/laravel-debugbar": "^3.2",
+        "bordoni/phpass": "dev-main",
+        "doctrine/dbal": "^3.1",
+        "fideloper/proxy": "^4.0",
+        "fruitcake/laravel-cors": "^2.0",
+        "guzzlehttp/guzzle": "^7.0.1",
+        "intervention/image": "^2.4",
+        "ixudra/curl": "^6.16",
+        "jenssegers/mongodb": "^3.8",
+        "laravel/framework": "^8.75",
+        "laravel/sanctum": "^2.11",
+        "laravel/tinker": "^2.5",
+        "laravel/ui": "^3.3",
+        "maatwebsite/excel": "^3.1",
+        "mailerlite/mailerlite-api-v2-php-sdk": "^0.3.2",
+        "niklasravnsborg/laravel-pdf": "^4.1",
+        "phpseclib/phpseclib": "^2.0",
+        "predis/predis": "~1.0@dev",
+        "riverskies/laravel-mobile-detect": "^1.3",
+        "stevebauman/location": "^6.1",
+        "tymon/jwt-auth": "1.0.*@dev",
+        "yangqi/htmldom": "dev-master"
+    },
+    "require-dev": {
+        "facade/ignition": "^2.5",
+        "fakerphp/faker": "^1.9.1",
+        "laravel/sail": "^1.0.1",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^5.10",
+        "phpunit/phpunit": "^9.5.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        },
+        "files": [
+            "app/Utils/Common/helpers.php",
+            "app/Utils/CMS/Template/helpers.php",
+            "app/Utils/CMS/Platform/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": [
+            ]
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": false
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
+```
 
 #### The composer.lock File
 
@@ -407,9 +536,13 @@ The `tests` directory contains your automated tests.
 
 #### The webpack.mix.js File
 
-
-
 #### Reference
 ___
 
-*1. <a name="1">[What Is View?](https://laravel.com/docs/9.x/views)</a>*
+*1. <a name="1">[What Is View?](https://laravel.com/docs/8.x/views)</a>*
+
+#### Video source
+___
+
+<iframe src="https://www.aparat.com/video/video/embed/videohash/pVDIf/vt/frame" height="300" width="700" style="  border: 2px groove #bdc3c7;
+border-radius: 5px; opacity: 1;" ></iframe>
