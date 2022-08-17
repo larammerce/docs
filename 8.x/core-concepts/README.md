@@ -105,7 +105,7 @@ The root directory structure of the **Larammerce** project is generally as follo
     |---webpack.mix.js
 ```
 
-#### The App Directory 1!+
+#### The App Directory
 
 The `app` directory contains the core code of the application.
 Almost all of the classes in the application will be in this directory.
@@ -123,37 +123,39 @@ Almost all of the classes in the application will be in this directory.
     |---Utils/
 ```
 
-##### Console
+##### **Console**
 ___
-
-The `Console` directory includes commands necessary for Larammerce. It includes a directory named Commands, where all the commands are declared with the appropriate signature.
+The `Console` directory includes commands necessary for Larammerce. It includes a directory named commands, where all the commands are declared with the appropriate signature.
 The file `Kernal.php` calls the commands declared in `Inspire.php`.
 
-##### Exceptions
+##### **Exceptions**
 ___
 The `Exceptions` directory  contains all the methods needed to handle exceptions. It also contains the file `handle.php` that handles all the exceptions.
-#####  Http
+
+#####  **Http**
 ___
 The `Http` folder has sub-folders for `controllers`, `middleware`, and application requests.
 Since Larammerce is based on Laravel, it follows the **MVC** design pattern like Laravel, this folder contains **models**, **controllers** and **views** defined for specific directories.
 
-#####  Jobs
+#####  **Jobs**
 ___
 The `Jobs` directory maintains the activities queued for Laravel application.
 The base class is shared among all the Jobs and provides a central location to place them under one roof.
 
-#####  Models
+#####  **Models**
 ___
 The `Model` directory contains Laravel system models that are responsible for connecting to the database. 
 This directory is segregated into `enums`, `exceptions`, `globalScopes`, `interfaces`, `traits` and `wp` directories.
-#####  ProtectedModels
+
+#####  **ProtectedModels**
 ___
 The `ProtectedModels` directory contains a product class, this class is sometimes used to get model data.
-#####  Providers
+
+#####  **Providers**
 ___
 The `Providers` directory all the service providers needed to log events for the main servers and configure Larammerce.
 
-#####  Utils
+#####  **Utils**
 ___
 The `Utils` directory contains all the source code written beyond the Laravel system, that's why we will examine it more deeply.
 `Utils` is one of the biggest folds of the Larammerce project, developed by the Larammerce team.
@@ -179,6 +181,35 @@ The `Utils` directory contains all the source code written beyond the Laravel sy
     |---Translation/
     |---Validation/
 ```
+
+The following table explains each of the folders in the Utils directory, let's take an overview.
+
+Num   | Directory           |Description
+------|---------------------|-------------
+**1** | `CMS`               |Packages related to CMS are developed in this section
+**2** | `ClassFinder`       |
+**3** | `Common`            |
+**4** | `Comparison`        |
+**5** | `Composer`          |Composer.json file processing package is developed in this section.
+**6** | `DS`                |
+**7** | `FinancialManager`  |The financial system management package has been developed in this section.
+**8** | `Jalali`            |Jalali dates management package is developed in this section.
+**9** | `Migrator`          |The database migration management package has been developed in this section (this package is more intelligent than Maharjet Laravel).
+**10**| `NewsletterManager` |The newsletter management package has been developed in this section.
+**11**| `OneTimeCode`       |The package for sending disposable codes has been developed in this section.
+**12**| `PaymentManager`    |The payment operation management package has been developed in this section.
+**13**| `PushNotification`  |The package for sending notifications to different devices has been developed in this section.
+**14**| `Reflection`        |
+**15**| `SMSManager`        |SMS sending management package has been developed in this section.
+**16**| `ShipmentService`   |The product shipping method management package has been developed in this section.
+**17**| `Translation`       |The translation management package in the system has been developed in this section.
+**18**| `Validation`        |The management package for the validation of roles has been developed in this section.
+
+:::tip NOTE
+* These are packages developed by the Larammerce team, but they are not exclusive to the Larammerce project, and it is possible to use them in projects other than Larammerce.
+* `Reflection` package separately in Larammerce GitHub with the title 'annotation-parser'
+  It is available at the address [https://github.com/larammerce/annotation-parser](https://github.com/larammerce/annotation-parser).
+:::
 
 #### The Bootstrap Directory
 
@@ -286,28 +317,31 @@ This directory also houses your assets such as images, JavaScript, and CSS.
     |---web.config
 ```
 
-##### HCMS-assets
+##### **HCMS-assets**
 ___
-##### ResponsiveFilemanager
+This directory is divided into CSS, font, img, js and video directories, in fact, this directory contains the system built theme.
+
+##### **ResponsiveFilemanager**
 ___
-##### admin_dashboard
+This directory will be dedicated to managing and uploading files in the admin panel in the future.
+
+##### **admin_dashboard**
 ___
-##### primary_data
+This directory is segregated into favicon, fonts, images and vendor directories.
+
+##### **primary_data**
 ___
-##### uploads
+This directory in Larammerce stores the logos of the payment portal.
+
+##### **uploads**
 ___
-##### .htaccess.example
-___
-##### favicon.ico
-___
-##### index.php
-___
-##### manifest.json
-___
-##### web.config
+This directory contains uploaded files and actually manages these files.
+Be careful that its content is gitignore.
+
+##### **.htaccess.example**
 ___
 
-#### The Resources Directory 1!+
+#### **The Resources Directory** 1!+
 
 The resources folder contains **views** *<sup>[1](#1)</sup>* as well as raw and uncompiled resources, such as SASS, CSS or JavaScript.
 This directory also contains all your language files
@@ -323,14 +357,24 @@ This directory also contains all your language files
 
 ##### assets
 ___
+
+
 ##### fonts
 ___
+
+
 ##### hc-template
 ___
+
+
 ##### lang
 ___
+
+
 ##### views
 ___
+
+
 
 #### The Routes Directory
 
@@ -395,18 +439,7 @@ The `tests` directory contains your automated tests.
     |---TestCase.php
 ```
 
-#### The .editorconfig File
-
-#### The .env.example File
-
-#### The .gitattributes File
-
-#### The .gitignore File
-
-#### The artisan File
-
 #### The composer.json File
-___
 
 The most important and basic part of the Larammerce project is the `composer.json` file,
 which includes dependencies and PHP packages installed by the Larammerce team, please note that two autoload files that are helper functions have also been added to this section.
@@ -518,24 +551,6 @@ which includes dependencies and PHP packages installed by the Larammerce team, p
 }
 ```
 
-#### The composer.lock File
-
-#### The composer.phar File
-
-#### The docker-compose.yml File
-
-#### The package-lock.json File
-
-#### The package.json File
-
-#### The phpunit.xml File
-
-#### The readme.md File
-
-#### The server.php File
-
-#### The webpack.mix.js File
-
 #### Reference
 ___
 
@@ -544,5 +559,5 @@ ___
 #### Video source
 ___
 
-<iframe src="https://www.aparat.com/video/video/embed/videohash/pVDIf/vt/frame" height="300" width="700" style="  border: 2px groove #bdc3c7;
+<iframe src="https://www.aparat.com/video/video/embed/videohash/pVDIf/vt/frame" height="300" width="700" style="  border: 2px solid #bdc3c7;
 border-radius: 5px; opacity: 1;" ></iframe>
