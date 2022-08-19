@@ -44,7 +44,7 @@ For how to clone and fork a project, you can refer to [Cloning and forking repos
 
 ### Project installation
 
-After cloning the project, it is time to install the **requirements** and launch the project, to launch Larammerce need to install and run the requirements listed in the table below on the system.
+After cloning the project, it is time to install the **requirements** and launch the project, to launch Larammerce needs to install and run the requirements listed in the table below on the system.
 
 Title | Description
 ------|-----------------
@@ -130,22 +130,22 @@ The file `Kernal.php` calls the commands declared in `Inspire.php`.
 
 ##### **Exceptions**
 ___
-The `Exceptions` directory  contains all the methods needed to handle exceptions. It also contains the file `handle.php` that handles all the exceptions.
+The `Exceptions` directory contains all the methods needed to handle exceptions. It also contains the file `handle.php` that handles all the exceptions.
 
 #####  **Http**
 ___
 The `Http` folder has sub-folders for `controllers`, `middleware`, and application requests.
-Since Larammerce is based on Laravel, it follows the **MVC** design pattern like Laravel, this folder contains **models**, **controllers** and **views** defined for specific directories.
+Since Larammerce is based on Laravel, it follows the MVC design pattern like Laravel, this folder contains **models**, **controllers**, and  **views** defined for specific directories.
 
 #####  **Jobs**
 ___
-The `Jobs` directory maintains the activities queued for Laravel application.
+The `Jobs` directory maintains the activities queued for the Laravel  application.
 The base class is shared among all the Jobs and provides a central location to place them under one roof.
 
 #####  **Models**
 ___
 The `Model` directory contains Laravel system models that are responsible for connecting to the database. 
-This directory is segregated into `enums`, `exceptions`, `globalScopes`, `interfaces`, `traits` and `wp` directories.
+This directory is segregated into **enums**, **exceptions**, **globalScopes**, **interfaces**, **traits** and **wp** directories.
 
 #####  **ProtectedModels**
 ___
@@ -153,7 +153,7 @@ The `ProtectedModels` directory contains a product class, this class is sometime
 
 #####  **Providers**
 ___
-The `Providers` directory all the service providers needed to log events for the main servers and configure Larammerce.
+In the `Providers` directory, all the service providers needed to log events for the main servers and configure Larammerce.
 
 #####  **Utils**
 ___
@@ -214,7 +214,7 @@ Num   | Directory           |Description
 #### The Bootstrap Directory
 
 The `bootstrap` directory contains the `app.php` file which bootstraps the framework.
-This directory also houses a `cache` directory which contains framework generated files for performance optimization such as the route and services cache files.
+This directory also houses a **cache** directory which contains framework-generated files for performance optimization such as the route and services cache files.
 You should not typically need to modify any files within this directory.
 
 ```php{1}
@@ -263,7 +263,7 @@ the training and review of each of the config directory files will be discussed.
     |---wp.php
 ```
 
-The following files have been developed by **Larammerce** team and added to the config directory.
+The following files have been developed by the **Larammerce** team and added to the config directory.
 
 * `wp.php`
 * `translation.php`
@@ -285,11 +285,11 @@ he should refer to the **`.env`** file in the Larammerce project or to the **adm
 
 #### The Data Directory
 
-The `data` directory is the keeper of Larammerce project meta data, which is different for each project, make sure that all the contents of the data directory are gitignore.
+The `data` directory is the keeper of Larammerce project metadata, which is different for each project, make sure that all the contents of the data directory are gitignore.
 
 #### The Database Directory
 
-The `database` directory contains your database migrations, model factories, and seeds.
+The `database` directory contains your database **migrations**, model **factories**, and **seeds**.
 
 ```php{1}
 |---database/
@@ -298,10 +298,10 @@ The `database` directory contains your database migrations, model factories, and
     |---seeders/
 ```
 
-#### The Public_html Directory 1!+
+#### The Public_html Directory
 
 The `public` directory contains the `index.php` file, which is the entry point for all requests entering your application and configures autoloading.
-This directory also houses your assets such as images, JavaScript, and CSS.
+This directory also houses your assets such as **images**, **JavaScript**, and **CSS**.
 
 ```php{1}
 |---public_html/
@@ -319,7 +319,7 @@ This directory also houses your assets such as images, JavaScript, and CSS.
 
 ##### **HCMS-assets**
 ___
-This directory is divided into CSS, font, img, js and video directories, in fact, this directory contains the system built theme.
+This directory is divided into **CSS**, **font**, **img**, **js** and **video** directories, in fact, this directory contains the system built theme.
 
 ##### **ResponsiveFilemanager**
 ___
@@ -327,7 +327,7 @@ This directory will be dedicated to managing and uploading files in the admin pa
 
 ##### **admin_dashboard**
 ___
-This directory is segregated into favicon, fonts, images and vendor directories.
+This directory is segregated into **favicon**, **fonts**, **images** and **vendor** directories.
 
 ##### **primary_data**
 ___
@@ -335,16 +335,36 @@ This directory in Larammerce stores the logos of the payment portal.
 
 ##### **uploads**
 ___
-This directory contains uploaded files and actually manages these files.
+This directory contains uploaded files and manages these files.
 Be careful that its content is gitignore.
 
 ##### **.htaccess.example**
 ___
+`.htaccess.example` file an example of the `.htaccess` file is, note that the `.htaccess` file is the apache web services management file,
+also, the `.htaccess` file may be different in each project, that's why this file is gitignore, but the `.htaccess.example` file is available.
 
-#### **The Resources Directory** 1!+
+As an example, let's examine a short piece of code in this file:
 
-The resources folder contains **views** *<sup>[1](#1)</sup>* as well as raw and uncompiled resources, such as SASS, CSS or JavaScript.
-This directory also contains all your language files
+```php
+    RewriteCond %{REQUEST_FILENAME} !-d # If the request requested from you was not a directory (if it was not a folder address),
+    RewriteCond %{REQUEST_FILENAME} !-f # And if the requested request was not a file,
+    RewriteRule ^ index.php [L]  # Transfer the request address directly to the index.php` file.
+```
+
+:::tip NOTE
+The most important thing about the Laravel projects is to put the `.htaccess` file according to Laravel configurations in the document root of the project,
+so as there is an example file for this use, you can just copy and modify it:
+
+```bash
+cd public_html
+cp .htaccess.example .htacces
+```
+:::
+
+#### **The Resources Directory**
+
+The resources directory contains **views** *<sup>[1](#1)</sup>* as well as raw and uncompiled resources, such as **SASS**, **CSS** or **JavaScript**.
+This directory also contains all your language files.
 
 ```php{1}
 |---resources/
@@ -355,30 +375,61 @@ This directory also contains all your language files
     |---views/
 ```
 
-##### assets
+##### **assets**
+___
+The `assets` directory separated from **coffee**, **js** and **sass** folders.
+
+Let's dig a little deeper into this directory:
+
+**1.** coffee
+
+The `coffee` directory contains a **CoffeeScript** file.
+
+:::tip NOTE
+CoffeeScript is a little language that compiles into JavaScript.
+
+For more information, you can refer to [introduction](https://coffeescript.org/#introduction).
+:::
+
+**2.** js
+
+The `js` directory contains JavaScript files developed by the **Larammerce team**. The `js` directory is separated from the **define** and **require** folders. In the following tutorials,
+we will examine the files of both folders in more depth.
+
+`JavaScript` files that are defined in the **define** folder are tools for creating new features in the admin panel that make it unnecessary to write *'front-end'* code.
+
+
+**3.** sass
+
+All `CSS` files that are in `.scss` format are kept in this directory, it also includes a `vendor` folder.
+Since all the styles of the project are written with `sass`, knowing `sass` is required to change the front of the Larammerce project.
+
+
+##### **fonts**
+___
+The `font` directory contains the Larammerce project font files, currently, the Larammerce project has the following font files:
+
+* `BYekan.ttf`
+* `IRANSansWeb.ttf`
+* `IRANSansWeb_Bold.ttf`
+* `IRANSansWeb_Medium.ttf`
+* 
+##### **hc-template**
 ___
 
 
-##### fonts
+##### **lang**
 ___
 
 
-##### hc-template
+##### **views**
 ___
-
-
-##### lang
-___
-
-
-##### views
-___
-
-
+The `views` directory contains all views of the Larammerce project. This directory is separated from **admin**, **auth**, **developer**, **errors**, **public** and **vendor**.
 
 #### The Routes Directory
 
-The `routes` directory contains all of the route definitions for your application. By default, several route files are included with Laravel: `web.php`, `api.php`, `console.php`, and `channels.php`.
+The `routes` directory contains all of the route definitions for your application. By default, several route files are included with Laravel: 
+`web.php`, `api.php`, `console.php`, and `channels.php`.
 
 ```php{1}
 |---routes/
@@ -390,7 +441,7 @@ The `routes` directory contains all of the route definitions for your applicatio
 
 #### The Runtimes Directory
 
-The `runtime` directory is related to dockerization of the Larammerce project.
+The `runtime` directory is related to the dockerization of the Larammerce project.
 
 ```php{1}
 |---runtimes/
@@ -401,7 +452,7 @@ The `runtime` directory is related to dockerization of the Larammerce project.
 
 #### The Scripts Directory
 
-The `script` directory separated from `bash` and `python`, the scripts needed to run and modify the Larammerce project are kept in this directory.
+The `script` directory is separated from **bash** and **python**, the scripts needed to run and modify the Larammerce project are kept in this directory.
 
 ```php{1}
 |---scripts/
@@ -411,11 +462,11 @@ The `script` directory separated from `bash` and `python`, the scripts needed to
 
 #### The Storage Directory
 
-The storage directory contains your logs, compiled Blade templates, file based sessions, file caches, and other files generated by the framework.
-This directory is segregated into `app`, `debugbar`, `framework`, `logs` and `tmp` directories.
-The `app` directory may be used to store any files generated by your application.
-The `framework` directory is used to store framework generated files and caches.
-Finally, the `logs` directory contains your application's log files.
+The storage directory contains your logs, compiled Blade templates, file-based sessions, file caches, and other files generated by the framework.
+This directory is segregated into **app**, **debugbar**, **framework**, **logs** and **tmp** directories.
+The **app** directory may be used to store any files generated by your application.
+The **framework** directory is used to store framework-generated files and caches.
+Finally, the **logs** directory contains your application's log files.
 
 ```php{1}
 |---storage/
@@ -442,7 +493,7 @@ The `tests` directory contains your automated tests.
 #### The composer.json File
 
 The most important and basic part of the Larammerce project is the `composer.json` file,
-which includes dependencies and PHP packages installed by the Larammerce team, please note that two autoload files that are helper functions have also been added to this section.
+which includes dependencies and `PHP` packages installed by the Larammerce team, please note that two autoload files that are helper functions have also been added to this section.
 
 ```php{10-47,64-65}
 {
