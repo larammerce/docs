@@ -10,30 +10,259 @@ First, open the helper file: `app/Utils/CMS/Template/helpers.php`.
 This file has 1462 code lines. This section describes all the helpers. Some of these helpers are old, some new, and some will be removed in the next version, which are specified as @deprecated in the phpdoc above them.
 
 
+### unparse_url()
+This function unparses the URL. As you know, there is a `pars_url` function in PHP, which works as follows:
+
+```php
+@php
+
+$url= "https://google.com/salam/donya?test=sample";
+dd(parse_url($url));
+
+@endphp
+```
+Output
+```bash
+array:4 [▼
+  "scheme" => "https"
+  "host" => "google.com"
+  "path" => "/salam/donya"
+  "query" => "test=sample"
+]
+```
+Each part of the URL that is ‍‍‍`scheme`, `host`, `path` and  `query` is displayed.
+
+
+Now an example is given to check the `unpars_url` function. Empty the `query` and unparse the URL.
+
+```php
+@php
+
+$url= "https://google.com/salam/donya?test=sample";
+$parsed_url = parse_url($url);
+
+$parsed_url["query"] = " ";
+$new_url = unparse_url($parsed_url);
+
+@endphp
+
+<p> the changed url : {{ $new_url }}</p>
+```
+Output
+```bash
+"https://google.com/salam/donya? "
+```
+
+It can be seen that the query is removed from the URL.
+
+This function takes an array of parsed URLs from the input and merges these into `scheme`, `user`, `pass`, `host`, `port`, `path`, `query`, `fragment` in the output and transforms them into a unified URL.
+
+
+### get_product_all_extras_percentage()
+
+This function returns the sum of `getTaxpercentage` and `getToolpercentage` values.
+
+```php
+<p>Product all extra percentages  {{ get_product_all_extras_percentage() }}</p>
+```
+Output
+```bash
+Product all extra percentages 9
+```
+
+
+### locale_url()
+If a URL is passed to this function. Adds a locale to the first part of the URL, for example, fa or en.
+
+First, the ability to be multilingual must be activated. So, in the admin panel settings, in addition to enabling the Persian language, activate another language, for example, English . and then set a locale as in the code below.
+
+```php
+@php
+
+$url= "https://google.com/salam/donya?test=sample";
+app()->setLocale("fa");
+
+@endphp
+
+<p> {{ locale_url($url) }}</p>
+```
+Output
+```bash
+https://google.com/fa/salam/donya?test=sample
+```
+
+
+### lm_route()
+This function takes Laravel's root from the input and gives it to `local_url` and this function is enhanced for multilingual mode.
+
+### lm_url()
+This function calls `locale_url`. And it is enhanced for Laravel URLs.
+
+
 ### get_identity()
-This function is to display the Larammerce project supporter identification. Currently, the Hinza identification is displayed on Larammerce projects.
+This function is to display the Larammerce project supporter identification. Currently, the Hinza identification is displayed on Larammerce projects. Enter the following code to display identification.
+```php
+@php
 
+dd(get_identity());
 
+@endphp
+```
 
-### role_input()
-This function is used for blade directives. And manages the access of each admin user to Model properties; please note that this function doesn't belong to template engine helpers, and it's not in the right place.
-
+Output
+```bash
+array:8 [▼
+  "logo" => "/admin_dashboard/images/logo"
+  "title" => "Larammerce | Another open-source e-commerce project"
+  "name" => "Larammerce"
+  "motto" => "ورود به پنل مدیریت لارامرس"
+  "website" => "larammerce.com"
+  "url" => "https://larammerce.com"
+  "color" => "#ff2e20"
+  "fav" => "favicon"
+]
+```
 
 
 ### shorten_text()
 This function is a directive. The input of this function is text and number. For example: here it takes the number 75 from the input, which means that it shows only 75 words of this text. And uses "..." at the end.
 
+Below is an explanation for this function:
 
-### get_unshared_content()
-The get_unshared_content function takes content data from the web page and returns the identifier. This function is used in the Larammerce Template Engine structure and cannot be used.
+```php
+@php
+$text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+@endphp
+
+<p> {{shorten_text($text,10)}}</p>
+```
+Output
+```bash
+Lorem Ipsum is simply dummy text of the printing and...
+```
 
 
 ### get_gallery()
-get_gallery is used in the Larammerce Template Engine structure and cannot be used. This function returns the identifir given in the blade file to the desired gallery.
+get_gallery is used in the Larammerce Template Engine structure and cannot be used. This function returns the identifir given in the blade file to the desired gallery. In the following code, the content of index_banner1 gallery can be seen.
+
+```php
+@php
+
+dd(get_gallery("index_banner1"));
+
+@endphp
+```
+Output
+```bash
+App\Models\Gallery {#2490 ▼
+  #table: "galleries"
+  #hidden: array:1 [▶]
+  #fillable: array:2 [▶]
+  -galleryFields: []
+  #guarded: []
+  #show_list_types: array:2 [▶]
+  #connection: "mysql"
+  #primaryKey: "id"
+  #keyType: "int"
+  +incrementing: true
+  #with: []
+  #withCount: []
+  +preventsLazyLoading: false
+  #perPage: 15
+  +exists: true
+  +wasRecentlyCreated: false
+  #escapeWhenCastingToString: false
+  #attributes: array:5 [▼
+    "id" => 8
+    "identifier" => "index_banner1"
+    "fields" => "a:2:{s:12:"banner_title";C:43:"App\Utils\CMS\Template\Gallery\GalleryField":81:{{"id":"banner_title","title":"\u0639\u0646\u0648\u0627\u0646 \u0628\u0646\u0631" ▶"
+    "created_at" => "2020-01-13 14:27:45"
+    "updated_at" => "2020-01-13 14:27:45"
+  ]
+  #original: array:5 [▼
+    "id" => 8
+    "identifier" => "index_banner1"
+    "fields" => "a:2:{s:12:"banner_title";C:43:"App\Utils\CMS\Template\Gallery\GalleryField":81:{{"id":"banner_title","title":"\u0639\u0646\u0648\u0627\u0646 \u0628\u0646\u0631" ▶"
+    "created_at" => "2020-01-13 14:27:45"
+    "updated_at" => "2020-01-13 14:27:45"
+  ]
+  #changes: []
+  #casts: []
+  #classCastCache: []
+  #attributeCastCache: []
+  #dates: []
+  #dateFormat: null
+  #appends: []
+  #dispatchesEvents: []
+  #observables: []
+  #relations: []
+  #touches: []
+  +timestamps: true
+  #visible: []
+}
+```
+A gallery object returned from the gallery model whose table name is galleries. It is displayed in `attributes` and `original`, this fields:  `identifier`, `fields`, `created_at`, and `updated_at`.
 
 
 ### get_gallery_items()
 This function takes the name of the gallery and the number of items from the input, and whether random select is true or false.
+```php
+@php
+
+dd(get_gallery_items("faqs"));
+
+@endphp
+```
+Output
+```bash
+Illuminate\Database\Eloquent\Collection {#2506 ▼
+  #items: array:8 [▼
+    0 => App\Models\GalleryItem {#2505 ▼
+      #table: "gallery_items"
+      #hidden: array:1 [▶]
+      #appends: array:1 [▶]
+      #fillable: array:5 [▶]
+      -fields: []
+      #guarded: []
+      #show_list_types: array:2 [▶]
+      #connection: "mysql"
+      #primaryKey: "id"
+      #keyType: "int"
+      +incrementing: true
+      #with: []
+      #withCount: []
+      +preventsLazyLoading: false
+      #perPage: 15
+      +exists: true
+      +wasRecentlyCreated: false
+      #escapeWhenCastingToString: false
+      #attributes: array:8 [▶]
+      #original: array:8 [▶]
+      #changes: []
+      #casts: []
+      #classCastCache: []
+      #attributeCastCache: []
+      #dates: []
+      #dateFormat: null
+      #dispatchesEvents: []
+      #observables: []
+      #relations: []
+      #touches: []
+      +timestamps: true
+      #visible: []
+    }
+    1 => App\Models\GalleryItem {#2504 ▶}
+    2 => App\Models\GalleryItem {#2503 ▶}
+    3 => App\Models\GalleryItem {#2502 ▶}
+    4 => App\Models\GalleryItem {#2501 ▶}
+    5 => App\Models\GalleryItem {#2500 ▶}
+    6 => App\Models\GalleryItem {#2499 ▶}
+    7 => App\Models\GalleryItem {#2498 ▶}
+  ]
+  #escapeWhenCastingToString: false
+}
+```
+This function can not be used as usual. To learn more about this function, refer to the gallery definition branch.
 
 
 ### get_locale()
@@ -41,31 +270,112 @@ This function returns the current system language with **app () -> getLocale ()*
 
 
 ### get_user()
-Returns the logged in user and if the user is not logged in returns false.
+Returns the logged in user and if the user is not logged in returns false. For example, in the code below, the user who is logged in is displayed.
+‍‍‍‍
+```php
+@if(get_user() !== false)
+    <h5> The current user logged in is : {{get_user()->full_name}}</h5>
+@endif
+```
+Output
+```bash
+The current user logged in is : آرش خواجه لو
+```
 
 
 ### get_customer_user()
 This function returns a logged in customer user.
-
+‍‍‍‍
+```php
+@if(get_customer_user() !== false)
+    <h5> The current customer user logged in is : {{get_customer_user()->user->full_name}}</h5>
+@endif
+```
+Output
+```bash
+The current customer user logged in is : آرش خواجه لو
+```
+To access customer information, you must connect to the `user`.
 
 ### get_customer_legal_info()
 Returns the legal information of the logged in customer user.
+```php
+@if(get_customer_legal_info() !== false)
+    <h5> The current legal info of customer user logged in is : {{get_customer_legal_info()-> customerUser->user->full_name}}</h5>
+@endif
+```
+
+```bash
+The current customer user logged in is : آرش خواجه لو
+```
+Also, in this function, to access the customer information, you must connect to the ‍`user` and the `customerUser`.
 
 
 ### customer_need_list_exist()
 If the customer is logged in, the function checks if the given product is in the needlist. If the customer is not logged in, false returns.
+ 
+
+```php
+  <p>this customer {{customer_need_list_exist(\App\Models\Product::find(100)) ? "has":"has not"}} the product with id '100' in his need list.</p>
+```
+
+```bash
+this customer has the product with id 100 in his need list.
+```
+
 
 
 ### customer_cart_count()
 This function returns the number of products in the customer's shopping cart that is logged in.
+The following code displays the number of products in the shopping cart of the logged in customer.
 
+```php
+<p>this customer has {{customer_cart_count()}} product in his basket.</p>
+```
+
+Output
+```bash
+This customer has 3 product in his basket.
+```
 
 ### pending_invoices_count()
 This function returns the number of pending invoices. If the customer is not logged in, it returns false.
+```php
+<p>this customer has {{pending_invoices_count()?? "0" }} pending invoices in his resume</p>
+```
+
+Output
+```bash
+this customer has 0 pending invoices in his resume.
+```
 
 
 ### get_local_cart()
 This function returns local shopping cart data. Before the user logs in, the data is stored in a cookie, so if the customer is not logged in, the shopping cart data is returned via **get-local-cart**.
+
+With the following code, you can see the products in the shopping cart.
+
+```php
+<p>this customer has {{customer_cart_count()}} product in his basket.</p>
+
+<ul>
+    @foreach(get_local_cart(true) as $cart_row)
+        <li>
+        {{$cart_row -> product-> title }}
+        ({{$cart_row -> product_id}}) => {{$cart_row -> count}}
+         :sum ({{$cart_row -> count* $cart_row -> product-> latest_price}})</li>
+    @endforeach
+</ul>
+```
+
+
+Output
+```bash
+this customer has 1 product in his basket.
+
+شیر كشویی فلنجدار چدنی زبانه لاستیكی میراب 50،"2 ،PN10(31) => 2 :sum (2440000)
+```
+With foreach, the characteristics of each product can be displayed in each line. With `product_id`, the product id is shown, with `count` the number of that product, and by passing true boolean, the product object can also be displayed, and the `count` is multiplied by the `latest price` to calculate the product price.
 
 
 ### get_system_user()
@@ -80,63 +390,286 @@ This function returns system users who are admins in this system.
 
 
 ### get_system_users()
-This function returns a list of system users.
+This function returns a list of system users. all system users will be displayed with the following code:
 
+```php
+<ul>
+    @foreach(get_system_users() as $system_user)
+        <li>{{$system_user->user->full_name }}</li>
+    @endforeach
+</ul>
+```
+
+Output
+```bash
+آرش خواجه لو
+```
+To access the system user name, must connect to the `user`.
 
 ### is_customer()
 **is_customer** function checks that the logged in user is the customert user or the system user.
+
+```php
+<p> The current user logged in {{ is_customer() ? "is" : "is not" }} customer user .</p>
+```
+
+Output
+```bash
+The current user logged in is customer user .
+```
 
 
 ### app_navbar_directories()
 Returns the list of directories displayed in the application navigation bar.
 There is a property in the function called show that specifies whether these menus will be displayed in the mobile or desktop application if the application is connected to the Larammerce Template Engine.
 
+```php
+<ul>
+    @foreach(app_navbar_directories() as $directory)
+        <li>{{$directory->title }}</li>
+    @endforeach
+</ul>
+```
+
+Output
+```bash
+درباره ما
+تماس با ما
+```
+These directories are display in the mobile app.
+
+
 
 ### navbar_directories()
 Returns the directories displayed in the navigation bar of the website.
 
+```php
+<ul>
+    @foreach(navbar_directories() as $directory)
+        <li>{{$directory->title }}</li>
+    @endforeach
+</ul>
+```
+
+Output
+```bash
+صفحه اصلی
+محصولات
+قوانین و مقررات
+خدمات پس از فروش
+حریم خصوصی
+پرسش‌های متداول
+روش‌های ارسال و پرداخت
+راهنمای خرید
+تست
+```
+These directories are only active for the header.
 
 ### footer_directories()
 Returns the directories displayed in the footer of the website.
 
+```php
+<ul>
+    @foreach(footer_directories() as $directory)
+        <li>{{$directory->title }}</li>
+    @endforeach
+</ul>
+```
+
+Output
+```bash
+درباره ما
+تماس با ما
+باشگاه مشتریان
+```
+These directories are active for the footer.
 
 ### only_footer_directories()
 Returns the directories only displayed in the footer of the website.
+
+```php
+<ul>
+    @foreach(only_footer_directories() as $directory)
+        <li>{{$directory->title }}</li>
+    @endforeach
+</ul>
+```
+
+Output
+```bash
+درباره ما
+تماس با ما
+باشگاه مشتریان
+```
+These directories are only active for the footer and inactive for the header.
 
 
 ### is_directory_group_manual()
 This function checks whether the category management of different groups of directories in the website menu is manual or automatic.
 
+```php
+@php
+        dd(is_directory_group_manual());
+@endphp
+
+```
+
+Output
+```bash
+true
+```
+It will be true or false in the output. True is displayed here, which shows that it is manual.
+
 
 ### directory_make_children_groups()
 This function takes the parent directory and the number of columns you want to insert the subdirectory into.
+
+```php
+@php
+        dd(directory_make_children_groups(\App\Models\Directory::find(2),5));
+@endphp
+
+```
+
+Output
+```bash
+array:5 [▼
+  0 => array:3 [▼
+    0 => App\Models\Directory {#2992 ▶}
+    1 => App\Models\Directory {#3192 ▶}
+    2 => App\Models\Directory {#3217 ▶}
+  ]
+  1 => array:2 [▼
+    0 => App\Models\Directory {#3123 ▶}
+    1 => App\Models\Directory {#3197 ▶}
+  ]
+  2 => array:3 [▼
+    0 => App\Models\Directory {#3144 ▶}
+    1 => App\Models\Directory {#3207 ▶}
+    2 => App\Models\Directory {#3225 ▶}
+  ]
+  3 => array:3 [▼
+    0 => App\Models\Directory {#3162 ▶}
+    1 => App\Models\Directory {#3212 ▶}
+    2 => App\Models\Directory {#3227 ▶}
+  ]
+  4 => array:2 [▶]
+]
+```
+The system must categorize each menu branch and arrange the menu. If it is manual, it will be arranged based on priority, but if it is automatic, it will be set according to the number of sub-directories based on its algorithm. For example, in the above code, five columns are created for directory number 2.
 
 
 ### get_product_root()
 The **get_product_root** function returns the first root of the products. This function will be deprecated and will not be used in future versions.
 
+```php
+@php
+   dd(directory_make_children_groups(get_product_root(),5));
+@endphp
+```
 
-### get_products_root_list_with_type()
-The **get_products_root_list_with_type** function returns products whose type is specified. This function will also be deprecated.
+Output 
+```bash
+- 
+
+ - ظروف سرو رومیزی
+متال
+سنگی، چوبی و چدنی
+ملامین و پلی کربنات
+بلور
+چینی
+سفالی و سرامیک
+- لوازم کافه و باریستا
+لوازم باریستا
+سرو نوشیدنی
+لوازم قهوه دمی
+قهوه جوش
+فیلتر
+لوازم کیک و شیرینی
+آبمیوه گیری
+- لوازم شستشو و نظافت
+لوازم ضدعفونی
+فرچه تمیز کننده
+لوازم نظافت
+کفپوش
+سبد ظرفشویی
+مواد شوینده
+شیرآلات
+- لوازم پخت برگر و استیک
+وزنه و درب پخت
+کاردک
+غلتک کره
+زغال مصنوعی
+
+-
+
+- لوازم آشپزخانه
+لوازم آماده سازی
+بن ماری
+سس ریز
+لوازم بسته بندی
+تابه و قابلمه
+تخته کار
+چاقوها
+آشپزخانه ایرانی
+- حمل و دلیوری
+باکس موتور
+کیف حمل
+- لوازم پخت پیتزا
+پارو و فرچه پیتزا
+قالب پیتزا
+لوازم جانبی پیتزا
+- پشت کانتر و سالن
+لوازم روکانتری
+علائم و دستورالعمل ها
+رگال
+ترولی
+- پوشاک رستورانی
+آشپز و سرآشپز
+بار و باریستا
+فست فودی
+گارسون
+اکسسوری
+- کتاب و مجله تخصصی
+کتاب قهوه، نوشیدنی، دسر و بستنی
+کتاب غذاهای ملل و فست فود
+کتاب کیک و قنادی
+کتاب آموزش پذیرایی
+کتاب مدیریتی رستوران
+
+-
+
+- لوازم پخت مرغ کنتاکی و سرخ کردنی
+سبدهای سرخ کن
+اسکوپ سیب زمینی
+سینی و توری دیسپلی
+فیلتر
+- لوازم سرو
+سینی
+قاشق، چنگال و کارد
+انبر
+چیدمان میز
+سلف سرویس
+- دکوراتیو
+تابلو دکوری
+ساعت و تقویم
+میز و صندلی
+```
+The system created three columns in the menu for the first root, where the directories are arranged.
+
+
 
 
 ### get_directory()
 This function takes directory_id and returns the directory. If it does not find the directory, the output is null.
 
-### get_directory_root()
-This function takes data_type and returns the root.
+```php
+<p> The directory with  id `2` has the title of `{{get_directory(2)->title}}`</p>
+```
 
-
-### get_directory_children_chunk()
-The function takes the directory and the chunk from the input. Children returns and creates chunks with the given number of inputs.
-
-
-### get_directory_children()
-This function returns Children and subdirectories of the specified directory.
-
-
-### get_directory_products()
-Takes the directory from the input and returns all the subset products. Here, the products function is used, that is, it returns data from the one to many relation. 
+```bash
+The directory with id `2` has the title of `لوازم کافه و رستوران`
+```
 
 
 ### get_important_product_leaves()
