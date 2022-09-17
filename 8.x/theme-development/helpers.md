@@ -270,7 +270,7 @@ This function returns the current system language with **app () -> getLocale ()*
 
 
 ### get_user()
-Returns the logged in user and if the user is not logged in returns false. For example, in the code below, the user who is logged in is displayed.
+Returns the logged in user and if the user is not logged in returns false. For example, in the below code, the user who is logged in is displayed.
 ‍‍‍‍
 ```php
 @if(get_user() !== false)
