@@ -2,42 +2,35 @@
 
 [[toc]]
 
-In this tutorial, [Laravel 8](https://laravel.com) crud will be shown. And an example of crud operation can be seen in Larammerce.
-In this tutorial, you will learn crud with Laravel version 8 in Laravel. And you will get to know the concept of (create, read, update and delete).
-So several steps must be followed to get the initial raw stuff for the crud operation using controller, model, path, bootstrap, and blade. Also, in Larammerce,
-with the help of the tools developed by the Larammerce team, the path of crud operation will be much smoother, so it is necessary to follow this guideline in this tutorial.
+This document reviews how to run CRUD (create, read, update, delete) in Larammerce.
+As you know, CRUD is not only related to Larammerce and is related to the structure of the Laravel framework.
+In larammerce, tools have been created to make CRUD easier. Also, the created CRUD should be the same as the previous CRUD of the system, so it should be followed the guidelines provided in this document.
 
-In this tutorial, the principles of crud operation in Larammerce will be taught, so, this document is divided into the following four parts:
+In this tutorial, the principles of CRUD operation in Larammerce will be taught, so, let's follow a few steps to create CRUD:
 
-**Section 1**: Create migration
+**Step 1**: Create Migration
 
-**Section 2**: Add model
+**Step 2**: Add Model
 
-**Section 3**: Add resource route
+**Step 3**: Add Controller
 
-**Section 4**: Add an icon to the admin panel
-
-**Section 5**: Add controller
-
-**Section 6**: Add blade files
+**Step 4**: Add Veiws 
 
 ::: warning WARNING
 The tutorials in this document are based on Laravel **version 8.75**.
 :::
 
-Here is an example of a crud application for a to-do list. So, let's take a look at the above:
+For example, a to-do list is created to show how to create a CRUD.
 
-### Section 1: Create migration
+### Step 1: Create Migration
 Since the Laravel framework is a **schema-first** framework, so, the database schema must be created first.
-At this stage, the "to-do list" table must be migrated using the Laravel 8 PHP artisan command, So open a terminal or
-command line and run the following command:
+At this migration, so open a terminal or command line and run the following command:
 
 ```bash
 php artisan make:migration create_todos_table
 ```
 
-After this command, a file will be placed in the `database/migrations` path, also, the following code should be placed
-in the migration, file to create a to-do list table.
+After this command, a file will be placed in the `database/migrations` path, also, the following code should be placed in the migration file to create a `todos` table.
 
 ##### EXAMPLE
 ```php{17-24}
@@ -87,10 +80,10 @@ php artisan migrate
 ```
 
 :::tip NOTE
-You can check your database to make sure the table is created.
+You can check your database to make sure the table `todos` is created.
 :::
 
-### Section 2: Add  model
+### Step 2: Add  Model
 At this stage, a Laravel model should be created, so for this purpose, create a file in the path `app/Models/Todo.php`
 and put some properties in the `Todo` class as follows:
 
@@ -162,7 +155,7 @@ In Larammerce, PhpDoc is an important standard, so every programmer developing a
 
 #### $table
 ---
-The first property that must be entered in the todo class is the name of the database table that connects the `todo` class to the `todos` table.
+The first property that must be write in the todo class is the name of the database table that connects the `todo` class to the `todos` table.
 
 ```php
     #The name of the to-do list database table
@@ -219,8 +212,11 @@ This property configures what field the search results are sorted by.
     protected static ?string $EXACT_SEARCH_ORDER_FIELD = "created_at";
 ```
 
-### Section 3: Add resource route
-Here, the source path for the to-do list crud program should be added. Therefore, the following route should be written in the `routes/web.php` file.
+### Step 3: Add Veiws
+At this stage, the view files should be created, but before that, let's add the route path and the icon file to the Larammerce project as follows.
+
+#### Add resource route
+Here, the source path for the to-do list CRUD program should be added. Therefore, the following route should be written in the `routes/web.php` file.
 
 ##### EXAMPLE
 ```php
@@ -232,7 +228,7 @@ Route::resource("todo", "TodoController", ["as" => "admin"]);
 The `web.php` file contains all system routes and including admin routes.
 :::
 
-### Section 4: Add an icon to the admin panel
+####  Add an icon to the admin panel
 One of the most important parts of this tutorial is adding the task list icon in the management panel so that you can manage the tasks in it.
 It can be easily added to the admin panel by following a few simple steps.
 
@@ -285,218 +281,7 @@ Pay attention that `show_in_toolbar` contains boolean data if the value is `true
 and if it is `false`, a new `appliance` must be defined in it.
 :::
 
-### Section 5: Add controller
-This part is divided into several steps to make it easier to understand, so let's take an in-depth look at each step.
-In this section, a controller must be created so that logic can be written to **create**، **store**، **edit** and **delete** the to-do list.
-
-#### Step 1: Create a controller class
----
-At this point, a new controller should now be created as `TodoController`, which extends from the `BaseController` class.
-Therefore, a class by the name `TodoController.php` should be created in the path `app/Http/Controllers/Admin`.
-
-##### EXAMPLE
-```php
-<?php
-
-    namespace App\Http\Controllers\Admin;
-    
-    use App\Models\Enums\TodoStatus;
-    use App\Models\Todo;
-    use App\Utils\Common\History;
-    use Illuminate\Contracts\Foundation\Application;
-    use Illuminate\Contracts\View\Factory;
-    use Illuminate\Contracts\View\View;
-    use Illuminate\Http\RedirectResponse;
-    use Illuminate\Http\Request;
-    
-    /**
-    * @role(enabled=true)
-    */
-    class TodoController extends BaseController
-{
-    public function getModel(): ?string
-    {
-        return Todo::class;
-    }
-}
-?>
-```
-
-:::warning WARNING
-The following annotation must be written before the controller function:
-```php
-/**
-* @role(enabled=true)
-*/
-```
-Also, above each function of this controller, an annotation must be written that specifies access to each function.
-```php
-/**
-* @role(super_user)
-*/
-```
-In the annotation above, as written, superuser access is required.
-:::
-
-To implement crud operations in Laravel on an object, **seven** functions are used, which include the following.
-
-1. `index()`
-
-2. `create()`
-
-3. `store()`
-
-4. `show()`
-
-5. `edit()`
-
-6. `update()`
-
-7. `destroy()`
-
-For more information, you can refer to [resource controller](https://laravel.com/docs/8.x/controllers#actions-handled-by-resource-controller).
-
-Since the Larammerce project is based on Laravel, these seven functions must be used in the crud operation,
-so let's use these seven functions in the construction of the to-do list controller.
-
-#### Step 2: index()
----
-
-```php
-    #Super user level access
-    /**
-     * @role(super_user)
-     */
-    public function index(): Factory|View|Application
-    {
-        parent::setPageAttribute();
-        #Content pagination
-        $todos = Todo::paginate(Todo::getPaginationCount());
-        #Return to index.blade.php
-        return view("admin.pages.todo.index", compact("todos"));
-    }
-```
-
-:::warning WARNING
-In the `index()` function, function `parent::setPageAttribute()` it must be written.
-also in Larammerce, calling this function in the `index()` function must be followed and it is an important standard.
-
-function `setPageAttribute()` is related to all functions such as paging and checking how to display a page, etc.
-:::
-
-
-#### Step 3: create()
----
-
-```php
-    /**
-     * @role(super_user)
-     */
-    public function create(): Factory|View|Application
-    {
-        #Return to index.blade.php
-        return view("admin.pages.todo.create");
-    }
-```
-
-#### Step 4: store()
----
-
-```php
-    /**
-     * @role(super_user)
-     * @rules(subject="required|min:10")
-     */
-    public function store(Request $request): RedirectResponse
-    {
-        #The request is only the subject
-        $todo = Todo::create($request->only("subject"));
-        #Return to index.blade.php
-        return response()->redirectToRoute("admin.todo.index");
-    }
-```
-
-:::tip NOTE
-The following role indicates that the input field must be a string with at least ten characters.
-
-```php
-/**
-* @rules(subject="required|min:10")
-*/
-```
-:::
-
-#### Step 5: show()
----
-
-```php
-    public function show(Todo $todo)
-    {
-
-    }
-```
-
-
-#### Step 6: edit()
----
-
-```php
-    /**
-     * @role(super_user)
-     */
-    public function edit(Todo $todo): Factory|View|Application
-    {
-        #Return list of all todos
-        $statuses = [];
-        foreach (TodoStatus::values() as $value) {
-            $statuses[$value] = trans("general.todo.status." . $value);
-        }
-        #Return to edit.blade.php
-        return view("admin.pages.todo.edit", compact("todo", "statuses"));
-    }
-```
-
-#### Step 7: update()
----
-
-```php
-    /**
-     * @role(super_user)
-     * @rules(subject="required|min:10", status="in:".\App\Models\Enums\TodoStatus::stringValues())
-     */
-    public function update(Request $request, Todo $todo): RedirectResponse
-    {
-        ##The request is only the subject and status
-        $todo->update($request->only("subject", "status"));
-        return History::redirectBack();
-    }
-```
-
-:::tip NOTE
-The following role indicates that the input field must be a string with at least ten characters, also, if the status is outside of (1, 2, 3, 4, 5), it is not accepted by the system.
-
-```php
-/**
-* @rules(subject="required|min:10", status="in:".\App\Models\Enums\TodoStatus::stringValues())
-*/
-```
-:::
-
-#### Step 8: destroy()
----
-
-```php
-    public function destroy(Todo $todo): RedirectResponse
-    {
-        #delete the task
-        $todo->delete();
-        return redirect()->back();
-    }
-```
-
-### Section 6: Add blade files
-In the last step in this tutorial, blade files must be created.
-Therefore, a todo folder should be created in the `larammerce/resources/views/admin/pages` path, which contains the blade files of the crud program.
+Therefore, a todo folder should be created in the `larammerce/resources/views/admin/pages` path, which contains the blade files of the CRUD program.
 
 Blade files include the following:
 
@@ -711,7 +496,7 @@ On this page, the user can edit a task.
 @endsection
 ```
 
-If a field has a multi-selected mode, it should be defined in the `app/Models/Enums` path. 
+If a field has a multi-selected mode, it should be defined in the `app/Models/Enums` path.
 Therefore, since the status field is multi-selected, the `TodoStatus.php` file should be created in the mentioned path, and all the selected states should be defined in it.
 
 ```php
@@ -750,6 +535,216 @@ Finally, in the path of `resources/lang/fa/general.php`, in a separate branch, t
             "انجام شده"
         ]
     ],
+```
+
+
+### Step 4: Add Controller
+This part is divided into several steps to make it easier to understand, so let's take an in-depth look at each step.
+In this section, a controller must be created so that logic can be written to **create**، **store**، **edit** and **delete** the to-do list.
+
+#### Create a controller class
+---
+At this point, a new controller should now be created as `TodoController`, which extends from the `BaseController` class.
+Therefore, a class by the name `TodoController.php` should be created in the path `app/Http/Controllers/Admin`.
+
+##### EXAMPLE
+```php
+<?php
+
+    namespace App\Http\Controllers\Admin;
+    
+    use App\Models\Enums\TodoStatus;
+    use App\Models\Todo;
+    use App\Utils\Common\History;
+    use Illuminate\Contracts\Foundation\Application;
+    use Illuminate\Contracts\View\Factory;
+    use Illuminate\Contracts\View\View;
+    use Illuminate\Http\RedirectResponse;
+    use Illuminate\Http\Request;
+    
+    /**
+    * @role(enabled=true)
+    */
+    class TodoController extends BaseController
+{
+    public function getModel(): ?string
+    {
+        return Todo::class;
+    }
+}
+?>
+```
+
+:::warning WARNING
+The following annotation must be written before the controller function:
+```php
+/**
+* @role(enabled=true)
+*/
+```
+Also, above each function of this controller, an annotation must be written that specifies access to each function.
+```php
+/**
+* @role(super_user)
+*/
+```
+In the annotation above, as written, superuser access is required.
+:::
+
+To implement CRUD operations in Laravel on an object, **seven** functions are used, which include the following.
+
+1. `index()`
+
+2. `create()`
+
+3. `store()`
+
+4. `show()`
+
+5. `edit()`
+
+6. `update()`
+
+7. `destroy()`
+
+For more information, you can refer to [resource controller](https://laravel.com/docs/8.x/controllers#actions-handled-by-resource-controller).
+
+Since the Larammerce project is based on Laravel, these seven functions must be used in the CRUD operation,
+so let's use these seven functions in the construction of the to-do list controller.
+
+#### index()
+---
+
+```php
+    #Super user level access
+    /**
+     * @role(super_user)
+     */
+    public function index(): Factory|View|Application
+    {
+        parent::setPageAttribute();
+        #Content pagination
+        $todos = Todo::paginate(Todo::getPaginationCount());
+        #Return to index.blade.php
+        return view("admin.pages.todo.index", compact("todos"));
+    }
+```
+
+:::warning WARNING
+In the `index()` function, function `parent::setPageAttribute()` it must be written.
+also in Larammerce, calling this function in the `index()` function must be followed and it is an important standard.
+
+function `setPageAttribute()` is related to all functions such as paging and checking how to display a page, etc.
+:::
+
+
+#### create()
+---
+
+```php
+    /**
+     * @role(super_user)
+     */
+    public function create(): Factory|View|Application
+    {
+        #Return to index.blade.php
+        return view("admin.pages.todo.create");
+    }
+```
+
+#### store()
+---
+
+```php
+    /**
+     * @role(super_user)
+     * @rules(subject="required|min:10")
+     */
+    public function store(Request $request): RedirectResponse
+    {
+        #The request is only the subject
+        $todo = Todo::create($request->only("subject"));
+        #Return to index.blade.php
+        return response()->redirectToRoute("admin.todo.index");
+    }
+```
+
+:::tip NOTE
+The following role indicates that the input field must be a string with at least ten characters.
+
+```php
+/**
+* @rules(subject="required|min:10")
+*/
+```
+:::
+
+#### show()
+---
+
+```php
+    public function show(Todo $todo)
+    {
+
+    }
+```
+
+
+#### edit()
+---
+
+```php
+    /**
+     * @role(super_user)
+     */
+    public function edit(Todo $todo): Factory|View|Application
+    {
+        #Return list of all todos
+        $statuses = [];
+        foreach (TodoStatus::values() as $value) {
+            $statuses[$value] = trans("general.todo.status." . $value);
+        }
+        #Return to edit.blade.php
+        return view("admin.pages.todo.edit", compact("todo", "statuses"));
+    }
+```
+
+#### update()
+---
+
+```php
+    /**
+     * @role(super_user)
+     * @rules(subject="required|min:10", status="in:".\App\Models\Enums\TodoStatus::stringValues())
+     */
+    public function update(Request $request, Todo $todo): RedirectResponse
+    {
+        ##The request is only the subject and status
+        $todo->update($request->only("subject", "status"));
+        return History::redirectBack();
+    }
+```
+
+:::tip NOTE
+The following role indicates that the input field must be a string with at least ten characters, also, if the status is outside of (1, 2, 3, 4, 5), it is not accepted by the system.
+
+```php
+/**
+* @rules(subject="required|min:10", status="in:".\App\Models\Enums\TodoStatus::stringValues())
+*/
+```
+:::
+
+#### destroy()
+---
+
+```php
+    public function destroy(Todo $todo): RedirectResponse
+    {
+        #delete the task
+        $todo->delete();
+        return redirect()->back();
+    }
 ```
 
 #### Video source
