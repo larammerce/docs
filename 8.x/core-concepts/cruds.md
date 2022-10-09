@@ -2,11 +2,11 @@
 
 [[toc]]
 
-This document reviews how to run CRUD (create, read, update, delete) in Larammerce.
-As you know, CRUD is not only related to Larammerce and is related to the structure of the Laravel framework.
-In larammerce, tools have been created to make CRUD easier. Also, the created CRUD should be the same as the previous CRUD of the system, so it should be followed the guidelines provided in this document.
+This document reviews how to implement CRUD (create, read, update, delete) in Larammerce.
+As you know, it is not only related to Larammerce and is related to the structure of the Laravel framework.
+In larammerce, tools have been created to make implement in CRUD easier. Also, the created CRUD should be the same as the previous CRUDs of the system, so it should be followed the guidelines provided in this document.
 
-In this tutorial, the principles of CRUD operation in Larammerce will be taught, so, let's follow a few steps to create CRUD:
+In this tutorial, the principles of CRUD operation in Larammerce will be taught, so, let's follow a few steps to create it:
 
 **Step 1**: Create Migration
 
@@ -20,7 +20,7 @@ In this tutorial, the principles of CRUD operation in Larammerce will be taught,
 The tutorials in this document are based on Laravel **version 8.75**.
 :::
 
-For example, a to-do list is created to show how to create a CRUD.
+For example, a to-do list is created to show how to the operation.
 
 ### Step 1: Create Migration
 Since the Laravel framework is a **schema-first** framework, so, the database schema must be created first.
@@ -216,7 +216,7 @@ This property configures what field the search results are sorted by.
 At this stage, the view files should be created, but before that, let's add the route path and the icon file to the Larammerce project as follows.
 
 #### Add resource route
-Here, the source path for the to-do list CRUD program should be added. Therefore, the following route should be written in the `routes/web.php` file.
+Here, the source path for the to-do list CRUD should be added. Therefore, the following route should be written in the `routes/web.php` file.
 
 ##### EXAMPLE
 ```php
@@ -281,7 +281,7 @@ Pay attention that `show_in_toolbar` contains boolean data if the value is `true
 and if it is `false`, a new `appliance` must be defined in it.
 :::
 
-Therefore, a todo folder should be created in the `larammerce/resources/views/admin/pages` path, which contains the blade files of the CRUD program.
+Therefore, a todo folder should be created in the `larammerce/resources/views/admin/pages` path.
 
 Blade files include the following:
 
@@ -307,8 +307,8 @@ it should be made, which can include (breadcrumb, toolbar, fav icon, paginator, 
 
 #breadcrumb
 @section('bread_crumb')
-    <li><a href="{{route('admin.todo.index')}}">وظایف</a></li>
-    <li class="active"><a href="{{route('admin.todo.index')}}">لیست وظیفه ها</a></li>
+    <li><a href="{{route('admin.todo.index')}}">tasks</a></li>
+    <li class="active"><a href="{{route('admin.todo.index')}}">task list</a></li>
 
 @endsection
 
@@ -370,25 +370,25 @@ This page contains fields (ID, subject, Status and destroy and edit buttons).
         
         #identifier field
         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-3 col">
-            <div class="label">شناسه</div>
+            <div class="label">id</div>
             <div>{{$todo->id}}</div>
         </div>
         
         #Subject field
         <div class="col-lg-6 col-md-3 col-sm-4 col-xs-6 col">
-            <div class="label">موضوع</div>
+            <div class="label">subject</div>
             <div>{{$todo->subject}}</div>
         </div>
         
         #Status field
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 col">
-            <div class="label">وضعیت</div>
+            <div class="label">status</div>
             <div>{{trans("general.todo.status.".$todo->status)}}</div>
         </div>
         
         #Operation fields
         <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12 col">
-            <div class="label">عملیات</div>
+            <div class="label">operation</div>
             <div class="actions-container">
                 #edit button
                 <a class="btn btn-sm btn-primary" href="{{route('admin.todo.edit', $todo)}}">
@@ -418,30 +418,32 @@ php artisan translation:fill
 One of the most important files to add to the todo directory is the `create.blade.php` file.
 This file should be placed in the `larammerce/resources/views/admin/pages/todo` path.
 On this page, a task can be created and then saved.
+
 ##### EXAMPLE
+
 ```php
 @extends('admin.form_layout.col_4')
 
 #Add task
 @section('bread_crumb')
-    <li><a href="{{route('admin.todo.index')}}">وظایف</a></li>
-    <li class="active"><a href="{{route('admin.todo.create')}}">اضافه کردن وظیفه</a></li>
+    <li><a href="{{route('admin.todo.index')}}">tasks</a></li>
+    <li class="active"><a href="{{route('admin.todo.create')}}">add task</a></li>
 @endsection
 
-@section('form_title')اضافه کردن وظیفه@endsection
+@section('form_title')add task@endsection
 
 @section('form_attributes') action="{{route('admin.todo.store')}}" method="POST"  @endsection
 
 @section('form_body')
     <div class="input-group group-sm col-lg-12 col-sm-12 col-md-12 col-xs-12">
-        <span class="label">موضوع</span>
+        <span class="label">subject</span>
         <input class="form-control input-sm" name="subject" value="{{old('subject')}}">
     </div>
 @endsection
 
 #Save the task
 @section('form_footer')
-    <button type="submit" class="btn btn-default btn-sm">ذخیره</button>
+    <button type="submit" class="btn btn-default btn-sm">save</button>
 @endsection
 ```
 
@@ -458,13 +460,13 @@ On this page, the user can edit a task.
 
 #Edit task
 @section('bread_crumb')
-    <li><a href="{{route('admin.todo.index')}}">وظایف</a></li>
-    <li class="active"><a href="{{route('admin.todo.create', compact('todo'))}}">ویرایش وظیفه</a></li>
+    <li><a href="{{route('admin.todo.index')}}">tasks</a></li>
+    <li class="active"><a href="{{route('admin.todo.create', compact('todo'))}}">edit task</a></li>
 
 @endsection
 
 @section('form_title')
-    ویرایش وظیفه
+    edit task
 @endsection
 
 @section('form_attributes')
@@ -475,11 +477,11 @@ On this page, the user can edit a task.
     {{ method_field('PUT') }}
     <input type="hidden" name="id" value="{{ $todo->id }}">
     <div class="input-group group-sm col-lg-12 col-sm-12 col-md-12 col-xs-12">
-        <span class="label">موضوع</span>
+        <span class="label">subject</span>
         <input class="form-control input-sm" name="subject" value="{{ $todo->subject }}">
     </div>
     <div class="input-group group-sm col-lg-12 col-sm-12 col-md-12 col-xs-12">
-        <span class="label">وضعیت</span>
+        <span class="label">status</span>
         <select class="form-control input-sm" name="status">
             @foreach($statuses as $status_id => $status_title)
                 <option @if($status_id == $todo->status) selected
@@ -491,8 +493,8 @@ On this page, the user can edit a task.
 
 #Save and exit
 @section('form_footer')
-    <button type="submit" class="btn btn-default btn-sm">ذخیره</button>
-    <input type="submit" class="btn btn-warning btn-sm" name="exit" value="ذخیره و خروج">
+    <button type="submit" class="btn btn-default btn-sm">save</button>
+    <input type="submit" class="btn btn-warning btn-sm" name="exit" value="Save and exit ">
 @endsection
 ```
 
@@ -529,10 +531,10 @@ Finally, in the path of `resources/lang/fa/general.php`, in a separate branch, t
 ```php
     "todo" =>[
         "status" => [
-            "جدید",
-            "درحال اجرا",
-            "آماده بررسی",
-            "انجام شده"
+            "new",
+            "in process",
+            "Ready to review",
+            "done"
         ]
     ],
 ```
@@ -591,7 +593,7 @@ Also, above each function of this controller, an annotation must be written that
 In the annotation above, as written, superuser access is required.
 :::
 
-To implement CRUD operations in Laravel on an object, **seven** functions are used, which include the following.
+To implement operations in Laravel on an object, **seven** functions are used, which include the following.
 
 1. `index()`
 
@@ -609,7 +611,7 @@ To implement CRUD operations in Laravel on an object, **seven** functions are us
 
 For more information, you can refer to [resource controller](https://laravel.com/docs/8.x/controllers#actions-handled-by-resource-controller).
 
-Since the Larammerce project is based on Laravel, these seven functions must be used in the CRUD operation,
+Since the Larammerce project is based on Laravel, these seven functions must be used in the operation,
 so let's use these seven functions in the construction of the to-do list controller.
 
 #### index()
