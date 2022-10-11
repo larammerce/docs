@@ -11,10 +11,10 @@ This file has 1462 code lines. This section describes all the helpers. Some of t
 
 
 
-### unparse_url
-:::tip 
+### `unparse_url`
+```php
 unparse_url(array $parsed_url, array $ommit = []): string
-:::
+```
 This function unparses the URL. As you know, there is a `pars_url` function in PHP, which works as follows:
 
 ```php
@@ -65,10 +65,10 @@ ___________
 
 
 
-### get_product_all_extras_percentage
-:::tip
+### `get_product_all_extras_percentage`
+```php
 function get_product_all_extras_percentage()
-:::
+```
 
 This function returns the sum of `getTaxpercentage` and `getToolpercentage` values.
 
@@ -85,10 +85,10 @@ _____________
 
 
 
-### locale_url
-:::tip
+### `locale_url`
+```php
 function locale_url(string $normal_url): string
-:::
+```
 
 If a URL is passed to this function. Adds a locale to the first part of the URL, for example, fa or en.
 
@@ -113,10 +113,10 @@ _______________
 
 
 
-### lm_route
-:::tip
+### `lm_route`
+```php
 function lm_route($name, $parameters = [], $absolute = true): string
-:::
+```
 
 This function takes Laravel's route from the input and gives it to `local_url`, which is enhanced for multilingual mode.
 _______________
@@ -125,10 +125,10 @@ _______________
 
 
 
-### lm_url
-:::tip
+### `lm_url`
+```php
 function lm_url($path = null, $parameters = [], $secure = null): string
-:::
+```
 
 This function calls `locale_url`. And it is enhanced for Laravel URLs.
 ______________
@@ -136,10 +136,10 @@ ______________
 
 
 
-### get_identity
-:::tip
+### `get_identity`
+```php
 function get_identity(): array
-:::
+```
 
 This function is to display the Larammerce project supporter identification. Currently, the Hinza identification is displayed on Larammerce projects. Enter the following code to display identification.
 ```php
@@ -168,10 +168,10 @@ ______________________
 
 
 
-### shorten_text
-:::tip
+### `shorten_text`
+```php
 function shorten_text($text, $wordsCount = 75)
-:::
+```
 This function is a directive. The input of this function is text and number. For example: here it takes the number 10 from the input, which means that it shows only 10 words of this text. And uses "..." at the end.
 
 Below is an explanation for this function:
@@ -192,10 +192,10 @@ ___________________
 
 
 
-### get_gallery
-:::tip
+### `get_gallery`
+```php
 function get_gallery(string $galleryName)
-:::
+```
 `get_gallery` function is used in the Larammerce Template Engine structure and cannot be used. This function returns the identifir given in the blade file to the desired gallery. In the following code, the content of `index_banner1` gallery can be seen.
 
 ```php
@@ -258,10 +258,10 @@ A gallery object returned from the gallery model whose table name is galleries. 
 ____________________
 
 
-### get_gallery_items
-:::tip
+### `get_gallery_items`
+```php
 function get_gallery_items(string $gallery_name, int $count = -1, bool $random_select = false)
-:::
+```
 `get_gallery_items` function takes the name of the gallery and the number of items from the input, and whether random select is true or false.
 ```php
 @php
@@ -323,10 +323,10 @@ This function can not be used as usual. To learn more about this function, refer
 ____________________
 
 
-### get_locale
-:::tip
+### `get_locale`
+```php
 function get_locale(): string
-:::
+```
 This function returns the current system language .
 
 ```php
@@ -343,10 +343,10 @@ _______________________
 
 
 
-### get_user
-:::tip
+### `get_user`
+```php
 function get_user(string $guard = null): bool|Authenticatable|null
-:::
+```
 Returns the logged in user and if the user is not logged in returns false. For example, in the following code, the user who is logged in is displayed.
 ‍‍‍‍
 ```php
@@ -361,10 +361,10 @@ The current user logged in is : آرش خواجه لو
 ______________________
 
 
-### get_customer_user
-:::tip
+### `get_customer_user`
+```php
 function get_customer_user(string $guard = null): bool|CustomerUser
-:::
+```
 This function returns a logged in customer user.
 ‍‍‍‍
 ```php
@@ -381,10 +381,10 @@ ________________________
 
 
 
-### get_customer_legal_info
-:::tip
+### `get_customer_legal_info`
+```php
 function get_customer_legal_info(): bool|CustomerUserLegalInfo
-:::
+```
 Returns the legal information of the logged in customer user.
 ```php
 @if(get_customer_legal_info() !== false)
@@ -400,10 +400,10 @@ Also, in this function, to access the customer information, you must connect to 
 __________________________
 
 
-### customer_need_list_exist
-:::tip
+### `customer_need_list_exist`
+```php
 function customer_need_list_exist(Product $product): bool
-:::
+```
 If the customer is logged in, the function checks if the given product is in the needlist. If the customer is not logged in, false returns.
  
 
@@ -417,10 +417,10 @@ this customer has the product with id 100 in his need list.
 __________________________
 
 
-### customer_cart_count
-:::tip
+### `customer_cart_count`
+```php
 function customer_cart_count(): int
-:::
+```
 This function returns the number of products in the customer's shopping cart that is logged in.
 The following code displays the number of products in the shopping cart of the logged in customer.
 
@@ -436,10 +436,10 @@ _____________________________
 
 
 
-### pending_invoices_count
-:::tip
+### `pending_invoices_count`
+```php
 function pending_invoices_count(): bool|int
-:::
+```
 
 This function returns the number of pending invoices. If the customer is not logged in, it returns false.
 ```php
@@ -453,11 +453,11 @@ this customer has 0 pending invoices in his resume.
 _____________________________
 
 
-### get_local_cart
-:::tip
+### `get_local_cart`
+```php
 function get_local_cart(bool $full_data = false): array
-:::
-This function returns local shopping cart data. Before the user logs in, the data is stored in a cookie, so if the customer is not logged in, the shopping cart data is returned via **get-local-cart**.
+```
+This function returns local shopping cart data. Before the user logs in, the data is stored in a cookie, so if the customer is not logged in, the shopping cart data is returned via `get-local-cart`.
 
 With the following code, you can see the products in the shopping cart.
 
@@ -484,10 +484,10 @@ With foreach, the characteristics of each product can be displayed in each line.
 ______________________________
 
 
-### get_system_user
-:::tip
+### `get_system_user`
+```php
 function get_system_user(string $guard = null): ?SystemUser
-:::
+```
 The structure of Larammerce user management is done according to the user object.
 There are two users in the system: 
 
@@ -500,10 +500,10 @@ ______________________________
 
 
 
-### get_system_users
-:::tip
+### `get_system_users`
+```php
 function get_system_users(string $guard = null)
-:::
+```
 This function returns a list of system users. all system users will be displayed with the following code:
 
 ```php
@@ -523,11 +523,11 @@ _____________________________
 
 
 
-### is_customer
-:::tip
+### `is_customer`
+```php
 function is_customer(string $guard = null): bool
-:::
-**is_customer** function checks that the logged in user is the customer user or the system user.
+```
+`is_customer` function checks that the logged in user is the customer user or the system user.
 
 ```php
 <p> The current user logged in {{ is_customer() ? "is" : "is not" }} customer user .</p>
@@ -540,10 +540,10 @@ The current user logged in is customer user .
 _____________________________
 
 
-### app_navbar_directories
-:::tip
+### `app_navbar_directories`
+```php
 function app_navbar_directories(array $conditions = [])
-:::
+```
 Returns the list of directories displayed in the application navigation bar.
 There is a property in the function called show that specifies whether these menus will be displayed in the mobile or desktop application if the application is connected to the Larammerce Template Engine.
 
@@ -565,10 +565,10 @@ _____________________________
 
 
 
-### navbar_directories
-:::tip
+### `navbar_directories`
+```php
 function navbar_directories(array $conditions = []): array
-:::
+```
 Returns the directories displayed in the navigation bar of the website.
 
 ```php
@@ -596,10 +596,10 @@ _____________________________
 
 
 
-### footer_directories
-:::tip
+### `footer_directories`
+```php
 function footer_directories(array $conditions = []): array
-:::
+```
 Returns the directories displayed in the footer of the website.
 
 ```php
@@ -621,10 +621,10 @@ _____________________________
 
 
 
-### only_footer_directories
-:::tip
+### `only_footer_directories`
+```php
 function only_footer_directories(array $conditions = []): array
-:::
+```
 Returns the directories only displayed in the footer of the website.
 
 ```php
@@ -647,10 +647,10 @@ _____________________________
 
 
 
-### is_directory_group_manual
-:::tip
+### `is_directory_group_manual`
+```php
 function is_directory_group_manual(): bool
-:::
+```
 This function checks whether the category management of different groups of directories in the website menu is manual or automatic.
 
 ```php
@@ -669,10 +669,10 @@ _____________________________
 
 
 
-### directory_make_children_groups
-:::tip
+### `directory_make_children_groups`
+```php
 function directory_make_children_groups(?Directory $directory, int $column_count): array
-:::
+```
 This function takes the parent directory and the number of columns you want to insert the subdirectory into.
 
 ```php
@@ -712,11 +712,11 @@ ____________________________
 
 
 
-### get_product_root
-:::php
+### `get_product_root`
+```php
 function get_product_root()
-:::
-The **get_product_root** function returns the first root of the products. This function will be deprecated and will not be used in future versions.
+```
+The `get_product_root` function returns the first root of the products. This function will be deprecated and will not be used in future versions.
 
 ```php
 @php
@@ -814,10 +814,10 @@ Output
 The system created three columns in the menu for the first root, where the directories are arranged.
 _________________________________
 
-### get_directory
-:::tip
+### `get_directory`
+```php
 function get_directory($directory_id): ?Directory
-:::
+```
 This function takes `directory_id` and returns the directory. If it does not find the directory, the output is null.
 
 ```php
@@ -829,10 +829,10 @@ The directory with id `2` has the title of `لوازم کافه و رستورا�
 ```
 ________________________________
 
-### get_important_product_leaves
-:::tip
+### `get_important_product_leaves`
+```php
 function get_important_product_leaves(Directory $root_directory, int $count): array|Collection
-:::
+```
 Takes the directory and sorts the specified number of `product_leaves` by `important_at`.
 
 ```php
@@ -865,10 +865,10 @@ ________________________________
 
 
 
-### get_visible_product_leaves
-:::tip
+### `get_visible_product_leaves`
+```php
 function get_visible_product_leaves(Directory $root_directory, int $count): array|Collection
-:::
+```
 Takes the directory and sorts the specified number of product_leaves that have the visible store feature active.
 
 ```php
@@ -893,10 +893,10 @@ ________________________________
 
 
 
-### get_directory_product_leaves
-:::tip
+### `get_directory_product_leaves`
+```php
 function get_directory_product_leaves(Directory $root_directory, int $count, $only_active_items = true): array|Collection
-:::
+```
 This function takes a directory and the number of products. If `only_active_items is` true, return leafProducts that are active and can be sold.
 
 ```php
@@ -920,10 +920,10 @@ Latest visible products for directory: ظروف سرو رومیزی
 _________________________________
 
 
-### latest_products
-:::tip
+### `latest_products`
+```php
 function latest_products(int $count = 8): array|Collection
-:::
+```
 Returns the latest or newest products added to the system. With the following code, you can see 2 of the latest products that have been added
 
 ```php
@@ -942,10 +942,10 @@ Output
 _________________________________
 
 
-### rated_products
-:::tip
+### `rated_products`
+```php
 function rated_products(int $count = 8): array|Collection
-:::
+```
 Returns products that have the highest rate.
 
 ```php
@@ -971,10 +971,10 @@ _________________________________
 
 
 
-### custom_query_products
-:::tip
+### `custom_query_products`
+```php
 function custom_query_products(string $identifier): array|Collection
-:::
+```
 This function is based on custom query built into the admin panel And the specified identifier returns the products. Custom query will be described in a separate section.In the admin panel, there is a section called custom queries. For example, you can create a custom query to display discounted products in this section.
 
 ```php
@@ -1014,10 +1014,10 @@ The result products of custom query named: `all_discount_products`
 _________________________________
 
 
-### custom_query_product_ids
-:::tip
+### `custom_query_product_ids`
+```php
 function custom_query_product_ids(string $identifier): array|Collection
-:::
+```
 This function returns the product id list based on the custom query and identifier.
 
 ```php
@@ -1048,19 +1048,19 @@ It can be seen that the id of the discounted products is displayed in the consol
 _________________________________
 
 
-### get_product_filter
-:::tip
+### `get_product_filter`
+```php
 function get_product_filter(string $identifier): ProductFilter
-:::
+```
 This function takes the identifier and returns the filter product object. product filter will be described in a separate section.
 _________________________________
 
 
 
-### custom_filter_products
-:::tip
+### `custom_filter_products`
+```php
 function custom_filter_products(string $identifier): array|Collection
-:::
+```
 With custom filter, you can create a filter in the admin panel, which can show products related to that filter by foreach in front.For example, in the custom filter section of the admin panel, a filter named `my_fav_filter` has been created, filtered based on the raees brand, and the custom query of discounted products is selected. The output of this filter can be seen below.
 
 ```php
@@ -1079,10 +1079,10 @@ The result products of custom filter named: `my_fav_fillter`
 _________________________________
 
 
-### custom_filter_product_ids
-:::tip
+### `custom_filter_product_ids`
+```php
 function custom_filter_product_ids(string $identifier): array|Collection
-:::
+```
 This function returns the ID of the products in the custom filter.
 
 ```php
@@ -1101,10 +1101,10 @@ Output
 _________________________________
 
 
-### get_filter_data
-:::tip
+### `get_filter_data`
+```php
 function get_filter_data(array $product_ids): array
-:::
+```
 This function of ProductService returns FilterData, which is required for product_ids. For example, the IDs of fifty products are taken from the input. These products include different brands. By selecting the desired brand from the filter section of the website, only the product of the desired brand will be displayed.
 
 ```php
@@ -1132,11 +1132,11 @@ Colors:
 ```
 __________________________________
 
-### important_products
-:::tip
+### `important_products`
+```php
 function important_products(int $count = 8): array|Collection
-:::
-This function returns products sorted based on important_at, and the important button of that product is active. Important products can be displayed with the following code.
+```
+This function returns products sorted based on `important_at`, and the important button of that product is active. Important products can be displayed with the following code.
 
 ```php
 @php
@@ -1163,10 +1163,10 @@ Illuminate\Database\Eloquent\Collection {#2340 ▼
 _______________________________________
 
 
-### get_customer_addresses
-:::tip
+### `get_customer_addresses`
+```php
 function get_customer_addresses()
-:::
+```
 Returns the address of customers who are logged in.
 
 ```php
@@ -1185,10 +1185,10 @@ Output
 __________________________________
 
 
-### get_invoices
-:::tip
+### `get_invoices`
+```php
 function get_invoices()
-:::
+```
 This function returns all the customer invoices that are logged in.
 
 ```php
@@ -1212,245 +1212,245 @@ Your invoices:
 __________________________
 
 
-### get_blog_categories
-:::tip
+### `get_blog_categories`
+```php
    function get_blog_categories($directory)
-:::
+```
 Returns all categories of blog directories.
 __________________________
 
 
 
-### get_popular_blog
-:::tip
+### `get_popular_blog`
+```php
 function get_popular_blog($count, $type)
-:::
+```
 This function takes the number from the input and returns the popular ones among all the blog posts. The type object will be removed in later versions, and this function will only receive the count object from the input.
 __________________________
 
 
 
-### get_latest_blog
-:::tip
+### `get_latest_blog`
+```php
 function get_latest_blog($type, $count)
-:::
+```
 Returns the latest blog posts with that specified number. The type object will be removed in later versions, and this function will only receive the count object from the input.
 __________________________
 
 
-### get_suggested_blog
-:::tip
+### `get_suggested_blog`
+```php
 function get_suggested_blog($type, $count)
-:::
+```
 Returns suggested_blog with that specified number. The type object will be removed in later versions, and this function will only receive the count object from the input.
 __________________________
 
 
-### get_system_messages
-:::tip
+### `get_system_messages`
+```php
 function get_system_messages()
-:::
+```
 Sometimes an error occurs when sending data. In order for the system to send a message and be able to receive the message, this function must be placed in the footer of the website.
 __________________________
 
-### has_system_messages
-:::tip
+### `has_system_messages`
+```php
 function has_system_messages(): bool
-:::
+```
 Checks if the system has a message.
 __________________________
 
 
-### get_months
+### `get_months`
 
 Returns the list of months.
 __________________________
 
 
-### get_years
+### `get_years`
 
 Returns the list of years used in the form.
 __________________________
 
 
 
-### hide_number
+### `hide_number`
 
 Using this function, you can hide part of a number and use the star character instead.
 __________________________
 
 
 
-### hide_text
+### `hide_text`
 
 Using this function, you can hide part of a text and use the star character instead.
 __________________________
 
 
 
-### get_payment_drivers
+### `get_payment_drivers`
 
 This function is to display the Larammerce project supporter logo. Currently, the Hinza logo is displayed on Larammerce projects.
 __________________________
 
 
 
-### is_default_payment_driver
+### `is_default_payment_driver`
 
 Returns active payment gateways.
 __________________________
 
 
 
-### get_disabled_setting_appliances
+### `get_disabled_setting_appliances`
 
 This function returns appliances that are inactive.
 __________________________
 
 
 
-### is_selected
+### `is_selected`
 
 Takes the directory from the input and checks that it is in url part. This function will be deprecated in the next version.
 __________________________
 
 
 
-### get_configurations
+### `get_configurations`
 
-Returns configurations in the env file.
+Returns configurations in the `env` file.
 __________________________
 
 
 
-### get_searched_products
+### `get_searched_products`
 
 Searches the product based on the given query.
 __________________________
 
 
 
-### get_digits
+### `get_digits`
 
 Returns the list of digits based on the given language.
 __________________________
 
 
 
-### convert_digits
+### `convert_digits`
 
 Converts digits from English to Persian.
 __________________________
 
 
 
-### format_price
+### `format_price`
 
 This function takes a digit from the input and separates the three digits. If it is Persian, it puts a "," and otherwise, it puts a "," sign.
 __________________________
 
 
 
-### is_paste_possible
+### `is_paste_possible`
 
 This function is for the admin panel and will be explained in the relevant section.
 __________________________
 
 
 
-### get_product_color_models
+### `get_product_color_models`
 
 This function takes the product from the input and returns its colors.
 __________________________
 
 
 
-### get_product_last_color
+### `get_product_last_color`
 
 Sorts and returns the last color for the product.
 __________________________
 
 
 
-### get_product_accessories
+### `get_product_accessories`
 
 This function takes the product and returns the accessories of that product.
 __________________________
 
 
 
-### get_product_related_articles
+### `get_product_related_articles`
 
 Returns articles related to a product to the number taken from the input.
 __________________________
 
 
 
-### get_product_related_products
+### `get_product_related_products`
 
 Returns products related to a product to the specified number.
 __________________________
 
 
 
-### get_product_similar_products
+### `get_product_similar_products`
 
-The get_product_similar_products function declares a similarity key for a product. For example, a car with the BMW brand is considered. This function returns products with the exact specifications as this car but with a different brand.
+The `get_product_similar_products` function declares a similarity key for a product. For example, a car with the BMW brand is considered. This function returns products with the exact specifications as this car but with a different brand.
 __________________________
 
 
 
 
-### get_related_products_with_directory_level
+### `get_related_products_with_directory_level`
 
-Returns related products having the same parent in which they are in specific higher levels passed by $level.
+Returns related products having the same parent in which they are in specific higher levels passed by `$level`.
 __________________________
 
 
 
-### get_product_most_privileged_key_attributes
+### `get_product_most_privileged_key_attributes`
 
 This function takes a list of all the keys and then returns the validity of that key. This function will be deprecated in the next version.
 __________________________
 
 
 
-### get_article_related_products
+### `get_article_related_products`
 
 This function takes from the input of an article and returns related products.
 __________________________
 
 
 
-### get_article_related_articles
+### `get_article_related_articles`
 
 This function takes from the input of an article and returns related articles.
 __________________________
 
 
 
-### recaptcha_enabled
+### `recaptcha_enabled`
 
 This function determines whether Recaptcha is enabled on the system or not.
 __________________________
 
 
 
-### get_same_models_products
+### `get_same_models_products`
 
-Takes a product from the input and returns same model products. For example: Different sizes of a shoe are same model products.
+Takes a product from the input and returns same model products. For example: different sizes of a shoe are same model products.
 __________________________
 
 
 
-### check_cart
+### `check_cart`
 
 Checks if the product is in the cart. It is suggested not to use this function due to low efficiency.
 __________________________
 
 
 
-### get_cart_information
+### `get_cart_information`
 
 This function returns cartRows data related to a product_id.
 __________________________
@@ -1458,7 +1458,7 @@ __________________________
 
 
 
-### get_cart
+### `get_cart`
 
 This function returns the structured cart of the current customer whether he is logged in or not.
 __________________________
@@ -1466,7 +1466,7 @@ __________________________
 
 
 
-### get_minimum_purchase_free_shipment
+### `get_minimum_purchase_free_shipment`
 
 This function specifies how much to buy to make shipping free.
 __________________________
@@ -1474,7 +1474,7 @@ __________________________
 
 
 
-### product_disable_on_min
+### `product_disable_on_min`
 
 This function specifies when a product is disabled, when it is zero, or when it reaches a minimum.
 __________________________
@@ -1482,135 +1482,135 @@ __________________________
 
 
 
-### customer_can_edit_profile
+### `customer_can_edit_profile`
 
 This function specifies whether the customer is allowed to edit their profile or not.
 __________________________
 
 
 
-### get_root_directory_per_directory
+### `get_root_directory_per_directory`
 
 This function takes a directory and returns root node.
 __________________________
 
 
 
-### h_view
+### `h_view`
 
 This function must move to the common helpers; It's not related to the template engine.
 __________________________
 
 
 
-### get_cms_setting
+### `get_cms_setting`
 
 This function takes the key from the input and returns the value set in the database by the administrator of e-commerce.
-For example if you call get_cms_setting('phone_number') it will return the value passed for phone_number by the administrator.
+For example if you call `get_cms_setting('phone_number')` it will return the value passed for phone_number by the administrator.
 __________________________
 
 
 
-### get_template_views
+### `get_template_views`
 
 This function returns a list of available template original views' names.
 __________________________
 
 
 
-### get_current_customer_location
+### `get_current_customer_location`
 
 There is no explanation for this function.
 __________________________
 
 
 
-### get_current_customer_location_data
+### `get_current_customer_location_data`
 
 There is no explanation for this function.
 __________________________
 
 
 
-### get_customer_meta_categories
+### `get_customer_meta_categories`
 
 This function returns a list of available customer meta categories.
 __________________________
 
 
 
-### cmc_get_options
+### `cmc_get_options`
 
 This function returns the applicable options for a specific customer meta category field that is passed to the function and specified by the $identifier.
 __________________________
 
 
 
-### cmc_get_content
+### `cmc_get_content`
 
 This function returns the data of a specific field of any customer meta category that is passed.
 __________________________
 
 
 
-### get_shipment_cost
+### `get_shipment_cost`
 
 This function takes the state from the input and returns the cost of sending.
 __________________________
 
 
 
-### build_directories_tree
+### `build_directories_tree`
 
 This function takes root and draws the tree to the lowest node and returns it.
 __________________________
 
 
 
-### clean_cart_cookie
+### `clean_cart_cookie`
 
 This function clears the cart cookie.
 __________________________
 
 
 
-### get_structure_sort_title
+### `get_structure_sort_title`
 
-This function is a part of a more prominent feature named Product Sort By Score.
+This function is a part of a more prominent feature named ‍‍`Product Sort By Score`.
 It returns the name of the specific product structure key by which the products are sorted.
 __________________________
 
 
 
-### get_logistics_schedule
+### `get_logistics_schedule`
 
 Returns the timetable. For example: when a product can be shipped.
 __________________________
 
 
 
-### day_of_week
+### `day_of_week`
 
 expected values are Persian names of the weekdays like 'شنبه', 'یکشنبه', 'دوشنبه', etc.
 __________________________
 
 
 
-### get_current_formal_date
+### `get_current_formal_date`
 
 This function returns the standard Persian current date formatted to show on the website.
 __________________________
 
 
 
-### get_current_date
+### `get_current_date`
 
 This function returns the current date.
 __________________________
 
 
 
-### get_max_transaction_amount
+### `get_max_transaction_amount`
 
 This function specifies the maximum amount of transactions that are allowed to handle by the system. In other words, it tells you the maximum amount of each invoice you create for your clients. This limitation is according to the payment IPGs' policies.
 
