@@ -73,7 +73,7 @@ So, let's take a deeper look at the project's directory and file structure.
 
 The root directory structure of the **Larammerce** project is generally as follows:
 
-```php{1}
+```{1}
 |---larammerce/
     |---app/
     |---bootstrap/
@@ -110,7 +110,7 @@ The root directory structure of the **Larammerce** project is generally as follo
 The `app` directory contains the core code of the application.
 Almost all of the classes in the application will be in this directory.
 
-```php{1}
+```{1}
 |---app/
     |---Console/
     |---Exceptions/
@@ -160,7 +160,7 @@ ___
 The `Utils` directory contains all the source code written beyond the Laravel system, that's why we will examine it more deeply.
 `Utils` is one of the biggest folds of the Larammerce project, developed by the Larammerce team.
 
-```php{1}
+```{1}
 |---Utils/
     |---CMS/
     |---ClassFinder/
@@ -187,11 +187,11 @@ The following table explains each of the folders in the Utils directory, let's t
 Num   | Directory           |Description
 ------|---------------------|-------------
 **1** | `CMS`               |Packages related to CMS are developed in this section
-**2** | `ClassFinder`       |
-**3** | `Common`            |
-**4** | `Comparison`        |
+**2** | `ClassFinder`       |This package is a class finding service in the project, which can be used in other projects as well.
+**3** | `Common`            |Functional packages that are also used in other PHP-based projects, such as `TimeService.php` and `SMSService.php`.
+**4** | `Comparison`        |This package is a comparison service between products.
 **5** | `Composer`          |Composer.json file processing package is developed in this section.
-**6** | `DS`                |
+**6** | `DS`                |DS stands for data structure in which a stack is defined.
 **7** | `FinancialManager`  |The financial system management package has been developed in this section.
 **8** | `Jalali`            |Jalali dates management package is developed in this section.
 **9** | `Migrator`          |The database migration management package has been developed in this section (this package is more intelligent than Maharjet Laravel).
@@ -199,7 +199,7 @@ Num   | Directory           |Description
 **11**| `OneTimeCode`       |The package for sending disposable codes has been developed in this section.
 **12**| `PaymentManager`    |The payment operation management package has been developed in this section.
 **13**| `PushNotification`  |The package for sending notifications to different devices has been developed in this section.
-**14**| `Reflection`        |
+**14**| `Reflection`        |This package is for annotating and providing additional information about a program.
 **15**| `SMSManager`        |SMS sending management package has been developed in this section.
 **16**| `ShipmentService`   |The product shipping method management package has been developed in this section.
 **17**| `Translation`       |The translation management package in the system has been developed in this section.
@@ -217,7 +217,7 @@ The `bootstrap` directory contains the `app.php` file which bootstraps the frame
 This directory also houses a **cache** directory which contains framework-generated files for performance optimization such as the route and services cache files.
 You should not typically need to modify any files within this directory.
 
-```php{1}
+```{1}
 |---bootstrap/
     |---cache/
     |---app.php
@@ -230,7 +230,7 @@ The `config` directory, as the name implies, contains all of your application's 
 It's a great idea to read through all of these files and familiarize yourself with all of the options available to you, but Later in another document,
 the training and review of each of the config directory files will be discussed.
 
-```php{1}
+```{1}
 |---config/
     |---cms/
     |---app.php
@@ -291,7 +291,7 @@ The `data` directory is the keeper of Larammerce project metadata, which is diff
 
 The `database` directory contains your database **migrations**, model **factories**, and **seeds**.
 
-```php{1}
+```{1}
 |---database/
     |---factories/
     |---migrations/
@@ -303,7 +303,7 @@ The `database` directory contains your database **migrations**, model **factorie
 The `public` directory contains the `index.php` file, which is the entry point for all requests entering your application and configures autoloading.
 This directory also houses your assets such as **images**, **JavaScript**, and **CSS**.
 
-```php{1}
+```{1}
 |---public_html/
     |---HCMS-assets/
     |---ResponsiveFilemanager/
@@ -366,7 +366,7 @@ cp .htaccess.example .htacces
 The resources directory contains **views** *<sup>[1](#1)</sup>* as well as raw and uncompiled resources, such as **SASS**, **CSS** or **JavaScript**.
 This directory also contains all your language files.
 
-```php{1}
+```{1}
 |---resources/
     |---assets/
     |---fonts/
@@ -413,13 +413,10 @@ The `font` directory contains the Larammerce project font files, currently, the 
 * `IRANSansWeb.ttf`
 * `IRANSansWeb_Bold.ttf`
 * `IRANSansWeb_Medium.ttf`
-* 
-##### **hc-template**
-___
-
 
 ##### **lang**
 ___
+language strings may be stored in files within the lang directory. Within this directory, there may be subdirectories for each language supported by the application.
 
 
 ##### **views**
@@ -431,7 +428,7 @@ The `views` directory contains all views of the Larammerce project. This directo
 The `routes` directory contains all of the route definitions for your application. By default, several route files are included with Laravel: 
 `web.php`, `api.php`, `console.php`, and `channels.php`.
 
-```php{1}
+```{1}
 |---routes/
     |---api.php
     |---channels.php
@@ -443,7 +440,7 @@ The `routes` directory contains all of the route definitions for your applicatio
 
 The `runtime` directory is related to the dockerization of the Larammerce project.
 
-```php{1}
+```{1}
 |---runtimes/
     |---nginx/conf.d/
     |---php-cli/
@@ -454,7 +451,7 @@ The `runtime` directory is related to the dockerization of the Larammerce projec
 
 The `script` directory is separated from **bash** and **python**, the scripts needed to run and modify the Larammerce project are kept in this directory.
 
-```php{1}
+```{1}
 |---scripts/
     |---bash/
     |---python/
@@ -468,7 +465,7 @@ The **app** directory may be used to store any files generated by your applicati
 The **framework** directory is used to store framework-generated files and caches.
 Finally, the **logs** directory contains your application's log files.
 
-```php{1}
+```{1}
 |---storage/
     |---app/
     |---debugbar/
@@ -481,7 +478,7 @@ Finally, the **logs** directory contains your application's log files.
 
 The `tests` directory contains your automated tests.
 
-```php{1}
+```{1}
 |---tests/
     |---Browser/
     |---Feature/
@@ -495,7 +492,7 @@ The `tests` directory contains your automated tests.
 The most important and basic part of the Larammerce project is the `composer.json` file,
 which includes dependencies and `PHP` packages installed by the Larammerce team, please note that two autoload files that are helper functions have also been added to this section.
 
-```php{10-47,64-65}
+```{10-47,64-65}
 {
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
