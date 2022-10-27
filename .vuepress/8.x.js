@@ -37,6 +37,7 @@ module.exports = [
         children: prefix('core-concepts', [
             '',
             'cruds',
+            'representative',
             'annotations',
             'validation',
             'admin-requests',
