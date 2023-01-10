@@ -2,4 +2,4 @@
 
 [[toc]]
 
-This open source project is being documented by developers well trained under the supervision of an expert team leader.
+Larammerce is getting documented, as well as developed at high speed. So if you want to be on track, follow the guides.
