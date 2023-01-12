@@ -24,19 +24,25 @@ module.exports = (options, ctx) => ({
         ['container', {
             type: 'tip',
             defaultTitle: {
-                '/zh/': '提示'
+                '/en/': 'Tip'
             }
         }],
         ['container', {
             type: 'warning',
             defaultTitle: {
-                '/zh/': '注意'
+                '/en/': 'Warning'
             }
         }],
         ['container', {
             type: 'danger',
             defaultTitle: {
-                '/zh/': '警告'
+                '/en/': 'Danger'
+            }
+        }],
+        ['container', {
+            type: 'success',
+            defaultTitle: {
+                '/en/': 'Success'
             }
         }],
     ]
