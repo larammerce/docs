@@ -13,7 +13,7 @@ Then you can modify any change on your own repository after you clone it on your
 1) Fork the repository on Github
 2) Create and switch to the new branch then pull project
    ```bahs
-    git checkout newbranch
+    git checkout -b newbranch
     git pull
    ```   
      
