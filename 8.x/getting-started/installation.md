@@ -206,7 +206,7 @@ yum install php-bcmath php-mysql php-pdo php-mbstring php-curl php-imagick php-j
 ```
 
 ## Install MongoDB 
-
+ 
 By default, MongoDB is used as the logs 'DB' for the Larammerce system.
 
 Create/Modify the following file `/etc/yum.repos.d/mongodb-org-4.4.repo`
