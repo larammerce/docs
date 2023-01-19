@@ -224,12 +224,13 @@ It should have separate container and should not be inside of a paragraph descri
 Theoretical concepts might be complicated, inexplicable or have long explanations .
 The solution is designing and embedding related pictures.
 
-####How to present the technical subjects related to the admin dashboard
+#### How to present the technical subjects related to the admin dashboard
 
 Sometimes the need of showing a part of an app is recognized, so it's better to use a schema in your text.
-You can use its screenshot for it. but note that the screenshot should contains just the specific part you are describing and should not shows your tabs and all your environment.
+You can use its screenshot for it. but note that the screenshot should contains just the specific part you are describing and should not shows your tabs and all your environment.<br/>
 
 
+#### the following article has been recorded in persian just in case of subscribers need:
 
 <iframe src="https://www.aparat.com/video/video/embed/videohash/6et8I/vt/frame"  allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
 
