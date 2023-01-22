@@ -29,3 +29,22 @@ Only `##` and `###` headers are indexed in right sidebar as table of contents .
 ::: danger
 The use of `#` header is not permitted in larammerce documents .
 :::
+
+### How to describe life cycles and road maps
+
+You can use softwares such az `starUML` *<sup>[1](#1)</sup>* or `figma` *<sup>[2](#2)</sup>* in order to visually describe the details .
+
+![life cycles: starUML diagram](/03.png)
+
+
+
+
+
+
+
+## References
+
+*1. <a name="1">[Introduction to starUML .](https://docs.staruml.io/)</a>*
+
+*2. <a name="2">[Getting started with figma .](https://www.figma.com/)</a>*
+
