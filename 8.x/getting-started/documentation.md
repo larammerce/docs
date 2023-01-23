@@ -22,11 +22,11 @@ Each page starts with a `##` header as a section which continues with one or mor
 
 **NOTE :** A subsection with a `###` header may contain multiple `####` , `#####` or `######` headers .
 
-::: warning
+:::warning Index
 Only `##` and `###` headers are indexed in right sidebar as table of contents .
 :::
 
-::: danger
+:::danger Avoid #
 The use of `#` header is not permitted in larammerce documents .
 :::
 
@@ -34,9 +34,55 @@ The use of `#` header is not permitted in larammerce documents .
 
 You can use softwares such as  `starUML`  *<sup>[1](#1)</sup>*  or  `figma`  *<sup>[2](#2)</sup>*  in order to visually describe the details .
 
+##### EXAMPLE
+
 ![life cycles: starUML diagram](/03.png)
 
+### How/When to put the notices, warnings, and danger zone sections
 
+Notices , Warnings and Danger sections help you to get users' attention to the important tips .
+
+##### PATTERN
+
+```bash
+:::tip title-of-notice
+text-of-notice
+:::
+```
+
+##### EXAMPLE
+
+:::tip NOTE
+This function checks the activation of the representative management section.
+:::
+
+##### PATTERN
+
+```bash
+:::warning title-of-warning
+text-of-warning
+:::
+```
+
+##### EXAMPLE
+
+:::warning Laravel Version
+The tutorials in this document are based on Laravel version 8.75 .
+:::
+
+##### PATTERN
+
+```bash
+:::danger title-of-danger
+text-of-danger
+:::
+```
+
+##### EXAMPLE
+
+:::danger Avoid Manipulation
+Any change in this section may lead to unwanted concequences !
+:::
 
 
 
