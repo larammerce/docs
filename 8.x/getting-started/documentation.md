@@ -158,8 +158,15 @@ Follow the pattern below in order to address a file of the project into the text
 `/path/to/your/docs/directories-or-files-of-the-project`
 ```
 
-:::tip EXAMPLE
+ :::tip EXAMPLE
+ ```
 Correct the first line in the file `/path/to/your/docs/.vuepress/styles/index.styl` and then change the active directory .
+```
+
+**OUTPUT**
+
+Correct the first line in the file `/path/to/your/docs/.vuepress/styles/index.styl` and then change the active directory .
+
 :::
 
 In order to address a file of the project into the code block , you should write the path of this file as a comment before the first line of the code .
@@ -178,6 +185,24 @@ In order to address a file of the project into the code block , you should write
   padding-top 6rem
   overflow initial
 ```
+
+### How to present the variables and technical words
+
+ Variables and technical words must be placed inside double graves .
+
+ :::tip EXAMPLE
+ ```
+Run this project on your `local host` , maybe the `port:8080` .
+```
+
+**OUTPUT**
+
+Run this project on your `local host` , maybe the `port:8080` .
+:::
+
+
+
+
 
 
 
