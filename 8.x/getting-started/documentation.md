@@ -84,6 +84,34 @@ text-of-danger
 Any change in this section may lead to unwanted concequences !
 :::
 
+### How/When to add tables
+
+Tables help you to represent a list in a nice configuration with ordered alignment .
+
+:::warning Table's Width
+Select the columns' number and content carefully so that the table wouldn't exceed the width of the page !
+:::
+
+:::danger Avoid Long Text
+Don't use a long text in a cell of the table !
+:::
+
+##### PATTERN
+
+```bash
+Title 1 | Title 2
+--------|--------
+Content | Content
+Content | Content 
+```
+
+##### EXAMPLE
+
+Name | Age | Job
+-----|-----|---------
+John |  29 | architect
+Mary |  33 | teacher
+
 
 
 
