@@ -44,7 +44,7 @@ You can use the professional tools such as  `starUML`  *<sup>[1](#1)</sup>*  or 
 
 ### How/When to put the notices, warnings, and danger zone sections
 
-Notices , warnings and danger sections help you to get user's attention to the important hints .
+Notices , warnings and danger zone sections help you to get user's attention to the important hints .
 
 ##### PATTERN
 
@@ -200,7 +200,29 @@ Run this project on your `local host` , maybe the `port:8080` .
 Run this project on your `local host` , maybe the `port:8080` .
 :::
 
+### How to describe the methods and classes
 
+Methods and classes should be described in accordance with the pattern below :
+
+![life cycles: starUML diagram](/01-code.png)
+
+##### EXAMPLE
+
+```php
+// app/Models/User.php
+
+class User extends BaseModel{
+    ...
+    private int $id; // This attribute keeps the user's primary key
+    ...
+}
+
+function test(string $input){
+    ...
+    return true; // if $input=="1"
+    ...
+}
+```
 
 
 
