@@ -44,7 +44,7 @@ You can use the professional tools such as  `starUML`  *<sup>[1](#1)</sup>*  or 
 
 ### How/When to put the notices, warnings, and danger zone sections
 
-Notices , Warnings and Danger sections help you to get users' attention to the important tips .
+Notices , warnings and danger sections help you to get user's attention to the important hints .
 
 ##### PATTERN
 
@@ -85,7 +85,7 @@ text-of-danger
 ##### EXAMPLE
 
 :::danger Avoid Manipulation
-Any change in this section may lead to unwanted concequences !
+Any change in this section may lead to unwanted consequences !
 :::
 
 ### How/When to add tables
@@ -93,7 +93,7 @@ Any change in this section may lead to unwanted concequences !
 Tables help you to represent a list in a nice configuration with ordered alignment .
 
 :::warning Table's Width
-Select the columns' number and content carefully so that the table wouldn't exceed the width of the page !
+Select the number and contents of columns carefully so that the table wouldn't exceed the width of the page !
 :::
 
 :::danger Avoid Long Text
@@ -118,7 +118,7 @@ Mary |  33 | teacher
 
 ### How to present the paths and directories
 
-Paths and directory trees are represented via the pattern below :
+Paths and directory trees are represented in accordance with the pattern below :
 
 ```bash
 |--- directory/
@@ -150,8 +150,34 @@ You can add some optional description in parentheses .
 ```
 :::
 
+### How to present the file names (Addressing the project files)
 
+Follow the pattern below in order to address a file of the project into the text :
 
+```
+`/path/to/your/docs/directories-or-files-of-the-project`
+```
+
+:::tip EXAMPLE
+Correct the first line in the file `/path/to/your/docs/.vuepress/styles/index.styl` and then change the active directory .
+:::
+
+In order to address a file of the project into the code block , you should write the path of this file as a comment before the first line of the code .
+
+##### EXAMPLE
+
+```stylus
+// .vuepress/styles/index.styl
+
+.sidebar
+  position relative !important
+  background-color transparent !important
+  border none !important
+  top: 0 !important
+  display inline-block
+  padding-top 6rem
+  overflow initial
+```
 
 
 
