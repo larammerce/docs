@@ -204,7 +204,7 @@ Run this project on your `local host` , maybe the `port:8080` .
 
 Methods and classes should be described in accordance with the pattern below :
 
-![life cycles: starUML diagram](/01-code.png)
+![code blocks: methods and classes](/01-code.png)
 
 ##### EXAMPLE
 
@@ -224,9 +224,21 @@ function test(string $input){
 }
 ```
 
+### Where to put video blocks
 
+Put the video block at the lowermost part of the document , before the reference section .
 
+:::tip EXAMPLE
 
+```
+<iframe src="https://www.aparat.com/video/video/embed/videohash/MqHk6/vt/frame"  allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+```
+
+**OUTPUT**
+
+<iframe src="https://www.aparat.com/video/video/embed/videohash/MqHk6/vt/frame"  allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+:::
 
 
 
