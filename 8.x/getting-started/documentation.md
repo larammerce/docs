@@ -240,6 +240,51 @@ Put the video block at the lowermost part of the document , before the reference
 
 :::
 
+### How to write the page references
+
+In order to link to other web sites , you should mention them as references . Each reference has a number which should be superscript and italic . For this purpose , use the pattern below :
+
+```
+*<sup>[number](#number)</sup>*
+```
+
+:::tip EXAMPLE
+```
+You can use the professional tools such as  `starUML`  *<sup>[1](#1)</sup>* .
+```
+
+**OUTPUT**
+
+You can use the professional tools such as  `starUML`  *<sup>[1](#1)</sup>* .
+:::
+
+This number is an internal link which redirects the user to the reference section at the bottom of the same page , where you can place the external link with the same number and a suitable expression . The pattern is as follows :
+
+```
+*number. <a name="number">[expression](external-link)</a>*
+```
+
+:::tip EXAMPLE
+```
+*1. <a name="1">[Introduction to starUML .](https://docs.staruml.io/)</a>*
+```
+
+**OUTPUT**
+
+*1. <a name="1">[Introduction to starUML .](https://docs.staruml.io/)</a>*
+:::
+
+:::danger Avoid Direct External link
+Never insert the external link directly into the larammerce document !
+:::
+
+
+
+
+
+
+
+
 
 
 
