@@ -310,6 +310,64 @@ For further information , read the [PR Requirements](https://docs.larammerce.com
 If your desired topic is discussed before in another page of larammerce document , create an internal link to that page instead of repetition the subject !
 :::
 
+### How to show the code block outputs
+
+This topic is presented by a few examples .
+
+**1.** Suppose you are going to show the output of the following `php` code block :
+
+```php
+// app/Models/User.php
+
+class User extends BaseModel{
+    ...
+    private int $id; // This attribute keeps the user's primary key
+    ...
+}
+
+function test(string $input){
+    ...
+    echo "Hello World!";
+    ...
+}
+```
+
+To do this , use the following code :
+
+![code block output: first image](/04-code.png)
+
+The result is as follows :
+
+```bash
+php script.php
+# output: Hello World!
+```
+
+**2.** The second example is related to the following `API` call :
+
+```
+fetch localhost:8080/api/v1/some/test/api
+```
+
+Here is the code to show the related `json` output :
+
+![code block output: second image](/05-code.png)
+
+and the result is :
+
+output:
+```json
+{
+    "keyA": "valueA",
+    "keyB": [
+        "item1",
+        "item2"
+    ]
+}
+```
+
+
+
 
 
 
