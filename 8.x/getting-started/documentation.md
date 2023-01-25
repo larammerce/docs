@@ -242,7 +242,7 @@ Put the video block at the lowermost part of the document , before the reference
 
 ### How to write the page references
 
-In order to link to other web sites , you should mention them as references . Each reference has a number which should be superscript and italic . For this purpose , use the pattern below :
+In order to create a link to another web site , you should mention it as a reference . Each reference has a number which should be superscript and italic . For this purpose , use the pattern below :
 
 ```
 *<sup>[number](#number)</sup>*
@@ -278,9 +278,37 @@ This number is an internal link which redirects the user to the reference sectio
 Never insert the external link directly into the larammerce document !
 :::
 
+### How to put links to other documents
 
+Each section in a larammerce document has a title on which you can hold the mouse to see the `#` sign at the left side . Clicking on this sign will show you the url address of this section which can be used to create a link to that section into your document . For example to create a link to `PR Requirements` section of `Contributing` page , do the following steps in order :
 
+**1.** Hold the mouse on this title to appear the `#` sign .
 
+![internal link: first image](/02-link.png)
+
+**2.** Click on the `#` sign and copy the url address .
+
+![internal link: second image](/03-link.png)
+
+**3.** Insert this address into your document with the following format :
+
+```
+[expression](address)
+```
+
+In this example , the link may be as follows :
+
+```
+For further information , read the [PR Requirements](https://docs.larammerce.com/8.x/getting-started/contributing.html#pr-requirements) .
+```
+
+**OUTPUT**
+
+For further information , read the [PR Requirements](https://docs.larammerce.com/8.x/getting-started/contributing.html#pr-requirements) .
+
+:::warning Repetition
+If your desired topic is discussed before in another page of larammerce document , create an internal link to that page instead of repetition the subject !
+:::
 
 
 
