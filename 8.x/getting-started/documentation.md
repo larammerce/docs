@@ -275,7 +275,7 @@ This number is an internal link which redirects the user to the reference sectio
 :::
 
 :::danger Avoid Direct External link
-Never insert the external link directly into the larammerce document !
+Never insert the external link to another web site directly into the larammerce document paragraph !
 :::
 
 ### How to put links to other documents
@@ -365,6 +365,34 @@ output:
     ]
 }
 ```
+
+### How to present theoretical concepts and technical subjects
+
+You can get help from the appropriate images in order to represent the theoretical and technical concepts . Put the image file into the directory `/path/to/your/docs/.vuepress/public/` and then use the format below :
+
+```
+![image-subject](/image-file-name)
+```
+
+##### EXAMPLE
+
+```
+![internal link: second image](/03-link.png)
+```
+**OUTPUT**
+
+![internal link: second image](/03-link.png)
+
+:::warning Where to Use the Images ?
+You are allowed to embed an image into the larammerce document only in 3 situations :
+
+**1.** To define some parts of admin panel that is difficult to understand .
+
+**2.** To describe a difficult technical concept .
+
+**3.** To illustrate a road map or life cycle or diagram .
+:::
+
 
 
 
