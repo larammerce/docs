@@ -85,5 +85,34 @@ In order to visually describing the details of a procedure or showing a map or a
 
  ![road map sample](/.vuepress/public/road-map-sample.png)
 
+ :::danger Avoid Windows Paint!
+ 'Windows Paint' is not suitable for this purpose.
+ :::
+
+#### How/When to put the notices, warnings, and danger zone sections
+
+You can use it when you want to get your readership's attention.
+
+**PATTERN**
+
+```bash
+:::tip title-of-notice
+text-of-notice
+:::
+```
+**EXAMPLE**
+
+```
+:::tip NOTE
+This function checks the activation of the representative management section.
+:::
+```
+**OUTPUT**
+
+:::tip NOTE
+This function checks the activation of the representative management section.
+:::
+
+NOTE: `Tip` can be replaced (according to your purpose and situation) with `warning`, `danger`, `notice` or `success`  after three colon signs.
 
  
