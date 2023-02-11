@@ -115,4 +115,15 @@ This function checks the activation of the representative management section.
 
 NOTE: `Tip` can be replaced (according to your purpose and situation) with `warning`, `danger`, `notice` or `success`  after three colon signs.
 
- 
+
+#### How/When to add tables
+
+To represent a list in a nice configuration with ordered alignment use tables.
+
+Consider that tables should Have:
+- Organized alignment
+- Clear content
+- Container width (never exceed the page width)
+- Suitable amount of columns
+
+NOTE: Avoid using a table when there are many explanations or a code sample. 
