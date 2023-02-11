@@ -3,7 +3,7 @@
 [[toc]]
 
 This article is a complete guide to writing documents for the larammarce project.<br/>
-larammerce documentation is composing with *markdown syntax* *<sup>[1](#1)</sup>*.also initial knowledge of *git commands* *<sup>[2](#2)</sup>* is necessary.
+Larammerce documentation is composing with *markdown syntax* *<sup>[1](#1)</sup>*.also initial knowledge of *git commands* *<sup>[2](#2)</sup>* is necessary.
 
 ### Starting point </br>
 
@@ -28,7 +28,8 @@ You can Install [Node.js](https://nodejs.org/en/download/) here.</br>
 
 OR
 
-- **_[Install direnv](https://direnv.net/docs/installation.html)_** </br>so can set an environment variable to enable **_legacy_** mode by creating a file named `.envrc` on `.gitignore` directory including code below :
+- **_[Install direnv](https://direnv.net/docs/installation.html)_** </br>You can set an environment variable to enable **_legacy_** mode by creating a file named `.envrc` on `.gitignore` directory including code below :
 
 ```bash
 export NODE_OPTIONS=--openssl-legacy-provider
+```
