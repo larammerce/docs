@@ -33,3 +33,15 @@ OR
 ```bash
 export NODE_OPTIONS=--openssl-legacy-provider
 ```
+### Overall structure
+
+<br/> Each document must consist of the following parts:<br/><br/>
+
+**1) Introduction** :<br/>
+Describe the overall view of the page by writing a general illustration of the represented subject. <br/>
+
+**2) Technical description** :<br/>
+Write technical details based on markdown structure.<br/>
+
+**2) Sum Up** :<br/>
+Make a brief review of the parts above (optional) and write the page references.<br/><br/><br/>
