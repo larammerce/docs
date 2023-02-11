@@ -127,3 +127,23 @@ Consider that tables should Have:
 - Suitable amount of columns
 
 NOTE: Avoid using a table when there are many explanations or a code sample. 
+
+#### How to present the paths and directories
+
+To write pathes recpectively from the main directory to subdirectories follow description below:
+```
+|---main directory
+    |---sub directory1
+    |---sub directory2
+        |---sub of sub direcroty2
+```
+NOTE: You can add some optional descriptions in parentheses.
+
+**EXAMPLE**
+
+
+```bash
+|--- .vuepress/ (dir)
+    |--- styles/ (dir)
+        |--- index.styl (styl file)
+```
