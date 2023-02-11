@@ -2,4 +2,33 @@
 
 [[toc]]
 
-Larammerce is getting documented, as well as developed at high speed. So if you want to be on track, follow the guides.
+This article is a complete guide to writing documents for the larammarce project.<br/>
+larammerce documentation is composing with *markdown syntax* *<sup>[1](#1)</sup>*.also initial knowledge of *git commands* *<sup>[2](#2)</sup>* is necessary.
+
+### Starting point </br>
+
+If this is your first contribution, follow instructions composed on [`contributing`](https://docs.larammerce.com/8.x/getting-started/contributing.html#contributing) article on [`larammerce.com`](https://larammerce.com/).
+
+### Requirements
+| Tool name        | Version(distro)                                                       |
+|------------------|-----------------------------------------------------------------------|
+| Operating system | Every version of windows,Osx, linux supporting installation of Node.js |
+| Node.js           | V16 or higher                                                         |
+
+::: warning NODE version support :
+
+Consider that no errors will be detected using Node.js version 16 for this project.
+:::
+
+You can Install [Node.js](https://nodejs.org/en/download/) here.</br>
+
+::: warning In order to use a different Node.js version, install `nvm` or `direnv` following description below: :::
+
+- **_[Install nvm](https://github.com/nvm-sh/nvm)_**  </br>nvm is a tool which gives you the ability to switch between different versions of Node depends on project's requirements. <br/>
+
+OR
+
+- **_[Install direnv](https://direnv.net/docs/installation.html)_** </br>so can set an environment variable to enable **_legacy_** mode by creating a file named `.envrc` on `.gitignore` directory including code below :
+
+```bash
+export NODE_OPTIONS=--openssl-legacy-provider
