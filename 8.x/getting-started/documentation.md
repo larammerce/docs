@@ -44,4 +44,42 @@ Describe the overall view of the page by writing a general illustration of the r
 Write technical details based on markdown structure.<br/>
 
 **2) Sum Up** :<br/>
-Make a brief review of the parts above (optional) and write the page references.<br/><br/><br/>
+Make a brief review of the parts above (optional) and write the page references.<br/><br/>
+
+#### How to write sections and subsections
+
+ Write the article title using `h2` tag and `h3 ,h4 ,..., h6 ` for the subsections. 
+<br/>
+NOTE:<br/> 
+
+- Overusing these tags makes the sidebar crowded and complicated.
+
+- Only `h2` and `h3` headers get indexed in the right sidebar as the table of contents.
+- Avoid `h1` Header. The use of `h1` header is not permitted in Larammerce documents.
+
+**EXAMPLE**
+
+ ```bash
+## Documentation
+[[toc]]
+...
+This article ... is necessary.
+...
+
+### Overall Structure
+...
+Each document must consist... parts.
+...
+
+#### How to write sections and subsections
+```
+
+#### How to describe life cycles and road maps
+
+In order to visually describing the details of a procedure or showing a map or a diagram, Draw a schema following these 2 steps:<br/>
+1. Upload the schema on `vuepress\public` directory.
+2. Use Markdown syntax to upload it on your `.md` file. <br/>
+
+
+ Notice to the example below:
+ 
