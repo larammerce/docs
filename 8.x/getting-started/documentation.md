@@ -82,4 +82,8 @@ In order to visually describing the details of a procedure or showing a map or a
 
 
  Notice to the example below:
+
+ ![road map sample](/.vuepress/public/road-map-sample.png)
+
+
  
