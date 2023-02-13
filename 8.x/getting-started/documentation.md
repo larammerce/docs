@@ -147,3 +147,25 @@ NOTE: You can add some optional descriptions in parentheses.
     |--- styles/ (dir)
         |--- index.styl (styl file)
 ```
+#### How to present the file names (Addressing the project files)
+
+Addressing files is applicable in many parts of a document. writing the path between grave signs is the right way to represent the address **_through a text_**.<br/>
+ **EXAMPLE:**
+```bash
+`/path/to/your/docs/.vuepress/theme/styles/custom-blocks/styl`
+```
+
+In order to create a new custom block you can modify the file `/path/to/your/docs/.vuepress/theme/styles/custom-blocks/styl`.<br/>
+To show the path use commenting on the top of the commands.
+
+```stylus
+//root address: .vuepress/theme/styles/custom-blocks/styl
+&.success
+    background-color rgba(80,153,61,.3)
+    border-color darken(#50993d, 35%)
+    color darken(#50993d, 70%)
+    .custom-block-title
+      color darken(#50993d, 50%)
+    a
+      color $textColor
+```
