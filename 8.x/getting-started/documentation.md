@@ -169,3 +169,19 @@ To show the path use commenting on the top of the commands.
     a
       color $textColor
 ```
+
+#### How to present the variables and technical words <br/>
+
+Variables and technical words must be placed inside double graves.
+
+**EXAMPLE**
+
+ ```
+Run this project on your `local host`, `port:8080`.
+```
+
+**OUTPUT**
+
+Run this project on your `local host`, `port:8080`.
+
+
