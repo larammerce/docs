@@ -130,7 +130,7 @@ NOTE: Avoid using a table when there are many explanations or a code sample.
 
 #### How to present the paths and directories
 
-To write pathes recpectively from the main directory to subdirectories follow description below:
+To write paths hierarchical structure from the main directory to subdirectories follow description below:
 ```
 |---main directory
     |---sub directory1
@@ -149,7 +149,7 @@ NOTE: You can add some optional descriptions in parentheses.
 ```
 #### How to present the file names (Addressing the project files)
 
-Addressing files is applicable in many parts of a document. writing the path between grave signs is the right way to represent the address **_through a text_**.<br/>
+Addressing files is applicable in many parts of a document. writing the path between `grave signs` is the right way to represent the address **_through a text_**.<br/>
  **EXAMPLE:**
 ```bash
 `/path/to/your/docs/.vuepress/theme/styles/custom-blocks/styl`
