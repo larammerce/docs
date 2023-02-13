@@ -227,3 +227,14 @@ function test(string $input){
     background-color rgba(80,153,61,.3)
     border-color darken(#50993d, 35%)
 ```
+
+#### Where to put video blocks
+
+better to put the video block at the lowermost part of the document, before the reference section.
+to upload a video on your .md file follow description below:<br/>
+1. Copy the video iframe code.
+2. Paste it at the bottom of your document
+
+```
+<iframe src="video iframe code "  allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe> 
+```
