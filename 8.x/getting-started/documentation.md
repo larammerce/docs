@@ -238,3 +238,19 @@ to upload a video on your .md file follow description below:<br/>
 ```
 <iframe src="video iframe code "  allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe> 
 ```
+
+#### How to write the page references<br/>
+
+In order to link a word or a part of the article to a website, you should mention it as a reference following structure below:
+
+1. Hyperlink the specific part and give it a superscript so the user can find it in your article. (this is an internal link, redirects you to the reference section)
+
+```bahs 
+*the specific word or sentence* *<sup>[1](#1)</sup>*
+```
+2. Now use this command to build your refrence.
+
+```bash
+*1.<a name="1">[write whatever you want](put the link here )</a>*
+```
+
