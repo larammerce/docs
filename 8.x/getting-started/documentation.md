@@ -204,4 +204,26 @@ NOTE: Dots mean you have more codes previously and thereafter.
 
 #### How to write code blocks
 
-To do so, use 3 graves to create a code block and use labels showing what syntax are you using.
+To do so, use 3 graves to create a code block and use labels showing what syntax are you using.<br/><br/>
+**EXAMPLE**
+
+![code blocks:image](/.vuepress/public/CodeBlockSample.png)
+
+
+**OUTPUT** :
+
+```bash
+this is a bash code block sample
+```
+```php
+function test(string $input){
+    ...
+    return true; // if $input=="1"
+    ...
+}
+```
+```stylus
+&.success
+    background-color rgba(80,153,61,.3)
+    border-color darken(#50993d, 35%)
+```
