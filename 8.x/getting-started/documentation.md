@@ -13,7 +13,7 @@ If this is your first contribution, follow instructions composed on [`contributi
 | Tool name        | Version(distro)                                                       |
 |------------------|-----------------------------------------------------------------------|
 | Operating system | Every version of windows,Osx, linux supporting installation of Node.js |
-| Node.js           | V16 or higher                                                         |
+| Node.js          | V16 or higher                                                         |
 
 ::: warning NODE version support :
 
@@ -184,4 +184,20 @@ Run this project on your `local host`, `port:8080`.
 
 Run this project on your `local host`, `port:8080`.
 
+#### How to describe the methods and classes
+Methods and classes should be described following the pattern below:
 
+```php
+// app/Models/User.php
+class User extends BaseModel{
+    ...
+    private int $id; // This attribute keeps the user's primary key
+    ...
+}
+function test(string $input){
+    ...
+    return true; // if $input=="1"
+    ...
+}
+```
+NOTE: Dots mean you have more codes previously and thereafter.
