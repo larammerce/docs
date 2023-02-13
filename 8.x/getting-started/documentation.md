@@ -201,3 +201,7 @@ function test(string $input){
 }
 ```
 NOTE: Dots mean you have more codes previously and thereafter.
+
+#### How to write code blocks
+
+To do so, use 3 graves to create a code block and use labels showing what syntax are you using.
