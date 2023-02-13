@@ -253,4 +253,15 @@ In order to link a word or a part of the article to a website, you should mentio
 ```bash
 *1.<a name="1">[write whatever you want](put the link here )</a>*
 ```
+#### How to put links to other documents
+
+Each section in a larammerce document has a title on which you can hold the mouse to see the `sharp sign`  at the left side . Clicking on this sign will show you the url address of this section which can be used to create a link to that section into your document.
+
+1. Hover on the considered title.
+2. copy the url.
+3. paste url in the pattern below:
+```
+[expression](url address)
+```
+NOTE: If your desired topic has been already composed before in another larammerce document, refrence the topic to the section or the whole document.
 
