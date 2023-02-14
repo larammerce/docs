@@ -314,3 +314,10 @@ NOTE: upload the pictures on `/path/to/your/docs/.vuepress/public/` directory an
 ```
 ![image-subject](/image-file-name)
 ```
+
+#### How to present the technical subjects related to the admin dashboard <br/><br/>
+
+Working with a complicated dashboard can cause many misunderstandings among users. to avoid upcoming problems, you can use a schema or a snapshot of the specific part you considered.
+
+
+NOTE: the screenshot should not contain your tabs and all your computer environment.
