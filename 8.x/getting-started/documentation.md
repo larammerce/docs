@@ -255,7 +255,7 @@ In order to link a word or a part of the article to a website, you should mentio
 ```
 #### How to put links to other documents
 
-Each section in a larammerce document has a title on which you can hold the mouse to see the `sharp sign`  at the left side . Clicking on this sign will show you the url address of this section which can be used to create a link to that section into your document.
+Each section in a Larammerce document has a title on which you can hold the mouse to see the `sharp sign`  at the left side . Clicking on this sign will show you the url address of this section which can be used to create a link to that section into your document.
 
 1. Hover on the considered title.
 2. copy the url.
@@ -263,5 +263,18 @@ Each section in a larammerce document has a title on which you can hold the mous
 ```
 [expression](url address)
 ```
-NOTE: If your desired topic has been already composed before in another larammerce document, refrence the topic to the section or the whole document.
+NOTE: If your desired topic has been already composed before in another Larammerce document, refrence the topic to the section or the whole document.
 
+#### How to show the code block outputs
+Here is an example on how to show the hello world output script :
+
+```php 
+function test_function(string $input){
+    ...echo "hello world"
+    return...
+}
+```
+```bahs
+php script.php
+# output: hello world
+```
