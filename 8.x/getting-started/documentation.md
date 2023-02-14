@@ -278,3 +278,22 @@ function test_function(string $input){
 php script.php
 # output: hello world
 ```
+
+#### How to show an HTTP request and its response
+
+To do so, you can call an API:
+
+```
+fetch localhost:8080/api/v1/some/test/api
+```
+**OUTPUT :**
+```json
+{
+   "keyA" : "valueA",
+   "keyB" : "valueB",
+   "keyT" : [
+      "item1",
+      "item2"
+   ]
+}
+```
