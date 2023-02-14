@@ -321,3 +321,16 @@ Working with a complicated dashboard can cause many misunderstandings among user
 
 
 NOTE: the screenshot should not contain your tabs and all your computer environment.
+
+
+#### a quick sum-up on picture usage rules
+
+:::warning Where to Use the Images ?
+You are allowed to embed an image into the Larammerce document only in 3 situations :
+
+**1.** To define some parts of admin panel that is difficult to understand .
+
+**2.** To describe a difficult technical concept .
+
+**3.** To illustrate a road map or life cycle or diagram .
+:::
