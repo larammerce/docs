@@ -304,3 +304,13 @@ There are 2 ways for it:
 2) Bring it to the reference section.
 
 It should have an independent container and should not be inside a paragraph describing other subjects.
+
+#### How to present theoretical concepts inside MD files
+
+Representing a theoretical concepts might be complicated, inexplicable or have long explanations .
+The solution is designing and embedding appropriate related images.
+NOTE: upload the pictures on `/path/to/your/docs/.vuepress/public/` directory and show it on your document composing code format below:
+
+```
+![image-subject](/image-file-name)
+```
