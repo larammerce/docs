@@ -1,14 +1,16 @@
 ## Template helper functions
 
 [[toc]]
-With every template engine, the content of the website can be managed. In order for the template creators to be able to work with the content more easily, for example: to receive the content, modify it, display the body in different pages of the website, functions called **Helper** are created. These functions are also created in the Larammerce Template Engine.
 
-Let's check the provided helpers one by one:
+According to the need of every single content management engine to simplify the process of pulling,
+modifying, and displaying changes for template creators, some special functions called **Helpers** are defined. 
+Larammerce engine is no exception.
+Therefor, for a better understanding, this document is provided for you, explaining the use of helper functions.
 
-First, open the helper file: `app/Utils/CMS/Template/helpers.php`.
+To reach all the helpers, direct to the path: `app/Utils/CMS/Template/helpers.php`.
 
-This file has 1462 code lines. This section describes all the helpers. Some of these helpers are old, some new, and some will be removed in the next version, which are specified as @deprecated in the phpdoc above them.
 
+NOTE: Check for updates in the helpers file, due to any changes in functions.
 
 
 ### `unparse_url`
