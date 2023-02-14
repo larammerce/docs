@@ -248,7 +248,7 @@ In order to link a word or a part of the article to a website, you should mentio
 ```bahs 
 *the specific word or sentence* *<sup>[1](#1)</sup>*
 ```
-2. Now use this command to build your refrence.
+2. Now use this command to build your reference.
 
 ```bash
 *1.<a name="1">[write whatever you want](put the link here )</a>*
@@ -297,3 +297,10 @@ fetch localhost:8080/api/v1/some/test/api
    ]
 }
 ```
+#### How to put links to other websites
+There are 2 ways for it:
+
+1) Create a notice section.
+2) Bring it to the reference section.
+
+It should have an independent container and should not be inside a paragraph describing other subjects.
