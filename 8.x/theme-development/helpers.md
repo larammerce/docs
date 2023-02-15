@@ -154,7 +154,7 @@ _____________
 
 
 
-### `locale_url`
+### locale_url
 ```php
 function locale_url(string $normal_url): string
 ```
@@ -181,12 +181,12 @@ _______________
 
 
 
-### `lm_route`
+#### lm_route
+To have enhanced Laravel URL function, pass the Laravel route to `locale-url`.
 ```php
 function lm_route($name, $parameters = [], $absolute = true): string
 ```
 
-This function takes Laravel's route from the input and gives it to `local_url`, which is enhanced for multilingual mode.
 _______________
 
 
