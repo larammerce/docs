@@ -139,8 +139,7 @@ ___________
 ```php
 function get_product_all_extras_percentage()
 ```
-
-This function returns the sum of `getTaxpercentage` and `getToolpercentage` values.
+`get_product_all_extras_percentage()` is a function used to return summation of `getTaxpercentage` and `getToolpercentage` values.
 
 ```php
 <p>Product all extra percentages  {{ get_product_all_extras_percentage() }}</p>
