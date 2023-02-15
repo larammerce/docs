@@ -9,11 +9,58 @@ Therefor, for a better understanding, this document is provided for you, explain
 
 To reach all the helpers, direct to the path: `app/Utils/CMS/Template/helpers.php`.
 
-
 NOTE: Check for updates in the helpers file, due to any changes in functions.
 
 
-### `unparse_url`
+#### `get_identity`
+```php
+function get_identity(): array
+```
+
+This function is to display the Larammerce project supporter identification. Currently, the Hinza identification is displayed on Larammerce projects. Enter the following code to display identification.
+```php
+@php
+
+get_identity();
+
+@endphp
+```
+
+Output
+```
+array:8 [▼
+  "logo" => "/admin_dashboard/images/logo"
+  "title" => "Larammerce | Another open-source e-commerce project"
+  "name" => "Larammerce"
+  "motto" => "ورود به پنل مدیریت لارامرس"
+  "website" => "larammerce.com"
+  "url" => "https://larammerce.com"
+  "color" => "#ff2e20"
+  "fav" => "favicon"
+]
+```
+#### `shorten_text`
+```php
+function shorten_text($text, $wordsCount = 75)
+```
+This function's usage is to appoint the length of displayed descriptions at first sight including 2 different input types, text and integer.
+The integer input is to consider how many words are allowed to be shown before `etc` sign ( ... ).
+
+Attention to the sample below:
+
+```php
+@php
+$text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+@endphp
+
+<p> {{shorten_text($text,10)}}</p>
+```
+Output
+```
+Lorem Ipsum is simply dummy text of the printing and...
+```
+
+#### `unparse_url`
 ```php
 unparse_url(array $parsed_url, array $ommit = []): string
 ```
@@ -133,65 +180,8 @@ function lm_url($path = null, $parameters = [], $secure = null): string
 ```
 
 This function calls `locale_url`. And it is enhanced for Laravel URLs.
-______________
 
-
-
-
-### `get_identity`
-```php
-function get_identity(): array
-```
-
-This function is to display the Larammerce project supporter identification. Currently, the Hinza identification is displayed on Larammerce projects. Enter the following code to display identification.
-```php
-@php
-
-get_identity();
-
-@endphp
-```
-
-Output
-```
-array:8 [▼
-  "logo" => "/admin_dashboard/images/logo"
-  "title" => "Larammerce | Another open-source e-commerce project"
-  "name" => "Larammerce"
-  "motto" => "ورود به پنل مدیریت لارامرس"
-  "website" => "larammerce.com"
-  "url" => "https://larammerce.com"
-  "color" => "#ff2e20"
-  "fav" => "favicon"
-]
-```
 ______________________
-
-
-
-
-### `shorten_text`
-```php
-function shorten_text($text, $wordsCount = 75)
-```
-This function is a directive. The input of this function is text and number. For example: here it takes the number 10 from the input, which means that it shows only 10 words of this text. And uses "..." at the end.
-
-Below is an explanation for this function:
-
-```php
-@php
-$text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
-@endphp
-
-<p> {{shorten_text($text,10)}}</p>
-```
-Output
-```
-Lorem Ipsum is simply dummy text of the printing and...
-```
-___________________
-
-
 
 
 ### `get_gallery`
