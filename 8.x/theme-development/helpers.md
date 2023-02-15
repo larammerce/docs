@@ -11,8 +11,12 @@ To reach all the helpers, direct to the path: `app/Utils/CMS/Template/helpers.ph
 
 NOTE: Check for updates in the helpers file, due to any changes in functions.
 
+<br/>
 
-#### `get_identity`
+------------------------------------------------------------
+
+####get_identity
+
 ```php
 function get_identity(): array
 ```
@@ -39,7 +43,13 @@ array:8 [▼
   "fav" => "favicon"
 ]
 ```
-#### `shorten_text`
+<br/>
+
+------------------------------------------------------------
+
+
+
+####shorten_text
 ```php
 function shorten_text($text, $wordsCount = 75)
 ```
@@ -50,7 +60,7 @@ Attention to the sample below:
 
 ```php
 @php
-$text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+$text= "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
 @endphp
 
 <p> {{shorten_text($text,10)}}</p>
@@ -59,12 +69,16 @@ Output
 ```
 Lorem Ipsum is simply dummy text of the printing and...
 ```
+<br/>
 
-#### `unparse_url`
-```php
-unparse_url(array $parsed_url, array $ommit = []): string
-```
-This function unparses the URL. As you know, there is a `pars_url` function in PHP, which works as follows:
+-------------------------------------------------
+
+
+####parse and unparse_url 
+
+`URL` details such as `scheme`, `user`. `pass`, `host`, `port`,`path`, `query`, `fragment` and others can be determined by `parse` function. <br/><br/>
+To do so follow description below:
+
 
 ```php
 @php
@@ -83,10 +97,17 @@ array:4 [▼
   "query" => "test=sample"
 ]
 ```
-Each part of the URL that is ‍‍‍`scheme`, `host`, `path` and  `query` is displayed.
+
+Following structure can be used in order to `unparse` the `URL`.
+```php
+unparse_url(array $parsed_url, array $ommit = []): string
+```
 
 
-Now an example is given to check the `unpars_url` function. Empty the `query` and unparse the URL.
+
+<br/>
+Attention to the `unpars_url` function sample. <br/>
+unparse the URL after you defined the query as an empty value and see the result:
 
 ```php
 @php
@@ -106,15 +127,15 @@ Output
 "https://google.com/salam/donya? "
 ```
 
-It can be seen that the query is removed from the URL.
-
-This function takes an array of parsed URLs from the input and merges these into `scheme`, `user`, `pass`, `host`, `port`, `path`, `query`, `fragment` in the output and transforms them into a unified URL.
+NOTE: `unparse` function merge all detail to unified URL.
 ___________
 
 
 
 
-### `get_product_all_extras_percentage`
+#### get_product_all_extras_percentage
+  
+
 ```php
 function get_product_all_extras_percentage()
 ```
