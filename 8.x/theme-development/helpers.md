@@ -106,7 +106,7 @@ unparse_url(array $parsed_url, array $ommit = []): string
 
 
 <br/>
-Attention to the `unpars_url` function sample. <br/>
+Attention to the `unparse_url` function sample. <br/>
 unparse the URL after you defined the query as an empty value and see the result:
 
 ```php
@@ -158,10 +158,9 @@ _____________
 ```php
 function locale_url(string $normal_url): string
 ```
+With this function you will be able to specify the website URL.(like subdomain routes)
 
-If a URL is passed to this function. Adds a locale to the first part of the URL, for example, fa or en.
-
-First, the ability to be multilingual must be activated. So, in the admin panel settings, in addition to enabling the Persian language, activate another language, for example, English . and then set a locale as in the code below.
+for example, in addition to enabling the Persian language, activate another language and set a locale following structure below:
 
 ```php
 @php
