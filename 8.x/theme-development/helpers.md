@@ -260,11 +260,12 @@ ________________________
 
 
 
-### `get_customer_legal_info`
+#### get_customer_legal_info
 ```php
 function get_customer_legal_info(): bool|CustomerUserLegalInfo
 ```
-Returns the legal information of the logged in customer user.
+Use this function to return the legal information of the logged in customer user.(such as company name & etc.)
+
 ```php
 @if(get_customer_legal_info() !== false)
     <h5> The current legal info of customer user logged in is : {{get_customer_legal_info()-> customerUser->user->full_name}}</h5>
@@ -273,13 +274,13 @@ Returns the legal information of the logged in customer user.
 
 Output 
 ```
-The current customer user logged in is : آرش خواجه لو
+The current customer user logged in is : آرش خواجه لو/ رشنال 
 ```
-Also, in this function, to access the customer information, you must connect to the ‍`user` and the `customerUser`.
+NOTE: To access the customer information, you must connect to the `user` and the `customerUser`.
 __________________________
 
 
-### `customer_need_list_exist`
+#### customer_need_list_exist
 ```php
 function customer_need_list_exist(Product $product): bool
 ```
