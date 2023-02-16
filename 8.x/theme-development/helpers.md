@@ -151,9 +151,6 @@ Product all extra percentages 9
 _____________
 
 
-
-
-
 ### locale_url
 ```php
 function locale_url(string $normal_url): string
@@ -177,8 +174,6 @@ Output
 https://google.com/fa/salam/donya?test=sample
 ```
 _______________
-
-
 
 
 #### lm_route
@@ -205,13 +200,11 @@ function lm_url($path = null, $parameters = [], $secure = null): string
 This function calls `locale_url`. And it is enhanced for Laravel URLs.
 ______________________
 
-
-
-### `get_locale`
+#### get_locale
 ```php
 function get_locale(): string
 ```
-This function returns the current system language .
+This function returns the current system language.
 
 ```php
 @php
@@ -225,14 +218,14 @@ Output
 ```
 _______________________
 
-
-
-### `get_user`
+#### get_user
+Get user function is used to show whether a user is logged in or not.
 ```php
 function get_user(string $guard = null): bool|Authenticatable|null
 ```
-Returns the logged in user and if the user is not logged in returns false. For example, in the following code, the user who is logged in is displayed.
-‍‍‍‍
+While a user is logged in, the function returns their information, otherwise returns false.
+to do so follow description below:
+
 ```php
 @if(get_user() !== false)
     <h5> The current user logged in is : {{get_user()->full_name}}</h5>
@@ -250,7 +243,7 @@ ______________________
 function get_customer_user(string $guard = null): bool|CustomerUser
 ```
 This function returns a logged in customer user.
-‍‍‍‍
+
 ```php
 @if(get_customer_user() !== false)
     <h5> The current customer user logged in is : {{get_customer_user()->user->full_name}}</h5>
