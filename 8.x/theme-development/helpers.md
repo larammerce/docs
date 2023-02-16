@@ -238,11 +238,13 @@ The current user logged in is : آرش خواجه لو
 ______________________
 
 
-### `get_customer_user`
+#### get_customer_user
 ```php
 function get_customer_user(string $guard = null): bool|CustomerUser
 ```
-This function returns a logged in customer user.
+Like the previous function with the difference that it checks whether the subscriber is a customer.
+
+Attention that there is no information in customer user itself. <br/>To access customer information, you must connect to the `user`.
 
 ```php
 @if(get_customer_user() !== false)
@@ -253,7 +255,7 @@ Output
 ```
 The current customer user logged in is : آرش خواجه لو
 ```
-To access customer information, you must connect to the `user`.
+
 ________________________
 
 
