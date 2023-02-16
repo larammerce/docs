@@ -284,7 +284,7 @@ __________________________
 ```php
 function customer_need_list_exist(Product $product): bool
 ```
-Check if the logged in user has given product in their Needlist. false will be return if the user is not logged in. 
+This function takes the product number and checks if the logged in user has the given product in their Needlist. false will be return if the user is not logged in. 
 
 ```php
   <p>this customer {{customer_need_list_exist(\App\Models\Product::find(100)) ? "has":"has not"}} the product with id '100' in his need list.</p>
