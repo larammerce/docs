@@ -314,12 +314,13 @@ _____________________________
 
 
 
-### `pending_invoices_count`
+#### pending_invoices_count
+
 ```php
 function pending_invoices_count(): bool|int
 ```
+This function returns the count of pending invoices a user have. 
 
-This function returns the number of pending invoices. If the customer is not logged in, it returns false.
 ```php
 <p>this customer has {{pending_invoices_count()?? "0" }} pending invoices in his resume</p>
 ```
