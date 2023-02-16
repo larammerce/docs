@@ -193,145 +193,18 @@ _______________
 
 
 
+
+
+
+
 ### `lm_url`
 ```php
 function lm_url($path = null, $parameters = [], $secure = null): string
 ```
 
 This function calls `locale_url`. And it is enhanced for Laravel URLs.
-
 ______________________
 
-
-### `get_gallery`
-```php
-function get_gallery(string $galleryName)
-```
-`get_gallery` function is used in the Larammerce Template Engine structure and cannot be used. This function returns the identifir given in the blade file to the desired gallery. In the following code, the content of `index_banner1` gallery can be seen.
-
-```php
-@php
-
-get_gallery("index_banner1");
-
-@endphp
-```
-Output
-```
-App\Models\Gallery {#2490 ▼
-  #table: "galleries"
-  #hidden: array:1 [▶]
-  #fillable: array:2 [▶]
-  -galleryFields: []
-  #guarded: []
-  #show_list_types: array:2 [▶]
-  #connection: "mysql"
-  #primaryKey: "id"
-  #keyType: "int"
-  +incrementing: true
-  #with: []
-  #withCount: []
-  +preventsLazyLoading: false
-  #perPage: 15
-  +exists: true
-  +wasRecentlyCreated: false
-  #escapeWhenCastingToString: false
-  #attributes: array:5 [▼
-    "id" => 8
-    "identifier" => "index_banner1"
-    "fields" => "a:2:{s:12:"banner_title";C:43:"App\Utils\CMS\Template\Gallery\GalleryField":81:{{"id":"banner_title","title":"\u0639\u0646\u0648\u0627\u0646 \u0628\u0646\u0631" ▶"
-    "created_at" => "2020-01-13 14:27:45"
-    "updated_at" => "2020-01-13 14:27:45"
-  ]
-  #original: array:5 [▼
-    "id" => 8
-    "identifier" => "index_banner1"
-    "fields" => "a:2:{s:12:"banner_title";C:43:"App\Utils\CMS\Template\Gallery\GalleryField":81:{{"id":"banner_title","title":"\u0639\u0646\u0648\u0627\u0646 \u0628\u0646\u0631" ▶"
-    "created_at" => "2020-01-13 14:27:45"
-    "updated_at" => "2020-01-13 14:27:45"
-  ]
-  #changes: []
-  #casts: []
-  #classCastCache: []
-  #attributeCastCache: []
-  #dates: []
-  #dateFormat: null
-  #appends: []
-  #dispatchesEvents: []
-  #observables: []
-  #relations: []
-  #touches: []
-  +timestamps: true
-  #visible: []
-}
-```
-A gallery object returned from the gallery model whose table name is galleries. this fields:  `identifier`, `fields`, `created_at`, and `updated_at`displayed in `attributes` and `original`.
-____________________
-
-
-### `get_gallery_items`
-```php
-function get_gallery_items(string $gallery_name, int $count = -1, bool $random_select = false)
-```
-`get_gallery_items` function takes the name of the gallery and the number of items from the input, and whether random select is true or false.
-```php
-@php
-
-get_gallery_items("faqs");
-
-@endphp
-```
-Output
-```
-Illuminate\Database\Eloquent\Collection {#2506 ▼
-  #items: array:8 [▼
-    0 => App\Models\GalleryItem {#2505 ▼
-      #table: "gallery_items"
-      #hidden: array:1 [▶]
-      #appends: array:1 [▶]
-      #fillable: array:5 [▶]
-      -fields: []
-      #guarded: []
-      #show_list_types: array:2 [▶]
-      #connection: "mysql"
-      #primaryKey: "id"
-      #keyType: "int"
-      +incrementing: true
-      #with: []
-      #withCount: []
-      +preventsLazyLoading: false
-      #perPage: 15
-      +exists: true
-      +wasRecentlyCreated: false
-      #escapeWhenCastingToString: false
-      #attributes: array:8 [▶]
-      #original: array:8 [▶]
-      #changes: []
-      #casts: []
-      #classCastCache: []
-      #attributeCastCache: []
-      #dates: []
-      #dateFormat: null
-      #dispatchesEvents: []
-      #observables: []
-      #relations: []
-      #touches: []
-      +timestamps: true
-      #visible: []
-    }
-    1 => App\Models\GalleryItem {#2504 ▶}
-    2 => App\Models\GalleryItem {#2503 ▶}
-    3 => App\Models\GalleryItem {#2502 ▶}
-    4 => App\Models\GalleryItem {#2501 ▶}
-    5 => App\Models\GalleryItem {#2500 ▶}
-    6 => App\Models\GalleryItem {#2499 ▶}
-    7 => App\Models\GalleryItem {#2498 ▶}
-  ]
-  #escapeWhenCastingToString: false
-}
-```
-This function can not be used as usual. To learn more about this function, refer to the gallery definition section.
-____________________
 
 
 ### `get_locale`
