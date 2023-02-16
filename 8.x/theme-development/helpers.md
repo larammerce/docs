@@ -332,13 +332,15 @@ this customer has 0 pending invoices in his resume.
 _____________________________
 
 
-### `get_local_cart`
+#### get_local_cart
+
 ```php
 function get_local_cart(bool $full_data = false): array
 ```
-This function returns local shopping cart data. Before the user logs in, the data is stored in a cookie, so if the customer is not logged in, the shopping cart data is returned via `get-local-cart`.
+local card is a jason object using in frontend. its data is stored in client side's cookies.
+Reaching datas from database in the server side is possible by  this function.
 
-With the following code, you can see the products in the shopping cart.
+As a sample, see shopping card products with the instruction below:
 
 ```php
 <p>this customer has {{customer_cart_count()}} product in his basket.</p>
@@ -359,7 +361,8 @@ this customer has 1 product in his basket.
 
 شیر كشویی فلنجدار چدنی زبانه لاستیكی میراب 50،"2 ،PN10(31) => 2 :sum (2440000)
 ```
-With foreach, the characteristics of each product can be displayed in each line. With `product_id`, the product id is shown, with `count` the number of that product, and by passing true boolean, the product object can also be displayed, and the `count` is multiplied by the `latest price` to calculate the product price.
+By passing true boolean, the product object can also be displayed.
+To calculate the product price, the `count` and the `latest price` are considered.
 ______________________________
 
 
