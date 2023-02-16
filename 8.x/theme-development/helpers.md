@@ -296,12 +296,11 @@ this customer has the product with id 100 in his need list.
 __________________________
 
 
-### `customer_cart_count`
+#### customer_cart_count
 ```php
 function customer_cart_count(): int
 ```
-This function returns the number of products in the customer's shopping cart that is logged in.
-The following code displays the number of products in the shopping cart of the logged in customer.
+the count of ordered products in the shopping card will be displayed in this function.
 
 ```php
 <p>this customer has {{customer_cart_count()}} product in his basket.</p>
