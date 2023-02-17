@@ -9,21 +9,23 @@ Larammerce documentation is composing with *markdown syntax* *<sup>[1](#1)</sup>
 
 If this is your first contribution, follow instructions composed on [`contributing`](https://docs.larammerce.com/8.x/getting-started/contributing.html#contributing) article on [`larammerce.com`](https://larammerce.com/).
 
+--------------------------------
 ### Requirements
 | Tool name        | Version(distro)                                                       |
 |------------------|-----------------------------------------------------------------------|
 | Operating system | Every version of windows,Osx, linux supporting installation of Node.js |
 | Node.js          | V16 or higher                                                         |
 
-::: warning NODE version support :
+::: success NODE version support :
 
-Consider that no errors will be detected using Node.js version 16 for this project.
+Consider that this project integrates well only with Node.js version 16.
 :::
 
-You can Install [Node.js](https://nodejs.org/en/download/) here.</br>
+**You can Install Node.js [here](https://nodejs.org/en/download/).**</br>
 
-::: warning In order to use a different Node.js version, install `nvm` or `direnv` following description below: :::
-
+::: warning In order to use different Node.js versions, install `nvm` or `direnv` following description below:
+<br/>
+:::
 - **_[Install nvm](https://github.com/nvm-sh/nvm)_**  </br>nvm is a tool which gives you the ability to switch between different versions of Node depends on project's requirements. <br/>
 
 OR
@@ -33,29 +35,29 @@ OR
 ```bash
 export NODE_OPTIONS=--openssl-legacy-provider
 ```
+---------------------------
 ### Overall structure
 
-<br/> Each document must consist of the following parts:<br/><br/>
+Each document must consist of the following parts:<br/>
 
-**1) Introduction** :<br/>
+**1) Introduction**<br/>
 Describe the overall view of the page by writing a general illustration of the represented subject. <br/>
 
-**2) Technical description** :<br/>
+**2) Technical description**<br/>
 Write technical details based on markdown structure.<br/>
 
-**2) Sum Up** :<br/>
+**2) Sum Up**<br/>
 Make a brief review of the parts above (optional) and write the page references.<br/><br/>
 
 #### How to write sections and subsections
 
  Write the article title using `h2` tag and `h3 ,h4 ,..., h6 ` for the subsections. 
 <br/>
-NOTE:<br/> 
-
+NOTE:
 - Overusing these tags makes the sidebar crowded and complicated.
 
 - Only `h2` and `h3` headers get indexed in the right sidebar as the table of contents.
-- Avoid `h1` Header. The use of `h1` header is not permitted in Larammerce documents.
+- Avoid `h1` Header. The usage of `h1` header is not permitted in Larammerce documents.
 
 **EXAMPLE**
 
