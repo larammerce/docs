@@ -8,154 +8,588 @@ This document reviews how to implement CRUD (create, read, update, delete) in La
 
 Run the following command in the CMD:
 
+```bash
 php artisan make:migration create_todos_table
+```
 
-Insert these codes in the path /larammerce/database/migrations/[some_numbers]_create_todos_table.php:
+Insert these codes in the path `/larammerce/database/migrations/[some_numbers]_create_todos_table.php`:
 
-code
+```php
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateTodosTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('todos', function (Blueprint $table) {
+            $table->id();
+            $table->string("subject");
+            $table->tinyInteger("status");
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('todos');
+    }
+}
+
+```
 
 Run the following command in the CMD:
 
+```bash
 php artisan migrate
+```
 
 ## Create Todo model
 
-Create the file Todo.php in the path /larammerce/app/Models/ and put these codes inside:
+Create the file `Todo.php` in the path `/larammerce/app/Models/` and put these codes inside:
 
-code
+```php
+<?php
+
+namespace App\Models;
+
+/**
+ * @property integer id
+ * @property string subject
+ * @property integer status
+ * @property Carbon created_at
+ * @property Carbon updated_at
+ */
+class Todo extends BaseModel
+{
+    protected $table="todos";
+
+    protected $fillable=[
+        "subject", "status"
+    ];
+
+    protected static array $SORTABLE_FIELDS = [
+        "id", "status", "created_at"
+    ];
+
+    protected static array $SEARCHABLE_FIELDS = [
+        "subject"
+    ];
+
+    protected static ?string $IMPORTANT_SEARCH_FIELD = "subject";
+    protected static ?string $EXACT_SEARCH_ORDER_FIELD = "created_at";
+
+    public function getSearchUrl(): string
+    {
+        return "";
+    }
+}
+
+```
 
 ## Add route
 
-Put the code below in the path /larammerce/routes/web.php inside the admin routes:
+Put the code below in the path `/larammerce/routes/web.php` inside the `admin routes`:
 
-code
+```php
+//TodoModel
+Route::resource("todo", "TodoController", ["as" => "admin"]);        
+```
 
 ## Add controller
 
-Create the file TodoController.php in the path /larammerce/app/Http/Controllers/Admin/ and put these codes inside:
+Create the file `TodoController.php` in the path `/larammerce/app/Http/Controllers/Admin/` and put these codes inside:
 
-code
+```php
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Models\Enums\TodoStatus;
+use App\Models\Todo;
+use App\Utils\Common\History;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+
+/**
+ * @role(enabled=true)
+ */
+class TodoController extends BaseController
+{
+    /**
+     * @role(super_user)
+     */
+    public function index(): Factory|View|Application
+    {
+        parent::setPageAttribute();
+        $todos = Todo::paginate(Todo::getPaginationCount());
+        return view('admin.pages.todo.index', compact('todos'));
+    }
+    
+    /**
+     * @role(super_user)
+     */
+    public function create(): Factory|View|Application
+    {
+        return view('admin.pages.todo.create');
+    }
+
+    /**
+     * @role(super_user)
+     * @rules(subject="required|min:5")
+     */
+    public function store(Request $request): RedirectResponse
+    {
+        $todo=Todo::create($request->only("subject"));
+        return response()->redirectToRoute("admin.todo.index");
+    }
+
+    public function show(Todo $todo)
+    {
+        
+    }
+
+    /**
+     * @role(super_user)
+     */
+    public function edit(Todo $todo): Factory|View|Application
+    {
+        $statuses=[];
+        foreach(TodoStatus::values() as $value){
+            $statuses[$value]=trans("general.todo.status." . $value);
+        }
+        return view('admin.pages.todo.edit', compact('todo', 'statuses'));
+    }
+
+    /**
+     * @role(super_user)
+     * @rules(subject="required|min:10", status="in:".\App\Models\Enums\TodoStatus::stringValues())
+     */
+    public function update(Request $request, Todo $todo): RedirectResponse
+    {
+        $todo->update($request->only("subject", "status"));
+        return History::redirectBack();
+    }
+
+    public function destroy(Todo $todo): RedirectResponse
+    {
+        $todo->delete();
+        return redirect()->back();
+    }
+
+    public function getModel(): ?string
+    {
+        return Todo::class;
+    }
+}
+
+```
 
 ## Define icon
 
-Search and select a todo flat icon png file and put it into the path /larammerce/public_html/admin_dashboard/images/icons/.
+Search and select a `todo flat icon png` file and put it into the path `/larammerce/public_html/admin_dashboard/images/icons/`.
 
-Put the following code in the path /larammerce/resources/assets/sass/icons.scss:
+Put the following code in the path `/larammerce/resources/assets/sass/icons.scss`:
 
-code
+```stylus
+&.icon-todo {
+        background: url("/admin_dashboard/images/icons/todo-icon.png");
+    }
+```
 
 Run the following command in the CMD:
 
+```bash
 npm run prod
+```
 
-Write the code below in the path larammerce/config/cms/appliances.php:
+Write the code below in the path `larammerce/config/cms/appliances.php`:
 
-code
+```php
+//todolist appliance
+    [
+        "show_in_toolbar" => true,
+        "properties" => [
+            "id" => "todo_management",
+            "name" => "general.appliances.todo",
+            "icon" => "/admin_dashboard/images/icons/todo-icon.png",
+            "route" => "admin.todo.index"
+        ],
+    ],
+
+```
 
 ## Correct translation
 
-Insert the following code in the path /larammerce/resources/lang/fa/general.php inside the appliances section:
+Insert the following code in the path `/larammerce/resources/lang/fa/general.php` inside the `appliances` section:
 
+```bash
 "todo" => "لیست وظایف",
+```
+
+Run the following command in the CMD:
+
+```bash
+php artisan translation:fill
+```
 
 ## Define index method
 
-Put the following code in the path /larammerce/app/Http/Controllers/Admin/TodoController.php inside the index method section:
+Put the following code in the path `/larammerce/app/Http/Controllers/Admin/TodoController.php` inside the `index method` section:
 
-code
+```php
+/**
+ * @role(enabled=true)
+ */
+class TodoController extends BaseController
+{
+    /**
+     * @role(super_user)
+     */
+    public function index(): Factory|View|Application
+    {
+        parent::setPageAttribute();
+        $todos = Todo::paginate(Todo::getPaginationCount());
+        return view('admin.pages.todo.index', compact('todos'));
+    }
+```
 
 ## Create index view
 
-Create the file index.blade.php in the path /larammerce/resources/views/admin/pages/todo/ and put these codes inside:
+Create the file `index.blade.php` in the path `/larammerce/resources/views/admin/pages/todo/` and put these codes inside:
 
-code
+```php
+@extends('admin.layout')
+
+@section('bread_crumb')
+    <li><a href="{{route('admin.todo.index')}}">وظایف</a></li>
+    <li class="active"><a href="{{route('admin.todo.index')}}">لیست وظیفه ها</a></li>
+
+@endsection
+
+@section('main_content')
+    <div class="inner-container">
+        <div class="toolbar">
+            <ul>
+                @foreach(SortService::getSortableFields('Todo') as $sortable_field)
+                    <li class="btn btn-default {{$sortable_field->is_active ? "active" : ""}}"
+                        href="{{route('admin.null')}}?sort_model=Todo&sort_field={{$sortable_field->field}}&sort_method={{$sortable_field->method}}"
+                        act="link">
+                        @if($sortable_field->is_active)
+                            <i class="fa {{$sortable_field->method == SortMethod::ASCENDING ? "fa-long-arrow-up" : "fa-long-arrow-down"}}"></i>
+                        @endif
+                        {{$sortable_field->title}}
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+        <div class="inner-container has-toolbar has-pagination">
+            <div class="view-port">
+                @include('admin.pages.todo.layout.list')
+            </div>
+            <div class="fab-container">
+                <div class="fab green">
+                    <button act="link" href="{{route('admin.todo.create')}}">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        @include('admin.templates.pagination', [
+            "modelName" => "Todo",
+            "lastPage" => $todos->lastPage(),
+            "total" => $todos->total(),
+            "count" => $todos->perPage(),
+            "parentId" => $scope ?? null
+        ])
+    </div>
+@endsection
+
+```
 
 ## Add layout
 
-Create the file list.blade.php in the path /larammerce/resources/views/admin/pages/todo/layout/ and put these codes inside:
+Create the file `list.blade.php` in the path `/larammerce/resources/views/admin/pages/todo/layout/` and put these codes inside:
 
-code
+```php
+@foreach($todos as $todo)
+    <div
+        class="col-lg-offset-1 col-lg-10 col-md-offset-0 col-md-12 col-sm-offset-0 col-sm-12 col-xs-offset-0 col-xs-12 list-row roles">
+        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-3 col">
+            <div class="label">شناسه</div>
+            <div>{{$todo->id}}#</div>
+        </div>
+        <div class="col-lg-6 col-md-3 col-sm-4 col-xs-6 col">
+            <div class="label">موضوع</div>
+            <div>{{$todo->subject}}</div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 col">
+            <div class="label">وضعیت</div>
+            <div>{{$todo->status}}</div>
+        </div>
+        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12 col">
+            <div class="label">عملیات</div>
+            <div class="actions-container">
+                <a class="btn btn-sm btn-primary" href="{{route('admin.todo.edit', $todo)}}">
+                    <i class="fa fa-pencil"></i>
+                </a>
+                <a class="btn btn-sm btn-danger virt-form"
+                   data-action="{{ route('admin.todo.destroy', $todo) }}"
+                   data-method="DELETE" confirm>
+                    <i class="fa fa-trash"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+@endforeach
+```
 
 ## Correct translation
 
-Write the code below in the path /larammerce/resources/lang/fa/structures.php inside the attributes section:
+Write the code below in the path `/larammerce/resources/lang/fa/structures.php` inside the `attributes` section:
 
+```bash
 'status' => 'وضعیت'
+```
 
 Run the following command in the CMD:
 
+```bash
 php artisan translation:fill
+```
 
 ## Define create method
 
-Put the following code in the path /larammerce/app/Http/Controllers/Admin/TodoController.php inside the create method section:
+Put the following code in the path `/larammerce/app/Http/Controllers/Admin/TodoController.php` inside the `create method` section:
 
-code
+```php
+/**
+ * @role(super_user)
+ */
+public function create(): Factory|View|Application
+    {
+        return view('admin.pages.todo.create');
+    }
+```
 
 ## Add create view
 
-Make the file create.blade.php in the path /larammerce/resources/views/admin/pages/todo/ and put these codes inside:
+Make the file `create.blade.php` in the path `/larammerce/resources/views/admin/pages/todo/` and put these codes inside:
 
-code
+```php
+@extends('admin.form_layout.col_4')
+
+@section('bread_crumb')
+    <li><a href="{{route('admin.todo.index')}}">وظایف</a></li>
+    <li class="active"><a href="{{route('admin.todo.create')}}">اضافه کردن وظیفه</a></li>
+
+@endsection
+
+@section('form_title')اضافه کردن وظیفه@endsection
+
+@section('form_attributes') action="{{route('admin.todo.store')}}" method="POST"  @endsection
+
+@section('form_body')
+    <div class="input-group group-sm col-lg-12 col-sm-12 col-md-12 col-xs-12">
+        <span class="label">موضوع</span>
+        <input class="form-control input-sm" name="subject" value="{{old('subject')}}">
+    </div>
+@endsection
+
+@section('form_footer')
+    <button type="submit" class="btn btn-default btn-sm">ذخیره</button>
+@endsection
+
+```
 
 ## Define store method
 
-Insert the code below in the path /larammerce/app/Http/Controllers/Admin/TodoController.php inside the store method section:
+Insert the code below in the path `/larammerce/app/Http/Controllers/Admin/TodoController.php` inside the `store method` section:
 
-code
+```php
+/**
+ * @role(super_user)
+ * @rules(subject="required|min:5")
+ */
+public function store(Request $request): RedirectResponse
+    {
+        $todo=Todo::create($request->only("subject"));
+        return response()->redirectToRoute("admin.todo.index");
+    }
+```
 
 ## Add edit view
 
-Make the file edit.blade.php in the path /larammerce/resources/views/admin/pages/todo/ and write these codes inside:
+Make the file `edit.blade.php` in the path `/larammerce/resources/views/admin/pages/todo/` and write these codes inside:
 
-code
+```php
+@extends('admin.form_layout.col_4')
+
+@section('bread_crumb')
+    <li><a href="{{route('admin.todo.index')}}">وظایف</a></li>
+    <li class="active"><a href="{{route('admin.todo.create', compact('todo'))}}">ویرایش وظیفه</a></li>
+
+@endsection
+
+@section('form_title')ویرایش وظیفه@endsection
+
+@section('form_attributes') action="{{route('admin.todo.update', $todo)}}" method="POST" @endsection
+
+@section('form_body')
+    {{ method_field('PUT') }}
+    <input type="hidden" name="id" value="{{ $todo->id }}">
+    <div class="input-group group-sm col-lg-12 col-sm-12 col-md-12 col-xs-12">
+        <span class="label">موضوع</span>
+        <input class="form-control input-sm" name="subject" value="{{ $todo->subject }}">
+    </div>
+    <div class="input-group group-sm col-lg-12 col-sm-12 col-md-12 col-xs-12">
+        <span class="label">وضعیت</span>
+        <select class="form-control input-sm" name="status">
+            @foreach($statuses as $status_id => $status_title)
+                <option @if($status_id == $todo->status) selected @endif value="{{$status_id}}">{{$status_title}}</option>
+            @endforeach
+        </select>
+    </div>
+@endsection
+
+@section('form_footer')
+    <button type="submit" class="btn btn-default btn-sm">ذخیره</button>
+    <input type="submit" class="btn btn-warning btn-sm" name="exit" value="ذخیره و خروج">
+@endsection
+
+```
 
 ## Define todo status
 
-Create the file TodoStatus.php in the path code /larammerce/app/Models/Enums/ and put these codes inside:
+Create the file `TodoStatus.php` in the path `/larammerce/app/Models/Enums/` and put these codes inside:
 
-code
+```php
+<?php
+
+namespace App\Models\Enums;
+
+use App\Utils\Common\BaseEnum;
+
+class TodoStatus extends BaseEnum
+{
+    const NEW_IN=0;
+    const IN_PROGRESS=1;
+    const READY_FOR_TEST=2;
+    const DONE=3;
+}
+```
 
 ## Correct translation
 
-Write the code below in the path /larammerce/resources/lang/fa/general.php:
+Write the code below in the path `/larammerce/resources/lang/fa/general.php`:
 
-code
+```php
+"todo" => [
+    "status" => [
+        "جدید",
+        "در حال اجرا",
+        "آماده بررسی",
+        "انجام شده"
+    ]
+],
+```
 
 Run the following command in the CMD:
 
+```bash
 php artisan translation:fill
+```
 
 ## Complete edit view
 
-Put the following code in the path /larammerce/resources/views/admin/pages/todo/edit.blade.php:
+Put the following code in the path `/larammerce/resources/views/admin/pages/todo/edit.blade.php`:
 
-code
+```php
+<div class="input-group group-sm col-lg-12 col-sm-12 col-md-12 col-xs-12">
+        <span class="label">وضعیت</span>
+        <select class="form-control input-sm" name="status">
+            @foreach($statuses as $status_id => $status_title)
+                <option @if($status_id == $todo->status) selected @endif value="{{$status_id}}">{{$status_title}}</option>
+            @endforeach
+        </select>
+</div>
+```
 
 ## Define edit method
 
-Insert the code below in the path /larammerce/app/Http/Controllers/Admin/TodoController.php inside the edit method section:
+Insert the code below in the path `/larammerce/app/Http/Controllers/Admin/TodoController.php` inside the `edit method` section:
 
-code
+```php
+/**
+ * @role(super_user)
+ */
+public function edit(Todo $todo): Factory|View|Application
+{
+    $statuses=[];
+    foreach(TodoStatus::values() as $value){
+        $statuses[$value]=trans("general.todo.status." . $value);
+    }
+    return view('admin.pages.todo.edit', compact('todo', 'statuses'));
+}
+```
 
 ## Correct translation
 
-Put the following code in the path /larammerce/resources/views/admin/pages/todo/layout/list.blade.php
+Put the following code in the path `/larammerce/resources/views/admin/pages/todo/layout/list.blade.php`:
 
-code
+```php
+<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 col">
+    <div class="label">وضعیت</div>
+    <div>{{trans("general.todo.status.".$todo->status)}}</div>
+</div>
+```
 
 Run the following command in the CMD:
 
+```bash
 php artisan translation:fill
+```
 
 ## Define update method
 
-Write the following code in the path /larammerce/app/Http/Controllers/Admin/TodoController.php inside the update method section:
+Write the following code in the path `/larammerce/app/Http/Controllers/Admin/TodoController.php` inside the `update method` section:
 
-code
+```php
+/**
+ * @role(super_user)
+ * @rules(subject="required|min:10", status="in:".\App\Models\Enums\TodoStatus::stringValues())
+ */
+public function update(Request $request, Todo $todo): RedirectResponse
+{
+    $todo->update($request->only("subject", "status"));
+    return History::redirectBack();
+}
+```
 
 ## Define destroy method
 
-Insert the code below in the path /larammerce/app/Http/Controllers/Admin/TodoController.php inside the destroy method section:
+Insert the code below in the path `/larammerce/app/Http/Controllers/Admin/TodoController.php` inside the `destroy method` section:
 
-code
+```php
+public function destroy(Todo $todo): RedirectResponse
+{
+    $todo->delete();
+    return redirect()->back();
+}
+```
