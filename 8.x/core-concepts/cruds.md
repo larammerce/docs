@@ -2,9 +2,11 @@
 
 [[toc]]
 
-This document reviews how to implement CRUD (create, read, update, delete) in Larammerce. A ToDoList project is done step by step to illustrate the operational concepts.
+This document reviews how to implement `CRUD` (create, read, update, delete) in the Larammerce platform. A `ToDoList` project is done step by step to illustrate the operational concepts.
 
 ## Make migrations
+
+Larammerce is a schema-first platform. So you must create a table for your todos.
 
 Run the following command in the CMD:
 
@@ -35,6 +37,10 @@ Run the following command in the CMD:
 ```bash{1}
 php artisan migrate
 ```
+
+**OUTPUT**
+
+![](/40.png)
 
 ## Create Todo model
 
@@ -163,6 +169,10 @@ class TodoController extends BaseController
 
 ## Define icon
 
+A todo icon is required in the top toolbar in order to perform the crud processes.
+
+![](/01-edited.png)
+
 Search and select a `todo flat icon png` file and put it into the path `/larammerce/public_html/admin_dashboard/images/icons/`.
 
 Put the following code in the path `/larammerce/resources/assets/sass/icons.scss`:
@@ -210,6 +220,11 @@ return [
 ];
 ```
 
+**OUTPUT**
+
+![](/04-edited.png)
+
+
 ## Correct translation
 
 Insert the following code in the path `/larammerce/resources/lang/fa/general.php` inside the `appliances` section:
@@ -235,7 +250,18 @@ Run the following command in the CMD:
 php artisan translation:fill
 ```
 
+**OUTPUT**
+
+![](/08-edited.png)
+
+
 ## Define index method
+
+If you click on todo icon to show the list of todos, you will get this error:
+
+![](/05.png)
+
+So you must define the index method.
 
 Put the following code in the path `/larammerce/app/Http/Controllers/Admin/TodoController.php` inside the `index method` section:
 
@@ -314,7 +340,7 @@ Create the file `index.blade.php` in the path `/larammerce/resources/views/admin
 
 Create the file `list.blade.php` in the path `/larammerce/resources/views/admin/pages/todo/layout/` and put these codes inside:
 
-```php{1-27}
+```php{1-31}
 @foreach($todos as $todo)
     <div
         class="col-lg-offset-1 col-lg-10 col-md-offset-0 col-md-12 col-sm-offset-0 col-sm-12 col-xs-offset-0 col-xs-12 list-row roles">
@@ -326,7 +352,11 @@ Create the file `list.blade.php` in the path `/larammerce/resources/views/admin/
             <div class="label">موضوع</div>
             <div>{{$todo->subject}}</div>
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 col">
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 col">
+            <div class="label">وضعیت</div>
+            <div>{{$todo->status}}</div>
+        </div>        
+        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12 col">
             <div class="label">عملیات</div>
             <div class="actions-container">
                 <a class="btn btn-sm btn-primary" href="{{route('admin.todo.edit', $todo)}}">
@@ -343,6 +373,10 @@ Create the file `list.blade.php` in the path `/larammerce/resources/views/admin/
 @endforeach
 
 ```
+
+**OUTPUT**
+
+![](/06-edited.png)
 
 ## Correct translation
 
@@ -368,7 +402,21 @@ Run the following command in the CMD:
 php artisan translation:fill
 ```
 
+**OUTPUT**
+
+![](/08-2-edited.png)
+
 ## Define create method
+
+So far, you have got the list of todos:
+
+![](/08.png)
+
+If you click on the `+` icon to create a new todo, you will get this error:
+
+![](/09.png)
+
+So you must define the create method.
 
 Put the following code in the path `/larammerce/app/Http/Controllers/Admin/TodoController.php` inside the `create method` section:
 
@@ -419,7 +467,13 @@ Make the file `create.blade.php` in the path `/larammerce/resources/views/admin/
 
 ```
 
+**OUTPUT**
+
+![](/10.png)
+
 ## Define store method
+
+In order to save the new todo, you must define the store method.
 
 Insert the code below in the path `/larammerce/app/Http/Controllers/Admin/TodoController.php` inside the `store method` section:
 
@@ -442,7 +496,28 @@ class TodoController extends BaseController
 }
 ```
 
+Now create a new todo:
+
+![](/13.png)
+
+Click on the `ذخیره` button to save the new todo.
+
+**OUTPUT**
+
+![](/14.png)
+
+
 ## Add edit view
+
+In the todo list, each item has an edit icon:
+
+![](/14-edited.png)
+
+Clicking on the edit icon will give you this error:
+
+![](/15.png)
+
+So you must add an edit view.
 
 Make the file `edit.blade.php` in the path `/larammerce/resources/views/admin/pages/todo/` and write these codes inside:
 
@@ -476,6 +551,8 @@ Make the file `edit.blade.php` in the path `/larammerce/resources/views/admin/pa
 ```
 
 ## Define todo status
+
+4 statuses can be attributed to each todo item: new in, in progress, ready for test, done. So you must define these statuses.
 
 Create the file `TodoStatus.php` in the path `/larammerce/app/Models/Enums/` and put these codes inside:
 
@@ -586,52 +663,56 @@ class TodoController extends BaseController
 }
 ```
 
-## Correct translation
+**OUTPUT**
 
-Put the following code in the path `/larammerce/resources/views/admin/pages/todo/layout/list.blade.php`:
+![](/16-edited.png)
+
+Now you can select a new status for your todo:
+
+![](/17-edited.png)
+
+The result is as follows:
+
+![](/19-edited.png)
+
+## Correct list status
+
+In the list of todos, the status item is represented as a number:
+
+![](/14-edited.png)
+
+So you must correct the code for status in the path `/larammerce/resources/views/admin/pages/todo/layout/list.blade.php`:
 
 
-```php{12-16}
+```php{7}
 @foreach($todos as $todo)
     <div
         class="col-lg-offset-1 col-lg-10 col-md-offset-0 col-md-12 col-sm-offset-0 col-sm-12 col-xs-offset-0 col-xs-12 list-row roles">
-        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-3 col">
-            <div class="label">شناسه</div>
-            <div>{{$todo->id}}#</div>
-        </div>
-        <div class="col-lg-6 col-md-3 col-sm-4 col-xs-6 col">
-            <div class="label">موضوع</div>
-            <div>{{$todo->subject}}</div>
-        </div>
+        ...
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 col">
             <div class="label">وضعیت</div>
             <div>{{trans("general.todo.status.".$todo->status)}}</div>
         </div>
-        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12 col">
-            <div class="label">عملیات</div>
-            <div class="actions-container">
-                <a class="btn btn-sm btn-primary" href="{{route('admin.todo.edit', $todo)}}">
-                    <i class="fa fa-pencil"></i>
-                </a>
-                <a class="btn btn-sm btn-danger virt-form"
-                   data-action="{{ route('admin.todo.destroy', $todo) }}"
-                   data-method="DELETE" confirm>
-                    <i class="fa fa-trash"></i>
-                </a>
-            </div>
-        </div>
+        ...
     </div>
 @endforeach
-
 ```
 
-Run the following command in the CMD:
+**OUTPUT**
 
-```bash{1}
-php artisan translation:fill
-```
+![](/18-edited.png)
 
 ## Define update method
+
+So far you have created the edit form:
+
+![](/19-edited.png)
+
+If you click on `ذخیره` button, this error will appear:
+
+![](/20.png)
+
+So you must define the update method to save the changes.
 
 Write the following code in the path `/larammerce/app/Http/Controllers/Admin/TodoController.php` inside the `update method` section:
 
@@ -661,7 +742,19 @@ class TodoController extends BaseController
 }
 ```
 
+Now click on `‌ذخیره و خروج` button to save the new status for your todo.
+
+**OUTPUT**
+
+![](/22-edited.png)
+
 ## Define destroy method
+
+Create some new todos with different statuses:
+
+![](/33-edited.png)
+
+Clicking on the delete icon should omit the related todo. So you must define the destroy method.
 
 Insert the code below in the path `/larammerce/app/Http/Controllers/Admin/TodoController.php` inside the `destroy method` section:
 
@@ -680,3 +773,23 @@ class TodoController extends BaseController
 }
 
 ```
+
+Now click on the delete icon for todo #2.
+
+**OUTPUT**
+
+![](/34-edited.png)
+
+Click on `بله`.
+
+**OUTPUT**
+
+![](/35-edited.png)
+
+The todo #2 has been deleted from the list.
+
+## Video source
+___
+
+<iframe src="https://www.aparat.com/video/video/embed/videohash/zUXFL/vt/frame" height="300" width="700" style="  border: 2px solid #bdc3c7;
+border-radius: 5px; opacity: 1;" ></iframe>
