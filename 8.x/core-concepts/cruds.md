@@ -8,7 +8,7 @@ This document reviews how to implement `CRUD` (create, read, update, delete) in 
 
 Larammerce is a schema-first platform. So you must create a table for your todos.
 
-Run the following command in the CMD:
+Run the following command in the terminal:
 
 ```bash{1}
 php artisan make:migration create_todos_table
@@ -32,15 +32,15 @@ Insert these codes in the path `/larammerce/database/migrations/[some_numbers]_c
    
 ```
 
-Run the following command in the CMD:
+Run the following command in the terminal:
 
 ```bash{1}
 php artisan migrate
 ```
 
-**OUTPUT**
+You can check your database to make sure the table `todos` is created:
 
-![](/40.png)
+![todos_table](/40.png)
 
 ## Create Todo model
 
@@ -171,13 +171,13 @@ class TodoController extends BaseController
 
 A todo icon is required in the top toolbar in order to perform the crud processes.
 
-![](/01-edited.png)
+![top_toolbar](/01-edited.png)
 
 Search and select a `todo flat icon png` file and put it into the path `/larammerce/public_html/admin_dashboard/images/icons/`.
 
 Put the following code in the path `/larammerce/resources/assets/sass/icons.scss`:
 
-```stylus{8-10}
+```scss{8-10}
 .h-icon {
     background-size: 100% 100% !important;
     ...
@@ -191,7 +191,7 @@ Put the following code in the path `/larammerce/resources/assets/sass/icons.scss
     ...
 ```
 
-Run the following command in the CMD:
+Run the following command in the terminal:
 
 ```bash{1}
 npm run prod
@@ -222,7 +222,7 @@ return [
 
 **OUTPUT**
 
-![](/04-edited.png)
+![todo_icon](/04-edited.png)
 
 
 ## Correct translation
@@ -244,7 +244,7 @@ return [
 ];
 ```
 
-Run the following command in the CMD:
+Run the following command in the terminal:
 
 ```bash{1}
 php artisan translation:fill
@@ -252,14 +252,14 @@ php artisan translation:fill
 
 **OUTPUT**
 
-![](/08-edited.png)
+![todo_icon_translated](/08-edited.png)
 
 
 ## Define index method
 
 If you click on todo icon to show the list of todos, you will get this error:
 
-![](/05.png)
+![index_error](/05.png)
 
 So you must define the index method.
 
@@ -376,7 +376,7 @@ Create the file `list.blade.php` in the path `/larammerce/resources/views/admin/
 
 **OUTPUT**
 
-![](/06-edited.png)
+![index_view](/06-edited.png)
 
 ## Correct translation
 
@@ -396,7 +396,7 @@ return [
 ]; 
 ```
 
-Run the following command in the CMD:
+Run the following command in the terminal:
 
 ```bash{1}
 php artisan translation:fill
@@ -404,17 +404,17 @@ php artisan translation:fill
 
 **OUTPUT**
 
-![](/08-2-edited.png)
+![index_view_translated](/08-2-edited.png)
 
 ## Define create method
 
 So far, you have got the list of todos:
 
-![](/08.png)
+![todos_list](/08.png)
 
 If you click on the `+` icon to create a new todo, you will get this error:
 
-![](/09.png)
+![create_error](/09.png)
 
 So you must define the create method.
 
@@ -469,7 +469,7 @@ Make the file `create.blade.php` in the path `/larammerce/resources/views/admin/
 
 **OUTPUT**
 
-![](/10.png)
+![create_view](/10.png)
 
 ## Define store method
 
@@ -498,24 +498,24 @@ class TodoController extends BaseController
 
 Now create a new todo:
 
-![](/13.png)
+![create_new_todo](/13.png)
 
 Click on the `ذخیره` button to save the new todo.
 
 **OUTPUT**
 
-![](/14.png)
+![new_todo_created](/14.png)
 
 
 ## Add edit view
 
 In the todo list, each item has an edit icon:
 
-![](/14-edited.png)
+![edit_icon](/14-edited.png)
 
 Clicking on the edit icon will give you this error:
 
-![](/15.png)
+![edit_error](/15.png)
 
 So you must add an edit view.
 
@@ -599,7 +599,7 @@ return [
 ];
 ```
 
-Run the following command in the CMD:
+Run the following command in the terminal:
 
 ```bash{1}
 php artisan translation:fill
@@ -665,21 +665,21 @@ class TodoController extends BaseController
 
 **OUTPUT**
 
-![](/16-edited.png)
+![edit_view](/16-edited.png)
 
 Now you can select a new status for your todo:
 
-![](/17-edited.png)
+![select_status](/17-edited.png)
 
 The result is as follows:
 
-![](/19-edited.png)
+![status_selected](/19-edited.png)
 
 ## Correct list status
 
 In the list of todos, the status item is represented as a number:
 
-![](/14-edited.png)
+![todo_status_number](/14-edited.png)
 
 So you must correct the code for status in the path `/larammerce/resources/views/admin/pages/todo/layout/list.blade.php`:
 
@@ -700,17 +700,17 @@ So you must correct the code for status in the path `/larammerce/resources/views
 
 **OUTPUT**
 
-![](/18-edited.png)
+![todo_status_translated](/18-edited.png)
 
 ## Define update method
 
 So far you have created the edit form:
 
-![](/19-edited.png)
+![edit_form](/19-edited.png)
 
 If you click on `ذخیره` button, this error will appear:
 
-![](/20.png)
+![update_error](/20.png)
 
 So you must define the update method to save the changes.
 
@@ -746,13 +746,13 @@ Now click on `‌ذخیره و خروج` button to save the new status for your 
 
 **OUTPUT**
 
-![](/22-edited.png)
+![save_edited_todo](/22-edited.png)
 
 ## Define destroy method
 
 Create some new todos with different statuses:
 
-![](/33-edited.png)
+![some_new_todos](/33-edited.png)
 
 Clicking on the delete icon should omit the related todo. So you must define the destroy method.
 
@@ -778,13 +778,13 @@ Now click on the delete icon for todo #2.
 
 **OUTPUT**
 
-![](/34-edited.png)
+![delete_confirm](/34-edited.png)
 
 Click on `بله`.
 
 **OUTPUT**
 
-![](/35-edited.png)
+![todo_deleted](/35-edited.png)
 
 The todo #2 has been deleted from the list.
 
