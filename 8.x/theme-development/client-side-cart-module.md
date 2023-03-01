@@ -664,3 +664,8 @@ Finally, the products with the `product-box` element are checked, and all the fu
                 LocalCartService.calculateInvoice();
             },
 ```
+
+#### Video source
+___
+
+<iframe src="https://www.aparat.com/video/video/embed/videohash/vPc3W/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>
