@@ -85,6 +85,10 @@ class Todo extends BaseModel
 
 ```
 
+:::tip Annotations
+In the code above, the lines number 5 to 11 are called `annotations`. You can study the [annotations](https://docs.larammerce.com/8.x/core-concepts/annotations.html) page to learn more about this topic in the larammerce platform.
+:::
+
 ## Add route
 
 Put the code below in the path `/larammerce/routes/web.php` inside the `admin routes`:
