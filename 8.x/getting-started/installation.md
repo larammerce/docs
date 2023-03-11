@@ -695,3 +695,67 @@ cp .htaccess.example .htacces
 
 
 ---
+
+## Setup project template
+
+- Fork and clone the `larammerce_base_theme` project from [larammerce github](https://github.com/larammerce/larammerce-base-theme).
+
+- Run this command on `~ larammerce_base_theme` directory in your powershell:
+
+```
+npm install
+```
+
+- The very next step is to install `direnv` tool.
+  
+  `direnv` is necessory for development to create different environment in each directory:
+
+ See how to install direnv [here](direnv.net) or follow this instruction:
+
+ On `~ larammerce_base_theme` run:
+```
+   sudo apt install direnv
+```
+To hook direnv into your shell, add the following line to the end of `~ /.bashrc` file by these steps:
+1. Enable editing with `shift+g+o+enter`.
+2. Add the line below at the end of the file:
+```
+eval "$(direnv hook bash)"
+``` 
+3.Open `.envrc` and add this line on top of the file:
+```
+export ECOMMERCE_BASE_PATH=/home/your-sysytem-name/your-root/larammerce
+```
+Note: On the main directory run `pwd` to get the path used in the command above.
+
+Here, you may run to an access issue, to solve it run:
+```
+direnv allow 
+```
+
+To test the accuracy of this command, run:
+
+``` bash
+echo  $ECOMMERCE_BASE_PATH
+```
+The result should be the path you equalized before.
+
+
+- Build all the resources of the project by running this command:
+
+ ```
+ npm run prod
+ ```
+
+ Everything is ready to deploy the project on `localhost:8080`. Execute:
+ ```
+ php -S 0.0.0.0:8080 -t public_html/
+ ```
+
+ To enable a basic theme on the project, run this command on ` ~/.../larammerce-base-theme` :
+
+```
+./deploy.sh
+```
+
+---
