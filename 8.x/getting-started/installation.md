@@ -52,3 +52,14 @@ Consider that if you are in administration mode `(#)` in your powershell you hav
 
 
 ---
+
+#### Install MySQL 5.7 (oracle) 
+
+
+- To install MySQL on Linux OS, follow instruction demonstrated in [this page](https://www.devart.com/dbforge/mysql/how-to-install-mysql-on-ubuntu/).
+
+- To install MySQL on wsl, download MySQL for windows from [here](https://dev.mysql.com/downloads/mysql/5.7.html).
+
+Once you installed MySQL, create a database so to connect it to the project. 
+
+---
