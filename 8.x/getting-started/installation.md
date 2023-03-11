@@ -804,3 +804,9 @@ Finally, press `edit web page` button in the form, select the url name you creat
 See the result on `localhost:8080/test`.
 
 ---
+
+### References
+
+*1.<a name="1"> [how to install linux ?](https://www.linux.org/pages/download/) </a>*
+
+*2.<a name="2"> [how to install WSL on windows ?](https://www.linux.org/pages/download/) </a>*
