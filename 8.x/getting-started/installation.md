@@ -191,7 +191,26 @@ Mail Server | any SMTP server
 **Note 2:** Installation of MongoDB is not required for deployment.
 
 ---
+#### OS requirements
 
+As every application has its tools and requirements, Larammerce requires some of them as listed below, to install them follow the instructions.
+
+- Install the `JSON` processor running command below:
+
+```bash
+yum install jq
+```
+- Run the following command to install direnv:
+
+```bash
+curl -sfL https://direnv.net/install.sh | bash
+```
+- Then add the following line at the end of the ~/.bashrc file:
+
+```bash
+eval "$(direnv hook bash)"
+```
+---
 
 
 
