@@ -13,3 +13,19 @@ Note: The instruction of development is based on Linux/Ubuntu22.04, and the inst
 ## Development installation guide
 
 To develop on Larammerce project, sufficient knowledge of `PHP` and `Laravel framework` is vital. Follow requirements and setup instructions demonstrated in this article. 
+
+### Requirements
+
+
+| Title |  Description |
+|-----------|-------------------|
+| Operation system | linux |
+| Linux distribution | Ubuntu 22.04 |
+| Relational database | MySQL5.7 or higher|
+| Interpreter | PHP version 8.0 |
+| Node.js | Version 16 (Recomended)|
+| Package manager | Composer |
+| Cache DB| Redis |
+ 
+---
+
