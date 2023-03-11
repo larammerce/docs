@@ -264,6 +264,35 @@ systemctl restart httpd
 ```
 ---
 
+#### Install Node.js and npm
 
+As Larammerce is using the Laravel framework as its core system, inherits all the Laravel features. For example, Larammerce uses nodejs to build its resource bundles and minify them.
+
+
+In the root user run the following curl command to add the NodeSource yum repository to your system:
+
+```bash
+curl -sL https://rpm.nodesource.com/setup_16.x | sudo bash -
+```
+**Note:** According to the need of the project we tend to install node.js version 16.
+
+Once the NodeSource repository is enabled, install Node.js and npm by typing:
+
+```bash
+sudo yum install nodejs
+``` 
+
+Run the following command to install node requirements:
+
+```bash
+cd larammerce
+npm install
+```
+Then run this command to build the resource files:
+
+```bash
+npm run prod # In addition to prod parameter there are some alternatives like 'dev' and 'watch' which for more information you have to refer to laravel/mix projec docs.
+```
+---
 
 
