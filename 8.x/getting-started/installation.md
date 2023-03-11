@@ -63,3 +63,34 @@ Consider that if you are in administration mode `(#)` in your powershell you hav
 Once you installed MySQL, create a database so to connect it to the project. 
 
 ---
+
+#### Install php 8.0 
+
+You can follow php installation guide from this [link](https://medium.com/@laraveltuts/how-to-install-and-run-php-8-x-on-ubuntu-20-04-8f18e7565c41) or just follow steps below:
+
+First, optimize repositories management by running the following command:
+
+``` bash
+sudo apt install software-properties-common
+```
+
+Now add `PHP PPA` to get access to new packages and be able to download php8.0: 
+
+```
+sudo add-apt-repository ppa:ondrej/php
+```
+
+Running the command below displayes the latest available packages list:
+
+```
+sudo apt update
+```
+
+And as the final step, use this command to install php. All future launches should take less than 1 minute.
+
+```
+sudo apt install php8.0 php8.0-bcmath php8.0-mysql php8.0-pdo php8.0-mbstring php8.0-curl php8.0-imagick php8.0-simplexml php8.0-soap php8.0-xml php8.0-redis php8.0-mongodb php8.0-gd php8.0-zip
+```
+We're done here !
+
+---
