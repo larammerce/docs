@@ -212,6 +212,58 @@ eval "$(direnv hook bash)"
 ```
 ---
 
+#### Install HTTPD (Apache2 web server)
+
+To install apache2 on Centos you have to run the command below:
+
+```bash
+yum install httpd
+systemctl enable httpd # Make the os to load httpd on startup.
+systemctl start httpd # Start the httpd service in the background.
+```
+
+As the `apache` user crated by `httpd` has no access to the system shell, run the command below to solve this issue:
+
+```bash
+vim /etc/passwd # open the passwd file to modify it.
+```
+
+To change the default shell and home directory for the `apache` user open the passwd file and apply the following changes:
+
+```bash
+apache:x:48:48:Apache:/var/www:/bin/bash # change the /bin/nologin to /bin/bash or any other desired shell. 
+```
+
+Then set a password for the apache user.
+
+```bash
+passwd apache # Enter the desired password twice for this command.
+```
+Once the password got set, login as the Apache user with the following command:
+
+```bash
+su - apache
+```
+
+Modify the current configurations for the httpd:
+
+```
+vim /etc/httpd/conf/httpd.conf
+```
+
+Find and replace all the `/var/www/html` with the `/var/www/larammerce/public_html`:
+
+```bash
+:%s/\/var\/www\/html/\/var\/www\/larammerce\/public_html/g
+```
+
+And after all, restart the httpd daemon:
+
+```bash
+systemctl restart httpd
+```
+---
+
 
 
 
