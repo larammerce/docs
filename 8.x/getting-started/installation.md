@@ -477,3 +477,7 @@ Run the following command to install Composer dependencies:
 composer install
 ```
 --- 
+
+## Setup Larammerce project
+
+After cloning the repository, to setup the project, you may need to enable some features. Follow steps below:
