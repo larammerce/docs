@@ -561,3 +561,17 @@ If using wsl, consider you should execute this script every time you open the pr
 ``` 
 
 ---
+
+#### Enable MySQL
+
+Run this command to enable MySQL on linux:
+```
+sudo systemctl enable mysql
+```
+To ensure that it works correctly, restart MySQL:
+
+```
+sudo systemctl restart mysql
+```
+
+---
