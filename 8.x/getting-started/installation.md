@@ -166,3 +166,11 @@ sudo apt install redis
 All the development requirements installation is done. you can now setup Larammerce project.
 
 ---
+
+## Production installation guide
+
+Larammerce has its stack of technologies and utilities as described below:
+
+**Apache** as a web server, **MySQL** version 5.7 as the main relational database, **Redis** database as the cache layer and session management, and **MongoDB** as the log saving database.
+
+---
