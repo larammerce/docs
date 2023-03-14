@@ -297,3 +297,55 @@ Then run this command to build the resource files:
 npm run prod # In addition to prod parameter there are some alternatives like 'dev' and 'watch' which for more information you have to refer to laravel/mix projec docs.
 ```
 ---
+
+#### Install MySQL 5.7
+
+As Larammerce is used for production and stable versions of dependencies are needed to be used, the preferred version of Oracle/Mysql is 5.7.
+
+First, we need to enable MySQL 5.7 community to release the "yum" repository on the system.
+
+As the root user run the following command:
+
+```bash
+yum localinstall https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
+```
+
+As you successfully finalized enabling MySQL yum repository on your system, install MySQL 5.7 community server with its other dependencies using the following commands:
+
+```bash
+rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022 #loding the key
+yum install mysql-community-server
+```
+During the installation process of packages, a temporary password will be created and will be placed in MySQL log files. Follow these steps to find your temporary MySQL password:
+
+- Start the MySQL Service and enable it:
+  
+```bash
+systemctl enable mysqld
+systemctl start mysqld 
+```
+
+- Now run the following command to get the temporary root password:
+
+```bash
+grep 'A temporary password' /var/log/mysqld.log |tail -1 
+```
+
+Output sample :
+
+```bash
+2017-03-30T02:57:10.981502Z 1 [Note] A temporary password is generated for root@localhost: Nm(!pKkkjo68e
+```
+
+- You may have to change the password. To do so run the following command:
+
+```bash
+mysql_secure_installation # After running this command the process will begin, enter the copied password, and set the desired configurations according to demands.
+```
+You can create a new database with the following command:
+
+```bash
+mysql -u root -p -e "create database larammerce_main"
+```
+
+---
