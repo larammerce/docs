@@ -481,3 +481,69 @@ composer install
 ## Setup Larammerce project
 
 After cloning the repository, to setup the project, you may need to enable some features. Follow steps below:
+
+#### Clone the project
+
+**Ubuntu instruction for developing:**
+
+1. Create a folder
+
+
+Run the command `mkdir projects` in your powershell to create a folder name projects.
+By entering `pwd` command you will be able to see where the current directory path is mounted in wsl. <br>
+Once you did, run this command to update your system package manager:
+```
+sudo apt update
+```
+
+2. Install an editor (vim, nano, etc.)
+   
+To do so, enter command below to download and install the editor and the `git` in the repository:
+
+```
+sudo apt install vim git
+```
+3. Clone the project
+
+Login to your github on `github.com`. if you have adminstartor access to the project, you should clone the main project. otherwise fork the [`larammerce project`](https://github.com/larammerce/larammerce) and then clone it.
+
+**If** Using `CentOS` project files must be owned by the apache user. To create the project as the apache user run these scripts:
+
+```
+su - apache # To login as the apache user
+git clone https://gitlab.larammerce.com/larammerce.git # this makes us the directory named larammerce in the path /var/www which is the home directory for the user apache
+```
+
+**Note:** If you run into an issue during the cloning process about not having access to the repository for read and write, you will be needed to some keys. We recommend following our guide for a step-by-step walk-through of how to build a key.
+
+- Build the key 
+
+```
+ssh-keygen -t rsa -C " <enter a name> "
+```
+
+**Note:** Never share this key to anyone. It may cause attacks on your app.
+
+   - Copy the generated key
+
+By running command below, you will have access to components of the file including the key. find the key and copy.
+
+   ```bash
+   cat id_rsa.pub
+   ```
+
+**Note:** The file name might be different in your system. here we just accepted the default name for the directory. so look for a `.pub` file to reach the key.
+
+
+- Set the keys on your github
+
+Open your github account. `setting > SSH and GPG keys > new SSH key`, paste the key on the key field and then confirm the access by entering your password.
+
+As you finalized this proccess, just back to your shell, direct to the main repository and clone the project again.
+
+
+To install the `JSON` processor run the command below:
+```
+sudo apt install jq
+```
+---
