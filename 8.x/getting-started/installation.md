@@ -663,3 +663,39 @@ Also you may need to set redis connections:
 |REDIS_PORT|6379|
 
 ---
+
+#### Upload project data
+
+To upload all the project data, run the script below. It should take a few minutes.
+
+```
+php artisan migrate
+```
+**Note:** If there is a MySQL dump file you can load it on the database, or can just migrate the DB to start the project database.
+
+Load dumped data to MySQL by the following command and then run the migration script:
+
+```bash
+mysql -u root -password larammerce_main < template_project.sql
+```
+
+To create primary data, seed database:  
+
+```
+php artisan migrate --seed
+```
+Once you deployed the project, go to `localhost:8080/admin` and login as admin.
+Check the username and password in `~ database/seeders` by running:
+```
+vim UsersTableSeeder.php
+```
+
+**Note:** The most important thing about the Laravel projects is to put the .htaccess file according to Laravel configurations in the document root of the project, so as there is an example file for this use, you can just copy and modify it:
+
+```bash
+cd public_html
+cp .htaccess.example .htacces
+```
+
+
+---
