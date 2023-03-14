@@ -362,3 +362,46 @@ systemctl enable redis
 systemctl start redis
 ```
 ---
+
+#### Install php 8.0
+
+As Centos is based on the stable version of packages, its default repositories do not contain php8.0.
+To install php8.0 you have to add the `Remi` repo to your list of repositories.
+Follow the steps below:
+
+- Add the yum repo by running the following command:
+
+```bash
+rpm -Uvh https://rpms.remirepo.net/enterprise/remi-release-7.rpm
+```
+
+
+- Open/Modify the remi-php80.repo file and edit this repository:
+
+```bash
+cd /etc/yum.repos.d
+vim remi-php80.repo # In the file change the value of the `enable` variable to enable = 1 
+```
+
+
+- Update the list of repositories and existing packages:
+
+```bash
+yum update
+```
+
+
+- Install php:
+
+```bash
+yum install php
+``` 
+
+- To install Larammerce necessary php extensions , run:
+
+```bash
+yum install php-bcmath php-mysql php-pdo php-mbstring php-curl php-imagick php-json php-simplexml php-soap php-xml php-redis php-mongodb php-gd php-zip
+```
+
+---
+
