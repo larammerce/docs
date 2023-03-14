@@ -349,3 +349,16 @@ mysql -u root -p -e "create database larammerce_main"
 ```
 
 ---
+
+#### Install Redis
+
+Larammerce project uses Redis for some sections, for example, its queue management system, cache server, and session storage.
+
+As the root user run the following command to install the Redis package:
+
+```bash
+yum install redis
+systemctl enable redis
+systemctl start redis
+```
+---
