@@ -174,3 +174,22 @@ Larammerce has its stack of technologies and utilities as described below:
 **Apache** as a web server, **MySQL** version 5.7 as the main relational database, **Redis** database as the cache layer and session management, and **MongoDB** as the log saving database.
 
 ---
+
+### Requirements
+
+Title | Description
+------|-----------------
+Operation system | gnu/Linux-based operating system (Centos 7 preferred)
+Relational database | MySQL 5.7
+Interpreter | Php8
+WebServer | Apache2/Nginx
+Cache DB | Redis
+Logs DB | MongoDB
+Mail Server | any SMTP server
+| Package manager | Composer |
+
+**Note 1:** In the following part, we are going to run the operating system commands in an interactive shell. Please note that all the commands are executing by the **root** user, if not, you should run them by a sudoer user and prepend **sudo** before every command.
+
+**Note 2:** Installation of MongoDB is not required for deployment.
+
+---
