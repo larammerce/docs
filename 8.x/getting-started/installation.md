@@ -1,15 +1,182 @@
-# Installation
+## installation
 
 [[toc]]
+
 Larammerce is an open-source ecommerce platform that helps business owners to focus on their concerns and just have the whole complete solution for their online market.
 
 It's been built on top of [Laravel framework](https://laravel.com) which is open source and free to use.
+
+This guide is a comprehensive resource for both development and production environment setup. We welcome your contributions to Larammerce!
+
+
+Note: The instruction of development is based on Linux/Ubuntu22.04, and the instruction of production is based in linux/CentOS7.
+
+---
+
+## Development installation guide
+
+To develop on Larammerce project, sufficient knowledge of `PHP` and `Laravel framework` is vital. Follow requirements and setup instructions demonstrated in this article. 
+
+### Requirements
+
+
+| Title |  Description |
+|-----------|-------------------|
+| Operation system | linux |
+| Linux distribution | Ubuntu 22.04 |
+| Relational database | MySQL5.7 or higher|
+| Interpreter | PHP version 8.0 |
+| Node.js | Version 16 (Recomended)|
+| Package manager | Composer |
+| Cache DB| Redis |
+ 
+---
+
+#### Install linux and ubuntu
+
+However `PHP` is already a cross-platform language and doesn't need a unique platform; Still, to extend Larammerce project scripts and develop them, you must be running a *`Linux`* *<sup>[1](#1)</sup>* operation system or a *`WSL`* *<sup>[2](#2)</sup>* (Windows Subsystem for Linux) on your windows due to the lateral scripts involved with this project.
+
+If you are already using linux, please install `Ubuntu` distro, and if using `WSL`, no need to do extra! By default, the installed Linux distribution will be Ubuntu.
+
+**Note:** Rather than other distros,`Ubuntu` is ideal for early adopters, is more reliable and has community support and complete documantation.
+
+
+Here we assume you have Ubuntu distribution either on your `Linux` or `WSL`.
+
+Once you finalized these installations, open powershell or wsl shell and write the command `lsb_release -a ` just to check your current operating system info.
+Also by running ` df -h ` you will be able to see your storage details.
+
+::: warning Administration warning
+
+Consider that if you are in administration mode `(#)` in your powershell you have to really watch out about the commands you commit. For safety, its better to commit as a regular user`($)`.
+
+:::
+
+
+---
+
+#### Install MySQL 5.7 (oracle) 
+
+
+- To install MySQL on Linux OS, follow instruction demonstrated in [this page](https://www.devart.com/dbforge/mysql/how-to-install-mysql-on-ubuntu/).
+
+- To install MySQL on wsl, download MySQL for windows from [here](https://dev.mysql.com/downloads/mysql/5.7.html).
+
+Once you installed MySQL, create a database so to connect it to the project. 
+
+---
+
+#### Install php 8.0 
+
+You can follow php installation guide from this [link](https://medium.com/@laraveltuts/how-to-install-and-run-php-8-x-on-ubuntu-20-04-8f18e7565c41) or just follow steps below:
+
+First, optimize repositories management by running the following command:
+
+``` bash
+sudo apt install software-properties-common
+```
+
+Now add `PHP PPA` to get access to new packages and be able to download php8.0: 
+
+```
+sudo add-apt-repository ppa:ondrej/php
+```
+
+Running the command below displayes the latest available packages list:
+
+```
+sudo apt update
+```
+
+And as the final step, use this command to install php. All future launches should take less than 1 minute.
+
+```
+sudo apt install php8.0 php8.0-bcmath php8.0-mysql php8.0-pdo php8.0-mbstring php8.0-curl php8.0-imagick php8.0-simplexml php8.0-soap php8.0-xml php8.0-redis php8.0-mongodb php8.0-gd php8.0-zip
+```
+We're done here !
+
+---
+
+#### Install Node.js
+
+According to the need of the project we tend to install node.js version 16.
+
+```
+curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
+```
+As the installation is finalized, run this script to check whether the correct commands are being passed to your package manager based on distro and version requirements:
+
+```
+vim nodesource_setup.sh
+```
+
+If it integrates well, exit the text editor and run the script with `sudo`:
+
+```
+sudo bash nodesource_setup.sh
+```
+Now execute this command to install nodejs:
+
+```
+sudo apt install nodejs
+```
+
+Run the following commands to install `Node.js` packages build the resource files:
+
+```
+npm install
+npm run prod
+```
+
+---
+
+#### Install composer 
+
+Execute commands below to install composer as dependency management tool:
+
+```
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+
+```
+```
+sudo mv composer.phar /usr/local/bin/composer
+```
+To check the installed version run:
+
+```
+composer -v
+``` 
+
+---
+
+#### Install redis
+
+Redis provides data structures, is an in-memory data structure store, is a cache broker, and is needed for this project:
+
+To install redis, run:
+
+```
+sudo apt install redis
+```
+**Note:** Redis needs to be enabled. There would be a instructio for enabling redis in setup section.
+
+All the development requirements installation is done. you can now setup Larammerce project.
+
+---
+
+## Production installation guide
 
 Larammerce has its stack of technologies and utilities as described below:
 
 **Apache** as a web server, **MySQL** version 5.7 as the main relational database, **Redis** database as the cache layer and session management, and **MongoDB** as the log saving database.
 
-## Requirements
+---
+
+### Requirements
+
 Title | Description
 ------|-----------------
 Operation system | gnu/Linux-based operating system (Centos 7 preferred)
@@ -19,38 +186,36 @@ WebServer | Apache2/Nginx
 Cache DB | Redis
 Logs DB | MongoDB
 Mail Server | any SMTP server
+| Package manager | Composer |
 
+**Note 1:** In the following part, we are going to run the operating system commands in an interactive shell. Please note that all the commands are executing by the **root** user, if not, you should run them by a sudoer user and prepend **sudo** before every command.
 
-**NOTE:** In the following part, we are going to run the operating system commands in an interactive shell, Please note that all the commands are executing by the **root** user, if not you should run them by a sudoer user and prepend **sudo** before every command.
+**Note 2:** Installation of MongoDB is not required for deployment.
 
-**NOTE:** Installation of MongoDB is not required for deployment.
+---
 
-## OS requirements
+#### OS requirements
 
-As every application has its tools and requirements, Larammerce requires some of them as listed below, to install them follow the instructions:
+As every application has its tools and requirements, Larammerce requires some of them as listed below, to install them follow the instructions.
+
+- Install the `JSON` processor running command below:
 
 ```bash
 yum install jq
 ```
-
-
-Direnv is an extension for your shell. It augments existing shells with a new feature that can load and unload environment variables depending on the current directory.
-
-Run the following command to install direnv
+- Run the following command to install direnv:
 
 ```bash
 curl -sfL https://direnv.net/install.sh | bash
 ```
-
-Then add the following line at the end of the ~/.bashrc file:
+- Then add the following line at the end of the ~/.bashrc file:
 
 ```bash
 eval "$(direnv hook bash)"
 ```
+---
 
-## Install HTTPD (Apache2 web server)
-
-As you know apache2 is used to serve as a web server for our application.
+#### Install HTTPD (Apache2 web server)
 
 To install apache2 on Centos you have to run the command below:
 
@@ -60,24 +225,24 @@ systemctl enable httpd # Make the os to load httpd on startup.
 systemctl start httpd # Start the httpd service in the background.
 ```
 
-As you know at first **httpd** creates a user named **apache** in the system, but there is no shell access for it by default. so to make this user have access to the system shell do the following:
+As the `apache` user crated by `httpd` has no access to the system shell, run the command below to solve this issue:
 
 ```bash
 vim /etc/passwd # open the passwd file to modify it.
 ```
 
-To change the default shell and home directory for the **apache** user open the passwd file and apply the following changes:
+To change the default shell and home directory for the `apache` user open the passwd file and apply the following changes:
 
 ```bash
 apache:x:48:48:Apache:/var/www:/bin/bash # change the /bin/nologin to /bin/bash or any other desired shell. 
 ```
 
-Then set a password for the apache user
+Then set a password for the apache user.
 
 ```bash
 passwd apache # Enter the desired password twice for this command.
 ```
-password is set and then you have to log in as the Apache user with the following command:
+Once the password got set, login as the Apache user with the following command:
 
 ```bash
 su - apache
@@ -100,25 +265,40 @@ And after all, restart the httpd daemon:
 ```bash
 systemctl restart httpd
 ```
+---
 
-## Install Node.js and npm
+#### Install Node.js and npm
 
-As you know Larammerce is using the Laravel framework as its core system and inherits all Laravel features. for example, Larammerce uses nodejs to build its resource bundles and minify them.
+As Larammerce is using the Laravel framework as its core system, inherits all the Laravel features. For example, Larammerce uses nodejs to build its resource bundles and minify them.
 
-**NOTE:** Larammerce needs node v16.
 
 In the root user run the following curl command to add the NodeSource yum repository to your system:
 
 ```bash
 curl -sL https://rpm.nodesource.com/setup_16.x | sudo bash -
 ```
+**Note:** According to the need of the project we tend to install node.js version 16.
+
 Once the NodeSource repository is enabled, install Node.js and npm by typing:
 
 ```bash
 sudo yum install nodejs
 ``` 
 
-## Install MySQL 5.7
+Run the following command to install node requirements:
+
+```bash
+cd larammerce
+npm install
+```
+Then run this command to build the resource files:
+
+```bash
+npm run prod # In addition to prod parameter there are some alternatives like 'dev' and 'watch' which for more information you have to refer to laravel/mix projec docs.
+```
+---
+
+#### Install MySQL 5.7
 
 As Larammerce is used for production and stable versions of dependencies are needed to be used, the preferred version of Oracle/Mysql is 5.7.
 
@@ -130,35 +310,47 @@ As the root user run the following command:
 yum localinstall https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
 ```
 
-As you have successfully enabled MySQL yum repository on your system. Now, install MySQL 5.7 community server using the following commands as per your operating system version.
+As you successfully finalized enabling MySQL yum repository on your system, install MySQL 5.7 community server with its other dependencies using the following commands:
 
 ```bash
 rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022 #loding the key
 yum install mysql-community-server
 ```
-The above command will install the MySQL community server with other dependencies on your system. During the installation process of packages, a temporary password is created and is placed in MySQL log files. Use the following command to find your temporary MySQL password.
+During the installation process of packages, a temporary password will be created and will be placed in MySQL log files. Follow these steps to find your temporary MySQL password:
 
-First, start the  MySQL Service and enable it, and then run the following command to get the temporary root password:
-
+- Start the MySQL Service and enable it:
+  
 ```bash
 systemctl enable mysqld
 systemctl start mysqld 
+```
+
+- Now run the following command to get the temporary root password:
+
+```bash
 grep 'A temporary password' /var/log/mysqld.log |tail -1 
 ```
 
-Sample output:
+Output sample :
 
 ```bash
 2017-03-30T02:57:10.981502Z 1 [Note] A temporary password is generated for root@localhost: Nm(!pKkkjo68e
 ```
 
-Now change the password by running the following command:
+- You may have to change the password. To do so run the following command:
 
 ```bash
 mysql_secure_installation # After running this command the process will begin, enter the copied password, and set the desired configurations according to demands.
 ```
+You can create a new database with the following command:
 
-## Install Redis
+```bash
+mysql -u root -p -e "create database larammerce_main"
+```
+
+---
+
+#### Install Redis
 
 Larammerce project uses Redis for some sections, for example, its queue management system, cache server, and session storage.
 
@@ -169,52 +361,61 @@ yum install redis
 systemctl enable redis
 systemctl start redis
 ```
+---
 
-## Install php
+#### Install php 8.0
 
-As you know Centos is based on the stable version of packages, so there is no "php8" on its default repositories.
-To install php8 you have to add the **Remi** repo to your list of repositories.
+As Centos is based on the stable version of packages, its default repositories do not contain php8.0.
+To install php8.0 you have to add the `Remi` repo to your list of repositories.
+Follow the steps below:
 
-Add the yum repo by running the following command:
+- Add the yum repo by running the following command:
 
 ```bash
 rpm -Uvh https://rpms.remirepo.net/enterprise/remi-release-7.rpm
 ```
-Open/Modify the remi-php80.repo file and edit this repository
+
+
+- Open/Modify the remi-php80.repo file and edit this repository:
 
 ```bash
 cd /etc/yum.repos.d
 vim remi-php80.repo # In the file change the value of the `enable` variable to enable = 1 
 ```
 
-Then update the list of repositories and existing packages:
+
+- Update the list of repositories and existing packages:
 
 ```bash
 yum update
 ```
 
-Then install PHP with the following command:
+
+- Install php:
 
 ```bash
 yum install php
 ``` 
 
-To use PHP for Larammerce installing some PHP extensions is necessary install them by the following command:
+- To install Larammerce necessary php extensions , run:
 
 ```bash
 yum install php-bcmath php-mysql php-pdo php-mbstring php-curl php-imagick php-json php-simplexml php-soap php-xml php-redis php-mongodb php-gd php-zip
 ```
 
-## Install MongoDB 
+---
+
+#### Install MongoDB 
 
 By default, MongoDB is used as the logs 'DB' for the Larammerce system.
+To install mongoDB:
 
-Create/Modify the following file `/etc/yum.repos.d/mongodb-org-4.4.repo`
+- Create/Modify the following file `/etc/yum.repos.d/mongodb-org-4.4.repo`.
 
 ```bash
 vim /etc/yum.repos.d/mongodb-org-4.4.repo
 ```
-Put the following in the file and then save it:
+- Put the following in the file and then save it:
 
 ```repo
 [mongodb-org-4.4]
@@ -224,21 +425,22 @@ gpgcheck=1
 enabled=1
 gpgkey=https://www.mongodb.org/static/pgp/server-4.4.asc
 ```
-To install the latest stable version of MongoDB, issue the following command:
+- To install the latest stable version of MongoDB, issue the following command:
 
 ```bash
 yum install -y mongodb-org
 ```
-You can start the mongod process by issuing the following command:
+- Start the mongod process by executing the command below:
 
 ```bash
 systemctl enable mongod
 systemctl start mongod
 ```
+---
 
-## Install composer
+#### Install composer
 
-Composer is an application-level package manager for the PHP programming language that provides a standard format for managing dependencies of PHP software and required libraries.
+Composer is an application-level package manager for the php programming language that provides a standard format for managing dependencies of php software and required libraries.
 
 First, in the root user install the PHP CLI (command line interface) package and all other dependencies with:
 
@@ -252,9 +454,9 @@ php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 ```
 The command above will download the composer-setup.php file in the current working directory.
 
-To verify the data integrity of the script compare the script SHA-384 hash with the latest installer hash found on the Composer Public Keys / Signatures page.
+To verify the data integrity of the script, compare the script SHA-384 hash with the latest installer hash found on the Composer Public Keys / Signatures page.
 
-The following wget command will download the expected signature of the latest Composer installer from the Composer’s Github page and store it in a variable named **HASH**:
+The following wget command will download the expected signature of the latest Composer installer from the Composer’s Github page and store it in a variable named `HASH`:
 
 ```bash
 HASH="$(wget -q -O - https://composer.github.io/installer.sig)"
@@ -269,148 +471,362 @@ Run the following command to install Composer in the /usr/local/bin directory:
 ```bash
 php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 ```
-
-## Setup Larammerce project
-
-As you know if we want to serve the project files with the apache2 web server, project files must be owned by the apache user. so you have to create the project as the apache user.
-
-Clone the project: 
-
-```bash
-su - apache # To login as the apache user
-git clone https://gitlab.larammerce.com/larammerce.git # this makes us the directory named larammerce in the path /var/www which is the home directory for the user apache
-```
-Enter the Larammerce directory
-
-```bash
-cd larammerce
-```
-
-Run the following command to install node requirements:
-
-```bash
-cd larammerce
-npm install
-```
-Then run this command to build the resource files:
-
-```bash
-npm run prod # In addition to prod parameter there are some alternatives like 'dev' and 'watch' which for more information you have to refer to laravel/mix projec docs.
-```
-
 Run the following command to install Composer dependencies:
 
 ```bash
 composer install
 ```
+--- 
 
-Then you can create a new database with the following command:
+## Setup Larammerce project
 
-```bash
-mysql -u root -p -e "create database larammerce_main"
+After cloning the repository, to setup the project, you may need to enable some features. Follow steps below:
+
+#### Clone the project
+
+**Ubuntu instruction for developing:**
+
+1. Create a folder
+
+
+Run the command `mkdir projects` in your powershell to create a folder name projects.
+By entering `pwd` command you will be able to see where the current directory path is mounted in wsl. <br>
+Once you did, run this command to update your system package manager:
+```
+sudo apt update
 ```
 
-Create/Modify environment variables by the following command:
+2. Install an editor (vim, nano, etc.)
+   
+To do so, enter command below to download and install the editor and the `git` in the repository:
 
-```bash
+```
+sudo apt install vim git
+```
+3. Clone the project
+
+Login to your github on `github.com`. if you have adminstartor access to the project, you should clone the main project. otherwise fork the [`larammerce project`](https://github.com/larammerce/larammerce) and then clone it.
+
+**If** Using `CentOS` project files must be owned by the apache user. To create the project as the apache user run these scripts:
+
+```
+su - apache # To login as the apache user
+git clone https://gitlab.larammerce.com/larammerce.git # this makes us the directory named larammerce in the path /var/www which is the home directory for the user apache
+```
+
+**Note:** If you run into an issue during the cloning process about not having access to the repository for read and write, you will be needed to some keys. We recommend following our guide for a step-by-step walk-through of how to build a key.
+
+- Build the key 
+
+```
+ssh-keygen -t rsa -C " <enter a name> "
+```
+
+**Note:** Never share this key to anyone. It may cause attacks on your app.
+
+   - Copy the generated key
+
+By running command below, you will have access to components of the file including the key. find the key and copy.
+
+   ```bash
+   cat id_rsa.pub
+   ```
+
+**Note:** The file name might be different in your system. here we just accepted the default name for the directory. so look for a `.pub` file to reach the key.
+
+
+- Set the keys on your github
+
+Open your github account. `setting > SSH and GPG keys > new SSH key`, paste the key on the key field and then confirm the access by entering your password.
+
+As you finalized this proccess, just back to your shell, direct to the main repository and clone the project again.
+
+
+To install the `JSON` processor run the command below:
+```
+sudo apt install jq
+```
+---
+
+#### Enable Redis
+
+Run this command to enable Redis on Linux:
+```
+sudo systemctl restart redis-server
+```
+
+If using wsl, consider you should execute this script every time you open the program to initialize Redis:
+```
+/etc/init.d/redis-server start
+``` 
+
+---
+
+#### Enable MySQL
+
+Run this command to enable MySQL on linux:
+```
+sudo systemctl enable mysql
+```
+To ensure that it works correctly, restart MySQL:
+
+```
+sudo systemctl restart mysql
+```
+
+---
+
+## `.env` file setting
+
+The components of `.env.example` must be moved to a new file named `.env`.
+
+```
 cp .env.example .env
 ```
 
-Open the .env file
-```bash
+Through your powershell, execute the command below to set the values of `.env` file as the table below:
+
+```
 vim .env
 ```
-Then edit the file
-```bash
-APP_NAME=larammerce
+**Note:** The selected text editor here is `vim`, replace your installed text editor name.
 
-APP_URL=http://192.168.80.2:8080
 
-PROXY_URL=http://192.168.80.2:8080
 
-DB_DATABASE=larammerce
-DB_USERNAME=root
-DB_PASSWORD=password
+| Variable |  Value & explanation |
+-------------|----------------------|
+| APP_NAME  | Use any name (English) not encluding spaces. Use underscore sign instead.<br>Example: Larammerce_test |
+|APP_ENV | local |
+|APP_KEY  |This value will be generated automatically.|
+|APP_DEBUG | Values: true/false. <br>`True` stands for situations in which you want to develop or product,so the error report will be displayed in detail.<br>`False` value leads you to a single page displaying `error 500` without any explanation or detail. (Not suggested for developing)<br> set this value to `true`.|
+|APP_URL  | The default value is `http://localhost:8080`. <br>Replace the system IP with localhost If using another system . |
+|APP_SHORT_HOST | short-host |
+|APP_DEFAULT_LOCALE | fa |
+|LOG_CHANNEL | Value: stack<br> The stack channel is used to aggregate multiple log channels into a single channel. [more](https://laravel.com/docs/10.x/logging) |
+|LOG_DEPRECATIONS_CHANNEL| Value: null <br> It avoids notifying users of deprecations. [more](https://laravel.com/docs/10.x/logging#logging-deprecation-warnings) |
+|LOG_LEVEL | Value: debug  <br> limitting the information written to the log destination. [more](https://laravel.com/docs/5.3/errors#log-severity-levels)|
+|PROXY_URL | `http://localhost:8080` OR the system IP you are using. |
+| PROXY_SCHEMA | http |
+|JWT_SECRET| This value will also be generated automatically as well as `APP KEY` |
 
-LOG_DB_DATABASE=larammerce_log
-LOG_DB_USERNAME=root
-LOG_DB_PASSWORD=
+::: warning vim hint 
+As `vim` is a complicated text editor follow this hint: 
+Once you opened a file with `vim`, press `i` to enable editing. As commited, press `scape` and save and exit with the `:wq` command.
+:::
 
-CACHE_DRIVER=redis
-SESSION_DRIVER=redis
+---
+
+
+#### Generate required keys
+
+Execute this script using powershell to generate the required app key:
+
 ```
-Run the following command to set your application key to a random string.
-
-```bash
 php artisan key:generate
 ```
-Then this command to generate jwt secret:
 
-```bash
+And follow instruction below to generate `jwt secret`:
+
+```
 php artisan jwt:secret
 ```
+Once executed these commands, you'll be able to see generated keys on `.env` file.
 
-**NOTE:** If there is a MySQL dump file you can load it on the database, or can just migrate the DB to start the project database.
+::: danger Security Alert
+Do not share these keys with anyone. Otherwise you will be at risk of being attacked.
+:::
 
-Load dumped data to MySQL by the following command:
+---
+
+#### Edit database information 
+
+Once you created a database in `mysql`, connect the project to database by editing values below: 
+
+| Variable | Value & explanation |
+|----------|----------------------|
+|DB_CONNECTION|mysql|
+|DB_HOST|127.0.0.1|
+|DB_PORT|3306|
+|DB_DATABASE|The db name you created|
+|DB_USERNAME|root|
+|DB_PASSWORD|Enter your password|
+
+
+Also you may need to set redis connections:
+
+| Variable | Value & explanation |
+|----------|----------------------|
+|QUEUE_CONNECTION|Value: sync <br> Change this value if you  are developing on `queue management system`.|
+|CACHE_DRIVER|Value: redis/file <br> Set this value to `redis`. `file` value also integerates as well as `redis`.|
+|REDIS_HOST|127.0.0.1|
+|REDIS_PASSWORD|null|
+|REDIS_PORT|6379|
+
+---
+
+#### Upload project data
+
+To upload all the project data, run the script below. It should take a few minutes.
+
+```
+php artisan migrate
+```
+**Note:** If there is a MySQL dump file you can load it on the database, or can just migrate the DB to start the project database.
+
+Load dumped data to MySQL by the following command and then run the migration script:
 
 ```bash
 mysql -u root -password larammerce_main < template_project.sql
 ```
-If you have no dump file you can just migrate your databse:
 
-```bash
-php artisan migrate
+To create primary data, seed database:  
+
+```
+php artisan migrate --seed
+```
+Once you deployed the project, go to `localhost:8080/admin` and login as admin.
+Check the username and password in `~ database/seeders` by running:
+```
+vim UsersTableSeeder.php
 ```
 
-The most important thing about the Laravel projects is to put the .htaccess file according to Laravel configurations in the document root of the project, so as there is an example file for this use, you can just copy and modify it:
+**Note:** The most important thing about the Laravel projects is to put the .htaccess file according to Laravel configurations in the document root of the project, so as there is an example file for this use, you can just copy and modify it:
 
 ```bash
 cd public_html
 cp .htaccess.example .htacces
 ```
 
-## Setup the project template
 
-According to the Larammerce project structure, the project template and backend are developed dedicated and independent of each other.
+---
 
-Clone the template project:
+## Setup project template
 
-```bash
-cd /var/www/larammerce/data
-clone https://github.com/path/to/template-project.git
+- Fork and clone the `larammerce_base_theme` project from [larammerce github](https://github.com/larammerce/larammerce-base-theme).
+
+- Run this command on `~ larammerce_base_theme` directory in your powershell:
+
 ```
-Install npm dependencies after cloning the project
-
-```bash
-cd template-project
 npm install
 ```
 
-Then to build the project resource files run:
-```bash
-npm run prod # to build and minify the project resource files.
-npm run watch # to watch for resource file changes and then build and export them after every change.
+- The very next step is to install `direnv` tool.
+  
+  `direnv` is necessory for development to create different environment in each directory:
+
+ See how to install direnv [here](direnv.net) or follow this instruction:
+
+ On `~ larammerce_base_theme` run:
+```
+   sudo apt install direnv
+```
+To hook direnv into your shell, add the following line to the end of `~ /.bashrc` file by these steps:
+1. Enable editing with `shift+g+o+enter`.
+2. Add the line below at the end of the file:
+```
+eval "$(direnv hook bash)"
+``` 
+3.Open `.envrc` and add this line on top of the file:
+```
+export ECOMMERCE_BASE_PATH=/home/your-sysytem-name/your-root/larammerce
+```
+Note: On the main directory run `pwd` to get the path used in the command above.
+
+Here, you may run to an access issue, to solve it run:
+```
+direnv allow 
 ```
 
-Create a new .envrc file from the .envrc.example file
+To test the accuracy of this command, run:
 
-```bash
-cp .envrc.example .envrc
+``` bash
+echo  $ECOMMERCE_BASE_PATH
 ```
-Add the following to the file named `.envrc`:
+The result should be the path you equalized before.
 
-```bash
-export ECOMMERCE_BASE_PATH=/var/www/larammerce 
+
+- Build all the resources of the project by running this command:
+
+ ```
+ npm run prod
+ ```
+ You also may need to run the script below:
+
+ ```bash
+ npm run watch #to watch for resource file changes and then build and export them after every change.
 ```
+ Everything is ready to deploy the project on `localhost:8080`. Execute:
+ ```
+ php -S 0.0.0.0:8080 -t public_html/
+ ```
 
-Then this command to make the direnv package know this directory as its list of directories:
+ To enable a basic theme on the project, run this command on ` ~/.../larammerce-base-theme` :
 
-```bash
-direnv allow .
 ```
-And after each change in the template, we enter this command again to deploy the resources to the backend directory:
-
-```bash
 ./deploy.sh
 ```
+
+---
+
+#### working with the theme
+
+As a sample, lets build a web page! 
+
+Once you logged in as admin on `localhost:8080/admin`, press plus button on the left buttom of the page ,create a folder and equalized some random values in the form displayed. 
+
+For example:
+
+ | Field name | Value |
+ |------------|-------|
+ |Title: | Test folder|
+ |url part: | test |
+ |Preference : | 0|
+ |Content type :| regular|
+ |Enabling web page| on |
+
+ Save changes!
+
+Afterward, another form will be displayed. Here you may need to build a theme file prior to editing the web page.
+To do so, follow this step-by-step instruction:
+
+1. Create a file on `/larammerce-base-theme/public/views/$`.
+
+```
+ touch test.blade.php
+```
+2.Add the script below to the file:
+
+```
+@php
+
+echo "hello world!"
+
+@endphp
+```
+3.Now deploy the project on `~ /larammerce-base-theme` directory:
+```
+./deploy.sh 
+```
+
+Finally, press `edit web page` button in the form, select the url name you created, and save.(here the url name is test)<br> 
+See the result on `localhost:8080/test`.
+
+---
+
+#### the following article has been recorded in persian just in case of subscribers need:<br/><br/><br/>
+
+
+
+<iframe src="https://www.aparat.com/video/video/embed/videohash/n7Du6/vt/frame" height="300" width="700" style="  border: 2px solid #bdc3c7;
+border-radius: 5px; opacity: 1;" ></iframe>
+
+
+## References
+
+*1.<a name="1"> [how to install linux ?](https://www.linux.org/pages/download/) </a>*
+
+*2.<a name="2"> [how to install WSL on windows ?](https://www.linux.org/pages/download/) </a>* 
+
+
+
+
