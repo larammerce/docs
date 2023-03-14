@@ -547,3 +547,17 @@ To install the `JSON` processor run the command below:
 sudo apt install jq
 ```
 ---
+
+#### Enable Redis
+
+Run this command to enable Redis on Linux:
+```
+sudo systemctl restart redis-server
+```
+
+If using wsl, consider you should execute this script every time you open the program to initialize Redis:
+```
+/etc/init.d/redis-server start
+``` 
+
+---
