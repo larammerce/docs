@@ -386,9 +386,9 @@ public function handle()
 
 ![test-function](/09.png)
 
-As you see, the output shows the DockBlock above the `testFunction` method.
+As you see, the output shows the DocBlock above the `testFunction` method.
 
-You can also do mathematical calculations into the DocBlock.For example, change the DockBlock above the `testFunction` method:
+You can also do mathematical calculations into the DocBlock.For example, change the DocBlock above the `testFunction` method:
 
 ```php{2}
 /**
@@ -404,7 +404,7 @@ public function testFunction()
 
 ![mathematical-calculation](/10.png)
 
-The output indicates that the mathematical calculation 10+12=22 is done into the DockBlock.
+The output indicates that the mathematical calculation 10+12=22 is done into the DocBlock.
 
 ## Source code
 
@@ -418,4 +418,7 @@ To understand how the annotation-parser package works, you can refer to the *[gi
 
 *3. <a name="3">[Annotation-parser package in the larammerce project.](https://github.com/larammerce/annotation-parser)</a>*
 
-## Video source
+#### Video source
+___
+
+<iframe src="https://www.aparat.com/video/video/embed/videohash/Kzhe6/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>
