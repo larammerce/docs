@@ -152,3 +152,18 @@ composer -v
 ``` 
 
 ---
+
+#### Install redis
+
+Redis provides data structures, is an in-memory data structure store, is a cache broker, and is needed for this project:
+
+To install redis, run:
+
+```
+sudo apt install redis
+```
+**Note:** Redis needs to be enabled. There would be a instructio for enabling redis in setup section.
+
+All the development requirements installation is done. you can now setup Larammerce project.
+
+
