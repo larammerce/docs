@@ -609,3 +609,24 @@ Once you opened a file with `vim`, press `i` to enable editing. As commited, pre
 :::
 
 ---
+
+#### Generate required keys
+
+Execute this script using powershell to generate the required app key:
+
+```
+php artisan key:generate
+```
+
+And follow instruction below to generate `jwt secret`:
+
+```
+php artisan jwt:secret
+```
+Once executed these commands, you'll be able to see generated keys on `.env` file.
+
+::: danger Security Alert
+Do not share these keys with anyone. Otherwise you will be at risk of being attacked.
+:::
+
+---
