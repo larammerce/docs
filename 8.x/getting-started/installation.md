@@ -630,3 +630,29 @@ Do not share these keys with anyone. Otherwise you will be at risk of being atta
 :::
 
 ---
+
+#### Setup database 
+
+Once you created a database in `mysql`, connect the project to database by editing values below: 
+
+| Variable | Value & explanation |
+|----------|----------------------|
+|DB_CONNECTION|mysql|
+|DB_HOST|127.0.0.1|
+|DB_PORT|3306|
+|DB_DATABASE|The db name you created|
+|DB_USERNAME|root|
+|DB_PASSWORD|Enter your password|
+
+
+Also you may need to set redis connections:
+
+| Variable | Value & explanation |
+|----------|----------------------|
+|QUEUE_CONNECTION|Value: sync <br> Change this value if you  are developing on `queue management system`.|
+|CACHE_DRIVER|Value: redis/file <br> Set this value to `redis`. `file` value also integerates as well as `redis`.|
+|REDIS_HOST|127.0.0.1|
+|REDIS_PASSWORD|null|
+|REDIS_PORT|6379|
+
+---
