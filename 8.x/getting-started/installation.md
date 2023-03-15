@@ -438,3 +438,42 @@ systemctl enable mongod
 systemctl start mongod
 ```
 ---
+
+#### Install composer
+
+Composer is an application-level package manager for the php programming language that provides a standard format for managing dependencies of php software and required libraries.
+
+First, in the root user install the PHP CLI (command line interface) package and all other dependencies with:
+
+```bash
+yum install php-cli php-zip wget unzip
+```
+Once PHP CLI is installed, download the composer installer script with:
+
+```bash
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+```
+The command above will download the composer-setup.php file in the current working directory.
+
+To verify the data integrity of the script, compare the script SHA-384 hash with the latest installer hash found on the Composer Public Keys / Signatures page.
+
+The following wget command will download the expected signature of the latest Composer installer from the Composer’s Github page and store it in a variable named `HASH`:
+
+```bash
+HASH="$(wget -q -O - https://composer.github.io/installer.sig)"
+```
+To verify that the installation script is not corrupted run the following command:
+
+```bash
+php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+```
+Run the following command to install Composer in the /usr/local/bin directory:
+
+```bash
+php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+```
+Run the following command to install Composer dependencies:
+
+```bash
+composer install
+```
