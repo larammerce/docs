@@ -569,3 +569,43 @@ To ensure that it works correctly, restart MySQL:
 ```
 sudo systemctl restart mysql
 ```
+
+## Configure the project
+
+The components of `.env.example` must be moved to a new file named `.env`.
+
+```
+cp .env.example .env
+```
+
+Through your powershell, execute the command below to set the values of `.env` file as the table below:
+
+```
+vim .env
+```
+**Note:** The selected text editor here is `vim`, replace your installed text editor name.
+
+
+
+| Variable |  Value & explanation |
+-------------|----------------------|
+| APP_NAME  | Use any name (English) not encluding spaces. Use underscore sign instead.<br>Example: Larammerce_test |
+|APP_ENV | local |
+|APP_KEY  |This value will be generated automatically.|
+|APP_DEBUG | Values: true/false. <br>`True` stands for situations in which you want to develop or product,so the error report will be displayed in detail.<br>`False` value leads you to a single page displaying `error 500` without any explanation or detail. (Not suggested for developing)<br> set this value to `true`.|
+|APP_URL  | The default value is `http://localhost:8080`. <br>Replace the system IP with localhost If using another system . |
+|APP_SHORT_HOST | short-host |
+|APP_DEFAULT_LOCALE | fa |
+|LOG_CHANNEL | Value: stack<br> The stack channel is used to aggregate multiple log channels into a single channel. [more](https://laravel.com/docs/10.x/logging) |
+|LOG_DEPRECATIONS_CHANNEL| Value: null <br> It avoids notifying users of deprecations. [more](https://laravel.com/docs/10.x/logging#logging-deprecation-warnings) |
+|LOG_LEVEL | Value: debug  <br> limitting the information written to the log destination. [more](https://laravel.com/docs/5.3/errors#log-severity-levels)|
+|PROXY_URL | `http://localhost:8080` OR the system IP you are using. |
+| PROXY_SCHEMA | http |
+|JWT_SECRET| This value will also be generated automatically as well as `APP KEY` |
+
+::: warning Vim hint 
+As `vim` is a complicated text editor follow this hint: 
+Once you opened a file with `vim`, press `i` to enable editing. As commited, press `scape` and save and exit with the `:wq` command.
+:::
+
+---
