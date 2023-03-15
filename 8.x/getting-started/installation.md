@@ -753,3 +753,48 @@ The result should be the path you equalized before.
 ```
 
 ---
+
+#### Working with the theme
+
+As a sample, lets build a web page! 
+
+Once you logged in as admin on `localhost:8080/admin`, press plus button on the left buttom of the page ,create a folder and equalized some random values in the form displayed. 
+
+For example:
+
+ | Field name | Value |
+ |------------|-------|
+ |Title: | Test folder|
+ |url part: | test |
+ |Preference : | 0|
+ |Content type :| regular|
+ |Enabling web page| on |
+
+ Save changes!
+
+Afterward, another form will be displayed. Here you may need to build a theme file prior to editing the web page.
+To do so, follow this step-by-step instruction:
+
+1. Create a file on `/larammerce-base-theme/public/views/$`.
+
+```
+ touch test.blade.php
+```
+2.Add the script below to the file:
+
+```
+@php
+
+echo "hello world!"
+
+@endphp
+```
+3.Now deploy the project on `~ /larammerce-base-theme` directory:
+```
+./deploy.sh 
+```
+
+Finally, press `edit web page` button in the form, select the url name you created, and save.(here the url name is test)<br> 
+See the result on `localhost:8080/test`.
+
+---
