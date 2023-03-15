@@ -97,3 +97,36 @@ sudo apt install php8.0 php8.0-bcmath php8.0-mysql php8.0-pdo php8.0-mbstring ph
 We're done here !
 
 ---
+
+#### Install Node.js
+
+According to the need of the project we tend to install node.js version 16.
+
+```
+curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
+```
+As the installation is finalized, run this script to check whether the correct commands are being passed to your package manager based on distro and version requirements:
+
+```
+vim nodesource_setup.sh
+```
+
+If it integrates well, exit the text editor and run the script with `sudo`:
+
+```
+sudo bash nodesource_setup.sh
+```
+Now execute this command to install nodejs:
+
+```
+sudo apt install nodejs
+```
+
+Run the following commands to install `Node.js` packages build the resource files:
+
+```
+npm install
+npm run prod
+```
+
+---
