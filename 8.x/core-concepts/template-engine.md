@@ -260,3 +260,45 @@ the output will be:
 
 ![Console log](/console-log.png)
 
+- Now set the condition in which if the selected option is on, an extra field displayes otherwise it fades out. to do so :
+
+1. Build a container on `_register-representative.blade.php` with an specific `id` and set the default display style as hidden:
+
+
+```php
+ @if(representative_is_customer_representative_enabled())
+        <div class="col-md-6 col-sm-6 col-xs-12" id="representative-input-container" style="display: none">
+            <div class="form-group">
+                <label for="family">شماره تماس معرف در صورت تمایل</label>
+                 <input type="text" class="form-control number-control" name="represantative_Username" 
+                 placeholder="شماره تماس معرف"
+                 value"{{old("represantative_Username")}} >
+             </div>
+        </div>
+    @endif
+```
+
+2. Now change the above script as composed below:
+```php
+if (window.currentPage === "auth-register")
+    require(["jquery"], function (jQuery) {
+        const representativeSelectEl = jQuery("select[name='representative_type']");
+        const representativeInputContainerEl = jQuery("#representative-input-container");
+        if (representativeSelectEl.length > 0 && representativeInputContainerEl.length > 0) {
+            representativeSelectEl.on("change", function (event) {
+                const optionSelected = jQuery("option:selected", this);
+                const id = optionSelected.attr("id");
+
+                if (id === "manual-representative") {
+                    representativeInputContainerEl.fadeIn();
+                }else{
+                    representativeInputContainerEl.fadeOut();
+                }
+            });
+        }
+    });
+```
+
+Run `./deploy.sh`.
+
+Good luck!
