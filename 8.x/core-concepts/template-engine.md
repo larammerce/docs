@@ -233,3 +233,30 @@ npm run watch
 ./deploy.sh
 ```
 :::
+
+
+To get the option element on select change, add condition below to above script:
+
+```php
+if (window.currentPage === "auth-register")
+    require(["jquery"], function (jQuery) {
+        const representativeSelectEl = jQuery("select[name='representative_type']");
+        if (representativeSelectEl.length > 0){
+            representativeSelectEl.on("change", function (event) {
+                const optionSelected = jQuery("option:selected", this);
+                const id = valueSelected = this.value;
+                console.log(optionSelected.attr("id"));
+                console.log(valueSelected);               
+
+            });
+        }
+    });
+
+```
+
+
+Run `npm run watch` and  `./deploy.sh` and open your search engine console so to see what will happen when you select an option.
+the output will be:
+
+![Console log](/console-log.png)
+
