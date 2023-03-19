@@ -40,3 +40,30 @@ Once you verified the number, you will lead to the registration form. From now o
 
 ---
 
+### Managing representative form
+
+To enable referee management section in the form, there is a helper defined on `register-representative.blade.php`. 
+
+```php
+// public/views/register-representative.blade.php
+
+@if(representative_is_enabled())
+    <div class="col-md-6 col-md-6 col-xs-12">
+        <div class="form-group">
+            <label for="representative_type">نحوه آشنایی با مجموعه</label>
+            <select class="form-control number-control" name="representative_type">
+                <option value="">هیج کدام</option>
+                <option value="مشتریان فعلی مجموعه" id="manual-representative">مشتریان فعلی مجموعه</option>
+                @foreach(representative_get_options() as $option)
+                    <option value="{{$option}}">{{$option}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+```
+this helper function has been called on `public/views/auth-mobile-register.blade.php` on line 65:
+
+```php
+  @include("_register-representative")
+```
+So now if you disable the form, and double check the registration form, the referee field will be disapeared. Cause the script will be inclued just if the helper is enabled.
