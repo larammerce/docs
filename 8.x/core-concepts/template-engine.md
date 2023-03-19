@@ -67,3 +67,45 @@ this helper function has been called on `public/views/auth-mobile-register.blade
   @include("_register-representative")
 ```
 So now if you disable the form, and double check the registration form, the referee field will be disapeared. Cause the script will be inclued just if the helper is enabled.
+
+
+### How to pass list options 
+
+Another helper function used in this form is `representative_get_options` which represents the user's optional choices list.
+```php
+// public/views/register-representative.blade.php
+
+<select class="form-control number-control" name="representative_type">
+     <option value="">هیج کدام</option>
+    <option value="مشتریان فعلی مجموعه" id="manual-representative">مشتریان فعلی مجموعه</option>
+         @foreach(representative_get_options() as $option)
+            <option value="{{$option}}">{{$option}}</option>
+        @endforeach
+</select>
+
+```
+
+You can replace a radio button instead of a select/option tag.
+
+```php
+
+@foreach(representative_get_options() as $option)
+<lable for="">
+    {{$option}}
+<input type="radio" class="form-control" name="representative_type"
+  value="{{$option}}">
+ </lable>           
+@endforeach
+
+```
+
+Now deploy the project and see the result :
+```
+.\deploy.sh
+```
+**Note 1:** Options were already passed in the form manualy.<br>
+**Note 2:** Consider not changing the name of button.<br>
+**Note 3:** Add a css design to adjust options on the form.<br>
+
+---
+
