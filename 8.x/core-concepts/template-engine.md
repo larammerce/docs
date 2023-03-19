@@ -195,3 +195,41 @@ if (window.currentPage === "auth-register")
         }
     });
 ```
+
+
+To better undrestand the above script, notice to its step-by-step descriptions in the following:
+
+- Consider the option name on the `register-representative.blade.php` file:
+
+```php
+// public/views/register-representative.blade.php
+
+ <select class="form-control number-control" name="representative_type">
+ ```
+
+ - Now by using the option name, you can check if the option is selected or not by running script below:
+```php
+if (window.currentPage === "auth-register")
+    require(["jquery"], function (jQuery) {
+        const representativeSelectEl = jQuery("select[name='representative_type']"); #take the element
+        if (representativeSelectEl.length > 0){#elementname.lengh >0 checks if the element exists or not
+
+        }
+```
+
+::: warning Consider checking the results of your changes:
+
+To see the changes result follow these two steps:
+
+- first run the script below:
+
+```bash
+npm run watch
+```
+
+- Then after changes deploy the project:
+
+```bash
+./deploy.sh
+```
+:::
