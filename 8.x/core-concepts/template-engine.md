@@ -109,3 +109,89 @@ Now deploy the project and see the result :
 
 ---
 
+### How to set conditional option
+
+The other example is to set the current customers as a referee.
+You can build a conditional option to show a specific field when options are selected.
+On `register-representative.blade.php`. 
+
+```php
+//register-representative.blade.php
+
+@if(representative_is_enabled())
+    <div class="col-md-6 col-md-6 col-xs-12">
+        <div class="form-group">
+            <label for="representative_type">نحوه آشنایی با مجموعه</label>
+            <select class="form-control number-control" name="representative_type">
+                <option value="">هیج کدام</option>
+                @foreach(representative_get_options() as $option)
+                    <option value="{{$option}}">{{$option}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+
+     #here by adding a condition (if) to a helper function named `representative_is_customer_representative_enabled` you can do so :
+    @if(representative_is_customer_representative_enabled())
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="family">شماره تماس معرف در صورت تمایل</label>
+                <input type="text" class="form-control number-control" name=representative-username"
+                placeholder="شماره تماس معرف" 
+                value="{{old('representative-username')}} " > 
+            </div>
+        </div>
+    @endif
+ @endif
+```
+OR you can build a conditional option to show a specific field when a specific options is selected !
+For example if you set current customers as referee, you will need a field for that customer information(for example, the phone number). As you notice, the number input will be displayed only when the current customer is selected. Otherwise this input won't be shown. See its step-by-step instruction:
+
+![Conditional option](/conditional-option.png)
+
+- First, create an option and give it a name attribute:
+
+**Note:** this is a manual option and should be written out of loop.
+```php
+<option value="مشتریان فعلی مجموعه" id="manual-representative">مجموعه فعلی مشتریان<option>
+```
+
+- Then add a condition to the options :
+
+```php
+ @if(representative_is_customer_representative_enabled())
+     <div class="col-md-6 col-sm-6 col-xs-12" id="representative-input-container" style="display: none">
+        <div class="form-group">
+            <label for="family">شماره تماس معرف در صورت تمایل</label>
+                <input type="text" class="form-control number-control" name=representative-username"
+                placeholder="شماره تماس معرف" 
+                value="{{old('representative-username')}} " > 
+        </div>        
+     </div>
+ @endif
+```
+The very next step is to write a java script to set the apearance and adjust the display option:
+
+In `larammerce-theme` project, on `resources/js/require` add a new `js` file name `register-auth-require` contain this script:
+
+```php
+ //larammerce-theme/resources/js/require/register-auth-require
+
+if (window.currentPage === "auth-register")
+    require(["jquery"], function (jQuery) {
+        const representativeSelectEl = jQuery("select[name='representative_type']");
+        const representativeInputContainerEl = jQuery("#representative-input-container");
+        if (representativeSelectEl.length > 0 && representativeInputContainerEl.length > 0) {
+            representativeSelectEl.on("change", function (event) {
+                const optionSelected = jQuery("option:selected", this);
+                const id = optionSelected.attr("id");
+
+                if (id === "manual-representative") {
+                    representativeInputContainerEl.fadeIn();
+                }else{
+                    representativeInputContainerEl.fadeOut();
+                }
+            });
+        }
+    });
+```
