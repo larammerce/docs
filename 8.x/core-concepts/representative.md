@@ -199,10 +199,4 @@ And enter this command:
 #### Video source
 ___
 
-<iframe src="https://www.aparat.com/video/video/embed/videohash/fZN1d/vt/frame" height="300" width="700" style="  border: 2px solid #bdc3c7;
-border-radius: 5px; opacity: 1;" ></iframe>
-
-
-
-
-
+<iframe src="https://www.aparat.com/video/video/embed/videohash/fZN1d/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>
