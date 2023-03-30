@@ -507,9 +507,9 @@ Login to your github on `github.com`. if you have adminstartor access to the pro
 
 **If** Using `CentOS` project files must be owned by the apache user. To create the project as the apache user run these scripts:
 
-```
+```bash
 su - apache # To login as the apache user
-git clone https://gitlab.larammerce.com/larammerce.git # this makes us the directory named larammerce in the path /var/www which is the home directory for the user apache
+git clone https://github.com/larammerce/larammerce # this makes us the directory named larammerce in the path /var/www which is the home directory for the user apache
 ```
 
 **Note:** If you run into an issue during the cloning process about not having access to the repository for read and write, you will be needed to some keys. We recommend following our guide for a step-by-step walk-through of how to build a key.
@@ -704,7 +704,7 @@ npm install
   
   `direnv` is necessory for development to create different environment in each directory:
 
- See how to install direnv [here](direnv.net) or follow this instruction:
+ See how to install direnv [here](https://direnv.net) or follow this instruction:
 
  On `~ larammerce_base_theme` run:
 ```
@@ -775,7 +775,7 @@ For example:
 Afterward, another form will be displayed. Here you may need to build a theme file prior to editing the web page.
 To do so, follow this step-by-step instruction:
 
-1. Create a file on `/larammerce-base-theme/public/views/$`.
+1. Create a file on `/larammerce-base-theme/public/views`.
 
 ```
  touch test.blade.php
