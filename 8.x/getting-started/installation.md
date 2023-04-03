@@ -798,14 +798,14 @@ Finally, press `edit web page` button in the form, select the url name you creat
 See the result on `localhost:8080/test`.
 
 ---
+#### Video sources
+___
 
-#### The following article has been recorded in persian just in case of subscribers need:<br/><br/><br/>
+<iframe src="https://www.aparat.com/video/video/embed/videohash/tOGkm/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>
 
+___
 
-
-<iframe src="https://www.aparat.com/video/video/embed/videohash/n7Du6/vt/frame
-" height="300" width="700" style="  border: 2px solid #bdc3c7;
-border-radius: 5px; opacity: 1;" ></iframe>
+<iframe src="https://www.aparat.com/video/video/embed/videohash/n7Du6/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>
 
 
 ## References
