@@ -4,7 +4,7 @@
 
 Annotations are the tags declaring metadata for the program source code. They provide additional information about the program to the compiler but are not part of the program itself. These annotations do not affect the execution of the compiled program, but add some new traits to the classes, methods and properties.*<sup>[1](#1)</sup>*
 
-## Example in java language
+#### Example in java language
 
 ```java{1-19}
 class Flower {
@@ -39,7 +39,7 @@ In the above example, both the superclass and subclass include the method displa
 
 Annotations are called `DocBlock` in the php language. A DocBlock is a piece of documentation in the source code that informs about a certain class, method or other structural elements.*<sup>[2](#2)</sup>*
 
-## Example in php language
+#### Example in php language
 
 ```php{1-10}
 <?php
@@ -62,7 +62,7 @@ Annotations are called `DocBlock` in the php language. A DocBlock is a piece of 
 
 In the larammerce platform, a php `annotation-parser` package is developed based on the PhpDocBlock.*<sup>[3](#3)</sup>* This package helps you to write the codes in the DocBlock and then execute them. Therefore the use of DocBlock in the Larammerce platform goes beyond the annotation in the php language.
 
-## Example in larammerce platform
+#### Example in larammerce platform
 
 ```php{1-10}
 <?php
@@ -130,7 +130,7 @@ $reflective_class->getAnnotation(("specific_annotation"));
 //returns the specific annotation with passed title
 ```
 
-## Examples of the use of annotation-parser package
+#### Examples of the use of annotation-parser package
 
 Make a new command, named `TestAnnotations`:
 
@@ -267,7 +267,7 @@ class TestAnnotations extends Command
 
 **OUTPUT**
 
-s![mere-comment](/04.png)
+![mere-comment](/04.png)
 
 The output returns a mere comment. In order to get a processed result, change the code in the `public function handle`:
 
@@ -406,11 +406,11 @@ public function testFunction()
 
 The output indicates that the mathematical calculation 10+12=22 is done into the DocBlock.
 
-## Source code
+#### Source code
 
 To understand how the annotation-parser package works, you can refer to the *[github](https://github.com/larammerce/annotation-parser/blob/master/src/AnnotationParser.php)* of this project and review the related source code.
 
-## References
+#### References
 
 *1. <a name="1">[Annotations in the java language.](https://docs.oracle.com/javase/tutorial/java/annotations/)</a>*
 
