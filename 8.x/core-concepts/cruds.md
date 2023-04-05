@@ -4,7 +4,7 @@
 
 This document reviews how to implement `CRUD` (create, read, update, delete) in the Larammerce platform. A `ToDoList` project is done step by step to illustrate the operational concepts.
 
-## Make migrations
+#### Make migrations
 
 Larammerce is a schema-first platform. So you must create a table for your todos.
 
@@ -42,7 +42,7 @@ You can check your database to make sure the table `todos` is created:
 
 ![todos_table](/40.png)
 
-## Create Todo model
+#### Create Todo model
 
 Create the file `Todo.php` in the path `/larammerce/app/Models/` and put these codes inside:
 
@@ -89,7 +89,7 @@ class Todo extends BaseModel
 In the code above, the lines number 5 to 11 are called `annotations`. You can study the [annotations](https://docs.larammerce.com/8.x/core-concepts/annotations.html) page to learn more about this topic in the larammerce platform.
 :::
 
-## Add route
+#### Add route
 
 Put the code below in the path `/larammerce/routes/web.php` inside the `admin routes`:
 
@@ -106,7 +106,7 @@ Put the code below in the path `/larammerce/routes/web.php` inside the `admin ro
     ...
 ```
 
-## Add controller
+#### Add controller
 
 Create the file `TodoController.php` in the path `/larammerce/app/Http/Controllers/Admin/` and put these codes inside:
 
@@ -171,7 +171,7 @@ class TodoController extends BaseController
 
 ```
 
-## Define icon
+#### Define icon
 
 A todo icon is required in the top toolbar in order to perform the crud processes.
 
@@ -229,7 +229,7 @@ return [
 ![todo_icon](/04-edited.png)
 
 
-## Correct translation
+#### Correct translation
 
 Insert the following code in the path `/larammerce/resources/lang/fa/general.php` inside the `appliances` section:
 
@@ -287,7 +287,7 @@ class TodoController extends BaseController
 }
 ```
 
-## Create index view
+#### Create index view
 
 Create the file `index.blade.php` in the path `/larammerce/resources/views/admin/pages/todo/` and put these codes inside:
 
@@ -340,7 +340,7 @@ Create the file `index.blade.php` in the path `/larammerce/resources/views/admin
 
 ```
 
-## Add layout
+#### Add layout
 
 Create the file `list.blade.php` in the path `/larammerce/resources/views/admin/pages/todo/layout/` and put these codes inside:
 
@@ -382,7 +382,7 @@ Create the file `list.blade.php` in the path `/larammerce/resources/views/admin/
 
 ![index_view](/06-edited.png)
 
-## Correct translation
+#### Correct translation
 
 Write the code below in the path `/larammerce/resources/lang/fa/structures.php` inside the `attributes` section:
 
@@ -441,7 +441,7 @@ class TodoController extends BaseController
 }
 ```
 
-## Add create view
+#### Add create view
 
 Make the file `create.blade.php` in the path `/larammerce/resources/views/admin/pages/todo/` and put these codes inside:
 
@@ -511,7 +511,7 @@ Click on the `ذخیره` button to save the new todo.
 ![new_todo_created](/14.png)
 
 
-## Add edit view
+#### Add edit view
 
 In the todo list, each item has an edit icon:
 
@@ -554,7 +554,7 @@ Make the file `edit.blade.php` in the path `/larammerce/resources/views/admin/pa
 
 ```
 
-## Define todo status
+#### Define todo status
 
 4 statuses can be attributed to each todo item: new in, in progress, ready for test, done. So you must define these statuses.
 
@@ -576,7 +576,7 @@ class TodoStatus extends BaseEnum
 }
 ```
 
-## Correct translation
+#### Correct translation
 
 Write the code below in the path `/larammerce/resources/lang/fa/general.php`:
 
@@ -609,7 +609,7 @@ Run the following command in the terminal:
 php artisan translation:fill
 ```
 
-## Complete edit view
+#### Complete edit view
 
 Put the following code in the path `/larammerce/resources/views/admin/pages/todo/edit.blade.php`:
 
@@ -679,7 +679,7 @@ The result is as follows:
 
 ![status_selected](/19-edited.png)
 
-## Correct list status
+#### Correct list status
 
 In the list of todos, the status item is represented as a number:
 
@@ -792,7 +792,7 @@ Click on `بله`.
 
 The todo #2 has been deleted from the list.
 
-## Video source
+#### Video source
 ___
 
 <iframe src="https://www.aparat.com/video/video/embed/videohash/zUXFL/vt/frame" height="300" width="700" style="  border: 2px solid #bdc3c7;
