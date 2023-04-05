@@ -216,3 +216,8 @@ Enter this command:
 ./deploy.sh
 ```
 After creating the file content type, the admin can change the file.
+
+#### Video source
+___
+
+<iframe src="https://www.aparat.com/video/video/embed/videohash/oj6rw/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>

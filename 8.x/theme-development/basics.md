@@ -302,3 +302,8 @@ On this page you can see the list of products that have been added to favorites.
     |---unreachable.blade.php
 ```
 This page can be shown to the customer when the site is unavailable.
+
+#### Video source
+___
+
+<iframe src="https://www.aparat.com/video/video/embed/videohash/AFapD/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>
