@@ -101,11 +101,14 @@ You can replace a radio button instead of a select/option tag.
 
 Now deploy the project and see the result :
 ```
-.\deploy.sh
+./deploy.sh
 ```
-**Note 1:** Options were already passed in the form manualy.<br>
-**Note 2:** Consider not changing the name of button.<br>
-**Note 3:** Add a css design to adjust options on the form.<br>
+**Note 1:** Options were already passed in the form manualy.
+
+**Note 2:** Consider not changing the name of button.
+
+**Note 3:** Add a css design to adjust options on the form.
+
 
 ---
 
@@ -308,7 +311,7 @@ Good luck!
 ___
 
 <iframe src="https://www.aparat.com/video/video/embed/videohash/fZN1d/vt/frame" height="300" width="700" style="  border: 2px solid #bdc3c7;
-border-radius: 5px; opacity: 1;" ></iframe>
+border-radius: 5px; opacity: 1;" allowFullScreen="true" ></iframe>
 
 
 
