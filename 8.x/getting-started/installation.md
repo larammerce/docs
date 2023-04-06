@@ -724,7 +724,7 @@ Note: On the main directory run `pwd` to get the path used in the command above.
 
 Here, you may run to an access issue, to solve it run:
 ```
-direnv allow 
+direnv allow . 
 ```
 
 To test the accuracy of this command, run:
