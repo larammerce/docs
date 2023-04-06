@@ -59,3 +59,7 @@ For more information, see "[Validation](https://laravel.com/docs/9.x/validation)
 hct-validation="required|regex:/0[1-9][0-9]{9}/|max:11
 ```
 
+#### Video source
+___
+
+<iframe src="https://www.aparat.com/video/video/embed/videohash/cRab0/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>
