@@ -1614,15 +1614,4 @@ __________________________
 
 This function specifies the maximum amount of transactions that are allowed to handle by the system. In other words, it tells you the maximum amount of each invoice you create for your clients. This limitation is according to the payment IPGs' policies.
 
-#### Video sources
-___
 
-<iframe src="https://www.aparat.com/video/video/embed/videohash/wHqJR/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>
-
-___
-
-<iframe src="https://www.aparat.com/video/video/embed/videohash/f7cd4/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>
-
-___
-
-<iframe src="https://www.aparat.com/video/video/embed/videohash/cxIZb/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>

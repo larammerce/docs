@@ -426,8 +426,3 @@ ___
 *1. <a name="1">[What Is Boilerplate?](https://www.investopedia.com/terms/b/boilerplate.asp)</a>*
 
 *2. <a name="2">[What Is Blade Templates?](https://laravel.com/docs/8.x/blade)</a>*
-
-#### Video source
-___
-
-<iframe src="https://www.aparat.com/video/video/embed/videohash/rRCSt/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>

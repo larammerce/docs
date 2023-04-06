@@ -131,8 +131,3 @@ Enter this command:
 ```
 After all you can check to the URL of your web page in a browser and see the page is created with the gallery:
 >https://localhot:8080/faq
-
-#### Video source
-___
-
-<iframe src="https://www.aparat.com/video/video/embed/videohash/IDN4H/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>
