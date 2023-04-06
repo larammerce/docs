@@ -752,6 +752,7 @@ The result should be the path you equalized before.
 ./deploy.sh
 ```
 
+<<<<<<< HEAD
 ---
 
 #### Working with the theme
@@ -798,6 +799,8 @@ Finally, press `edit web page` button in the form, select the url name you creat
 See the result on `localhost:8080/test`.
 
 ---
+=======
+>>>>>>> origin
 #### Video sources
 ___
 
@@ -806,6 +809,7 @@ ___
 ___
 
 <iframe src="https://www.aparat.com/video/video/embed/videohash/n7Du6/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>
+<<<<<<< HEAD
 
 
 ## References
@@ -813,3 +817,5 @@ ___
 *1.<a name="1"> [how to install linux ?](https://www.linux.org/pages/download/) </a>*
 
 *2.<a name="2"> [how to install WSL on windows ?](https://www.linux.org/pages/download/) </a>*
+=======
+>>>>>>> origin

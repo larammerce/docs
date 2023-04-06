@@ -348,15 +348,13 @@ You are allowed to embed an image into the Larammerce document only in 3 situati
 
 **3.** To illustrate a road map or life cycle or diagram .
 :::
-------
-#### the following article has been recorded in persian just in case of subscribers need:<br/><br/><br/>
-
-
-
-<iframe src="https://www.aparat.com/video/video/embed/videohash/6et8I/vt/frame" height="300" width="700" style="  border: 2px solid #bdc3c7;
-border-radius: 5px; opacity: 1;" ></iframe>
 
 ## References
 
 *1. <a name="1"> [What is markdown ?](https://www.markdownguide.org/) </a>* </br>
 *2. <a name="2"> [How to work with git ?](https://git-scm.com/book/en/v2/Getting-Started-The-Command-Line) </a>*
+
+#### Video source
+___
+
+<iframe src="https://www.aparat.com/video/video/embed/videohash/6et8I/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>
