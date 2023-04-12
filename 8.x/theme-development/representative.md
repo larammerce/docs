@@ -1,50 +1,83 @@
-## Representative management
+## Representative
 
 [[toc]]
 
-This article is a guide to "how to work with Larammerce template engine".
+This article serves as a comprehensive guide to effectively utilizing the representative management feature within the application. By following the step-by-step instructions provided, you will gain a strong understanding of how to manage representatives, pass list options, and set condition options with ease and efficiency.
 
 ## Prerequities
 
-First of all, you need to install Larammerce project on your system.
-Prior to work with Larammerce template engine, consider studing documents composed on [installation](https://docs.larammerce.com/8.x/getting-started/installation.html) section on `larammerce.com`.
-
+To implement the representative management form in your application, there are a few requirements that need to be met. Firstly, you will need to ensure that you have both the `Larammerce project` and the `Larammerce-base-theme` available on your system. You can fork these projects from [Larammerce github](https://github.com/larammerce). This is a prerequisite for working with the Larammerce template. It is recommended that the [installation](https://docs.larammerce.com/8.x/getting-started/installation.html) documentation available on `Larammerce.com` be carefully reviewed before proceeding with any development work.
 
 ## Representative management features 
 
-To work with these features, after cloning `larammerce-base-theme` and larammerce` projects, follow instructions below:
+To work with these features, after cloning `larammerce-base-theme` and `larammerce` projects, follow instructions below:
 
-- **First,** run `npm run prod` in your powershell to build project resources.
+- **First,** run `npm run prod` in your terminal to build project resources.
 - **Second,** login as admin on `localhost:8080/admin`.
   
-Once you loged in, a newly released feature name `representative management` will be displayed as you hit The `shop` section.
+the application includes multiple parts, including a `shop` section that contains variouse subsections such as `representative management` section, which has recently been released.
 
-As you tap `representative management` section, a form consisting of parts in which you can manage the representative introduction method, will be shown for you.
-
-In order to edit or manage the referee section :
-
-- The first button determines whether this form be active or not.
-- The second section determines whether or not the current customers can be considered as a referee(representative).
-- The input section represents "selectable items" where you can define the methods which the user has been familiarized with the website, as selectable items(Tv, Social media, etc.).
-
-**Note:** Modifying every form, Don't forget to save changes!
-
-Once you managed this form, to check the change result, open an incognito window on `localhost:8080` and try to register.
-
-Before registering in larammerce, consider changing the type of `verification code sending method` on the `shop` tab. Select the second option named (`save in file`) so to have access to the verification code on your project file. Save changes!
+![representative section](/representativeSection.png)
 
 
+The representative management section allows you to access a form where you can manage the introduction method for your representatives through its various parts.
 
-As you registered with a random number, the code will be displayed on the last line of `larammerce/storage/logs/laravel.log`.
+![representative form](/representativeForm.png)
+
+In order to edit or manage the representative section, you can utilize the following options:
+
+- The first button allows you to activate or deactivate the form.
+- The second section lets you determine whether current customers can be considered as representative or not.
+- In the input section, you can select various methodes through which users may have become familiar with your website.(such as Tv, social media, etc.) and define them as selectable items.
+
+**Note:** Please be reminded to save any modifications made to the form before exiting!
+
+Once you managed this form, check the change result by opening an incognito window on `localhost:8080`. Register to website with a random number.
+
+Prior to registering in larammerce, consider changing `verification code sending method` on the `shop` tab. Opt fot the second option labeled `save in file` to ensure convenient access to the verification code on your project file.
+Save changes!
+
+![verification section](/verificationSection.png)
+
+![verification form](/verificationForm.png)
+
+As you registered with a random number, the code will be displayed on the last line of `larammerce/storage/logs/laravel.log`. Here is a sample:
+
+```php{3}
+// storage/logs/laravel.log
+[2023-04-12 23:34:12] local.INFO: SMS Driver file: send: template sms-auth-code number: 09125***796
+{"oneTimeCode":"9139"}  
+```
+
 Once you verified the number, you will lead to the registration form. From now on the focus will be on customizing this form as a sample:
 
 ---
 
-### Managing representative form
+### Activating representative form
 
-To enable referee management section in the form, there is a helper defined on `register-representative.blade.php`. 
+The upcoming lines will feature a discussion on functions that are dedicated to the representative form, which are among the many helper functions available in the Larammerce project.
+
+#### representative_is_enabled()
+
+This function checks whether the representative management section is active/inactive in the admin panel.
 
 ```php
+// app/Utils/CMS/Template/helpers.php
+ function representative_is_enabled(): bool {
+        return \App\Utils\CMS\Setting\Representative\RepresentativeSettingService::isEnabled();
+    }
+```
+
+In the upcoming section, the function "representative_is_enabled()" will be utilized, and an explanation of its workings will be provided.
+
+A directive is used in `larammerce-theme/public/views/auth-mobile-register.blade.php` to include the contents of the `_register-representative.blade.php` file:
+
+```php
+  @include("_register-representative") #line 65
+```
+The included file contains a form field for entering representative information during the registration process using `representative_is_enabled()` helper function.
+
+```php{3}
 // public/views/register-representative.blade.php
 
 @if(representative_is_enabled())
@@ -60,19 +93,29 @@ To enable referee management section in the form, there is a helper defined on `
             </select>
         </div>
     </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="form-gruop">
+            <label for="family">شماره تماس معرف در صورت تمایل</label>
+            <input type="text" class="form-control number-control" name="representative_username"
+                placeholder="شماره تماس معرف"
+                value="{{ old('representative_username') }}">
+        </div>
+    </div>
+@endif
 ```
-this helper function has been called on `public/views/auth-mobile-register.blade.php` on line 65:
 
-```php
-  @include("_register-representative")
-```
-So now if you disable the form, and double check the registration form, the referee field will be disapeared. Cause the script will be inclued just if the helper is enabled.
+So now if you activate the representative form from admin pannel, and double check the registration form, the representative sections will be disappeared.
 
+![section is enable](/repIsenable.png)
 
 ### How to pass list options 
 
-Another helper function used in this form is `representative_get_options` which represents the user's optional choices list.
-```php
+#### representative_get_options()
+
+Another helper function used in this form is `representative_get_options`. This fnction displays the list of user selectable options with the help of a `@foreach` loop. Here the resulting list is then displayed on the registeration form as a drop-down menu, allowing the user to indicate how they become acquainted with you.
+
+```php{6-8}
 // public/views/register-representative.blade.php
 
 <select class="form-control number-control" name="representative_type">
@@ -103,38 +146,38 @@ Now deploy the project and see the result :
 ```
 ./deploy.sh
 ```
-**Note 1:** Options were already passed in the form manualy.
+![Drop-down](/repDropDown.png)
 
-**Note 2:** Consider not changing the name of button.
+**Note 1:** Options were already passed in the form manually.
 
-**Note 3:** Add a css design to adjust options on the form.
+**Note 2:** Consider not changing the "name" attribute.
 
+**Note 3:** You can add CSS to adjust options location on the form.
 
 ---
 
 ### How to set conditional option
 
-The other example is to set the current customers as a referee.
-You can build a conditional option to show a specific field when options are selected.
-On `register-representative.blade.php`. 
+#### representative_is_customer_representative_enabled()
+
+The other function is `representative_is_customer_representative_enabled()`. By using this function you will be able to set a condition in which whether a part should be displayed or not.
+
+The function:
+```php
+function representative_is_customer_representative_enabled(): bool {
+        return \App\Utils\CMS\Setting\Representative\RepresentativeSettingService::isCustomerRepresentativeEnabled();
+    }
+```
+
+In the upcoming section, focus on understanding how to utilize the function and the output.
 
 ```php
 //register-representative.blade.php
 
 @if(representative_is_enabled())
-    <div class="col-md-6 col-md-6 col-xs-12">
-        <div class="form-group">
-            <label for="representative_type">نحوه آشنایی با مجموعه</label>
-            <select class="form-control number-control" name="representative_type">
-                <option value="">هیج کدام</option>
-                @foreach(representative_get_options() as $option)
-                    <option value="{{$option}}">{{$option}}</option>
-                @endforeach
-            </select>
-        </div>
-    </div>
 
-     #here by adding a condition (if) to a helper function named `representative_is_customer_representative_enabled` you can do so :
+    ...
+
     @if(representative_is_customer_representative_enabled())
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="form-group">
@@ -147,17 +190,34 @@ On `register-representative.blade.php`.
     @endif
  @endif
 ```
-OR you can build a conditional option to show a specific field when a specific options is selected !
-For example if you set current customers as referee, you will need a field for that customer information(for example, the phone number). As you notice, the number input will be displayed only when the current customer is selected. Otherwise this input won't be shown. See its step-by-step instruction:
+ So now if you enable the second option of the representative form in your admin pannel, this part will be displayed in the registration form, otherwise the field will be removed.
 
-![Conditional option](/conditional-option.png)
+![Conditional option1](/repcondition.png)
+
+Another example is to build a conditional option to show a specific field when a specific options is selected.
+For example if you set current customers as representative, you will need a field for that customer information(for example, the phone number). So the number input will be displayed only when the current customer is selected. Otherwise this input won't be shown. See its step-by-step instruction:
+
 
 - First, create an option and give it a name attribute:
 
-**Note:** this is a manual option and should be written out of loop.
-```php
-<option value="مشتریان فعلی مجموعه" id="manual-representative">مجموعه فعلی مشتریان<option>
+```php{7}
+@if(representative_is_enabled())
+    <div class="col-md-6 col-md-6 col-xs-12">
+        <div class="form-group">
+            <label for="representative_type">نحوه آشنایی با مجموعه</label>
+            <select class="form-control number-control" name="representative_type">
+                <option value="">هیج کدام</option>
+                <option value="مشتریان فعلی مجموعه" id="manual-representative">مشتریان فعلی مجموعه</option>
+                @foreach(representative_get_options() as $option)
+                    <option value="{{$option}}">{{$option}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    </div>
 ```
+**Note:** this is a manual option and should be written out of the foreach loop.
+
 
 - Then add a condition to the options :
 
@@ -173,9 +233,7 @@ For example if you set current customers as referee, you will need a field for t
      </div>
  @endif
 ```
-The very next step is to write a java script to set the apearance and adjust the display option:
-
-In `larammerce-theme` project, on `resources/js/require` add a new `js` file name `register-auth-require` contain this script:
+The very next step is to add `javaScript` codes to set the apearance and adjust the options elements:
 
 ```php
  //larammerce-theme/resources/js/require/register-auth-require
@@ -198,6 +256,9 @@ if (window.currentPage === "auth-register")
         }
     });
 ```
+Here is the result: in Mode 1, the current customer is selected, so the number input field will be displayed; as you choose another option except for the "current customer" (Mode 2) this field will fade out.
+
+![Conditional option2](/repCondition2.png)
 
 
 To better undrestand the above script, notice to its step-by-step descriptions in the following:
@@ -220,7 +281,7 @@ if (window.currentPage === "auth-register")
         }
 ```
 
-::: warning Consider checking the results of your changes:
+:::warning Consider checking the results of your changes:
 
 To see the changes result follow these two steps:
 
@@ -230,7 +291,7 @@ To see the changes result follow these two steps:
 npm run watch
 ```
 
-- Then after changes deploy the project:
+- Then after changes, deploy the project:
 
 ```bash
 ./deploy.sh
@@ -238,9 +299,9 @@ npm run watch
 :::
 
 
-To get the option element on select change, add condition below to above script:
+To get the option element on select change, add condition below(line 6 & 7) to above script. Then log the information to the console(line 8 & 9) to see what's going on:
 
-```php
+```php{6-9}
 if (window.currentPage === "auth-register")
     require(["jquery"], function (jQuery) {
         const representativeSelectEl = jQuery("select[name='representative_type']");
@@ -263,12 +324,12 @@ the output will be:
 
 ![Console log](/console-log.png)
 
-- Now set the condition in which if the selected option is on, an extra field displayes otherwise it fades out. to do so :
+- Now set the condition in which if the specific option is selected, an extra field displayes otherwise it fades out. to do so :
 
 1. Build a container on `_register-representative.blade.php` with an specific `id` and set the default display style as hidden:
 
 
-```php
+```php{2}
  @if(representative_is_customer_representative_enabled())
         <div class="col-md-6 col-sm-6 col-xs-12" id="representative-input-container" style="display: none">
             <div class="form-group">
@@ -282,6 +343,7 @@ the output will be:
 ```
 
 2. Now change the above script as composed below:
+
 ```php
 if (window.currentPage === "auth-register")
     require(["jquery"], function (jQuery) {
