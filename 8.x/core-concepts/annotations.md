@@ -216,7 +216,7 @@ php artisan larammerce:annotation
 
 **OUTPUT**
 
-![handle-salam](/02.png)
+![handle-salam](/img-annotations/02.png)
 
 In the path `/larammerce/app/Console/Commands/TestAnnotations.php`, construct a `ReflectiveClass` from the `TestAnnotations class` and get the DocBlock above this class:
 
@@ -241,7 +241,7 @@ class TestAnnotations extends Command
 
 **OUTPUT**
 
-![no-docblock](/03.png)
+![no-docblock](/img-annotations/03.png)
 
 This output indicates that there is no DocBlock above the TestAnnotations class:
 
@@ -267,7 +267,7 @@ class TestAnnotations extends Command
 
 **OUTPUT**
 
-![mere-comment](/04.png)
+![mere-comment](/img-annotations/04.png)
 
 The output returns a mere comment. In order to get a processed result, change the code in the `public function handle`:
 
@@ -281,7 +281,7 @@ public function handle()
 
 **OUTPUT**
 
-![processed-comment](/05.png)
+![processed-comment](/img-annotations/05.png)
 
 As you see, the comment is processed and represented in detail.
 
@@ -299,7 +299,7 @@ class TestAnnotations extends Command
 
 **OUTPUT**
 
-![accurate-result](/06.png)
+![accurate-result](/img-annotations/06.png)
 
 As you see, the result is accurate. So you can write some descriptions above a class and then use them in your code.
 
@@ -349,7 +349,7 @@ class TestAnnotations extends Command
 
 **OUTPUT**
 
-![no-exist-salam](/07.png)
+![no-exist-salam](/img-annotations/07.png)
 
 This means that there is no annotation named `salam` above the `testFunction` method.
 
@@ -365,7 +365,7 @@ public function handle()
 
 **OUTPUT**
 
-![exist-rules](/08.png)
+![exist-rules](/img-annotations/08.png)
 
 It declares that an annotation named `rules` exists above the `testFunction` method.
 
@@ -384,7 +384,7 @@ public function handle()
 
 **OUTPUT**
 
-![test-function](/09.png)
+![test-function](/img-annotations/09.png)
 
 As you see, the output shows the DocBlock above the `testFunction` method.
 
@@ -402,7 +402,7 @@ public function testFunction()
 
 **OUTPUT**
 
-![mathematical-calculation](/10.png)
+![mathematical-calculation](/img-annotations/10.png)
 
 The output indicates that the mathematical calculation 10+12=22 is done into the DocBlock.
 
