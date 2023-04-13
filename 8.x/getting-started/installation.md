@@ -75,7 +75,7 @@ Now update the apt repository:
 sudo apt update
 ```
 
-Facing GPG error? No worrie! You have to set a public key to resolve this error. To do so run the following command:
+Facing GPG error? No worries! You have to set a public key to resolve this error. To do so run the following command:
 
 ```bash
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 467B942D3A79BD29
@@ -594,9 +594,9 @@ sudo apt install vim
 sudo apt install git
 ```
 
-1. Clone the project
+2. Clone the project
 
-Login to your GitHub account on `github.com`. if you have administartor access to the project, you should clone the main project, otherwise,Go to the `projects` directory and run:
+Login to your GitHub account on `github.com`. if you have administartor access to the project, you should clone the main project, otherwise, fork the project, go to the `projects` directory and run:
 
 ```bash 
 git clone https://github.com/your-github-account-name/larammerce.git
@@ -766,7 +766,7 @@ To create primary data, seed database:
 php artisan migrate --seed
 ```
 
-**Note:** There is a .htaccess.example file in the /projects/larammerce/public_html/ directory. Copy and rename it into .htaccess:
+**Note:** There is a `.htaccess.example` file in the `/projects/larammerce/public_html/` directory. Copy and rename it into `.htaccess`:
 
 
 ```bash
@@ -820,13 +820,13 @@ vim ~/.bashrc
 eval "$(direnv hook bash)"
 ``` 
 4. Save and close `.bashrc` file and run the command below into the terminal to update and refresh the changes made in the file:
-```php
+```bash
 source ~/.bashrc
 ```
 
 In the `larammerce-base-theme` directory, copy the file `.envrc.example` and rename it to `.envrc`:
 
-```php
+```bash
 cp .envrcexample .envrc
 ```
 - Here, you may run to an access issue, to solve it run:
