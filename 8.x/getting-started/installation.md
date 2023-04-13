@@ -48,7 +48,7 @@ There are two different user modes in Linux: the root user and the regular user.
  
 :::
 
- ![Linux root user](/rootuser.png)
+ ![Linux root user](/img-installation/rootuser.png)
 
 
 ---
@@ -289,7 +289,7 @@ There are two different user modes in Linux: the root user and the regular user.
  
 :::
 
- ![Linux root user](/rootuser.png)
+ ![Linux root user](/img-installation/rootuser.png)
 
 
 #### Install jq
@@ -641,8 +641,8 @@ By running the command below, you will have access to components of the file inc
 
 Open your github account, go to the `setting > SSH and GPG keys > new SSH key` section, paste the key into the key field and then confirm the access by entering your password.
 
- ![set SSH key on github step1](/sshkey1.png)
- ![set SSH key on github step2](/sshkey2.png)
+ ![set SSH key on github step1](/img-installation/sshkey1.png)
+ ![set SSH key on github step2](/img-installation/sshkey2.png)
 
 As you finalized this proccess, just back to your terminal, direct to the main repository and clone the project again.
 
