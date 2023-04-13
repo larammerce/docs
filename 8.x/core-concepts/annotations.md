@@ -37,7 +37,7 @@ In the above example, both the superclass and subclass include the method displa
 
 ## Annotations in php language
 
-Annotations are called `DocBlock` in the php language. A DocBlock is a piece of documentation in the source code that informs about a certain class, method or other structural elements.*<sup>[2](#2)</sup>*
+Annotations are called `DocBlock` in the php language. A DocBlock is a piece of documentation in the source code that provides information about a specific class, method or other structural elements.*<sup>[2](#2)</sup>*
 
 #### Example in php language
 
@@ -388,7 +388,7 @@ public function handle()
 
 As you see, the output shows the DocBlock above the `testFunction` method.
 
-You can also do mathematical calculations into the DocBlock.For example, change the DocBlock above the `testFunction` method:
+You can also do mathematical calculations into the DocBlock. For example, change the DocBlock above the `testFunction` method:
 
 ```php{2}
 /**
