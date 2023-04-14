@@ -275,7 +275,7 @@ So you can write one js code which is applied to the both blade files.
 
 :::
 
-The very next step is to add `javaScript` codes to set the appearance and adjust the optional elements:
+The very next step is to add `javaScript` codes to set the appearance and adjust the optional elements. In the path `larammerce-theme/resources/js/require/`, create a new file named `page_auth_register.js` and write the following codes into this file:
 
 ```js
  //larammerce-theme/resources/js/require/page_auth_register.js
@@ -298,7 +298,7 @@ if (window.currentPage === "auth-register")
         }
     });
 ```
-Now deploy the larammerce-theme project with ./deploy.sh and refresh the registration page to see the result.
+Now deploy the larammerce-theme project with `./deploy.sh` and refresh the registration page to see the result.
 
 Here is the result: in Mode 1, the current customer is selected, so the number input field will be displayed; as you choose another option except for the "current customer" (Mode 2) this field will fade out.
 
