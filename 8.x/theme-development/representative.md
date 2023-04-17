@@ -41,10 +41,6 @@ Save changes!
 
 ![verification form](/representatives/verificationForm.png)
 
-Go to the `larammerce` directory and copy the contents of `.env.retopi` file into `.env` file to load the appropriate database:
-```bash
-cat .env.retopi > .env
-```
 
 Click on the `login/register` icon on top right of the page to go to this address: `localhost:8080/customer-auth/auth/mobile`.
 Enter a random mobile number and press `confirm` button.
