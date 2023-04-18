@@ -6,7 +6,7 @@ Annotations are the tags declaring metadata for the program source code. They pr
 
 #### Example in java language
 
-```java{1-19}
+```java
 class Flower {
   public void displayInfo() {
     System.out.println("I am a flower.");
@@ -29,19 +29,19 @@ class Main {
 ```
 **OUTPUT**
 
-```bash{1}
+```bash
 I am a rose
 ```
 
-In the above example, both the superclass and subclass include the method displayInfo(). However the method of the subclass is called during the program execution.
+In the above example, both the superclass and subclass include the method `displayInfo()`. However the method of the subclass is called during the program execution due to the `@Override` annotation.
 
-## Annotations in php language
+## Annotations in PHP language
 
-Annotations are called `DocBlock` in the php language. A DocBlock is a piece of documentation in the source code that provides information about a specific class, method or other structural elements.*<sup>[2](#2)</sup>*
+There were no annotations in the PHP language before version 8.0, so the metadata was written into the `DocBlock`. A DocBlock is a piece of documentation in the source code that provides information about a specific class, method or other structural elements.*<sup>[2](#2)</sup>*
 
-#### Example in php language
+#### Example in PHP language
 
-```php{1-10}
+```php
 <?php
 
 /**
@@ -54,17 +54,17 @@ Annotations are called `DocBlock` in the php language. A DocBlock is a piece of 
  }
  ```
  
-`@param string $myArgument` declares that the parameter $myArgument is of type string.
+`@param string $myArgument` declares that the parameter `$myArgument` is of type string.
 
 `@return void` declares that the return value for this method is void, which means that no value will be returned.
 
-## Annotations in larammerce platform
+## Annotations in Larammerce platform
 
-In the larammerce platform, a php `annotation-parser` package is developed based on the PhpDocBlock.*<sup>[3](#3)</sup>* This package helps you to write the codes in the DocBlock and then execute them. Therefore the use of DocBlock in the Larammerce platform goes beyond the annotation in the php language.
+In the Larammerce platform, a PHP `annotation-parser` package is developed based on the DocBlock.*<sup>[3](#3)</sup>* This package helps you to write the codes in the DocBlock and then execute them. Therefore the use of DocBlock in the Larammerce platform goes beyond the annotation in the PHP language.
 
-#### Example in larammerce platform
+#### Example in Larammerce platform
 
-```php{1-10}
+```php
 <?php
 
 /**
@@ -85,7 +85,7 @@ public function test()
 
 First, install the package:
 
-```bash{1}
+```bash
 composer require larammerce/annotation-parser
 ```
 
@@ -93,54 +93,54 @@ Now you have access to 2 classes in this package: `ReflectiveClass` and `Reflect
 
 Construct an instance object from these classes:
 
-```php{1-2}
+```php
 $reflective_class = new ReflectiveClass($class_name);
 //constructs the reflective class
 ```
 
-```php{1-2}
+```php
 $reflective_method = new ReflectiveMethod($class_name, $function_name);
 //constructs the reflective method
 ```
 
 These classes provide some useful methods to interact with DocBlock:
 
-```php{1-2}
+```php
 $reflective_class->getComment();
 //returns the phpdoc on top of class
 ```
 
-```php{1-2}
+```php
 $reflective_method->getComment();
 //returns the phpdoc on top of method
 ```
 
-```php{1-2}
+```php
 $reflective_class->getAnnotations();
 //returns a list of annotations
 ```
 
-```php{1-2}
+```php
 $reflective_class->hasAnnotation("specific_annotation");
 //checks if an specific annotation exists
 ```
 
-```php{1-2}
+```php
 $reflective_class->getAnnotation(("specific_annotation"));
 //returns the specific annotation with passed title
 ```
 
 #### Examples of the use of annotation-parser package
 
-Make a new command, named `TestAnnotations`:
+Make a new command, named `TestAnnotations`:*<sup>[4](#4)</sup>* 
 
-```bash{1}
+```bash
 php artisan make:command TestAnnotations
 ```
 
 Now you have the codes below in the path `/larammerce/app/Console/Commands/TestAnnotations.php`:
 
-```php{1-42}
+```php
 <?php
 
 namespace App\Console\Commands;
@@ -210,13 +210,15 @@ public function handle()
 
 Run the following command into the terminal:
 
-```bash{1}
+```bash
 php artisan larammerce:annotation
 ```
 
 **OUTPUT**
 
-![handle-salam](/img-annotations/02.png)
+```bash
+"salam"
+```
 
 In the path `/larammerce/app/Console/Commands/TestAnnotations.php`, construct a `ReflectiveClass` from the `TestAnnotations class` and get the DocBlock above this class:
 
@@ -239,9 +241,17 @@ class TestAnnotations extends Command
 }
 ```
 
+Run the following command into the terminal:
+
+```bash
+php artisan larammerce:annotation
+```
+
 **OUTPUT**
 
-![no-docblock](/img-annotations/03.png)
+```bash
+""
+```
 
 This output indicates that there is no DocBlock above the TestAnnotations class:
 
@@ -265,9 +275,21 @@ class TestAnnotations extends Command
 }
 ```
 
+Run the following command into the terminal:
+
+```bash
+php artisan larammerce:annotation
+```
+
 **OUTPUT**
 
-![mere-comment](/img-annotations/04.png)
+```bash
+"""
+/**\n
+ * @salam(ali="2")\n
+ */
+"""
+```
 
 The output returns a mere comment. In order to get a processed result, change the code in the `public function handle`:
 
@@ -279,9 +301,24 @@ public function handle()
 }
 ```
 
+Run the following command into the terminal:
+
+```bash
+php artisan larammerce:annotation
+```
+
 **OUTPUT**
 
-![processed-comment](/img-annotations/05.png)
+```bash
+array:1 [
+  "salam" => App\Utils\Reflection\Annotation^ {#2571
+    -title: "salam"
+    -properties: array:1 [
+      "ali" => "2"
+    ]
+  }
+]
+```
 
 As you see, the comment is processed and represented in detail.
 
@@ -297,9 +334,25 @@ class TestAnnotations extends Command
 }
 ```
 
+Run the following command into the terminal:
+
+```bash
+php artisan larammerce:annotation
+```
+
 **OUTPUT**
 
-![accurate-result](/img-annotations/06.png)
+```bash
+array:1 [
+  "salam" => App\Utils\Reflection\Annotation^ {#2571
+    -title: "salam"
+    -properties: array:2 [
+      "ali" => "2"
+      "Test" => 3
+    ]
+  }
+]
+```
 
 As you see, the result is accurate. So you can write some descriptions above a class and then use them in your code.
 
@@ -347,9 +400,17 @@ class TestAnnotations extends Command
 }
 ```
 
+Run the following command into the terminal:
+
+```bash
+php artisan larammerce:annotation
+```
+
 **OUTPUT**
 
-![no-exist-salam](/img-annotations/07.png)
+```bash
+false
+```
 
 This means that there is no annotation named `salam` above the `testFunction` method.
 
@@ -363,9 +424,17 @@ public function handle()
 }
 ```
 
+Run the following command into the terminal:
+
+```bash
+php artisan larammerce:annotation
+```
+
 **OUTPUT**
 
-![exist-rules](/img-annotations/08.png)
+```bash
+true
+```
 
 It declares that an annotation named `rules` exists above the `testFunction` method.
 
@@ -382,9 +451,23 @@ public function handle()
 }
 ```
 
+Run the following command into the terminal:
+
+```bash
+php artisan larammerce:annotation
+```
+
 **OUTPUT**
 
-![test-function](/img-annotations/09.png)
+```bash
+App\Utils\Reflection\Annotation^ {#2575
+  -title: "rules"
+  -properties: array:2 [
+    "username" => "required"
+    "password" => "required|max:20"
+  ]
+}
+```
 
 As you see, the output shows the DocBlock above the `testFunction` method.
 
@@ -400,9 +483,23 @@ public function testFunction()
 }
 ```
 
+Run the following command into the terminal:
+
+```bash
+php artisan larammerce:annotation
+```
+
 **OUTPUT**
 
-![mathematical-calculation](/img-annotations/10.png)
+```bash
+App\Utils\Reflection\Annotation^ {#2575
+  -title: "rules"
+  -properties: array:2 [
+    "username" => "required"
+    "password" => "required|max:22"
+  ]
+}
+```
 
 The output indicates that the mathematical calculation 10+12=22 is done into the DocBlock.
 
@@ -414,9 +511,11 @@ To understand how the annotation-parser package works, you can refer to the *[gi
 
 *1. <a name="1">[Annotations in the java language.](https://docs.oracle.com/javase/tutorial/java/annotations/)</a>*
 
-*2. <a name="2">[What is a DocBlock in the php language?](https://docs.phpdoc.org/3.0/guide/getting-started/what-is-a-docblock.html#what-is-a-docblock)</a>*
+*2. <a name="2">[What is a DocBlock in the PHP language?](https://docs.phpdoc.org/3.0/guide/getting-started/what-is-a-docblock.html#what-is-a-docblock)</a>*
 
-*3. <a name="3">[Annotation-parser package in the larammerce project.](https://github.com/larammerce/annotation-parser)</a>*
+*3. <a name="3">[Annotation-parser package in the Larammerce project.](https://github.com/larammerce/annotation-parser)</a>*
+
+*4. <a name="4">[How to make a new command in laravel?](https://laravel.com/docs/10.x/artisan#generating-commands)</a>*
 
 #### Video source
 ___
