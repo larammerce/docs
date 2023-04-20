@@ -385,6 +385,115 @@ ___
 
 **10.** For every document that is written and placed in the documentation section of the Larammerce site, the members of the Larammerce team are obliged to read it.
 
+## PR review
+
+This section describes how to run, test and review your teammate's pull request in your local system.
+
+### Git
+
+`Git`*<sup>[4](#4)</sup>* is a `version control` or `source control` system which saves the source code and remembers the source code `changes` step by step as a stack. This stack is called `branch` and the changes are called `commit` or `revision`.
+
+If you order to cancel a commit, git creates a new commit which reverts the previous commit changes. So no commit is deleted from the git, but always the new commits are added. Git performs this task by adding and subtracting the lines. For example `+5 -3` in a given commit means that you added 5 lines to the source code and at the same time deleted 3 lines from it. Now if you order to delete this commit, git deletes the 5 new lines and adds the previous 3 lines and creates a new commit.
+
+In the git platform, the first branch is called `master` or `main`. A new lateral branch can be created and initialized from any given commit in the stack and, after several steps, merged into the master branch as a new commit.
+
+##### EXAMPLE
+
+Suppose you write the codes below:
+
+```bash
+#include<iostream>
+using namespace std;
+int main(){
+    cout<< "Hello!";
+    return 0;
+}
+```
+
+When you commit these codes, git makes a revision number 0 and assigns it a random string, like 223465:
+
+223465 0 -> Create file main.cpp -> +6 0
+
+`+6 0` means that you added 6 new lines and no line is deleted.
+
+Now you change the code as follows and commit it:
+
+```bash
+#include<iostream>
+int main(){
+    std::cout<< "Hello!";
+    return 0;
+}
+```
+
+Git makes the revision number 1 with a new random string, such as 67fe45:
+
+67fe45 1 -> Do some changes. -> +1 -2
+
+`-2` means that 2 lines are deleted: `using namespace std;` and `cout<< "Hello!";`.
+
+`+1` means that 1 new line is added: `std::cout<< "Hello!";`.
+
+Now you order to revert the last revision:
+
+```bash
+git revert 67fe45
+```
+
+Git does not delete the revision 67fe45, but makes the revision number 2 with a new random string, like 879012:
+
+879012 2 -> Revert the last commit. -> +2 -1
+
+`-1` means that 1 line is deleted: `std::cout<< "Hello!";`.
+
+`+2` means that 2 lines are added: `using namespace std;` and `cout<< "Hello!";`.
+
+So the result is as follows:
+
+```bash
+#include<iostream>
+using namespace std;
+int main(){
+    cout<< "Hello!";
+    return 0;
+}
+```
+
+### Remote
+
+Another interesting aspect of git is that you can put an exact copy of your local repository, with the same master and lateral branches, on another computer in the internet; so others can see and use your codes on their local system. Remote server may be `github` or `gitlab` or any other git based platform. Usually two remote repositories are used: `REMOTE(Origin)` and `REMOTE(Backup)`, so you must select the desired remote repository in order to pull the last changes in your local system.
+
+If you are contributing to the `larammerce-docs` project, you have already forked and cloned the REMOTE(Origin) repository from `https://github.com/larammerce/larammerce-docs`. So the larammerce-docs project on your local system pulls the data from `https://github.com/your-account-name/larammerce-docs` as REMOTE(Origin), while on the teammate's local system pulls from `https://github.com/teammate-account-name/larammerce-docs` as REMOTE(Origin).
+
+For example when you are on `branch_1` in your local system and run `git push --set-upstream origin branch_1`, the branch_1 is pushed from your local system to your REMOTE(Origin) repository, i.e. `https://github.com/your-account-name/larammerce-docs`.
+
+Suppose your teammate creates a new branch, named `sample-branch`, in his local system and pushes it to his REMOTE(Origin) repository and requests to merge it into the master branch of the larammerce-docs project. In order to have your teammate's sample-branch on your local system, create a new remote, for example `REMOTE(Teammate-Origin)`, which pulls the data from `https://github.com/teammate-account-name/larammerce-docs` into your local repository. Run the following command on the master branch of your local repository:
+
+```bash
+git remote add Teammate-Origin https://github.com/teammate-account-name/larammerce-docs.git
+```
+
+Now by running ` git remote`, you can see that the `Teammate-Origin` remote has been added to the list.
+
+Create the `sample-branch` in your local repository:
+
+```bash
+git checkout -b sample-branch
+```
+
+Run the command below on the sample-branch:
+
+```bash
+git pull -f Teammate-Origin sample-branch
+```
+
+Now you can run `npm run docs:dev` to see the result in the browser.
+
+#### Video source
+___
+
+<iframe src="https://www.aparat.com/video/video/embed/videohash/C4Dz8/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>
+
 #### Reference
 ___
 
@@ -394,3 +503,4 @@ ___
 
 *3. <a name="3">[What is fork in GitHub?](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks)</a>*
 
+*4. <a name="4">[What is Git?](https://git-scm.com/)</a>*
