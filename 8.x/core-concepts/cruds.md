@@ -2,19 +2,19 @@
 
 [[toc]]
 
-This document reviews how to implement `CRUD` (create, read, update, delete) in the Larammerce platform. A `ToDoList` project is done step by step to illustrate the operational concepts.
+This document reviews how to implement `CRUD` in the Larammerce platform. CRUD is an acronym that stands for `Create`, `Read`, `Update`, and `Delete`. These are the four basic operations that a computer program typically performs to work with the data in a database.
+
+A `ToDoList` project is done step by step to illustrate the operational concepts.
 
 #### Make migrations
 
-Larammerce is a schema-first platform. So you must create a table for your todos.
-
-Run the following command in the terminal:
+The Larammerce project is based on Laravel platform, and since Laravel is schema-first, its database schema and table must be created first. So run the following command in the terminal:
 
 ```bash
 php artisan make:migration create_todos_table
 ```
 
-Insert these codes in the path `/larammerce/database/migrations/[some_numbers]_create_todos_table.php`:
+After running this code, a file named `<a_date>_create_todos_table.php` will be created in the path `/larammerce/database/migrations/`. To add some columns like `subject` and `status` to the `todos_table`, insert the following codes into this file:
 
 ```php{7,8}
 <?php
@@ -32,7 +32,7 @@ Insert these codes in the path `/larammerce/database/migrations/[some_numbers]_c
    
 ```
 
-Run the following command in the terminal:
+Run the following command in the terminal to create the modified table:
 
 ```bash
 php artisan migrate
@@ -89,6 +89,16 @@ class Todo extends BaseModel
 In the code above, the lines number 5 to 11 are called `annotations`. You can study the [annotations](https://docs.larammerce.com/8.x/core-concepts/annotations.html) page to learn more about this topic in the larammerce platform.
 :::
 
+`$SORTABLE_FIELDS` defines on what basis the user can sort the list of todos.
+
+`$SEARCHABLE_FIELDS` allows the user to do the search based on a specific field.
+
+`$IMPORTANT_SEARCH_FIELD` makes a column of the database table more important in the search system.
+
+`$EXACT_SEARCH_ORDER_FIELD` configures what field the search results are sorted by.
+
+**NOTE:** The curious reader can refer to the laravel documentation in order to study more about the eloquent model.*<sup>[1](#1)</sup>*
+
 #### Add route
 
 Put the code below in the path `/larammerce/routes/web.php` inside the `admin routes`:
@@ -107,6 +117,8 @@ Put the code below in the path `/larammerce/routes/web.php` inside the `admin ro
 ```
 
 #### Add controller
+
+The Larammerce project is using Laravel resource controllers. To know more about these controllers and how to use them, refer to the related document.*<sup>[2](#2)</sup>*
 
 Create the file `TodoController.php` in the path `/larammerce/app/Http/Controllers/Admin/` and put these codes inside:
 
@@ -173,7 +185,7 @@ class TodoController extends BaseController
 
 #### Define icon
 
-A todo icon is required in the top toolbar in order to perform the crud processes.
+A todo icon is required in the top toolbar in order to display the todo list on the admin panel.
 
 ![top_toolbar](/img-cruds/01-edited.png)
 
@@ -201,7 +213,7 @@ Run the following command in the terminal:
 npm run prod
 ```
 
-Write the code below in the path `larammerce/config/cms/appliances.php`:
+The todolist appliance with the defined route and icon must be introduced to the program, so write the code below in the path `larammerce/config/cms/appliances.php`:
 
 ```php{8-17}
 <?php
@@ -261,13 +273,7 @@ php artisan translation:fill
 
 ## Define index method
 
-If you click on todo icon to show the list of todos, you will get this error:
-
-![index_error](/img-cruds/05.png)
-
-So you must define the index method.
-
-Put the following code in the path `/larammerce/app/Http/Controllers/Admin/TodoController.php` inside the `index method` section:
+An index method must be defined in order to show the list of todos after clicking on the todo icon. So put the following code in the path `/larammerce/app/Http/Controllers/Admin/TodoController.php` inside the `index method` section:
 
 ```php{5-13}
 <?php
@@ -289,7 +295,7 @@ class TodoController extends BaseController
 
 #### Create index view
 
-Create the file `index.blade.php` in the path `/larammerce/resources/views/admin/pages/todo/` and put these codes inside:
+In the path `/larammerce/resources/views/admin/pages/`, create a directory named `todo`. In the `todo` directory, create the file `index.blade.php` and put these codes inside:
 
 ```php
 @extends('admin.layout')
@@ -679,7 +685,7 @@ The result is as follows:
 
 ![status_selected](/img-cruds/19-edited.png)
 
-#### Correct list status
+#### Correct list status representation
 
 In the list of todos, the status item is represented as a number:
 
@@ -778,7 +784,7 @@ class TodoController extends BaseController
 
 ```
 
-Now click on the delete icon for todo #2.
+Now click on the delete icon for the todo with the id #2.
 
 **OUTPUT**
 
@@ -790,10 +796,16 @@ Click on `بله`.
 
 ![todo_deleted](/img-cruds/35-edited.png)
 
-The todo #2 has been deleted from the list.
+The todo with the id #2 has been deleted from the list.
 
 #### Video source
 ___
 
 <iframe src="https://www.aparat.com/video/video/embed/videohash/zUXFL/vt/frame" height="300" width="700" style="  border: 2px solid #bdc3c7;
 border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>
+
+## References
+
+*1.<a name="1"> [Eloquent model in the laravel framework.](https://laravel.com/docs/10.x/eloquent) </a>*
+
+*2.<a name="2"> [Resource controllers in the laravel framework.](https://laravel.com/docs/10.x/controllers#resource-controllers) </a>*
