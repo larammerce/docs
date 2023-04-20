@@ -49,7 +49,7 @@ As you registered with a random number, the code will be displayed on the last l
 
 ```php{3}
 // storage/logs/laravel.log
-[2023-04-12 23:34:12] local.INFO: SMS Driver file: send: template sms-auth-code number: 09125***796
+[2023-04-12 23:34:12] local.INFO: SMS Driver file: send: template sms-auth-code number: 0912****796
 {"oneTimeCode":"9139"}  
 ```
 
@@ -360,11 +360,11 @@ if (window.currentPage === "auth-register")
 
 
 Run `npm run watch` and  `./deploy.sh` and open your search engine console so to see what will happen when you select an option.
-the output will be:
+The output will be:
 
 ![Console log](/representatives/console-log.png)
 
-- Now set the condition in which if the specific option is selected, an extra field displayes otherwise it fades out. to do so :
+- Now set the condition in which if the specific option is selected, an extra field displayes, otherwise it fades out. To do so:
 
 1. Build a container on `_register-representative.blade.php` with an specific `id` and set the default display style as hidden:
 
@@ -413,7 +413,7 @@ Good luck!
 ___
 
 <iframe src="https://www.aparat.com/video/video/embed/videohash/fZN1d/vt/frame" height="300" width="700" style="  border: 2px solid #bdc3c7;
-border-radius: 5px; opacity: 1; allowFullScreen=true" ></iframe>
+border-radius: 5px; opacity: 1;" allowFullScreen="true" ></iframe>
 
 
 
