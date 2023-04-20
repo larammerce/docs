@@ -10,7 +10,7 @@ Larammerce is a schema-first platform. So you must create a table for your todos
 
 Run the following command in the terminal:
 
-```bash{1}
+```bash
 php artisan make:migration create_todos_table
 ```
 
@@ -34,7 +34,7 @@ Insert these codes in the path `/larammerce/database/migrations/[some_numbers]_c
 
 Run the following command in the terminal:
 
-```bash{1}
+```bash
 php artisan migrate
 ```
 
@@ -46,7 +46,7 @@ You can check your database to make sure the table `todos` is created:
 
 Create the file `Todo.php` in the path `/larammerce/app/Models/` and put these codes inside:
 
-```php{1-36}
+```php
 <?php
 
 namespace App\Models;
@@ -110,7 +110,7 @@ Put the code below in the path `/larammerce/routes/web.php` inside the `admin ro
 
 Create the file `TodoController.php` in the path `/larammerce/app/Http/Controllers/Admin/` and put these codes inside:
 
-```php{1-58}
+```php
 <?php
 
 namespace App\Http\Controllers\Admin;
@@ -197,7 +197,7 @@ Put the following code in the path `/larammerce/resources/assets/sass/icons.scss
 
 Run the following command in the terminal:
 
-```bash{1}
+```bash
 npm run prod
 ```
 
@@ -250,7 +250,7 @@ return [
 
 Run the following command in the terminal:
 
-```bash{1}
+```bash
 php artisan translation:fill
 ```
 
@@ -291,7 +291,7 @@ class TodoController extends BaseController
 
 Create the file `index.blade.php` in the path `/larammerce/resources/views/admin/pages/todo/` and put these codes inside:
 
-```php{1-46}
+```php
 @extends('admin.layout')
 
 @section('bread_crumb')
@@ -344,7 +344,7 @@ Create the file `index.blade.php` in the path `/larammerce/resources/views/admin
 
 Create the file `list.blade.php` in the path `/larammerce/resources/views/admin/pages/todo/layout/` and put these codes inside:
 
-```php{1-31}
+```php
 @foreach($todos as $todo)
     <div
         class="col-lg-offset-1 col-lg-10 col-md-offset-0 col-md-12 col-sm-offset-0 col-sm-12 col-xs-offset-0 col-xs-12 list-row roles">
@@ -402,7 +402,7 @@ return [
 
 Run the following command in the terminal:
 
-```bash{1}
+```bash
 php artisan translation:fill
 ```
 
@@ -445,7 +445,7 @@ class TodoController extends BaseController
 
 Make the file `create.blade.php` in the path `/larammerce/resources/views/admin/pages/todo/` and put these codes inside:
 
-```php{1-23}
+```php
 @extends('admin.form_layout.col_4')
 
 @section('bread_crumb')
@@ -525,7 +525,7 @@ So you must add an edit view.
 
 Make the file `edit.blade.php` in the path `/larammerce/resources/views/admin/pages/todo/` and write these codes inside:
 
-```php{1-26}
+```php
 @extends('admin.form_layout.col_4')
 
 @section('bread_crumb')
@@ -560,7 +560,7 @@ Make the file `edit.blade.php` in the path `/larammerce/resources/views/admin/pa
 
 Create the file `TodoStatus.php` in the path `/larammerce/app/Models/Enums/` and put these codes inside:
 
-```php{1-13}
+```php
 <?php
 
 namespace App\Models\Enums;
@@ -605,7 +605,7 @@ return [
 
 Run the following command in the terminal:
 
-```bash{1}
+```bash
 php artisan translation:fill
 ```
 
