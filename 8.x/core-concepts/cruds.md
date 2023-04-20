@@ -14,7 +14,7 @@ The Larammerce project is based on Laravel platform, and since Laravel is schema
 php artisan make:migration create_todos_table
 ```
 
-After running this code, a file named `<a_date>_create_todos_table.php` will be created in the path `/larammerce/database/migrations/`. To add some columns like `subject` and `status` to the `todos_table`, insert the following codes into this file:
+After running this command, a file named `<a_date>_create_todos_table.php` will be created in the path `/path/to/larammerce-project/database/migrations/`. To add some columns like `subject` and `status` to the `todos_table`, insert the following codes into this file:
 
 ```php{7,8}
 <?php
@@ -32,7 +32,7 @@ After running this code, a file named `<a_date>_create_todos_table.php` will be 
    
 ```
 
-Run the following command in the terminal to create the modified table:
+Run the following command in the terminal to create the desired table:
 
 ```bash
 php artisan migrate
@@ -44,7 +44,7 @@ You can check your database to make sure the table `todos` is created:
 
 #### Create Todo model
 
-Create the file `Todo.php` in the path `/larammerce/app/Models/` and put these codes inside:
+Create the file `Todo.php` in the path `/path/to/larammerce-project/app/Models/` and put these codes inside:
 
 ```php
 <?php
@@ -101,7 +101,7 @@ In the code above, the lines number 5 to 11 are called `annotations`. You can st
 
 #### Add route
 
-Put the code below in the path `/larammerce/routes/web.php` inside the `admin routes`:
+Put the code below in the path `/path/to/larammerce-project/routes/web.php` inside the `admin routes`:
 
 ```php{8,9}
 <?php
@@ -120,7 +120,7 @@ Put the code below in the path `/larammerce/routes/web.php` inside the `admin ro
 
 The Larammerce project is using Laravel resource controllers. To know more about these controllers and how to use them, refer to the related document.*<sup>[2](#2)</sup>*
 
-Create the file `TodoController.php` in the path `/larammerce/app/Http/Controllers/Admin/` and put these codes inside:
+Create the file `TodoController.php` in the path `/path/to/larammerce-project/app/Http/Controllers/Admin/` and put these codes inside:
 
 ```php
 <?php
@@ -189,9 +189,9 @@ A todo icon is required in the top toolbar in order to display the todo list on 
 
 ![top_toolbar](/img-cruds/01-edited.png)
 
-Search and select a `todo flat icon png` file and put it into the path `/larammerce/public_html/admin_dashboard/images/icons/`.
+Search and select a `todo flat icon png` file and put it into the path `/path/to/larammerce-project/public_html/admin_dashboard/images/icons/`.
 
-Put the following code in the path `/larammerce/resources/assets/sass/icons.scss`:
+Put the following code in the path `/path/to/larammerce-project/resources/assets/sass/icons.scss`:
 
 ```scss{8-10}
 .h-icon {
@@ -213,7 +213,7 @@ Run the following command in the terminal:
 npm run prod
 ```
 
-The todolist appliance with the defined route and icon must be introduced to the program, so write the code below in the path `larammerce/config/cms/appliances.php`:
+The todolist appliance with the defined route and icon must be introduced to the program, so write the code below in the path `/path/to/larammerce-project/config/cms/appliances.php`:
 
 ```php{8-17}
 <?php
@@ -243,7 +243,13 @@ return [
 
 #### Correct translation
 
-Insert the following code in the path `/larammerce/resources/lang/fa/general.php` inside the `appliances` section:
+Run the following command in the terminal:
+
+```bash
+php artisan translation:fill
+```
+
+Insert the following code in the path `/path/to/larammerce-project/resources/lang/fa/general.php` inside the `appliances` section:
 
 ```php{9}
 <?php
@@ -260,12 +266,6 @@ return [
 ];
 ```
 
-Run the following command in the terminal:
-
-```bash
-php artisan translation:fill
-```
-
 **OUTPUT**
 
 ![todo_icon_translated](/img-cruds/08-edited.png)
@@ -273,7 +273,7 @@ php artisan translation:fill
 
 ## Define index method
 
-An index method must be defined in order to show the list of todos after clicking on the todo icon. So put the following code in the path `/larammerce/app/Http/Controllers/Admin/TodoController.php` inside the `index method` section:
+An index method must be defined in order to show the list of todos after clicking on the todo icon. So put the following code in the path `/path/to/larammerce-project/app/Http/Controllers/Admin/TodoController.php` inside the `index method` section:
 
 ```php{5-13}
 <?php
@@ -295,7 +295,7 @@ class TodoController extends BaseController
 
 #### Create index view
 
-In the path `/larammerce/resources/views/admin/pages/`, create a directory named `todo`. In the `todo` directory, create the file `index.blade.php` and put these codes inside:
+In the path `/path/to/larammerce-project/resources/views/admin/pages/`, create a directory named `todo`. In the `todo` directory, create the file `index.blade.php` and put these codes inside:
 
 ```php
 @extends('admin.layout')
@@ -348,7 +348,7 @@ In the path `/larammerce/resources/views/admin/pages/`, create a directory named
 
 #### Add layout
 
-Create the file `list.blade.php` in the path `/larammerce/resources/views/admin/pages/todo/layout/` and put these codes inside:
+Create the file `list.blade.php` in the path `/path/to/larammerce-project/resources/views/admin/pages/todo/layout/` and put these codes inside:
 
 ```php
 @foreach($todos as $todo)
@@ -390,7 +390,31 @@ Create the file `list.blade.php` in the path `/larammerce/resources/views/admin/
 
 #### Correct translation
 
-Write the code below in the path `/larammerce/resources/lang/fa/structures.php` inside the `attributes` section:
+Run the following command in the terminal:
+
+```bash
+php artisan translation:fill
+```
+
+This command finds the columns that are newly added to the system and lets you to write the translation for them.
+
+Now you can see that one new line is added to the file `/path/to/larammerce-project/resources/lang/fa/structures.php`:
+
+```php{7}
+<?php
+return [
+  'attributes' => 
+  [
+    ...
+    'representative_type' => 'نوع آشنایی با سیستم',
+    'status' => 'None'
+    ...
+  ]
+  ...
+]; 
+```
+
+Change the new line as belows:
 
 ```php{7}
 <?php
@@ -404,12 +428,6 @@ return [
   ]
   ...
 ]; 
-```
-
-Run the following command in the terminal:
-
-```bash
-php artisan translation:fill
 ```
 
 **OUTPUT**
@@ -428,7 +446,7 @@ If you click on the `+` icon to create a new todo, you will get this error:
 
 So you must define the create method.
 
-Put the following code in the path `/larammerce/app/Http/Controllers/Admin/TodoController.php` inside the `create method` section:
+Put the following code in the path `/path/to/larammerce-project/app/Http/Controllers/Admin/TodoController.php` inside the `create method` section:
 
 ```php{6-12}
 <?php
@@ -449,7 +467,7 @@ class TodoController extends BaseController
 
 #### Add create view
 
-Make the file `create.blade.php` in the path `/larammerce/resources/views/admin/pages/todo/` and put these codes inside:
+Make the file `create.blade.php` in the path `/path/to/larammerce-project/resources/views/admin/pages/todo/` and put these codes inside:
 
 ```php
 @extends('admin.form_layout.col_4')
@@ -485,7 +503,7 @@ Make the file `create.blade.php` in the path `/larammerce/resources/views/admin/
 
 In order to save the new todo, you must define the store method.
 
-Insert the code below in the path `/larammerce/app/Http/Controllers/Admin/TodoController.php` inside the `store method` section:
+Insert the code below in the path `/path/to/larammerce-project/app/Http/Controllers/Admin/TodoController.php` inside the `store method` section:
 
 ```php{6-14}
 <?php
@@ -529,7 +547,7 @@ Clicking on the edit icon will give you this error:
 
 So you must add an edit view.
 
-Make the file `edit.blade.php` in the path `/larammerce/resources/views/admin/pages/todo/` and write these codes inside:
+Make the file `edit.blade.php` in the path `/path/to/larammerce-project/resources/views/admin/pages/todo/` and write these codes inside:
 
 ```php
 @extends('admin.form_layout.col_4')
@@ -564,7 +582,7 @@ Make the file `edit.blade.php` in the path `/larammerce/resources/views/admin/pa
 
 4 statuses can be attributed to each todo item: new in, in progress, ready for test, done. So you must define these statuses.
 
-Create the file `TodoStatus.php` in the path `/larammerce/app/Models/Enums/` and put these codes inside:
+Create the file `TodoStatus.php` in the path `/path/to/larammerce-project/app/Models/Enums/` and put these codes inside:
 
 ```php
 <?php
@@ -584,7 +602,13 @@ class TodoStatus extends BaseEnum
 
 #### Correct translation
 
-Write the code below in the path `/larammerce/resources/lang/fa/general.php`:
+Run the following command in the terminal:
+
+```bash
+php artisan translation:fill
+```
+
+Write the code below in the path `/path/to/larammerce-project/resources/lang/fa/general.php`:
 
 ```php{11-18}
 <?php
@@ -609,15 +633,9 @@ return [
 ];
 ```
 
-Run the following command in the terminal:
-
-```bash
-php artisan translation:fill
-```
-
 #### Complete edit view
 
-Put the following code in the path `/larammerce/resources/views/admin/pages/todo/edit.blade.php`:
+Put the following code in the path `/path/to/larammerce-project/resources/views/admin/pages/todo/edit.blade.php`:
 
 ```php{10-17}
 @extends('admin.form_layout.col_4')
@@ -644,7 +662,7 @@ Put the following code in the path `/larammerce/resources/views/admin/pages/todo
 
 ## Define edit method
 
-Insert the code below in the path `/larammerce/app/Http/Controllers/Admin/TodoController.php` inside the `edit method` section:
+Insert the code below in the path `/path/to/larammerce-project/app/Http/Controllers/Admin/TodoController.php` inside the `edit method` section:
 
 
 ```php{6,11-21}
@@ -691,7 +709,7 @@ In the list of todos, the status item is represented as a number:
 
 ![todo_status_number](/img-cruds/14-edited.png)
 
-So you must correct the code for status in the path `/larammerce/resources/views/admin/pages/todo/layout/list.blade.php`:
+So you must correct the code for status in the path `/path/to/larammerce-project/resources/views/admin/pages/todo/layout/list.blade.php`:
 
 
 ```php{7}
@@ -724,7 +742,7 @@ If you click on `ذخیره` button, this error will appear:
 
 So you must define the update method to save the changes.
 
-Write the following code in the path `/larammerce/app/Http/Controllers/Admin/TodoController.php` inside the `update method` section:
+Write the following code in the path `/path/to/larammerce-project/app/Http/Controllers/Admin/TodoController.php` inside the `update method` section:
 
 
 ```php{7,12-20}
@@ -766,7 +784,7 @@ Create some new todos with different statuses:
 
 Clicking on the delete icon should omit the related todo. So you must define the destroy method.
 
-Insert the code below in the path `/larammerce/app/Http/Controllers/Admin/TodoController.php` inside the `destroy method` section:
+Insert the code below in the path `/path/to/larammerce-project/app/Http/Controllers/Admin/TodoController.php` inside the `destroy method` section:
 
 ```php{6-10}
 <?php
