@@ -2,9 +2,13 @@
 
 [[toc]]
 
-Annotations are the tags declaring metadata for the program source code. They provide additional information about the program to the compiler but are not part of the program itself. These annotations do not affect the execution of the compiled program, but add some new traits to the classes, methods and properties.*<sup>[1](#1)</sup>*
+Annotations are the tags declaring metadata for the program source code. They provide additional information about the program to the compiler but are not part of the program itself. These annotations do not affect the execution of the compiled program, but add some new traits to the classes, methods and properties.
 
-#### Example in java language
+## History
+
+Historically, annotations were first introduced in Java language.*<sup>[1](#1)</sup>*
+
+#### Example
 
 ```java
 class Flower {
@@ -34,6 +38,42 @@ I am a rose
 ```
 
 In the above example, both the superclass and subclass include the method `displayInfo()`. However the method of the subclass is called during the program execution due to the `@Override` annotation.
+
+## Benefits of use
+
+Suppose you write a validation method:
+
+```php
+public function sth($request){
+  $validator = new Validator([
+    "name" => "required",
+    "family" => "required|max:20",
+    "phone_number" => "nullable|numeric|min:max:11"
+  ]);
+  $validator->validate($request->all());
+  if($validator->fails()){
+    return redirect()->back()->withData();
+  }
+  // logic-of-program
+  $user = User::create($request->all());
+  ...
+}
+```
+
+You must repeat these codes for every validation. Instead, the code becomes as belows using the annotations:
+
+```php
+/**
+ * @rules(name="required", family="required|max:20", phone_number="nullable|numeric|min:max:11")
+ */
+public function sth($request){
+  // logic-of-program
+  $user = User::create($request->all());
+  ...
+ }
+```
+
+So the annotations make the codes more concise and clean.
 
 ## Annotations in PHP language
 
@@ -509,7 +549,7 @@ To understand how the annotation-parser package works, you can refer to the *[gi
 
 #### References
 
-*1. <a name="1">[Annotations in the java language.](https://docs.oracle.com/javase/tutorial/java/annotations/)</a>*
+*1. <a name="1">[Annotations in the Java language.](https://docs.oracle.com/javase/tutorial/java/annotations/)</a>*
 
 *2. <a name="2">[What is a DocBlock in the PHP language?](https://docs.phpdoc.org/3.0/guide/getting-started/what-is-a-docblock.html#what-is-a-docblock)</a>*
 
