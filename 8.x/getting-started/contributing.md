@@ -387,19 +387,19 @@ ___
 
 ## PR review
 
-This section describes how to run, test and review your teammate's pull request in your local system.
+This section describes how to run, test, and review your teammate's pull request using an editor on your local system.
 
 ### Git
 
-`Git`*<sup>[4](#4)</sup>* is a `version control` or `source control` system which saves the source code and remembers the source code `changes` step by step as a stack. This stack is called `branch` and the changes are called `commit` or `revision`.
+`Git`*<sup>[4](#4)</sup>* is a `version control` or `source control` system which enables source code saving and tracking of the `changes` in a step-by-step manner, forming a `stack` or `branch`. Each change in the branch is referred to as a `commit` or `revision`.
 
-If you order to cancel a commit, git creates a new commit which reverts the previous commit changes. So no commit is deleted from the git, but always the new commits are added. Git performs this task by adding and subtracting the lines. For example `+5 -3` in a given commit means that you added 5 lines to the source code and at the same time deleted 3 lines from it. Now if you order to delete this commit, git deletes the 5 new lines and adds the previous 3 lines and creates a new commit.
+In Git, canceling a commit results in the creation of a new commit which reverts the previous commit changes. So no commit is ever deleted; instead, new ones are added. Git performs this task by adding or subtracting the lines. For example `+5 -3` in a given commit indicates that five lines were added to the source code while three were deleted. If you order to delete this commit, Git deletes the five newly added lines and adds back the previous three lines, creating a new commit.
 
-In the git platform, the first branch is called `master` or `main`. A new lateral branch can be created and initialized from any given commit in the stack and, after several steps, merged into the master branch as a new commit.
+In the Git platform, the first branch is known as `master` or `main`. You can create a new lateral branch from any given commit in the stack and merge it into the master branch after several steps as a new commit.
 
-##### EXAMPLE
+**EXAMPLE**
 
-Suppose you write the codes below:
+Suppose you initialize the Git in your project and write the codes below in a file:
 
 ```bash
 #include<iostream>
@@ -410,9 +410,23 @@ int main(){
 }
 ```
 
-When you commit these codes, git makes a revision number 0 and assigns it a random string, like 223465:
+To save these changes in Git, you must create a commit. The commit is like a snapshot of your code at a particular point of time. When you create a commit, Git takes all the changes you've made since the last commit and bundles them together into a new package which includes information about what files were changed, what lines were added or removed, and who made the changes. Git then assigns a unique identifier to this new commit in the form of a random string. This identifier allows Git to keep track of the commit and reference it later on. Each commit represents a new revision of your source code.
 
-223465 0 -> Create file main.cpp -> +6 0
+When you commit these codes, Git makes a revision number 0 and assigns it a random string, like 223465:
+
+**OUTPUT**
+
+```bash
+#git log
+
+commit 223465 #(remote-name/branch-name)
+Author: #remote-account
+Date: #date-time
+
+Create file main.cpp
+
+#0 -> +6 0
+```
 
 `+6 0` means that you added 6 new lines and no line is deleted.
 
@@ -428,21 +442,45 @@ int main(){
 
 Git makes the revision number 1 with a new random string, such as 67fe45:
 
-67fe45 1 -> Do some changes. -> +1 -2
+**OUTPUT**
+
+```bash
+#git log
+
+commit 67fe45 #(remote-name/branch-name)
+Author: #remote-account
+Date: #date-time
+
+Do some changes.
+
+#1 -> +1 -2
+```
 
 `-2` means that 2 lines are deleted: `using namespace std;` and `cout<< "Hello!";`.
 
 `+1` means that 1 new line is added: `std::cout<< "Hello!";`.
 
-Now you order to revert the last revision:
+In order to revert the last revision, run the following command:
 
 ```bash
 git revert 67fe45
 ```
 
-Git does not delete the revision 67fe45, but makes the revision number 2 with a new random string, like 879012:
+Instead of deleting the revision 67fe45, Git generates a new random string, such as 879012, and assigns it to a new revision number, namely 2:
 
-879012 2 -> Revert the last commit. -> +2 -1
+**OUTPUT**
+
+```bash
+#git log
+
+commit 879012 #(remote-name/branch-name)
+Author: #remote-account
+Date: #date-time
+
+Revert the last commit.
+
+#2 -> +2 -1
+```
 
 `-1` means that 1 line is deleted: `std::cout<< "Hello!";`.
 
@@ -461,13 +499,13 @@ int main(){
 
 ### Remote
 
-Another interesting aspect of git is that you can put an exact copy of your local repository, with the same master and lateral branches, on another computer in the internet; so others can see and use your codes on their local system. Remote server may be `github` or `gitlab` or any other git based platform. Usually two remote repositories are used: `REMOTE(Origin)` and `REMOTE(Backup)`, so you must select the desired remote repository in order to pull the last changes in your local system.
+Git provides the capability to replicate your local repository, including the main and side branches, onto another computer accessible via the internet. This enables others to access and apply your code to their own systems. Remote servers such as `GitHub` or `GitLab`, among other Git-based platforms, may be utilized for this purpose. Typically, two remote repositories are employed: `REMOTE(Origin)` and `REMOTE(Backup)`. Therefore, it is essential to select the intended remote repository to retrieve the most recent modifications in your local system.
 
-If you are contributing to the `larammerce-docs` project, you have already forked and cloned the REMOTE(Origin) repository from `https://github.com/larammerce/larammerce-docs`. So the larammerce-docs project on your local system pulls the data from `https://github.com/your-account-name/larammerce-docs` as REMOTE(Origin), while on the teammate's local system pulls from `https://github.com/teammate-account-name/larammerce-docs` as REMOTE(Origin).
+If you are contributing to the `Larammerce-docs` project, you have already forked and cloned the REMOTE(Origin) repository from `https://github.com/larammerce/larammerce-docs`. So the larammerce-docs project on your local system pulls the data from `https://github.com/your-account-name/larammerce-docs` as REMOTE(Origin), while on the teammate's local system pulls from `https://github.com/teammate-account-name/larammerce-docs` as REMOTE(Origin).
 
 For example when you are on `branch_1` in your local system and run `git push --set-upstream origin branch_1`, the branch_1 is pushed from your local system to your REMOTE(Origin) repository, i.e. `https://github.com/your-account-name/larammerce-docs`.
 
-Suppose your teammate creates a new branch, named `sample-branch`, in his local system and pushes it to his REMOTE(Origin) repository and requests to merge it into the master branch of the larammerce-docs project. In order to have your teammate's sample-branch on your local system, create a new remote, for example `REMOTE(Teammate-Origin)`, which pulls the data from `https://github.com/teammate-account-name/larammerce-docs` into your local repository. Run the following command on the master branch of your local repository:
+Suppose your teammate creates a new branch, named `sample-branch`, in his local system and pushes it to his REMOTE(Origin) repository and requests to merge it into the master branch of the Larammerce-docs project. In order to have your teammate's sample-branch on your local system, create a new remote, for example `REMOTE(Teammate-Origin)`, which pulls the data from `https://github.com/teammate-account-name/larammerce-docs` into your local repository. Run the following command on the master branch of your local repository:
 
 ```bash
 git remote add Teammate-Origin https://github.com/teammate-account-name/larammerce-docs.git
