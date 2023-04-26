@@ -180,7 +180,7 @@ Make a new command, named `TestAnnotations`:*<sup>[4](#4)</sup>*
 php artisan make:command TestAnnotations
 ```
 
-Now you have the codes below in the path `/larammerce/app/Console/Commands/TestAnnotations.php`:
+Now you have the codes below in the path `/path/to/larammerce-project/app/Console/Commands/TestAnnotations.php`:
 
 ```php
 <?php
@@ -262,7 +262,7 @@ php artisan larammerce:annotation
 "salam"
 ```
 
-In the path `/larammerce/app/Console/Commands/TestAnnotations.php`, construct a `ReflectiveClass` from the `TestAnnotations class` and get the DocBlock above this class:
+In the path `/path/to/larammerce-project/app/Console/Commands/TestAnnotations.php`, construct a `ReflectiveClass` from the `TestAnnotations class` and get the DocBlock above this class:
 
 
 ```php{5,12,13}
@@ -420,7 +420,7 @@ class TestAnnotations extends Command
 }
 ```
 
-Put the codes below in the path `/larammerce/app/Console/Commands/TestAnnotations.php`:
+Put the codes below in the path `/path/to/larammerce-project/app/Console/Commands/TestAnnotations.php`:
 
 ```php{6,14,15}
 <?php
