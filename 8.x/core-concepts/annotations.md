@@ -6,6 +6,8 @@ Annotations are the tags declaring metadata for the program source code. They pr
 
 ## History
 
+### Annotations in Java language
+
 Historically, annotations were first introduced in Java language.*<sup>[1](#1)</sup>*
 
 #### Example
@@ -39,7 +41,11 @@ I am a rose
 
 In the above example, both the superclass and subclass include the method `displayInfo()`. However the method of the subclass is called during the program execution due to the `@Override` annotation.
 
-## Benefits of use
+### Annotations in PHP language
+
+There were no annotations in the PHP language before version 8.0, so the metadata was written into the `DocBlock`. A DocBlock is a piece of documentation in the source code that provides information about a specific class, method or other structural elements.*<sup>[2](#2)</sup>*
+
+#### Benefits of use
 
 Suppose you write a validation method:
 
@@ -74,10 +80,6 @@ public function sth($request){
 ```
 
 So the annotations make the codes more concise and clean.
-
-## Annotations in PHP language
-
-There were no annotations in the PHP language before version 8.0, so the metadata was written into the `DocBlock`. A DocBlock is a piece of documentation in the source code that provides information about a specific class, method or other structural elements.*<sup>[2](#2)</sup>*
 
 #### Example in PHP language
 
