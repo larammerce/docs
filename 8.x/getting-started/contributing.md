@@ -525,6 +525,12 @@ Run the command below on the sample-branch:
 git pull -f Teammate-Origin sample-branch
 ```
 
+**Note:** Replace the command below if you run into an issue with pulling the new data:
+
+```bash
+git merge Teammate-Origin/sample-branch
+```
+
 Now you can run `npm run docs:dev` to see the result in the browser.
 
 #### Video source
