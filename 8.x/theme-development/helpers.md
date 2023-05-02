@@ -5,7 +5,7 @@
 According to the need of every single content management engine, to simplify the process of pulling, modifying, and displaying changes for template creators, some special functions called **Helpers** are defined. 
 The Larammerce engine is no exception.
 Therefore, for a better understanding, this document is provided for you, explaining the use of each helper function.
-To reach all the helpers, direct to the path: `app/Utils/CMS/Template/helpers.php`.
+To reach all the helpers, `/path/to/larammerce-project/app/Utils/CMS/Template/helpers.php`.
 
 **NOTE:** Check for updates in the helpers file, due to any changes in functions.
 
@@ -14,17 +14,17 @@ To reach all the helpers, direct to the path: `app/Utils/CMS/Template/helpers.ph
 
 ### How to setup a play ground
 
-To test these functions, add a new blade file to the `larammerce-base-them` directory, then follow these steps:
+To test these functions, `/path/to/larammerce-base-theme-project/public/views/` directory and add a new blade file, then follow these steps:
 
 
-1. Create a directory in the project root from the admin panel.
+1. Create a directory in the Larammerce project root from the admin panel.
 2. Click the plus button located at the bottom left of the page.
 3. Enter a title and URL, and enable the "has webpage" option in the form.
 - Note: the URl name should be same as the blade file name.
-4. Save the changes.
-5. After saving the changes, a new form will display. Choose "editing webpage" from the dropdown menu and select the created blade file name.
-6. Save and exit.
-7. Write your desired functions (they are mentioned as `Example` in this document) in the blade file, run `./deploy.sh` in ypur terminal in the `larammerce-base-them` directory and view their results on the specified URL.
+1. Save the changes.
+2. After saving the changes, a new form will be displayed. Choose "editing webpage" from the dropdown menu and select the created blade file name.
+3. Save and exit.
+4. Write your desired functions (they are mentioned as `Example` in this document) in the blade file, then `/path/to/larammerce-base-theme-project/` and run `./deploy.sh` in the terminal and view their results on the specified URL.
 
 ![create webpage in admin panel](/helpers/CreatePage.png)
 
@@ -34,7 +34,7 @@ To test these functions, add a new blade file to the `larammerce-base-them` dire
 
 #### parse_url 
 
-*This is a php function which parses a URL and returns an associative array containing any of the various components of the URL that are present(such as `scheme`, `user`. `pass`, `host`, `port`,`path`, `query`, `fragment`). The values of the array elements are not URL decoded.* *<sup>[1](#1)</sup>*
+*This is a built-in php function which parses a URL and returns an associative array containing any of the various components of the URL that are present(such as `scheme`, `user`, `pass`, `host`, `port`,`path`, `query`, `fragment`). The values of the array elements are not URL decoded.* *<sup>[1](#1)</sup>*
 
 To do so, lets define a url and parse it:
 
@@ -46,7 +46,7 @@ dd(parse_url($url));
 
 @endphp
 ```
-in `larammerce-base-theme` directory run:
+`path/to/larammerce-base-theme-project/` and run this command:
 
 ```bash
 ./deploy.sh
@@ -91,7 +91,7 @@ $new_url = unparse_url($parsed_url);
 Output:
 
 ```html
-<p> "https://google.com/salam/donya? " </p>
+<p> the changed url : "https://google.com/salam/donya? " </p>
 ```
 
 As you see, `test=sample` has been removed as an empty value is given to the query.
@@ -110,12 +110,12 @@ This function returns the summation of `Tax percentage` and `Toll percentage` va
 
 Example:
 ```php
-<p>Product all extra percentages  {{ get_product_all_extras_percentage() }}</p>
+<p>Product all extra percentages: {{ get_product_all_extras_percentage() }}</p>
 ```
 Output:
 
 ```html
-<p> Product all extra percentages 9 </p>
+<p> Product all extra percentages: 9 </p>
 ```
 
 ---
@@ -133,8 +133,9 @@ function locale_url(string $normal_url): string {
         return unparse_url($parsed_url);
     }
 ```
-This function is designed to modify the URL by adding a language identifier (e.g., "/en") at the beginning of the URL. This could be useful if you are building a multilangual website and need to generate URLs for different languages.
-So the first step is to make the website multilangual. To do so, Enable at least two languages(e.g. Persian & English) from `admin panel->setting -> language`.
+This function is designed to modify the URL by adding a language identifier (e.g., "/en") at the beginning of the URL. This could be useful if you are building a multilingual website and need to generate URLs for different languages.
+So the first step is to make the website multilingual.
+To do so, Enable at least two languages(e.g. Persian & English) from  the `admin panel -> setting -> language`.
 Then set the app locale to one of the languages. Once the function determined the appropriate locale, it can add it to the URL by appending it as a query parameter or as part of the path.
 
 Example:
@@ -183,7 +184,7 @@ The output would be:
     }
 ```
 This function takes in a route name, and by using the built-in laravel helper function "route", generates a URL for the provided route name. It then passes this generated URL to another helper function called "locale_url". The "locale_url" function appends the user's preferred language code as a segment in the path of the URL.
-Essentially, this function ensures that URLs for routes in a multilangual application include the user's preferred language code.
+Essentially, this function ensures that URLs for routes in a multilingual application include the user's preferred language code.
 
 ---
 
@@ -402,7 +403,7 @@ Output:
 attributes: array:18 [▼
     "id" => 1
     "name" => "user name"
-    "family" => "user name"
+    "family" => "user family"
     "email" => "user email"
     "username" => "user username"
     "password" => "user password"
@@ -420,7 +421,7 @@ Example 2:
 Output:
 
 ```html
-<h5> The current user logged in is : authenticated user name </h5>
+<h5> The current user logged in is : [authenticated user name] </h5>
 ```
 
 ----
@@ -440,7 +441,7 @@ if (!function_exists('get_customer_user')) {
 ```
 
 This function is like the previous function, with the difference that it checks whether the subscriber is a customer.
-Consider that there is no information in customer user itself. To access customer information, you you have to get connect to the `user`. 
+Consider that there is no information in the get_customer_user() itself. To access the customer information, you you have to get connect to the `user`. 
 
 Example:
 
@@ -452,7 +453,7 @@ Example:
 Output:
 
 ```html
-<h5> The current customer user logged in is : authenticated user name </h5>
+<h5> The current customer user logged in is : [authenticated user name] </h5>
 ```
 
 ----
@@ -483,6 +484,7 @@ Output:
 ```html
 <h5> The current legal info of customer user logged in is : <authenticated user name> / <company name or address and etc.>  </h5>
 ```
+
 **NOTE:** To access the customer information, you must connect to the `user` through the `customerUser` (line 3). 
 
 
@@ -503,7 +505,7 @@ Output:
         return $product->is_in_need_list;
     }
 ```
-This function takes the product number and checks if the logged-in user has the given product in their Needlist. `false` will be returned if the user is not logged in. 
+This function takes the product number and checks if the logged-in user has the given product in their Need list. `false` will be returned if the user is not logged in. 
 
 Example:
 ```php
@@ -569,7 +571,7 @@ This function returns the count of pending invoices that a customer user has. Th
 
 ```php
 <p>this customer has {{pending_invoices_count()
-}} pending invoices in his resume</p>
+}} pending invoices in his resume.</p>
 ```
 
 Output:
@@ -591,7 +593,7 @@ Output:
         ...
 ```
 
-When a user adds an item to their shopping cart on the website, the website stores this information in the user's browser as a cookie. To access the contents of the user's local cart on the server side (i.e., in the website's backend code), a function called `get local cart` is used. This function reads the user's local cart cookies and retrieves the relevant product data from the website's database. The function then returns an array of objects containing this product data. 
+When a user adds an item to their shopping cart on the website, the website stores this information in the user's browser as a cookie. To access the contents of the user's local cart on the server side (i.e., in the website's backend code), a function called `get local cart()` is used. This function reads the user's local cart cookies and retrieves the relevant product data from the website's database. The function then returns an array of objects containing this product data. 
 
 As a sample, see shopping cart products with the instruction below:
 
@@ -634,9 +636,10 @@ According to the Larammerce user management structure, there are two types of us
 
 1- System User(admins)
 
-2- Customer user
+2- Customer User
 
 This function returns the system user object if the logged-in user is a system user(admin), otherwise returns `null`.
+
 ---
 
 #### get_system_users
@@ -660,7 +663,7 @@ Example:
 </ul>
 ```
 
-The output would be the name of the logged-in user.
+The output would be the names of the authenticated system users.
 
 ```php
 <ul>
@@ -716,7 +719,7 @@ As an administrator, you have the option to edit any folders that you have creat
 
 ![Navbar options](/helpers/Navbardirectory.png)
 
-The `app_navbar_directories`, `navbar_directories`, `footer_directories`, and the `only_footer_directories` are the functions associated with these features. These functions' usages and and how to work with them will be discussed in the following part.
+The `app_navbar_directories`, `navbar_directories`, `footer_directories`, and the `only_footer_directories` are the functions associated with these features. These functions' usages and how to work with them will be discussed in the following part.
 :::
 
 #### app_navbar_directories
@@ -1128,7 +1131,7 @@ Example:
 
 Output:
 ```html
-<p> The directory with id `2` has the title of `< the name of the directory with id '2'>` </p>
+<p> The directory with id `2` has the title of `<the-title-of-the-directory-with-id-'2'>` </p>
 ```
 
 ------
@@ -1193,7 +1196,7 @@ function get_visible_product_leaves(Directory $root_directory, int $count): arra
 ```
 
 Takes a directory and the count of the products you want to be displayed, and returns the latest visible products (which are **available** to be sold) of that directory.
-you can activate the product visibility from the admin panel in `shop> products` section. 
+You can activate the product visibility from the admin panel in `shop > products` section. 
 
 
 Example:
@@ -1210,7 +1213,7 @@ Example:
 Output:
 
 ```html
-<h2>Latest visible products for directory: <The directory name> </h2>
+<h2>Latest visible products for directory: <the-directory-title> </h2>
 
 <ul>
      <li> directory a</li>
@@ -1235,6 +1238,7 @@ function get_directory_product_leaves(Directory $root_directory, int $count, $on
     }
 ```
 This function takes a specific directory, count of considered products, and `only active items` value, and returns products leaves referring to the conditions.
+
 **Note:** If `$only_active_items = true`, the function will return only products that are active and are available to be sold, Otherwise it will show even product leaves with zero stock as the result based on the given product count, but it will sort them by priority of being available.
 
 Example:
@@ -1251,7 +1255,7 @@ Example:
 Output:
 
 ```html
-<h2> Latest visible products for directory: <The directory name> </h2>
+<h2> Latest visible products for directory: <the-directory-title> </h2>
 
 <ul>
      <li> directory a</li>
@@ -1532,7 +1536,7 @@ Example:
 
 ```php
 @php
-        $filter_data = get_filter_data(custom_filter_product_ids("my_fav_fillter"));
+        $filter_data = get_filter_data(custom_filter_product_ids("my_fav_filter"));
 @endphp
 
 <h2>Filter data for the above products could be:</h2>
@@ -2030,8 +2034,9 @@ function get_related_products_with_directory_level(Product $product, int $count 
     }
 ```
 
-This function returns related products within the same category. To maintain similarity, we recommend searching for products in one level higher within the category hierarchy (but not beyond).
-__________________________
+This function returns the related products within the same category. To maintain similarity, we recommend searching for products in one level higher within the category hierarchy (but not beyond).
+
+-----
 
 #### get_product_attributes
 
@@ -2059,7 +2064,8 @@ This function returns a product's related attributes such as its brand, maker, c
     }
 ```
 
-This function considers an article and returns the related products. Articles and products connection method take parts with an object name `tags`.
+This function considers an article and returns the related products. The articles and products connection method is via an object named `tags`.
+
 **Note:** This is completely different from Seo tags.
 
 ----
@@ -2072,7 +2078,8 @@ This function considers an article and returns the related products. Articles an
     }
 ```
 
-This function return related article to the given article based on their tags.
+This function returns the articles related to a given article based on their tags.
+
 
 ----
 
@@ -2086,7 +2093,7 @@ function recaptcha_enabled(): bool {
 
 This function determines whether the Recaptcha is enabled on the system or not. It can be disabled to prevent showing recaptcha continuously in development situations.
 
-__________________________
+---------
 
 
 
@@ -2103,7 +2110,7 @@ function get_same_models_products($product): array {
 
 This function takes a product, considers its model, and returns different types of the same model. e.g different sizes of product A.
 
-____________________________
+-------------
 
 
 
@@ -2128,7 +2135,7 @@ function check_cart($product_id): bool {
 
 This function checks if the given product is in the cart. It is suggested not to use this function due to low efficiency and replace a frontend function to check the cart, but as its functionality is necessary, can't be deprecated.
 
-__________________________
+---------
 
 
 
@@ -2146,7 +2153,9 @@ function get_cart_information($product_id) {
 ```
 
 This function returns cart-rows data related to a product_id.(Using this function is not suggested!)
-__________________________
+
+------
+
 
 #### get_cart
 
@@ -2164,10 +2173,8 @@ function get_cart(): \Illuminate\Database\Eloquent\Collection|array {
 
 This function returns a collection or an array of cartRows data, which can be local cartRows or database objects.
 
-__________________________
 
-
-
+----------
 
 #### get_minimum_purchase_free_shipment
 
@@ -2184,9 +2191,7 @@ __________________________
 
 This function declares the minimum amount of purchase in which the shipment cost would be free.
 
-__________________________
-
-
+-----------
 
 
 #### product_disable_on_min
@@ -2197,10 +2202,8 @@ __________________________
 ```
 
 This function specifies whether a product should be disabled when it has zero stock, or when it reaches a minimum amount.
-__________________________
 
-
-
+------
 
 #### customer_can_edit_profile
 
@@ -2233,9 +2236,10 @@ This function specifies whether the customer is allowed to edit their profile or
 ```
 
 This function takes a directory and returns its root node.
-**Note**: The root node is the highest node in the tree structure, and has no parent.
-__________________________
 
+**Note**: The root node is the highest node in the tree structure, and has no parent.
+
+-----
 
 
 #### h_view
@@ -2246,12 +2250,23 @@ function h_view($template = null, array $data = []) {
 }
 ```
 
-This function is an optimized version of view function in laravel. Will be composed in another article.
+This function is an optimized version of the `view` function in laravel. It will be composed in another article.
 
 ---
 
 
 #### get_cms_setting    
+
+```php
+function get_cms_setting(string $key): string {
+        try {
+            $setting = Setting::getCMSRecord($key);
+            return $setting->value;
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return "";
+        }
+    }
+```
 
 This function takes the key from the input and returns the value set in the database by the administrator of e-commerce.
 For example, if you call `get_cms_setting('phone_number')` it will return the value passed for phone_number by the administrator.
@@ -2381,6 +2396,7 @@ function build_directories_tree(?Directory $root = null, array $conditions = [],
 
 
 This function does illustrate, eager loads, and returns the root directory tree to the lowest node.
+
 **Note:** Eager load is a process in which a query for one type of object also loads related objects. So you won't need to run separate queries to find related objects!
 
 -----
@@ -2431,8 +2447,9 @@ It returns the name of the specific product structure key by which the products 
     return $data;
     }
 ```
-This function is about Logistics timelines and returns the timetable
- For example, in what time frames can your product be sent?
+This function is about Logistics timelines and returns the timetable.
+
+For example, in what time frames can your product be sent?
 
 
 -----
@@ -2445,8 +2462,8 @@ This function is about Logistics timelines and returns the timetable
     }
 ```
 
-This function consideres current day, adds given days count, returns calculated day.
-expected values are Persian names of the weekdays like 'شنبه', 'یکشنبه', 'دوشنبه', etc.
+This function consideres current day, adds given days count, returns the calculated day.
+Expected values are Persian names of the weekdays like 'شنبه', 'یکشنبه', 'دوشنبه', etc.
 
 ----
 
