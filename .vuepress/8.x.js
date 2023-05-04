@@ -24,6 +24,7 @@ module.exports = [
             'products',
             'articles',
             'directories',
+            'file-management',
             'custom-queries',
             'custom-filters',
             'helpers',
