@@ -2,7 +2,7 @@
 
 [[toc]]
 
-Annotations are the tags declaring metadata for the program source code. They provide additional information about the program to the compiler but are not part of the program itself. These annotations do not affect the execution of the compiled program, but add some new traits to the classes, methods and properties.
+Annotations are the tags declaring metadata for the program source code. They provide additional information about the program to the compiler and add some new traits to the classes, methods and properties.
 
 ## History
 
@@ -32,11 +32,8 @@ class Main {
     r1.displayInfo();
   }
 }
-```
-**OUTPUT**
 
-```bash
-I am a rose
+//output: I am a rose
 ```
 
 In the above example, both the superclass and subclass include the method `displayInfo()`. However the method of the subclass is called during the program execution due to the `@Override` annotation.
@@ -109,17 +106,20 @@ In the Larammerce platform, a PHP `annotation-parser` package is developed based
 ```php
 <?php
 
-/**
- * @role(super_user)
- * @rules(subject="required|min:10")
- */
-public function test()
+class ExampleClass
 {
-    ...
+  /**
+   * @role(super_user)
+   * @rules(subject="required|min:10")
+   */
+  public function exampleMethod()
+  {
+      ...
+  }
 }
 ```
 
-`@role(super_user)` indicates that only the super_user has access to the test method. Other users will get a 403 error message.
+`@role(super_user)` indicates that only the super_user has access to the example method. Other users will get a 403 error message.
 
 `@rules(subject="required|min:10")` indicates that the input field called subject must be a string with at least 10 characters.
 
@@ -174,372 +174,180 @@ $reflective_class->getAnnotation(("specific_annotation"));
 
 #### Examples of the use of annotation-parser package
 
-Make a new command, named `TestAnnotations`:*<sup>[4](#4)</sup>* 
-
-```bash
-php artisan make:command TestAnnotations
-```
-
-Now you have the codes below in the path `/path/to/larammerce-project/app/Console/Commands/TestAnnotations.php`:
+Assume that we have a class named `TestAnnotations` with a method named `handle()` into this class:
 
 ```php
 <?php
 
-namespace App\Console\Commands;
-use Illuminate\Console\Command;
-
-class TestAnnotations extends Command
-{
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'command:name';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Command description';
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
-    public function handle()
-    {
-        return 0;
-    }
-}
-```
-
-Change this line into the `TestAnnotations class`:
-
-```php{8}
-class TestAnnotations extends Command
-{
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'larammerce:annotation';
-    ...
-}
-```
-
-Insert this code into the `public function handle`:
-
-```php{3}
-public function handle()
-{
-    dd("salam");
-}
-```
-
-Run the following command into the terminal:
-
-```bash
-php artisan larammerce:annotation
-```
-
-**OUTPUT**
-
-```bash
-"salam"
-```
-
-In the path `/path/to/larammerce-project/app/Console/Commands/TestAnnotations.php`, construct a `ReflectiveClass` from the `TestAnnotations class` and get the DocBlock above this class:
-
-
-```php{5,12,13}
-<?php
-
-namespace App\Console\Commands;
-use Illuminate\Console\Command;
 use App\Utils\Reflection\ReflectiveClass;
 
-class TestAnnotations extends Command
+class TestAnnotations
 {
-    ...
     public function handle()
     {
         $testAnnotationsRef = new ReflectiveClass(TestAnnotations::class);
-        dd($testAnnotationsRef->getComment());
     }
 }
 ```
 
-Run the following command into the terminal:
+Now put this DocBlock above the TestAnnotations class and use `getComment()` to see the result:
 
-```bash
-php artisan larammerce:annotation
-```
-
-**OUTPUT**
-
-```bash
-""
-```
-
-This output indicates that there is no DocBlock above the TestAnnotations class:
-
-```php{1}
-//No DocBlock here.
-class TestAnnotations extends Command
-{
-    ...
-}
-```
-
-Now put this DocBlock above the TestAnnotations class:
-
-```php{1-3}
+```php{1-3,9-15}
 /**
  * @salam(ali="2")
  */
-class TestAnnotations extends Command
+class TestAnnotations
 {
-    ...
+    public function handle()
+    {
+        $testAnnotationsRef = new ReflectiveClass(TestAnnotations::class);
+        $testAnnotationsRef->getComment();
+        //output:
+        //  """
+        //  /**\n
+        //   * @salam(ali="2")\n
+        //   */
+        //  """
+    }
 }
 ```
 
-Run the following command into the terminal:
+The output returns a mere comment. In order to get a processed result, use `getAnnotations()`:
 
-```bash
-php artisan larammerce:annotation
-```
-
-**OUTPUT**
-
-```bash
-"""
-/**\n
- * @salam(ali="2")\n
- */
-"""
-```
-
-The output returns a mere comment. In order to get a processed result, change the code in the `public function handle`:
-
-```php{4}
+```php{4-13}
 public function handle()
 {
     $testAnnotationsRef = new ReflectiveClass(TestAnnotations::class);
-    dd($testAnnotationsRef->getAnnotations());
+    $testAnnotationsRef->getAnnotations();
+    //output:
+    //  array:1 [
+    //    "salam" => App\Utils\Reflection\Annotation^ {#2571
+    //      -title: "salam"
+    //      -properties: array:1 [
+    //        "ali" => "2"
+    //      ]
+    //    }
+    //  ]
 }
-```
-
-Run the following command into the terminal:
-
-```bash
-php artisan larammerce:annotation
-```
-
-**OUTPUT**
-
-```bash
-array:1 [
-  "salam" => App\Utils\Reflection\Annotation^ {#2571
-    -title: "salam"
-    -properties: array:1 [
-      "ali" => "2"
-    ]
-  }
-]
 ```
 
 As you see, the comment is processed and represented in detail.
 
-Now change the DocBloc above the `TestAnnotations class`:
+Now change the DocBloc above the class:
 
-```php{2}
+```php{2,16}
 /**
  * @salam(Ali="2", Test=3)
  */
-class TestAnnotations extends Command
+class TestAnnotations
 {
-    ...
+    public function handle()
+    {
+        $testAnnotationsRef = new ReflectiveClass(TestAnnotations::class);
+        $testAnnotationsRef->getAnnotations();
+        //output:
+        //  array:1 [
+        //    "salam" => App\Utils\Reflection\Annotation^ {#2571
+        //      -title: "salam"
+        //      -properties: array:1 [
+        //        "ali" => "2"
+        //        "Test" => 3
+        //      ]
+        //    }
+        //  ]
+    }
 }
-```
-
-Run the following command into the terminal:
-
-```bash
-php artisan larammerce:annotation
-```
-
-**OUTPUT**
-
-```bash
-array:1 [
-  "salam" => App\Utils\Reflection\Annotation^ {#2571
-    -title: "salam"
-    -properties: array:2 [
-      "ali" => "2"
-      "Test" => 3
-    ]
-  }
-]
 ```
 
 As you see, the result is accurate. So you can write some descriptions above a class and then use them in your code.
 
-Now make a new method called `testFunction` with its related DocBlock into the `TestAnnotations class`:
+Now make a new method called `testFunction` with its related DocBlock and use `hasAnnotation()`:
 
-```php{9-15}
-class TestAnnotations extends Command
+```php{4,10-17}
+<?php
+
+use App\Utils\Reflection\ReflectiveClass;
+use App\Utils\Reflection\ReflectiveMethod;
+
+class TestAnnotations
 {
     ...
-        public function __construct()
-    {
-        parent::__construct();
-    }
-    
+
     /**
      * @rules(username="required", password="required|max:20")
      */
     public function testFunction()
     {
-        echo "salam";
-    }
-    ...
-}
-```
-
-Put the codes below in the path `/path/to/larammerce-project/app/Console/Commands/TestAnnotations.php`:
-
-```php{6,14,15}
-<?php
-
-namespace App\Console\Commands;
-use Illuminate\Console\Command;
-use App\Utils\Reflection\ReflectiveClass;
-use App\Utils\Reflection\ReflectiveMethod;
-
-class TestAnnotations extends Command
-{
-    ...
-    public function handle()
-    {
-        $testAnnotationsRef = new ReflectiveClass(TestAnnotations::class);
         $testFunctionRef = new ReflectiveMethod(TestAnnotations::class, "testFunction");
-        dd($testFunctionRef->hasAnnotation("salam"));
+        $testFunctionRef->hasAnnotation("salam");   //false
     }
 }
-```
-
-Run the following command into the terminal:
-
-```bash
-php artisan larammerce:annotation
-```
-
-**OUTPUT**
-
-```bash
-false
 ```
 
 This means that there is no annotation named `salam` above the `testFunction` method.
 
-Now change this line into the `public function handle`:
+Now change the keyword:
 
-```php{4}
-public function handle()
+```php{7}
+/**
+ * @rules(username="required", password="required|max:20")
+ */
+public function testFunction()
 {
     ...
-    dd($testFunctionRef->hasAnnotation("rules"));
+    $testFunctionRef->hasAnnotation("rules");   //true
 }
 ```
 
-Run the following command into the terminal:
+It declares that an annotation named `rules` exists above the method.
 
-```bash
-php artisan larammerce:annotation
-```
+To get this annotation, use `getAnnotation()` and see the result:
 
-**OUTPUT**
-
-```bash
-true
-```
-
-It declares that an annotation named `rules` exists above the `testFunction` method.
-
-To get this annotation, insert these codes into the `public function handle`:
-
-```php{5-7}
-public function handle()
+```php{7-18}
+/**
+ * @rules(username="required", password="required|max:20")
+ */
+public function testFunction()
 {
-    $testAnnotationsRef = new ReflectiveClass(TestAnnotations::class);
     $testFunctionRef = new ReflectiveMethod(TestAnnotations::class, "testFunction");
     if($testFunctionRef->hasAnnotation("rules")){
-        dd($testFunctionRef->getAnnotation("rules"));
+        print_r($testFunctionRef->getAnnotation("rules"));
     }
+
+    //output:
+    //  App\Utils\Reflection\Annotation^ {#2575
+    //    -title: "rules"
+    //    -properties: array:2 [
+    //      "username" => "required"
+    //      "password" => "required|max:20"
+    //    ]
+    //  }
 }
 ```
 
-Run the following command into the terminal:
+The output represents the DocBlock above the `testFunction` method.
 
-```bash
-php artisan larammerce:annotation
-```
+You can also do mathematical calculations into the DocBlock. For example, change the DocBlock above the method and see the result:
 
-**OUTPUT**
-
-```bash
-App\Utils\Reflection\Annotation^ {#2575
-  -title: "rules"
-  -properties: array:2 [
-    "username" => "required"
-    "password" => "required|max:20"
-  ]
-}
-```
-
-As you see, the output shows the DocBlock above the `testFunction` method.
-
-You can also do mathematical calculations into the DocBlock. For example, change the DocBlock above the `testFunction` method:
-
-```php{2}
+```php{2,16}
 /**
  * @rules(username="required", password="required|max:".(10+12))
  */
 public function testFunction()
 {
-    echo "salam";
-}
-```
+    $testFunctionRef = new ReflectiveMethod(TestAnnotations::class, "testFunction");
+    if($testFunctionRef->hasAnnotation("rules")){
+        print_r($testFunctionRef->getAnnotation("rules"));
+    }
 
-Run the following command into the terminal:
-
-```bash
-php artisan larammerce:annotation
-```
-
-**OUTPUT**
-
-```bash
-App\Utils\Reflection\Annotation^ {#2575
-  -title: "rules"
-  -properties: array:2 [
-    "username" => "required"
-    "password" => "required|max:22"
-  ]
+    //output:
+    //  App\Utils\Reflection\Annotation^ {#2575
+    //    -title: "rules"
+    //    -properties: array:2 [
+    //      "username" => "required"
+    //      "password" => "required|max:22"
+    //    ]
+    //  }
 }
 ```
 
@@ -556,8 +364,6 @@ To understand how the annotation-parser package works, you can refer to the *[gi
 *2. <a name="2">[What is a DocBlock in the PHP language?](https://docs.phpdoc.org/3.0/guide/getting-started/what-is-a-docblock.html#what-is-a-docblock)</a>*
 
 *3. <a name="3">[Annotation-parser package in the Larammerce project.](https://github.com/larammerce/annotation-parser)</a>*
-
-*4. <a name="4">[How to make a new command in laravel?](https://laravel.com/docs/10.x/artisan#generating-commands)</a>*
 
 #### Video source
 ___
