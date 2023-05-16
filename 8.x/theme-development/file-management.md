@@ -2,11 +2,11 @@
 
 [[toc]]
 
-This documentation is about how to manage the files in larammerce base theme project and its resources structures.
+This documentation is about managing the files in the Larammerce base theme project and its resource structures.
 
 ### Larammerce file structure
 
-The coding structure of the Larammerce project for designing pages generally comprises three main parts. It's obvious  that the structure can change or extend based on your requirement.
+The coding structure of the Larammerce project for designing pages generally comprises three main parts. It's obvious  that the structure can change or extend based on your requirements.
 
 
 Section | Contents
@@ -19,15 +19,15 @@ Section | Contents
 
 - **app.scss file**:
   
-   In the Larammerce project, the `app.scss` file is utilized to manage the `CSS` files and avoid overcrowding. By importing components and page files, this file implements their `CSS` styles throughout the app. This approach permits the importation of `CSS` that is specific to a particular page or component. Furthermore, instead of writing separate `CSS` styles for comparable components with distinct details, parts are created. These parts refer to components that share a general `CSS` style but differ in detail. Finally, these parts can be included on pages. In the app.scss file, there are files that begin with either "page" or "part". The "part" files contain `CSS` specific to a particular component, while the "page" files contain `CSS` specific to a particular page.
+   In the Larammerce project, the `app.scss` file is utilized to manage the `CSS` files and avoid overcrowding. By importing components and page files, this file implements their `CSS` styles throughout the app. This approach permits the importation of `CSS` that is specific to a particular page or component. Furthermore, instead of writing separate `CSS` styles for comparable components with distinct details, parts are created. These parts refer to components that share a general `CSS` style but differ in detail. Finally, these parts can be included on pages. In the app.scss file, there are files prefixed with either "page" or "part". The "part" files contain `CSS` specific to a particular component, while the "page" files contain `CSS` specific to a particular page.
 
 - **Template part**: 
 
 
-  template part refers to a reusable section of code in a web development project. It is typically used to create consistent designs across a website, allowing developers to easily update and maintain the site's appearance. Essentially, a template part is a modular block of code that can be inserted into different pages or sections of a website, providing consistency and efficiency in the development process. To illustrate, let's say we have a `div` element that includes a `class` attribute. This `class` can be used to specify the "title" of a webpage by setting its value accordingly within the div:
+  Template part refers to a reusable section of code in a web development project. It is typically used to create consistent designs across a website, allowing developers to easily update and maintain the site's appearance. Essentially, a template part is a modular block of code that can be inserted into different pages or sections of a website, providing consistency and efficiency in the development process. To illustrate, let's say we have a `div` element that includes a `class` attribute. This `class` can be used to specify the "title" of a webpage by setting its value accordingly within the div:
 
   ```html
-    <div class="customdiv"><%- title></div>
+    <div class="customdiv"><%- title %></div>
   ```
 
   Based on this code block, when someone wants to add a title to a page with a "customdiv" class, they can simply use this codeblock and modify the variable instead of rewriting the entire code. It's worth noting that `view JS` and `ReactJS` have their own template engines and do not require the template part.
@@ -35,7 +35,7 @@ Section | Contents
 
 The general format of a file can be expressed in multiple ways, depending on your preference and intended purpose.
 
-To make things easier, we can create a blueprint of the desired page layout that we intend to use for future reference and as a guide when creating new pages. This blueprint is available in `_base` file located in the `scss` directory. So when you want to create a page named `index` you can just extend the `index` file from the `_base` file and and customize it to fit your desired structure.
+To make things easier, we can create a blueprint of the desired page layout that we intend to use for future reference and as a guide when creating new pages. This blueprint is available in `_base` file located in the `scss` directory. So when you want to create a page named `index` you can just extend the `index` file from the `_base` file and customize it to fit your desired structure.
 
 ![how to extend from base file](/file-management/base1.png)
 
@@ -70,7 +70,7 @@ For example, let's say you have a layout file called `_base.blade.php` that incl
     index page
 @endsection
 ```
-When you render the `index.blade.php` view, Laravel will replace the `@yield('content')` directive in the `_base.blade.php` layout with the content defined in the `@section('title')` directive in the child view, resulting in the following HTML output:
+When you render the `index.blade.php` view, Laravel will replace the `@yield('title')` directive in the `_base.blade.php` layout with the content defined in the `@section('title')` directive in the child view, resulting in the following HTML output:
 
 ```html
 <html>
@@ -122,23 +122,23 @@ Example:
 @include('_underscore-template')
 ```
 
-**Note:** Consider that it's reasonable to put all of the repeatable components in the `_base.blade.php` to save the time and ebnergy for designing new pages.
+**Note:** Consider that it's reasonable to put all of the repeatable components in the `_base.blade.php` to save the time and energy for designing new pages.
 
 
 ### How to review changes
 
-To review the changes on the files, `/path/to/larammerce-base-theme`, run `npm run watch` command, and after every change, run `./deploy` to see the results.
+To review the changes on the files, `/path/to/larammerce-base-theme`, run `npm run watch` command, and after every change, run `./deploy.sh` to see the results.
 
 If you are adding a new file:
 
- - Firstly, `/path/to/resourses/assets/sass/` and create a file. (for example  `page-index.scss`).
+ - Firstly, `/path/to/Larammerce-base-theme/resourses/assets/sass/` and create a file. (for example  `page-index.scss`).
  - Then import the page in the `parts.scss` file.
 
     ```html
     @import "page-index";
     ```
 - Run `npm run watch`
-- Run `./deploy`
+- Run `./deploy.sh`
 
 
 #### Video sources
