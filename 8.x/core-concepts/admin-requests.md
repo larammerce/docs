@@ -1,4 +1,4 @@
-## Admin request
+## Admin requests
 
 [[toc]]
 
