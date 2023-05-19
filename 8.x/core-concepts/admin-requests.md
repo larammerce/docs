@@ -19,6 +19,7 @@ When a client-side request is sent to the server-side of the Larammerce platform
 - The response is passed back through the middleware layer for additional processing (if necessary).
 - Finally, the response is returned to the server and sent back to the client over the network connection.
 
+So the path typically involves several steps including client request, routing, authentication, validation, processing and the response as the final step. Also,throughout this process, the platform may make use of middleware, caching, and other techniques to improve performance and security. 
 
 :::warning Middleware And Controllers :
 
