@@ -19,6 +19,7 @@ module.exports = [
             '',
             'basics',
             'static-content',
+            'file-management',
             'galleries',
             'forms',
             'products',
