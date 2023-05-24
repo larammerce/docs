@@ -30,6 +30,7 @@ module.exports = [
             'helpers',
             'client-side-cart-module',
             'filter-service',
+            'representative'
         ]),
     },
     {
@@ -38,7 +39,6 @@ module.exports = [
         children: prefix('core-concepts', [
             '',
             'cruds',
-            'representative',
             'annotations',
             'validation',
             'admin-requests',
