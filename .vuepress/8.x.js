@@ -19,6 +19,7 @@ module.exports = [
             '',
             'basics',
             'static-content',
+            'file-management',
             'galleries',
             'forms',
             'products',
@@ -29,6 +30,7 @@ module.exports = [
             'helpers',
             'client-side-cart-module',
             'filter-service',
+            'representative'
         ]),
     },
     {
@@ -37,7 +39,6 @@ module.exports = [
         children: prefix('core-concepts', [
             '',
             'cruds',
-            'representative',
             'annotations',
             'validation',
             'admin-requests',
