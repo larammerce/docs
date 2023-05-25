@@ -385,6 +385,49 @@ ___
 
 **10.** For every document that is written and placed in the documentation section of the Larammerce site, the members of the Larammerce team are obliged to read it.
 
+## PR review
+
+This section describes how to run, test, and review your teammate's pull request using an editor on your local system.
+
+Git provides the capability to replicate your local repository, including the main and side branches, onto another computer accessible via the internet. This enables others to access and apply your code to their own systems. Remote servers such as `GitHub` or `GitLab`, among other Git-based platforms, may be utilized for this purpose. Typically, two remote repositories are employed: `REMOTE(Origin)` and `REMOTE(Backup)`. Therefore, it is essential to select the intended remote repository to retrieve the most recent modifications in your local system.
+
+If you are contributing to the `Larammerce-docs` project, you have already forked and cloned the REMOTE(Origin) repository from `https://github.com/larammerce/larammerce-docs`. So the larammerce-docs project on your local system pulls the data from `https://github.com/[your-account-name]/larammerce-docs` as REMOTE(Origin), while on the teammate's local system pulls from `https://github.com/[teammate-account-name]/larammerce-docs` as REMOTE(Origin).
+
+For example when you are on `branch_1` in your local system and run `git push --set-upstream origin branch_1`, the branch_1 is pushed from your local system to your REMOTE(Origin) repository, i.e. `https://github.com/[your-account-name]/larammerce-docs`.
+
+Suppose your teammate creates a new branch, named `sample-branch`, in his local system and pushes it to his REMOTE(Origin) repository and requests to merge it into the master branch of the Larammerce-docs project. In order to have your teammate's sample-branch on your local system, create a new remote, for example `REMOTE(Teammate-Origin)`, which pulls the data from `https://github.com/[teammate-account-name]/larammerce-docs` into your local repository. Run the following command on the master branch of your local repository:
+
+```bash
+git remote add Teammate-Origin https://github.com/[teammate-account-name]/larammerce-docs.git
+```
+
+Now by running ` git remote`, you can see the list of remotes, containing the newly generated `Teammate-Origin`.
+
+Create the `sample-branch` in your local repository:
+
+```bash
+git checkout -b sample-branch
+```
+
+Run the command below on the sample-branch:
+
+```bash
+git pull -f Teammate-Origin sample-branch
+```
+
+**Note:** Replace the command below if you run into an issue with pulling the new data:
+
+```bash
+git merge Teammate-Origin/sample-branch
+```
+
+Now you can run `npm run docs:dev` to see the result in the browser.
+
+#### Video source
+___
+
+<iframe src="https://www.aparat.com/video/video/embed/videohash/C4Dz8/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>
+
 #### Reference
 ___
 
@@ -393,4 +436,3 @@ ___
 *2. <a name="2">[What is difference between a user story and a task?](https://www.mountaingoatsoftware.com/blog/the-difference-between-a-story-and-a-task)</a>*
 
 *3. <a name="3">[What is fork in GitHub?](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks)</a>*
-
