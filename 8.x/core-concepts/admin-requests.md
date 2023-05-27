@@ -4,22 +4,23 @@
 
 This article aims to provide an in-depth analysis of the admin request functionality, covering everything from its inner workings to how you can make modifications to it.
 
-### Request path in Larammerce
+### Request lifecycle in Laravel
 
-When a client-side request is sent to the server-side of the Larammerce platform, it undergoes a hierarchical process. The request is initially directed towards the router, where it is then passed through a middleware layer. After this, it is handled by the controller before proceeding through another middleware layer. Finally, the response is generated and returned to the client.
+If the request passes through all of the matched route's assigned middleware, the route or controller method will be executed and the response returned by the route or controller method will be sent back through the route's chain of middleware.
 
-**Note:** In general, the path of a request starts from the client-side and goes through the following stages:
+**Note:** In general, the lifecycle of a request in laravel starts from the client-side and goes through the following stages:
 
-- The request is initiated by the client.
-- The request is sent to the server via a network connection.
-- The server receives the request and passes it to the appropriate routing mechanism.
-- The request is routed to the appropriate middleware layer for processing.
-- After being processed by the middleware, the request is passed to the controller for further handling.
-- The controller utilizes any necessary services or models to generate an appropriate response.
-- The response is passed back through the middleware layer for additional processing (if necessary).
-- Finally, the response is returned to the server and sent back to the client over the network connection.
+Laravel request lifecycle:
 
-So the path typically involves several steps including client request, routing, authentication, validation, processing and the response as the final step. Also,throughout this process, the platform may make use of middleware, caching, and other techniques to improve performance and security. 
+- The entry point for all requests is the `public/index.php` file.
+- The Laravel application instance is created and the service container is instantiated.
+- For HTTP requests, the HTTP kernel handles the request and runs a series of bootstrappers to configure the application environment.
+- The router matches the incoming request to a route or controller method.
+- Middleware is processed before the matched route or controller method is executed, which provides a way to filter or examine HTTP requests.
+- After middleware processing, the response is returned by the matched route or controller method and sent back through the middleware stack.
+- Finally, the HTTP kernel sends the response content to the user's web browser.
+
+So the lifecycle typically involves several steps including client request, routing, authentication, validation, processing and the response as the final step. Also,throughout this process, the platform may make use of middleware, caching, and other techniques to improve performance and security. 
 
 :::tip Middleware And Controllers :
 
@@ -29,6 +30,8 @@ So the path typically involves several steps including client request, routing, 
 
 Together, middlewares and controllers form the backbone of a platform's request processing pipeline, providing essential functionality for handling incoming requests and generating responses.
 :::
+
+### Request lifecycle in Larammerce
 
 In Larammerce, the first middleware layer has a tool that identifies if an incoming request is intended for the admin panel or other parts of the platform. To check this, it follows a specific path to determine whether the request is being processed within the admin panel or not.
 
@@ -125,7 +128,7 @@ This function is used to check if the current request is in the admin area by ac
 
 Now that you have a clear understanding of the functionality of these functions, let's explore how they are used.
 
-Path to the `/Larammerce/routes/web.php` and create a route within the file:
+Path to the `/Larammerce/routes/web.php` and create these routes within the file:
 
 ```php
 Route::get("/salam", function(){
@@ -148,14 +151,14 @@ Route::get("/admin/salam ",function(){
 
 ```
 
-To view the output, navigate to `localhost:8080/salam` and `localhost:8080/admin/salam` in your web browser.
+To view the output, navigate to `localhost:8080/salam` and `localhost:8080/admin/salam` in your web browser after running the `npm run docs:dev` command.
 
 Now let's test the example of the product price in which when a client accesses the product page, the web application should retrieve the client price and display it. Similarly, when an administrator accesses the same page, the web application should retrieve the administrator price instead.
 
 To do so, add these lines to the code above:
 
 ```php{7,8,18,19}
-// path/to/larammerce-project/routes/web.php/
+// larammerce-project/routes/web.php/
 
 Route::get("/salam", function(){
 
@@ -180,7 +183,7 @@ Route::get("/admin/salam ",function(){
 });
 
 ```
- Now path to the `/app/Models/Product.php/` and write the code below in the file:
+ Now path to the `/app/Models/Product.php/` and write the codes below in the file:
 
  ```php{4-7}
  ...
