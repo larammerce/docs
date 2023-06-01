@@ -2,15 +2,37 @@
 
 [[toc]]
 
-This document talks about checking the validity of requests that are sent from the client side to the server. The Larammerce platform is written based on the Laravel framework, so it uses the same validation rules with some modifications to make it easier.
+This document talks about checking the validity of requests sent from the client to the server. The Larammerce platform is written based on the Laravel framework, so it uses the same validation system with some modifications to make it easier.
 
 ### Validation in Laravel framework
 
-You can study the official Laravel documentation to learn more about this topic.*<sup>[1](#1)</sup>*
+Laravel provides several different approaches to validate your application's incoming data. It is most common to use the `validate` method available on all incoming HTTP requests. Laravel includes a wide variety of convenient validation rules that you may apply to data, even providing the ability to validate if values are unique in a given database table. You can study the official Laravel documentation to learn more about this topic.*<sup>[1](#1)</sup>*
 
 ### Validation in Larammerce platform
 
-Requests in the Larammerce platform are sent to the `Controllers` directory. For example in the `/path/to/larammerce-project/app/Http/Controllers/Admin/Api/ArticleController.php` there are some methods such as `index()`, `create()`, `store()`, ... . For each of these methods, multiple lines of repetitive codes must be written in order to validate the request. Instead, the `RuleMiddleware` is created in the `/path/to/larammerce-project/app/Http/Middleware/RuleMiddleware.php` file:
+Requests in the Larammerce platform are handed off to the router for dispatching. The router will dispatch the request to a route or controller, as well as run any route specific middleware. If the request passes through all of the matched route's assigned middleware, the route or controller method will be executed and the response returned by the route or controller method will be sent back through the route's chain of middleware.*<sup>[2](#2)</sup>*
+
+For example in the `ArticleController` there are some methods such as `index()`, `create()`, `store()`, ... . For each of these methods, multiple lines of repetitive codes must be written in order to validate the request. A given instance maybe as belows:
+
+```php
+public function sth($request){
+  $validator = new Validator([
+    "name" => "required",
+    "family" => "required|max:20",
+    "phone_number" => "nullable|numeric|min:max:11"
+  ]);
+  $validator->validate($request->all());
+  if($validator->fails()){
+    return redirect()->back()->withData();
+  }
+  // logic-of-program
+  $user = User::create($request->all());
+  ...
+}
+
+```
+
+In order to avoid the above mentioned problem, the `RuleMiddleware` class is defined in the `/path/to/larammerce-project/app/Http/Middleware/RuleMiddleware.php` file:
 
 ```php
 <?php
@@ -81,9 +103,9 @@ class RuleMiddleware
 }
 ```
 
-The `RuleMiddleware` is registered in the `/path/to/larammerce-project/app/Http/Kernel.php` file:
+The `RuleMiddleware` class is declared in the `/path/to/larammerce-project/app/Http/Kernel.php` file:
 
-```php
+```php{7}
 <?php
 ...
 class Kernel extends HttpKernel{
@@ -97,9 +119,7 @@ class Kernel extends HttpKernel{
 }
 ```
 
-:::tip
-The requests that come from the client to the server must pass through some layers: ((router -> BeforeMiddleware -> controller method -> AfterMiddleware -> response)). The curious reader can refer to the Laravel documentation in order to study more about the Middlewares.*<sup>[2](#2)</sup>*
-:::
+**NOTE:** The curious reader can refer to the Laravel documentation in order to study more about the Middlewares.*<sup>[3](#3)</sup>*
 
 The `RuleMiddleware` class has a method called `handle()` which receives two input parameters: `$request` and `Closure $next`:
 
@@ -386,7 +406,9 @@ Select `None`:
 
 *1. <a name="1">[Validation in the Laravel framework.](https://laravel.com/docs/8.x/validation)</a>*
 
-*2. <a name="2">[Middleware in the Laravel framework.](https://laravel.com/docs/8.x/middleware)</a>*
+*2. <a name="2">[Request lifecycle in the Laravel framework.](https://laravel.com/docs/8.x/lifecycle)</a>*
+
+*3. <a name="3">[Middleware in the Laravel framework.](https://laravel.com/docs/8.x/middleware)</a>*
 
 #### Video source
 ___
