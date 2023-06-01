@@ -12,7 +12,7 @@ Laravel provides several different approaches to validate your application's inc
 
 Requests in the Larammerce platform are handed off to the router for dispatching. The router will dispatch the request to a route or controller, as well as run any route specific middleware. If the request passes through all of the matched route's assigned middleware, the route or controller method will be executed and the response returned by the route or controller method will be sent back through the route's chain of middleware.*<sup>[2](#2)</sup>*
 
-For example in the `ArticleController` there are some methods such as `index()`, `create()`, `store()`, ... . For each of these methods, multiple lines of repetitive codes must be written in order to validate the request. A given instance maybe as belows:
+For example in the `ArticleController` there are some methods such as `index()`, `create()`, `store()`, ... . For each of these methods, multiple lines of repetitive codes must be written in order to validate the request. A given instance may be as belows:
 
 ```php
 public function sth($request){
