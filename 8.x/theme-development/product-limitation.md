@@ -29,9 +29,9 @@ Suppose you want to display this error message directly on the cart list instead
 Three properties relate to product location limitations has been added to the product model:
 
 ```php
-// larammerce/app/Models/product.php     line 102-104
+// larammerce/app/Models/Product.php     line 102-104
 
-@property CustomerLocationModel[] location_limitation
+@property CustomerLocationModel[] location_limitations
 @property bool is_location_limited
 @property bool can_deliver
 
@@ -41,7 +41,7 @@ Three properties relate to product location limitations has been added to the pr
 
 2. `is_location_limited`: This property checks whether the product you have chosen has any location limitations or not.
 
-3. `location_limitation`: This property displays the locations to which the product has been limited.
+3. `location_limitations`: This property displays the locations to which the product has been limited.
 
 
 
@@ -58,7 +58,7 @@ To implement this feature, navigate to the `public/views/cart.blade.php` file an
     <p class="code">KIT: <span>{{cartRow->product->code}}</span><p>
 
     @if(!$cartRow->product->can_deliver)
-    <p>متاسفانه محصول موردنظرقابل ارسال به آدرس شما نمی‌باشد. </p>
+    <p class="notice">متاسفانه محصول موردنظرقابل ارسال به آدرس شما نمی‌باشد. </p>
     @endif
     ...
 ```
@@ -67,7 +67,7 @@ Now run this command to see the result:
 ```bash
 ./deploy.sh
 ```
-As a result of implementing the can_deliver, is_location_limited, and location_limitation properties, any items that cannot be delivered based on the user's location will display an error message under their ID on the cart page.
+As a result of implementing the `can_deliver`, `is_location_limited`, and `location_limitations` properties, any items that cannot be delivered based on the user's location will display an error message under their ID on the cart page.
 
 ### Creating ribbon on products
 
@@ -75,12 +75,12 @@ To demonstrate this limitation, it is possible to display it on the product list
 Here are the steps to follow: 
 
 1. In the admin panel, navigate to the directory where you previously set the limitations. 
-2. Once there, locate the `larammerce-base-theme/public/views/_underscore_template.blade.php` file and proceed to the `product box` section. 
+2. Once there, locate the `larammerce-base-theme/public/views/_underscore_templates.blade.php` file and proceed to the `product box` section. 
 3. Create a ribbon that will inform the user about the product limitation.
 
 
 ```php 
-// larammerce-base-theme/public/views/_underscore_template.blade.php
+// larammerce-base-theme/public/views/_underscore_templates.blade.php
 <% if(product.can_deliver) { %>
     <div class="ribbon-delivery hidden-xs"> 
      فقط 
@@ -121,7 +121,7 @@ It is possible to add multiple ribbons as needed by repeating the steps outlined
 Create a new ribbon with a message that indicates the fast delivery option is available for the product. Use the `is_location_limited` property to limit the display of this ribbon to only applicable products.
 
 ```php
-// larammerce-base-theme/public/views/_underscore_template.blade.php
+// larammerce-base-theme/public/views/_underscore_templates.blade.php
 <% if(product.is_location_limited) { %>
     <div class="ribbon-right hidden-xs"> 
     <i class="fa fa-truck"></i>
@@ -161,9 +161,9 @@ To add a user location section to the header tab, you can follow these steps:
 
 
 ```php
-@if(config("cms.general.site.enable.directory.location"))
+@if(config("cms.general.site.enable_directory_location"))
     <li class="location-link">
-        <a data-togle="modal"
+        <a data-toggle="modal"
            data-target="{{is_customer() ? '#addresses-modal' : '#location-modal' }}">
            <i class="icon-placeholder"></i>
            <span class="hidden-sm hidden-xs">{{get_current_customer_location_title()}}></span>
@@ -173,7 +173,7 @@ To add a user location section to the header tab, you can follow these steps:
 ```
 Once a user has selected a location on their system, the location section will be displayed in the header tab.
 
-#### Video sources
+#### Video source
 ___
 
 <div style="position:relative; padding-bottom:56.25%; padding-top:0; height:0;">
