@@ -49,7 +49,7 @@ Accessor is a method or property that provides access to the private members of 
 
 To better understand, let's check the functionality of some functions in `AdminRequestMiddleware.php` file.
 
-On the Larammerce project, path to `larammerce/App/Http/Middleware/AdminRequestMiddleware.php` file.
+On the Larammerce project, path to `larammerce/app/Http/Middleware/AdminRequestMiddleware.php` file.
 
 ```php
 ...
@@ -183,7 +183,7 @@ Route::get("/admin/salam ",function(){
 });
 
 ```
- Now path to the `/app/Models/Product.php/` and write the codes below in the file:
+ Now path to the `/app/Models/Product.php` and write the codes below in the file:
 
  ```php{4-7}
  ...
