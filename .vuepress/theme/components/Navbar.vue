@@ -19,7 +19,7 @@
             v-if="$siteTitle"
             :class="{ 'can-hide': $site.themeConfig.logo }"
         >
-          <svg height="60" style="height: 60px; fill: currentColor;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+          <svg height="60" style="height: 60px; fill: white;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
 <g class="st0">
 	<path class="st1" d="M3.4,8.5L3.4,8.5c0.8,0,2.7,1.2,6,3.5l0.5,1.6L10.1,33c0,0.2-1.7,1.4-5,3.3l-1,0.2c-0.9,0-1.3-0.6-1.4-1.7
 		L2.6,10.4C2.6,9.6,2.9,8.9,3.4,8.5z M12.8,33.1C16,34.7,18,36,19,37v0.6c-0.7,0.7-3,2.1-6.7,4.2H12c-0.6,0-3-1.4-7.3-4.3v-0.1
@@ -46,7 +46,7 @@
             v-if="isAlgoliaSearch"
             :options="algolia"
         />
-        <SearchBox v-else-if="$site.themeConfig.search !== false"/>
+        <SearchBox v-else-if="$site.themeConfig.search !== false" class="search-box"/>
         <NavLinks class="can-hide"/>
       </div>
     </div>
@@ -81,6 +81,12 @@ export default {
     }
     handleLinksWrapWidth()
     window.addEventListener('resize', handleLinksWrapWidth, false)
+
+    const siteName = this.$refs.siteName;
+    if (siteName) {
+      siteName.classList.remove('can-hide');
+    }
+    
   },
 
   computed: {
@@ -139,8 +145,17 @@ $navbar-horizontal-padding = 1.5rem
       vertical-align top
 
 @media (max-width: $MQMobile)
-  .navbar
-    padding-left 4rem
+  .navbar 
+    padding-left 2.4rem
+    display flex
+    justify-content center
+    align-items center
+    fill white
+    .search-box 
+      margin-top 0.5rem
+      position fixed
+      top 2.5%
+      right 2.15rem
     .can-hide
       display none
     .links
