@@ -12,7 +12,7 @@ Laravel provides several different approaches to validate your application's inc
 
 Requests in the Larammerce platform are handed off to the router for dispatching. The router will dispatch the request to a route or controller, as well as run any route specific middleware. If the request passes through all of the matched route's assigned middleware, the route or controller method will be executed and the response returned by the route or controller method will be sent back through the route's chain of middleware.*<sup>[2](#2)</sup>*
 
-For example in the `ArticleController` there are some methods such as `index()`, `create()`, `store()`, ... . For each of these methods, multiple lines of repetitive codes must be written in order to validate the request. A given instance may be as belows:
+For example, in the `ArticleController`, there are some methods such as `index()`, `create()`, `store()`, ... . For each of these methods, multiple lines of repetitive codes must be written in order to validate the request. A given instance may be as below:
 
 ```php
 public function sth($request){
@@ -124,6 +124,8 @@ class Kernel extends HttpKernel{
 The `RuleMiddleware` class has a method called `handle()` which receives two input parameters: `$request` and `Closure $next`:
 
 ```php
+// /path/to/larammerce-project/app/Http/Middleware/RuleMiddleware.php
+
 ...
 public function handle($request, Closure $next)
 ...
@@ -132,6 +134,8 @@ public function handle($request, Closure $next)
 The `handle()` method receives the request and  with `getMethod()` checks to which method this request wants to go:
 
 ```php
+// /path/to/larammerce-project/app/Http/Middleware/RuleMiddleware.php
+
 ...
 $method = Action::withRequest($request)->getMethod();
 ...
@@ -140,6 +144,8 @@ $method = Action::withRequest($request)->getMethod();
 Suppose a `POST` request wants to go to the `/admin/article/` address. From the routes defined in `/path/to/larammerce-project/routes/web.php` file, the system recognizes the `store()` method in the `ArticleController.php` file as the destination of this request:
 
 ```php
+// /path/to/larammerce-project/app/Http/Controllers/Admin/Api/ArticleController.php
+
 ...
     /**
      * @rules(directory_id="required|exists:directories,id", title="required", short_content="required",
@@ -168,6 +174,8 @@ Suppose a `POST` request wants to go to the `/admin/article/` address. From the 
 Then `getAnnotation("rules")` returns the `@rules` annotation above the `store()` method:
 
 ```php
+// /path/to/larammerce-project/app/Http/Middleware/RuleMiddleware.php
+
 ...
 $rules = $method->getAnnotation("rules")->getProperties();
 ...
@@ -181,6 +189,8 @@ $rules = $method->getAnnotation("rules")->getProperties();
 If there is no `@rules` annotation above the `store()` method, `AnnotationNotFoundException` would permit to pass the request:
 
 ```php
+// /path/to/larammerce-project/app/Http/Middleware/RuleMiddleware.php
+
 ...
 catch (AnnotationNotFoundException $e) {
     return $next($request);
@@ -197,6 +207,8 @@ Normally the `@rules` annotation checks the specified fields of the request, e.g
 If `@rules` annotation contains `dynamic_rules`, the system gets them as `$dynamicRules` and merge the arrays to make `$rules`:
 
 ```php
+// /path/to/larammerce-project/app/Http/Middleware/RuleMiddleware.php
+
 ...
 if (isset($rules["dynamic_rules"])) {
     $dynamicRules = $rules["dynamic_rules"];
@@ -209,6 +221,8 @@ if (isset($rules["dynamic_rules"])) {
 If there are some `TEMPORARILY_DISABLED_RULES` into the `environmental variables`, the `handle()` method takes them out of the `$rules`:
 
 ```php
+// /path/to/larammerce-project/app/Http/Middleware/RuleMiddleware.php
+
 ...
 $disabled_rules = explode(",", env("TEMPORARILY_DISABLED_RULES", ""));
 foreach ($disabled_rules as $disabled_rule) {
@@ -222,6 +236,8 @@ foreach ($disabled_rules as $disabled_rule) {
 Finally if the validation of the request fails based on the `$rules`, the user will be redirected to display the error messages; Otherwise the request will be passed to the next view:
 
 ```php
+// /path/to/larammerce-project/app/Http/Middleware/RuleMiddleware.php
+
 ...
 $validator = Validator::make($request->all(), $rules);
 if ($validator->fails()) {
