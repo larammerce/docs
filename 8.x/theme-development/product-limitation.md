@@ -29,20 +29,13 @@ Suppose you want to display this error message directly on the cart list instead
 Three properties relate to product location limitations has been added to the product model:
 
 ```php
-// larammerce/app/Models/Product.php     line 102-104
+// larammerce/app/Models/Product.php
 
-@property CustomerLocationModel[] location_limitations
-@property bool is_location_limited
-@property bool can_deliver
+@property CustomerLocationModel[] location_limitations //Determines whether the product you have selected can be delivered to your intended location or not. 
+@property bool is_location_limited //Checks whether the product you have chosen has any location limitations or not.
+@property bool can_deliver //Determines whether the product you have selected can be delivered to your intended location or not.
 
 ```
-
-1. `can_deliver`: This property determines whether the product you have selected can be delivered to your intended location or not.
-
-2. `is_location_limited`: This property checks whether the product you have chosen has any location limitations or not.
-
-3. `location_limitations`: This property displays the locations to which the product has been limited.
-
 
 
 ### Designing the theme
@@ -51,14 +44,15 @@ Suppose you want to provide better information to users about location limitatio
 
 To implement this feature, navigate to the `public/views/cart.blade.php` file and locate the product div. Then, add the following code wherever you like. In this example, we added the error section under the product ID:
 
-```php{6-8}
-// larammerce-base-theme/public/views/cart.blade.php
+```html
+<!-- larammerce-base-theme/public/views/cart.blade.php -->
+
 <div class="col-lg-8 col-md-8 col-sm-7 col-xs-7">
     ...
     <p class="code">KIT: <span>{{cartRow->product->code}}</span><p>
 
     @if(!$cartRow->product->can_deliver)
-    <p class="notice">متاسفانه محصول موردنظرقابل ارسال به آدرس شما نمی‌باشد. </p>
+    <p class="notice"> Unfortunately, the desired product cannot be sent to your address.</p>
     @endif
     ...
 ```
@@ -75,7 +69,7 @@ To demonstrate this limitation, it is possible to display it on the product list
 Here are the steps to follow: 
 
 1. In the admin panel, navigate to the directory where you previously set the limitations. 
-2. Once there, locate the `larammerce-base-theme/public/views/_underscore_templates.blade.php` file and proceed to the `product box` section. 
+2. Once there, locate the `Larammerce-base-theme/public/views/_underscore_templates.blade.php` file and proceed to the `product box` section. 
 3. Create a ribbon that will inform the user about the product limitation.
 
 
@@ -83,7 +77,7 @@ Here are the steps to follow:
 // larammerce-base-theme/public/views/_underscore_templates.blade.php
 <% if(product.can_deliver) { %>
     <div class="ribbon-delivery hidden-xs"> 
-     فقط 
+     Only 
      <%- product.location_limitations[0].state.name %>,
      <%- product.location_limitations[0].city.name %>
 
@@ -96,7 +90,7 @@ Lines 5 and 6 represent the location limitation list.
 - Now design the ribbon class:
 
 ```stylus
-// larammerce-base-theme/resources/assets/sass/part-product.scss
+// Larammerce-base-theme/resources/assets/sass/part-product.scss
 
 .ribbon-delivery{
     position: absolute;
@@ -120,8 +114,9 @@ Now run:
 It is possible to add multiple ribbons as needed by repeating the steps outlined above and updating the message and class accordingly.
 Create a new ribbon with a message that indicates the fast delivery option is available for the product. Use the `is_location_limited` property to limit the display of this ribbon to only applicable products.
 
-```php
-// larammerce-base-theme/public/views/_underscore_templates.blade.php
+```html
+<!-- larammerce-base-theme/public/views/_underscore_templates.blade.php !-->
+
 <% if(product.is_location_limited) { %>
     <div class="ribbon-right hidden-xs"> 
     <i class="fa fa-truck"></i>
@@ -131,7 +126,7 @@ Create a new ribbon with a message that indicates the fast delivery option is av
 - Now design the ribbon class:
 
 ```stylus
-// larammerce-base-theme/resources/assets/sass/part-product.scss
+// Larammerce-base-theme/resources/assets/sass/part-product.scss
 
 .ribbon-right{
     position: absolute;
@@ -155,12 +150,12 @@ Now run:
 
 To add a user location section to the header tab, you can follow these steps: 
 
-1. Navigate to the `larammerce-base-theme/public/views/_base.blade.php` file.
+1. Navigate to the `Larammerce-base-theme/public/views/_base.blade.php` file.
 2. Locate the appropriate section in the header where you would like to add the user location information.
 3. Create a conditional `li` tag that will only be displayed if the user has provided their location. This tag should display the user's location information once it is available.
 
 
-```php
+```html
 @if(config("cms.general.site.enable_directory_location"))
     <li class="location-link">
         <a data-toggle="modal"
