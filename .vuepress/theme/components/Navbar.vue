@@ -141,6 +141,7 @@ $navbar-horizontal-padding = 1.5rem
     font-size 0.9rem
     display flex
     .search-box
+      padding-top 0.2rem
       flex: 0 0 auto
       vertical-align top
 
