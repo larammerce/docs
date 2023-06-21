@@ -2,7 +2,7 @@
 
 [[toc]]
 
-In E-commerce platforms, it is sometimes necessary to restrict the shipping of certain products to specific locations for various reasons. For example, perishable items may spoil during transportation or some products may break in transit. To implement such restrictions, follow these steps:
+In e-commerce platforms, it is sometimes necessary to restrict the shipping of certain products to specific locations for various reasons. For example, perishable items may spoil during transportation or some products may break in transit. To implement such restrictions, follow these steps:
 
 ### Admin panel setting
 
@@ -15,9 +15,13 @@ The first step is to access the admin panel and adjust the necessary settings. F
 5. Click the plus button situated at the bottom-left corner of the page.
 6. Complete the new form by selecting the desired province and city that apply to this category's shipping limitations.
 
+:::tip Managing Shipping Restrictions: A Guide
+
 **Note 1:** You are free to add as many shipping limitations as necessary in the admin panel.
 
-**Note 2:** When you apply a limit to a directory, its subdirectories will inherit this limit. However, the parent directories above the directory in question will not be affected by this limit.
+**Note 2:** When you apply a limit to a directory, its sub-directories will inherit this limit. However, the parent directories above the directory in question will not be affected by this limit.
+
+:::
 
 Once this limitation is in place, if a user chooses a product from the category and the intended geographical limit is exceeded, an error message will be displayed on the screen after they click the "Continue Shopping" button on the cart page.
 
@@ -31,9 +35,9 @@ Three properties relate to product location limitations has been added to the pr
 ```php
 // larammerce/app/Models/Product.php
 
-@property CustomerLocationModel[] location_limitations //Determines whether the product you have selected can be delivered to your intended location or not. 
-@property bool is_location_limited //Checks whether the product you have chosen has any location limitations or not.
-@property bool can_deliver //Determines whether the product you have selected can be delivered to your intended location or not.
+@property CustomerLocationModel[] location_limitations // Determines whether the product you have selected can be delivered to your intended location or not. This property is an array containing at least one object, each with properties "state" and "city".
+@property bool is_location_limited // Checks whether the product you have chosen has any location limitations or not.
+@property bool can_deliver // Determines whether the product you have selected can be delivered to your intended location or not.
 
 ```
 
@@ -73,7 +77,7 @@ Here are the steps to follow:
 3. Create a ribbon that will inform the user about the product limitation.
 
 
-```php 
+```html
 // larammerce-base-theme/public/views/_underscore_templates.blade.php
 <% if(product.can_deliver) { %>
     <div class="ribbon-delivery hidden-xs"> 
