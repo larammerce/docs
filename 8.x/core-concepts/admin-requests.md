@@ -8,28 +8,8 @@ This article aims to provide an in-depth analysis of the admin request functiona
 
 If the request passes through all of the matched route's assigned middleware, the route or controller method will be executed and the response returned by the route or controller method will be sent back through the route's chain of middleware.
 
-**Note:** In general, the lifecycle of a request in laravel starts from the client-side and goes through the following stages:
+**Note:** In general, the lifecycle of a request in laravel starts from the client-side and goes through some stages. For more details study *request lifecycle in laravel* *<sup>[1](#1)</sup>* and *middleware* *<sup>[2](#2)</sup>*.
 
-Laravel request lifecycle:
-
-- The entry point for all requests is the `public/index.php` file.
-- The Laravel application instance is created and the service container is instantiated.
-- For HTTP requests, the HTTP kernel handles the request and runs a series of bootstrappers to configure the application environment.
-- The router matches the incoming request to a route or controller method.
-- Middleware is processed before the matched route or controller method is executed, which provides a way to filter or examine HTTP requests.
-- After middleware processing, the response is returned by the matched route or controller method and sent back through the middleware stack.
-- Finally, the HTTP kernel sends the response content to the user's web browser.
-
-So the lifecycle typically involves several steps including client request, routing, authentication, validation, processing and the response as the final step. Also,throughout this process, the platform may make use of middleware, caching, and other techniques to improve performance and security. 
-
-:::tip Middleware And Controllers :
-
-***Middleware*** is a software that sits between the client and server, intercepting requests and responses. Middleware can be used to add functionality such as logging, authentication, or caching without modifying the core logic of the application. Middleware can also be used to modify the request or response, for example by adding headers or cookies.
-
-***Controllers***, on the other hand, are responsible for handling requests and generating responses. Controllers typically receive input from middleware and other components, process that input, and generate an appropriate response. For example, in a web application, a controller might handle a request to display a list of products, retrieve the necessary data from a database or other source, and then render an HTML document containing the products list.
-
-Together, middlewares and controllers form the backbone of a platform's request processing pipeline, providing essential functionality for handling incoming requests and generating responses.
-:::
 
 ### Request lifecycle in Larammerce
 
@@ -39,7 +19,7 @@ In order to generate responses and create variables, it is crucial for various c
 
 As an example, let's consider a scenario where a request is sent to the `/any-URL` endpoint, which is intended for the client-side, while requests sent to the `/admin/any-URL` endpoint are intended for the server-side (admin). Suppose there is a `Product` class that has an accessor method. Within this method, it can be specified that if the incoming request is from the admin side, the pure price of the product should be returned, but if the request is from the client side (based on the URL), then the discounted price should be returned instead.
 
-To achieve this functionality, a middleware layer is utilized that analyzes the incoming request using a defined detector mechanism. If the authenticated user is an admin, the middleware notifies all relevant components of this fact so that they can generate the appropriate response.
+To achieve this functionality, a middleware layer is utilized that analyzes the incoming request using a defined detector mechanism. If the authenticated user is an admin, the middleware informs all relevant components of this fact so that they can generate the appropriate response.
 
 :::tip Class Accessor
 Accessor is a method or property that provides access to the private members of a class from outside the class. 
@@ -53,38 +33,27 @@ On the Larammerce project, path to `larammerce/app/Http/Middleware/AdminRequestM
 
 ```php
 ...
-// line 48-49-50
-$user = get_user($guard);
-$systemUser = $user -> systemUser;
-$action = Action::withRequest($request);
 
-//line 52-53
+$user = get_user($guard);   // Retrieves the authenticated user.
+$systemUser = $user -> systemUser;  //  Checks whether the retrieved user is a system user or not.
+$action = Action::withRequest($request); // The system takes action to determine what the system user's request is.
+
+// The if statement dentifies the object that is being managed in the admin panel.
 if (!$request->has("related_model"))
     $request->merge(["related_model" => app($action->getClassName())?->getModel()]);
 
 ...
-// line 55-56-57
-$this->setOrderAttributes($request);
-$this->setLayoutAttributes($request);
-$this->setPaginationAttributes($request);
+
+$this->setOrderAttributes($request);  // Detects the criterion on which sorting should be based.
+$this->setLayoutAttributes($request);  // Detects the method for displaying the items, which can either be a list or a grid.
+$this->setPaginationAttributes($request); // Detects the current page of the admin panel that is being accessed.
 ...
-// line 59
-ApplianceService::init();
+
+ApplianceService::init();  // Pertains to the appliances, which refer to every content on the toolbar or the sub-items of each page. This function manages the arrangement of the appliances and determines which ones should be enabled or disabled based on the administrator's role.
 
 ```
 
-- In the **third line** of this code block, the `get_user()` function is called to retrieve the authenticated user.
-- On the **fourth line**, the code checks whether the retrieved user is a system user or not.
-- If the retrieved user is determined to be a system user, on the **fifth line**, the system takes action to determine what the system user's request is.
-- On the **eighth line**, the code identifies the object that is being managed in the admin panel, such as the product being edited or the discount code.
-- **Line 13** detects the criterion on which sorting should be based.
-- **Line 14** detects the method for displaying the items, which can either be a list or a grid.
-- **Line 15** detects the current page of the admin panel that is being accessed.
-- **Line 18** pertains to the appliances, which refer to every content on the toolbar or the sub-items of each page. This function manages the arrangement of the appliances and determines which ones should be enabled or disabled based on the administrator's role.
-
-The initialization of several functions starts from line 60 of the `AdminRequestMiddleware.php` file and continues until the end. However, a detailed discussion on these functions will be provided in a separate article.
-
-In order to determine whether the user is an admin or not, all of these functions need to incorporate a detection mechanism. This can be achieved by utilizing two functions, namely `setInAdminArea` and `isInAdminArea`, which are located within the `AdminRequestService.php` file. To access these functions, navigate to the following path: `Larammerce/app/Utils/CMS/AdminRequestService.php`.
+In order to determine whether the request is an admin erea or not, all of these functions need to incorporate a detection mechanism. This can be achieved by utilizing two functions, namely `setInAdminArea` and `isInAdminArea`, which are located within the `AdminRequestService.php` file. To access these functions, navigate to the following path: `Larammerce/app/Utils/CMS/AdminRequestService.php`.
 
 
 ```php{5}
@@ -131,9 +100,9 @@ Now that you have a clear understanding of the functionality of these functions,
 Path to the `/Larammerce/routes/web.php` and create these routes within the file:
 
 ```php
-Route::get("/salam", function(){
+Route::get("/start", function(){
 
-    echo ("Hi, This is /salam \n <br/>");
+    echo ("Hi, This is /start \n <br/>");
 
     echo \App\Utils\CMS\AdminRequestService::isInAdminArea()? "We are in admin area" : "We are out of admin area"
     
@@ -141,9 +110,9 @@ Route::get("/salam", function(){
 
 });
 
-Route::get("/admin/salam ",function(){
+Route::get("/admin/start ",function(){
 
-    echo ("Hi, This is /admin/salam \n <br/>");
+    echo ("Hi, This is /admin/start \n <br/>");
 
     echo \App\Utils\CMS\AdminRequestService::isInAdminArea()? "We are in admin area" : "We are out of admin area"
 
@@ -151,7 +120,7 @@ Route::get("/admin/salam ",function(){
 
 ```
 
-To view the output, navigate to `localhost:8080/salam` and `localhost:8080/admin/salam` in your web browser after running the `npm run docs:dev` command.
+To view the output, navigate to `localhost:8080/start` and `localhost:8080/admin/start` in your web browser after running the `npm run docs:dev` command.
 
 Now let's test the example of the product price in which when a client accesses the product page, the web application should retrieve the client price and display it. Similarly, when an administrator accesses the same page, the web application should retrieve the administrator price instead.
 
@@ -160,9 +129,9 @@ To do so, add these lines to the code above:
 ```php{7,8,18,19}
 // larammerce-project/routes/web.php/
 
-Route::get("/salam", function(){
+Route::get("/start", function(){
 
-    echo ("Hi, This is /salam \n <br/>");
+    echo ("Hi, This is /start \n <br/>");
 
     $product = product::find(20);
     echo "The product price is:" . product->price . "\n <br/>";
@@ -171,9 +140,9 @@ Route::get("/salam", function(){
 
 });
 
-Route::get("/admin/salam ",function(){
+Route::get("/admin/start ",function(){
 
-    echo ("Hi, This is /admin/salam \n <br/>");
+    echo ("Hi, This is /admin/start \n <br/>");
 
     $product = product::find(20);
     echo "The product price is:" . product->price . "\n <br/>";
@@ -198,20 +167,26 @@ public function getPriceAttribute(){
 ```
 This function enables a global check to determine whether the user is in the admin area or not, without requiring access to the `$request` object.
 
-Now if you set the URL to `localhost:8080/salam`, the output would be:
+Now if you set the URL to `localhost:8080/start`, the output would be:
 
 ```html
-Hi, This is /salam
+Hi, This is /start
 The product price is: The customer price
 We are out of admin area
 ```
 
-And if the URL is set to `localhost:8080/admin/salam`, the output would be:
+And if the URL is set to `localhost:8080/admin/start`, the output would be:
 ```html
-Hi, This is admin/salam
+Hi, This is admin/start
 The product price is: The admin price
 We are in admin area
 ```
+
+### References
+
+*1.<a name="1">[Request lifecycle in the Laravel framework.](https://laravel.com/docs/8.x/lifecycle)</a>*
+
+*2.<a name="2">[Middleware in the Laravel framework.](https://laravel.com/docs/8.x/middleware)</a>*
 
 
 #### video source
