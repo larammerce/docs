@@ -6,11 +6,11 @@ This document talks about checking the validity of requests sent from the client
 
 ### Validation in Laravel framework
 
-Laravel provides several different approaches to validate your application's incoming data. It is most common to use the `validate` method available on all incoming HTTP requests. Laravel includes a wide variety of convenient validation rules that you may apply to data, even providing the ability to validate if values are unique in a given database table. You can study the official Laravel documentation to learn more about this topic.*<sup>[1](#1)</sup>*
+Laravel provides several different approaches to validate your application's incoming data. It is most common to use the `validate` method available on all incoming HTTP requests. Laravel includes a wide variety of convenient validation rules that you may apply to data, even providing the ability to validate if values are unique in a given database table. You can study the official Laravel documentation to learn more about this topic._<sup>[1](#1)</sup>_
 
 ### Validation in Larammerce platform
 
-Requests in the Larammerce platform are handed off to the router for dispatching. The router will dispatch the request to a route or controller, as well as run any route specific middleware. If the request passes through all of the matched route's assigned middleware, the route or controller method will be executed and the response returned by the route or controller method will be sent back through the route's chain of middleware.*<sup>[2](#2)</sup>*
+Requests in the Larammerce platform are handed off to the router for dispatching. The router will dispatch the request to a route or controller, as well as run any route specific middleware. If the request passes through all of the matched route's assigned middleware, the route or controller method will be executed and the response returned by the route or controller method will be sent back through the route's chain of middleware._<sup>[2](#2)</sup>_
 
 For example, in the `ArticleController`, there are some methods such as `index()`, `create()`, `store()`, ... . For each of these methods, multiple lines of repetitive codes must be written in order to validate the request. A given instance may be as below:
 
@@ -119,7 +119,7 @@ class Kernel extends HttpKernel{
 }
 ```
 
-**NOTE:** The curious reader can refer to the Laravel documentation in order to study more about the Middlewares.*<sup>[3](#3)</sup>*
+**NOTE:** The curious reader can refer to the Laravel documentation in order to study more about the Middlewares._<sup>[3](#3)</sup>_
 
 The `RuleMiddleware` class has a method called `handle()` which receives two input parameters: `$request` and `Closure $next`:
 
@@ -131,7 +131,7 @@ public function handle($request, Closure $next)
 ...
 ```
 
-The `handle()` method receives the request and  with `getMethod()` checks to which method this request wants to go:
+The `handle()` method receives the request and with `getMethod()` checks to which method this request wants to go:
 
 ```php
 // /path/to/larammerce-project/app/Http/Middleware/RuleMiddleware.php
@@ -420,13 +420,14 @@ Select `None`:
 
 #### References
 
-*1. <a name="1">[Validation in the Laravel framework.](https://laravel.com/docs/8.x/validation)</a>*
+_1. <a name="1">[Validation in the Laravel framework.](https://laravel.com/docs/8.x/validation)</a>_
 
-*2. <a name="2">[Request lifecycle in the Laravel framework.](https://laravel.com/docs/8.x/lifecycle)</a>*
+_2. <a name="2">[Request lifecycle in the Laravel framework.](https://laravel.com/docs/8.x/lifecycle)</a>_
 
-*3. <a name="3">[Middleware in the Laravel framework.](https://laravel.com/docs/8.x/middleware)</a>*
+_3. <a name="3">[Middleware in the Laravel framework.](https://laravel.com/docs/8.x/middleware)</a>_
 
 #### Video source
-___
+
+---
 
 <iframe src="https://www.aparat.com/video/video/embed/videohash/Qva2P/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>

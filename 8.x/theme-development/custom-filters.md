@@ -4,7 +4,7 @@
 
 As it is necessary to have a system to help the website administrator to enable easier navigation among the products of a category and to use filters in the showcase to present to the customers, the Larammerce project proposes an approach called `CustomFilters`. So that to create a filter of products and display them on each of the product category pages, 'CustomFilters' must be added and the products are selected using it.
 
-Product filtering (also known as faceted search) allows shoppers to refine product searches based on multiple attributes like price, color, size, and reviews. 
+Product filtering (also known as faceted search) allows shoppers to refine product searches based on multiple attributes like price, color, size, and reviews.
 
 In terms of programming, custom queries are similar to custom product filters, so the prerequisite for this tutorial is how to work with custom queries in the Larammerce template engine.
 
@@ -39,7 +39,6 @@ protected $fillable = [
 ```
 
 There are three helper functions for managing custom filters, which are defined in the back-end (Larammerce project) of the site.
-
 
 #### 1. get_product_filter($identifier)
 
@@ -97,7 +96,7 @@ function custom_filter_product_ids(string $identifier): array
 }
 ```
 
-The list of product identifiers can be given to the web server (API)  in a specified number and the web server can be requested to return the list of identifiers in a paginated form. For this purpose, the list of product identifiers is placed in a script so that they can be called a certain number of times in JavaScript. 
+The list of product identifiers can be given to the web server (API) in a specified number and the web server can be requested to return the list of identifiers in a paginated form. For this purpose, the list of product identifiers is placed in a script so that they can be called a certain number of times in JavaScript.
 
 Pay attention to the following example:
 
@@ -106,6 +105,7 @@ Pay attention to the following example:
     const neededProductIds = {{json_encode(custom_filter_product_ids("custom_product_filter_564"))}}
  </script>
 ```
+
 And enter this command:
 
 ```bash
@@ -113,7 +113,6 @@ And enter this command:
 ```
 
 **NOTE:** With the help of the `custom_filter_products_ids($identifier)‍` ​​function, the list of product identifiers is provided to JavaScript.
-
 
 In the next step to understand more, enter "inspect" in the browser, and in the "Console" tab, with the help of the `console.log(neededPeoductIds)` command, the list of products identifiers will be displayed in a certain number (for example, twenty numbers).
 
@@ -156,6 +155,7 @@ As it can be seen, the `custom_filter_products("custom_product_filter_564")‍` 
 ```
 
 #### Video source
-___
+
+---
 
 <iframe src="https://www.aparat.com/video/video/embed/videohash/p5yDB/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>

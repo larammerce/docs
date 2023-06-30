@@ -3,7 +3,7 @@
 [[toc]]
 
 With every web form, you can get information from the user.
-Web form or HTML form on a web page allows a user to enter data that is sent to a server for processing. 
+Web form or HTML form on a web page allows a user to enter data that is sent to a server for processing.
 For example, the image below is a contact web form that asks the user for information such as (Name, Email, Phone Number, Subject and Text Message).
 
 ![contact us](/form.jpeg)
@@ -22,12 +22,14 @@ Each **form** must have two attributes:
 ```
 
 #### 1. The hct-form Attribute
-___
+
+---
 
 The `hct-form` attribute defines the form ID.
 
 #### 2. The hct-title Attribute
-___
+
+---
 
 The `hct-title` attribute defines form title in the panel.
 
@@ -39,12 +41,14 @@ Each **form field** (textarea, input, button, etc.) must have two attributes alo
 ```
 
 #### 1. The hct-form-field Attribute
-___
+
+---
 
 The `hct-form-field` attribute specifies that a field is of its external form.
 
 #### 2. The hct-validation Attribute
-___
+
+---
 
 The `hct-form-field` attribute specifies the validation of each field, in fact, for each submit, it checks the validation principles of each field.
 
@@ -60,6 +64,7 @@ hct-validation="required|regex:/0[1-9][0-9]{9}/|max:11
 ```
 
 #### Video source
-___
+
+---
 
 <iframe src="https://www.aparat.com/video/video/embed/videohash/cRab0/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>

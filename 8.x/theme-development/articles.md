@@ -8,10 +8,10 @@ The content of a magazine or blog in Larammerce is a separate entity that is def
 
 Each blog post or article includes the following:
 
-* Unique link
-* Separate page
-* Category
-* SEO description & tags
+- Unique link
+- Separate page
+- Category
+- SEO description & tags
 
 Now that you are familiar with the nature of the article, let's look at the properties and how the article is managed in the Larammerce system.
 
@@ -21,24 +21,24 @@ The article is a system entity(object) itself and can be modified/displayed by i
 
 If you go to the article model, you can see the properties of this object. The properties of the article are shown in the table below:
 
-Num   | Property           | Datatype     | Description
-------|--------------------|--------------|------------
-**1** | `id`               | integer      | Primary key.
-**2** | `directory_id`     | integer      | The parent category.
-**3** | `system_user_id`   | integer      | Specifies which user created the article.
-**4** | `title`            | string       | Specifies the title of the article.
-**5** | `short_content`    | string       | Specifies the opening description of each article.
-**6** | `full_text`        | string       | All the content of the article or blog post is stored in it.
-**7** | `source`           | string       | The source is a short string that holds the image path as a big picture.
-**8** | `image_path`       | string       | Specifies the path of the image
-**9** | `created_at`       | DateTime     | Article creation date.
-**10**| `updated_at`       | DateTime     | Article update date
-**11**| `average_rating`   | float        | Article rating.
-**12**| `rates_count`      | int          | Number of article rates.
-**13**| `content_type`     | int          | Specifies the type of article.
-**14**| `seo_description`  | mixed        | Description of a article SEO.
-**15**| `seo_keywords`     | mixed        | SEO keywords of a article.
-**16**| `is_suggested`     | boolean      | Specifies suggested articles.
+| Num    | Property          | Datatype | Description                                                              |
+| ------ | ----------------- | -------- | ------------------------------------------------------------------------ |
+| **1**  | `id`              | integer  | Primary key.                                                             |
+| **2**  | `directory_id`    | integer  | The parent category.                                                     |
+| **3**  | `system_user_id`  | integer  | Specifies which user created the article.                                |
+| **4**  | `title`           | string   | Specifies the title of the article.                                      |
+| **5**  | `short_content`   | string   | Specifies the opening description of each article.                       |
+| **6**  | `full_text`       | string   | All the content of the article or blog post is stored in it.             |
+| **7**  | `source`          | string   | The source is a short string that holds the image path as a big picture. |
+| **8**  | `image_path`      | string   | Specifies the path of the image                                          |
+| **9**  | `created_at`      | DateTime | Article creation date.                                                   |
+| **10** | `updated_at`      | DateTime | Article update date                                                      |
+| **11** | `average_rating`  | float    | Article rating.                                                          |
+| **12** | `rates_count`     | int      | Number of article rates.                                                 |
+| **13** | `content_type`    | int      | Specifies the type of article.                                           |
+| **14** | `seo_description` | mixed    | Description of a article SEO.                                            |
+| **15** | `seo_keywords`    | mixed    | SEO keywords of a article.                                               |
+| **16** | `is_suggested`    | boolean  | Specifies suggested articles.                                            |
 
 **NOTE:** In Larammerce there is complete freedom of action so that the administrator can create directories as a tree and put **products** and **article** in each directory.
 
@@ -56,12 +56,12 @@ class Article extends BaseModel implements
 
 An `Article` has some relationships with other entity types existing in the system as shown below:
 
-Num  | Property       | Datatype     | Description
------|----------------|--------------|-----------
-**1**| `directory`    | Directory    | Specifies what category this article belongs to.
-**2**| `directories`  | Directory[]  | A list of parent categories indicates which other directories this article belongs to. (Also there are some symbolic links that are managed similarly.)
-**3**| `tags`         | Tag[]        | Article tags.
-**4**| `author`       | SystemUser   | The system user who created this article is the author.
+| Num   | Property      | Datatype    | Description                                                                                                                                             |
+| ----- | ------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1** | `directory`   | Directory   | Specifies what category this article belongs to.                                                                                                        |
+| **2** | `directories` | Directory[] | A list of parent categories indicates which other directories this article belongs to. (Also there are some symbolic links that are managed similarly.) |
+| **3** | `tags`        | Tag[]       | Article tags.                                                                                                                                           |
+| **4** | `author`      | SystemUser  | The system user who created this article is the author.                                                                                                 |
 
 ### Display article properties
 
@@ -81,9 +81,9 @@ For the Larammerce system to be able to create a magazine for you, you **must** 
 
 For more information about template engine in Larammerce, see "[Template engine basics](https://docs.larammerce.com/8.x/theme-development/basics.html)".
 
-
 #### List of categories
-___
+
+---
 
 Here, categories are used to organize article in your store.
 
@@ -107,11 +107,12 @@ Let's look at a simple example in the `blog-categories.blade.php` file:
 And write in the terminal:
 
 ```bash
-./deploy.sh 
+./deploy.sh
 ```
 
 #### List of blog posts
-___
+
+---
 
 You can create a list of **blog post** previews.
 
@@ -138,7 +139,7 @@ Let's look at a example in the `blog-list.blade.php` file:
 And write in the terminal:
 
 ```bash
-./deploy.sh 
+./deploy.sh
 ```
 
 **NOTE:** You can also have different sizes of blog images such as previews or full, for this purpose, you can refer to `config/cms/images.php`.
@@ -152,7 +153,7 @@ And write in the terminal:
       "preview" => ["width" => 640, "height" => 480],
       "original" => ["width" => 1024, "height" => 768],
  ],
- ```
+```
 
 #### Single post blog
 
@@ -186,7 +187,7 @@ As you can see, the meta tags related to the SEO of the site are included in thi
    <meta property="og:description" content="{{ $obj->getSeoDescription() }} ">
 ```
 
-**TIP:** *Meta tags are snippets of code that tell search engines important information about your web page, such as how they should display it in search results. They also tell web browsers how to display it to visitors.* *<sup>[1](#1)</sup>*
+**TIP:** _Meta tags are snippets of code that tell search engines important information about your web page, such as how they should display it in search results. They also tell web browsers how to display it to visitors._ _<sup>[1](#1)</sup>_
 
 Next, in the main content of the page, with the help of the block code, `$article->directory->getParentDirectories()` you can create the **breadcrumb** of the page:
 
@@ -214,7 +215,6 @@ To get **branch** or **subcategory categories**, you can use a helper function c
 ```
 
 **NOTE:** If you give the `get_blog_categories()` function the input of a `directory` if it has a directory, it shows the subdirectories, and if it does not have a subdirectory, it shows its rows or similar.
-
 
 If you want to display the **title**, **parent category**, **date of creation**, **the original image or full size**, **short content**, and **text content** you can do the following:
 
@@ -254,12 +254,14 @@ For more information about time in Larammerce, see "[Time](https://docs.larammer
 {!! $article->full_text !!} #View full text content
 ```
 
- #### Reference
-___
+#### Reference
 
-*1. <a name="1">[What Is meta tags?](https://ahrefs.com/blog/seo-meta-tags/)</a>*
+---
+
+_1. <a name="1">[What Is meta tags?](https://ahrefs.com/blog/seo-meta-tags/)</a>_
 
 #### Video source
-___
+
+---
 
 <iframe src="https://www.aparat.com/video/video/embed/videohash/eXJ7I/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>

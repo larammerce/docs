@@ -1,26 +1,18 @@
 <template>
   <main class="page">
-    <slot name="top"/>
+    <slot name="top" />
 
-    <Content/>
+    <Content />
 
     <footer class="page-edit">
-      <div
-        class="edit-link"
-        v-if="editLink"
-      >
-        <a
-          :href="editLink"
-          target="_blank"
-          rel="noopener noreferrer"
-        >{{ editLinkText }}</a>
-        <OutboundLink/>
+      <div class="edit-link" v-if="editLink">
+        <a :href="editLink" target="_blank" rel="noopener noreferrer">{{
+          editLinkText
+        }}</a>
+        <OutboundLink />
       </div>
 
-      <div
-        class="last-updated"
-        v-if="lastUpdated"
-      >
+      <div class="last-updated" v-if="lastUpdated">
         <span class="prefix">{{ lastUpdatedText }}: </span>
         <span class="time">{{ lastUpdated }}</span>
       </div>
@@ -28,28 +20,15 @@
 
     <div class="page-nav" v-if="prev || next">
       <p class="inner">
-        <span
-          v-if="prev"
-          class="prev"
-        >
+        <span v-if="prev" class="prev">
           ←
-          <router-link
-            v-if="prev"
-            class="prev"
-            :to="prev.path"
-          >
+          <router-link v-if="prev" class="prev" :to="prev.path">
             {{ prev.title || prev.path }}
           </router-link>
         </span>
 
-        <span
-          v-if="next"
-          class="next"
-        >
-          <router-link
-            v-if="next"
-            :to="next.path"
-          >
+        <span v-if="next" class="next">
+          <router-link v-if="next" :to="next.path">
             {{ next.title || next.path }}
           </router-link>
           →
@@ -57,7 +36,7 @@
       </p>
     </div>
 
-    <slot name="bottom"/>
+    <slot name="bottom" />
   </main>
 </template>
 
@@ -68,11 +47,11 @@ export default {
   props: ['sidebarItems'],
 
   computed: {
-    lastUpdated () {
+    lastUpdated() {
       return this.$page.lastUpdated
     },
 
-    lastUpdatedText () {
+    lastUpdatedText() {
       if (typeof this.$themeLocaleConfig.lastUpdated === 'string') {
         return this.$themeLocaleConfig.lastUpdated
       }
@@ -82,7 +61,7 @@ export default {
       return 'Last Updated'
     },
 
-    prev () {
+    prev() {
       const prev = this.$page.frontmatter.prev
       if (prev === false) {
         return
@@ -93,7 +72,7 @@ export default {
       }
     },
 
-    next () {
+    next() {
       const next = this.$page.frontmatter.next
       if (next === false) {
         return
@@ -104,7 +83,7 @@ export default {
       }
     },
 
-    editLink () {
+    editLink() {
       if (this.$page.frontmatter.editLink === false) {
         return
       }
@@ -113,7 +92,7 @@ export default {
         editLinks,
         docsDir = '',
         docsBranch = 'master',
-        docsRepo = repo
+        docsRepo = repo,
       } = this.$site.themeConfig
 
       let path = normalize(this.$page.path)
@@ -127,29 +106,27 @@ export default {
       }
     },
 
-    editLinkText () {
+    editLinkText() {
       return (
         this.$themeLocaleConfig.editLinkText ||
         this.$site.themeConfig.editLinkText ||
         `Edit this page`
       )
-    }
+    },
   },
 
   methods: {
-    createEditLink (repo, docsRepo, docsDir, docsBranch, path) {
+    createEditLink(repo, docsRepo, docsDir, docsBranch, path) {
       const bitbucket = /bitbucket.org/
       if (bitbucket.test(repo)) {
-        const base = outboundRE.test(docsRepo)
-          ? docsRepo
-          : repo
+        const base = outboundRE.test(docsRepo) ? docsRepo : repo
         return (
           base.replace(endingSlashRE, '') +
-           `/src` +
-           `/${docsBranch}` +
-           (docsDir ? '/' + docsDir.replace(endingSlashRE, '') : '') +
-           path +
-           `?mode=edit&spa=0&at=${docsBranch}&fileviewer=file-view-default`
+          `/src` +
+          `/${docsBranch}` +
+          (docsDir ? '/' + docsDir.replace(endingSlashRE, '') : '') +
+          path +
+          `?mode=edit&spa=0&at=${docsBranch}&fileviewer=file-view-default`
         )
       }
 
@@ -163,23 +140,23 @@ export default {
         (docsDir ? '/' + docsDir.replace(endingSlashRE, '') : '') +
         path
       )
-    }
-  }
+    },
+  },
 }
 
-function resolvePrev (page, items) {
+function resolvePrev(page, items) {
   return find(page, items, -1)
 }
 
-function resolveNext (page, items) {
+function resolveNext(page, items) {
   return find(page, items, 1)
 }
 
-function find (page, items, offset) {
+function find(page, items, offset) {
   const res = []
-  items.forEach(item => {
+  items.forEach((item) => {
     if (item.type === 'group') {
-      res.push(...item.children || [])
+      res.push(...(item.children || []))
     } else {
       res.push(item)
     }
@@ -241,5 +218,4 @@ function find (page, items, offset) {
       font-size .8em
       float none
       text-align left
-
 </style>

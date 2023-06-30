@@ -1,51 +1,35 @@
 <template>
-  <nav
-    class="nav-links"
-    v-if="userLinks.length || repoLink"
-  >
+  <nav class="nav-links" v-if="userLinks.length || repoLink">
     <!-- user links -->
-    <div
-      class="nav-item"
-      v-for="item in userLinks"
-      :key="item.link"
-    >
-      <DropdownLink
-        v-if="item.type === 'links'"
-        :item="item"
-      />
-      <NavLink
-        v-else
-        :item="item"
-      />
+    <div class="nav-item" v-for="item in userLinks" :key="item.link">
+      <DropdownLink v-if="item.type === 'links'" :item="item" />
+      <NavLink v-else :item="item" />
     </div>
 
-    <a
-        href="https://larammerce.com/commercial-support"
-        class="repo-link"
-    >
+    <a href="https://larammerce.com/commercial-support" class="repo-link">
       Commercial Support
     </a>
 
     <a
-        target="_blank"
-        rel="nofollow noopener noreferrer"
-        href="https://larammerce.com/blog/"
-        class="repo-link"
+      target="_blank"
+      rel="nofollow noopener noreferrer"
+      href="https://larammerce.com/blog/"
+      class="repo-link"
     >
       Blog
-      <OutboundLink/>
+      <OutboundLink />
     </a>
 
     <!-- repo link -->
     <a
-        v-if="repoLink"
-        :href="repoLink"
-        class="repo-link"
-        target="_blank"
-        rel="nofollow noopener noreferrer"
+      v-if="repoLink"
+      :href="repoLink"
+      class="repo-link"
+      target="_blank"
+      rel="nofollow noopener noreferrer"
     >
       {{ repoLabel }}
-      <OutboundLink/>
+      <OutboundLink />
     </a>
   </nav>
 </template>
@@ -59,11 +43,11 @@ export default {
   components: { NavLink, DropdownLink },
 
   computed: {
-    userNav () {
+    userNav() {
       return this.$themeLocaleConfig.nav || this.$site.themeConfig.nav || []
     },
 
-    nav () {
+    nav() {
       const { locales } = this.$site
       if (locales && Object.keys(locales).length > 1) {
         const currentLink = this.$page.path
@@ -71,9 +55,10 @@ export default {
         const themeLocales = this.$site.themeConfig.locales || {}
         const languageDropdown = {
           text: this.$themeLocaleConfig.selectText || 'Languages',
-          items: Object.keys(locales).map(path => {
+          items: Object.keys(locales).map((path) => {
             const locale = locales[path]
-            const text = themeLocales[path] && themeLocales[path].label || locale.lang
+            const text =
+              (themeLocales[path] && themeLocales[path].label) || locale.lang
             let link
             // Stay on the current page
             if (locale.lang === this.$lang) {
@@ -82,36 +67,34 @@ export default {
               // Try to stay on the same page
               link = currentLink.replace(this.$localeConfig.path, path)
               // fallback to homepage
-              if (!routes.some(route => route.path === link)) {
+              if (!routes.some((route) => route.path === link)) {
                 link = path
               }
             }
             return { text, link }
-          })
+          }),
         }
         return [...this.userNav, languageDropdown]
       }
       return this.userNav
     },
 
-    userLinks () {
-      return (this.nav || []).map(link => {
+    userLinks() {
+      return (this.nav || []).map((link) => {
         return Object.assign(resolveNavLinkItem(link), {
-          items: (link.items || []).map(resolveNavLinkItem)
+          items: (link.items || []).map(resolveNavLinkItem),
         })
       })
     },
 
-    repoLink () {
+    repoLink() {
       const { repo } = this.$site.themeConfig
       if (repo) {
-        return /^https?:/.test(repo)
-          ? repo
-          : `https://github.com/${repo}`
+        return /^https?:/.test(repo) ? repo : `https://github.com/${repo}`
       }
     },
 
-    repoLabel () {
+    repoLabel() {
       if (!this.repoLink) return
       if (this.$site.themeConfig.repoLabel) {
         return this.$site.themeConfig.repoLabel
@@ -127,8 +110,8 @@ export default {
       }
 
       return 'Source'
-    }
-  }
+    },
+  },
 }
 </script>
 

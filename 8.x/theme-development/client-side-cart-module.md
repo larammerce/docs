@@ -5,7 +5,6 @@
 Larammerce base theme has a build-in JS module named `LocalCartService` to manage the client-side cart in the customer's browser.
 This document reviews the life cycle and progress of this module.
 
-
 `LocalCartService` is placed in the `resources/assets/js/define/local_cart_service.js` file consisting of 437 lines of code. It is based on require js module. To read more about it, refer to this address:[requirejs](https://www.requirejs.org/).
 
 First, let's check how `LocalCartService` manages the shopping cart:
@@ -20,14 +19,15 @@ To see how the products are stored in the shopping cart on the client-side, copy
 
 ```json
 {
-	"673": {
-		"count": 10
-	},
-	"676": {
-		"count": 1
-	}
+  "673": {
+    "count": 10
+  },
+  "676": {
+    "count": 1
+  }
 }
 ```
+
 There are two products in the shopping cart with the keys 673 and 676, which are the product IDs, and the count value is the number of products stored in the shopping cart.
 
 After logging in, server side requests are checked to see how the data is stored on the server:
@@ -35,8 +35,6 @@ After logging in, server side requests are checked to see how the data is stored
 ![LocalCartService-update-count.png](/LocalCartService-update-count.png)
 
 After increasing the number of products, a request is sent to the server. In the request address, it can be seen that the number of products in the cart has been updated, and the number of products has increased to 11.
-
-
 
 Now which ajax request is called in the shopping cart process is checked:
 
@@ -62,7 +60,6 @@ As mentioned, when the user is logged in, three ajax requests will be called, an
 And if the user logs out, the shopping cart data will be deleted from the client side (the cookie). So the cookie value for local_cart_vn will be empty.
 As you know, when the user is logged out, if a product is added to the shopping cart, a request will not be sent to the server and will only be stored in the cookie.
 
-
 Let's check the `LocalCartService` module:
 
 requirejs has two very important functions called `define` and `require`.
@@ -77,40 +74,47 @@ define('local_cart_service', ['jquery', 'jq_cookie', 'tools', 'template', 'under
 In the next part, there are constants of the module.
 
 `cartCountEl` constant shows the number of products in the cart with the cart-count selector.
+
 ```js
- const cartCountEl = jQuery('.cart-count');
+const cartCountEl = jQuery('.cart-count')
 ```
 
 In the box where the product content is presented, and the operations of adding to the shopping cart and removing from the shopping cart are performed, the `product-box` attribute must be given to its HTML tag.
+
 ```js
-   const productSelector = '[product-box]';
+const productSelector = '[product-box]'
 ```
 
 The window.siteEnv object is provided by the backend system consisting of the environment variables placed in the .env file, starting with `SITE_`, managed by the system administrator so that the front-end programmer can have access to this kind of configuration to create a more dynamic code structure.
+
 ```js
-const cartCookie = window.siteEnv.SITE_LOCAL_CART_COOKIE_NAME;
+const cartCookie = window.siteEnv.SITE_LOCAL_CART_COOKIE_NAME
 ```
 
 As mentioned in the rfc2965, the cookie storage has a limit of 4096KB, So the programmer must set a limit for the count of cart rows stored in the cookie storage.
 This site environment value helps the front-end programmer to get this limitation amount from the backend system.
+
 ```js
-const cartCountLimit = window.siteEnv.SITE_LOCAL_CART_COUNT_LIMIT;
+const cartCountLimit = window.siteEnv.SITE_LOCAL_CART_COUNT_LIMIT
 ```
 
 As for every row of the cart, there is a calculation of discount in which each row calculates the amount by itself. Still, in case of any extra discount which must be applied to the whole invoice, there should be a way to store the extra discount amount somewhere out of the contents of the row. So there is a variable named extraDiscountAmount set externally by help of the method `LocalCartService.setExtraDiscount(amount)`.
+
 ```js
-let extraDiscountAmount = 0;
+let extraDiscountAmount = 0
 ```
 
 In every invoice, it is evident that there would be some extra fees consisting of shipment fees or something like that. So to keep an eye on that and have the proper calculations on the invoices, it's necessary to have the `extraFeeAmount` variable .
 This variable is filled with the value named window.extraFee, provided by the backend at first. In case of any demand to change, it is modified by the method `LocalCartService.setExtraFee(amount)`.
-```js 
-let extraFeeAmount = window.hasOwnProperty("extraFee") ? window.extraFee : 0;
+
+```js
+let extraFeeAmount = window.hasOwnProperty('extraFee') ? window.extraFee : 0
 ```
 
 Now, in this section, the methods of this module are checked.
 
 ### setExtraFeeAmount
+
 Sometimes, another module requests to set another extra fee on the invoice. For example, the shipping cost of a certain city is higher, so the `setExtraFeeAmount` function takes a new amount from the input and makes the `ExtraFeeAmount` variable equal to that new amount, and finally, the new invoice calculates.
 
 ```js
@@ -121,6 +125,7 @@ setExtraFeeAmount: function (amount) {
 ```
 
 ### setExtraDiscountAmount
+
 This function is used when a discount is applied to the total shopping cart.
 
 ```js
@@ -162,9 +167,7 @@ updateSumProductPrice: function (id, sumPriceRow, sumPriceBefore = 0) {
         },
 ```
 
-
-
-###  directCalculateInvoice
+### directCalculateInvoice
 
 In this function, foreach is performed on elements that have `product-box` attributes. First, it takes the value of `data-product-id`, finds `discountContainerEl`, `priceWithoutDiscount`, and `count`. After receiving `count`, it converts it to English.
 
@@ -206,8 +209,9 @@ directCalculateInvoice: function () {
 }
 
 ```
+
 The next step calculates `SumProductPrice` for each product and updates the value. If `count>0`, it calculates the discount according to the number of products, and the value is updated. Otherwise, the discount is applied for one product.
- 
+
 ```js
 
    loadedIds.push(`${pId}`);
@@ -232,29 +236,36 @@ After calculating the final price before and after the discount of each product,
 The cartData object stores the data of the products in the shopping cart. This section returns products that are not on the product page. For example, the `cartData` keys of a shopping cart are the following array `{673,676,124}`, the products that are not on the product page are filtered, and this array `{673,676}` is returned. Finally, foreach is performed on these two IDs, and the data inside is calculated.
 
 ```js
-        Object.keys(cartData).filter((iterId) => {
-            return !loadedIds.includes(iterId);
-        }).forEach((iterId) => {
-                const iterRow = knownRows[iterId];
-                if (typeof iterRow === "undefined")
-                     return;
-                if (iterRow.product.has_discount && iterRow.product.previous_price !== 0) {
-                    finalPriceBeforeDiscount += iterRow.count * iterRow.product.previous_price;
-                    finalPriceAfterDiscount += iterRow.count * iterRow.product.latest_price;
-                } else {
-                    const discount = iterRow.product.discount_group !== null ?
-                        tools.calculateDiscount(iterRow.product.discount_group, iterRow.count, iterRow.product.latest_price) : 0;
-                    finalPriceAfterDiscount += iterRow.count * (iterRow.product.latest_price -
-                        ((iterRow.product.discount_group !== null && iterRow.product.discount_group.is_percentage) ? (iterRow.product.latest_price * discount / 100) : discount));
-                    finalPriceBeforeDiscount += iterRow.count * iterRow.product.latest_price;
-                }
-             }
-        );
-
-
-
-
- ```
+Object.keys(cartData)
+  .filter((iterId) => {
+    return !loadedIds.includes(iterId)
+  })
+  .forEach((iterId) => {
+    const iterRow = knownRows[iterId]
+    if (typeof iterRow === 'undefined') return
+    if (iterRow.product.has_discount && iterRow.product.previous_price !== 0) {
+      finalPriceBeforeDiscount += iterRow.count * iterRow.product.previous_price
+      finalPriceAfterDiscount += iterRow.count * iterRow.product.latest_price
+    } else {
+      const discount =
+        iterRow.product.discount_group !== null
+          ? tools.calculateDiscount(
+              iterRow.product.discount_group,
+              iterRow.count,
+              iterRow.product.latest_price,
+            )
+          : 0
+      finalPriceAfterDiscount +=
+        iterRow.count *
+        (iterRow.product.latest_price -
+          (iterRow.product.discount_group !== null &&
+          iterRow.product.discount_group.is_percentage
+            ? (iterRow.product.latest_price * discount) / 100
+            : discount))
+      finalPriceBeforeDiscount += iterRow.count * iterRow.product.latest_price
+    }
+  })
+```
 
 The last part calculates the tax function, and at the end, if the total price before and after the discount is equal, it does not show the total price before the discount. Otherwise, it shows.
 
@@ -294,8 +305,7 @@ When this function is called, the time interval is 50 seconds. If no other actio
             },
 ```
 
-
-### updateCartCountBadge 
+### updateCartCountBadge
 
 It takes the data in the shopping cart, converts it numerically, and then updates it.
 
@@ -307,7 +317,9 @@ It takes the data in the shopping cart, converts it numerically, and then update
             },
 
 ```
+
 ### updateCartCount
+
 This function changes the desired product number. First, it finds the product number with the desired ID in the cookie, replaces it with the new number, and stores it in the cookie again. And if a `callback` request was given, the `callback` will be called at the end.
 
 ```js
@@ -321,6 +333,7 @@ This function changes the desired product number. First, it finds the product nu
                         callback();
                 }
 ```
+
 As you know, when the user logs in, the request to update the product count is sent to the server, and if it is successful, `localUpdate` is called; if it fails, it shows an error in the console. And if there is no login, only `localUpdate` is called.
 
 ```js
@@ -342,7 +355,6 @@ As you know, when the user logs in, the request to update the product count is s
             },
 ```
 
-
 ### getRow
 
 The function takes the `productId` from the input and returns the data of the same table row.
@@ -356,6 +368,7 @@ The function takes the `productId` from the input and returns the data of the sa
 ### isInCart
 
 Checks whether the desired product is in the shopping cart or not.
+
 ```js
   isInCart: function (productId) {
                 return `${productId}` in cartData;
@@ -402,7 +415,6 @@ delFromCart: function (productId, accept = null, deny = null) {
             },
 ```
 
-
 ### addToCart
 
 This function is for adding products to the shopping cart. The functions of `localAdd` and `showModal` are located in this function.
@@ -428,6 +440,7 @@ addToCart: function (productId, callback = null) {
                     modalEl.modal('show');
                 }
 ```
+
 This function considers the limit for adding to the shopping cart. It calls the number from the `cartCountLimit` function. If it is greater than the number, it shows an error. Otherwise, it adds the product to the shopping cart. If the user is logged in, the Ajax request will be sent to the server, and the local function will be called. And if the user is not logged in, the function will be called and stored in the cookie.
 
 ```js
@@ -454,8 +467,8 @@ This function considers the limit for adding to the shopping cart. It calls the 
 
 ```
 
-
 ### initProductElement
+
 This function is the most important function of shopping cart management. It includes functions such as showing and hiding the button, fixMaxVal, update, Or what happens after clicking the increase or decrease buttons.
 For example, the update function in this function calls `addToCart`. Of course, if the count is not more than the allowed number of purchases.
 
@@ -592,9 +605,6 @@ For example, the update function in this function calls `addToCart`. Of course, 
             },
 ```
 
-
-
-
 ### init
 
 The init function is the first function that is called and checks that it creates a `serverSideCart` if the user enters and foreaches all rows of product data. And if the processes become zero, reload the page.
@@ -653,6 +663,7 @@ But if the user has a product in the cookie that is not in the `serverSideCart`,
                 }
 
 ```
+
 Finally, the products with the `product-box` element are checked, and all the functionalities of the `initProductElemen`t function are implemented on the products.
 
 ```js
@@ -666,6 +677,7 @@ Finally, the products with the `product-box` element are checked, and all the fu
 ```
 
 #### Video source
-___
+
+---
 
 <iframe src="https://www.aparat.com/video/video/embed/videohash/vPc3W/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>

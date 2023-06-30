@@ -76,7 +76,7 @@ In the example below, the function `custom_query_products_id($identifier)` just 
 </ul>
 ```
 
-The list of product identifiers can be given to the web server (API)  in a specified number and the web server can be requested to return the list of identifiers in a paginated form. For this purpose, the list of product identifiers is placed in a script so that they can be called a certain number of times in JavaScript. 
+The list of product identifiers can be given to the web server (API) in a specified number and the web server can be requested to return the list of identifiers in a paginated form. For this purpose, the list of product identifiers is placed in a script so that they can be called a certain number of times in JavaScript.
 
 Pay attention to the following example:
 
@@ -85,6 +85,7 @@ Pay attention to the following example:
     window.ProductIds = {{json_encode(custom_query_product_ids("home_page_last_views"))}}
  </script>
 ```
+
 And enter this command:
 
 ```bash
@@ -92,7 +93,6 @@ And enter this command:
 ```
 
 **NOTE:** With the help of the `custom_query_products_ids($identifier)‍` ​​function, the list of product identifiers is provided to JavaScript.
-
 
 In the next step to understand more, enter "inspect" in the browser, and in the "Console" tab, with the help of the `window.productIds` command, the list of products identifiers will be displayed in a certain number (for example, twelve numbers).
 
@@ -161,6 +161,7 @@ To display the number of 'CustomQueries' products, proceed as follows:
 ```
 
 #### Video source
-___
+
+---
 
 <iframe src="https://www.aparat.com/video/video/embed/videohash/5v6ZK/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>

@@ -29,7 +29,7 @@ After running this command, a file named `<a_date>_create_todos_table.php` will 
         });
     }
     ...
-   
+
 ```
 
 Run the following command in the terminal to create the desired table:
@@ -97,7 +97,7 @@ In the code above, the lines number 5 to 11 are called `annotations`. You can st
 
 `$EXACT_SEARCH_ORDER_FIELD` configures what field the search results are sorted by.
 
-**NOTE:** The curious reader can refer to the laravel documentation in order to study more about the eloquent model.*<sup>[1](#1)</sup>*
+**NOTE:** The curious reader can refer to the laravel documentation in order to study more about the eloquent model._<sup>[1](#1)</sup>_
 
 #### Add route
 
@@ -118,7 +118,7 @@ Put the code below in the path `/path/to/larammerce-project/routes/web.php` insi
 
 #### Add controller
 
-The Larammerce project is using Laravel resource controllers. To know more about these controllers and how to use them, refer to the related document.*<sup>[2](#2)</sup>*
+The Larammerce project is using Laravel resource controllers. To know more about these controllers and how to use them, refer to the related document._<sup>[2](#2)</sup>_
 
 Create the file `TodoController.php` in the path `/path/to/larammerce-project/app/Http/Controllers/Admin/` and put these codes inside:
 
@@ -139,15 +139,15 @@ use Illuminate\Http\Request;
  */
 class TodoController extends BaseController
 {
-    
+
     public function index(): Factory|View|Application
     {
 
     }
-    
+
     public function create(): Factory|View|Application
     {
-        
+
     }
 
     public function store(Request $request): RedirectResponse
@@ -157,7 +157,7 @@ class TodoController extends BaseController
 
     public function show(Todo $todo)
     {
-        
+
     }
 
     public function edit(Todo $todo): Factory|View|Application
@@ -240,7 +240,6 @@ return [
 
 ![todo_icon](/img-cruds/04-edited.png)
 
-
 #### Correct translation
 
 Run the following command in the terminal:
@@ -269,7 +268,6 @@ return [
 **OUTPUT**
 
 ![todo_icon_translated](/img-cruds/08-edited.png)
-
 
 ## Define index method
 
@@ -365,7 +363,7 @@ Create the file `list.blade.php` in the path `/path/to/larammerce-project/resour
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 col">
             <div class="label">وضعیت</div>
             <div>{{$todo->status}}</div>
-        </div>        
+        </div>
         <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12 col">
             <div class="label">عملیات</div>
             <div class="actions-container">
@@ -403,7 +401,7 @@ Now you can see that one new line is added to the file `/path/to/larammerce-proj
 ```php{7}
 <?php
 return [
-  'attributes' => 
+  'attributes' =>
   [
     ...
     'representative_type' => 'نوع آشنایی با سیستم',
@@ -411,7 +409,7 @@ return [
     ...
   ]
   ...
-]; 
+];
 ```
 
 Change the new line as belows:
@@ -419,7 +417,7 @@ Change the new line as belows:
 ```php{7}
 <?php
 return [
-  'attributes' => 
+  'attributes' =>
   [
     ...
     'representative_type' => 'نوع آشنایی با سیستم',
@@ -427,7 +425,7 @@ return [
     ...
   ]
   ...
-]; 
+];
 ```
 
 **OUTPUT**
@@ -533,7 +531,6 @@ Click on the `ذخیره` button to save the new todo.
 **OUTPUT**
 
 ![new_todo_created](/img-cruds/14.png)
-
 
 #### Add edit view
 
@@ -664,7 +661,6 @@ Put the following code in the path `/path/to/larammerce-project/resources/views/
 
 Insert the code below in the path `/path/to/larammerce-project/app/Http/Controllers/Admin/TodoController.php` inside the `edit method` section:
 
-
 ```php{6,11-21}
 <?php
 
@@ -711,7 +707,6 @@ In the list of todos, the status item is represented as a number:
 
 So you must correct the code for status in the path `/path/to/larammerce-project/resources/views/admin/pages/todo/layout/list.blade.php`:
 
-
 ```php{7}
 @foreach($todos as $todo)
     <div
@@ -743,7 +738,6 @@ If you click on `ذخیره` button, this error will appear:
 So you must define the update method to save the changes.
 
 Write the following code in the path `/path/to/larammerce-project/app/Http/Controllers/Admin/TodoController.php` inside the `update method` section:
-
 
 ```php{7,12-20}
 <?php
@@ -817,13 +811,14 @@ Click on `بله`.
 The todo with the id #2 has been deleted from the list.
 
 #### Video source
-___
+
+---
 
 <iframe src="https://www.aparat.com/video/video/embed/videohash/zUXFL/vt/frame" height="300" width="700" style="  border: 2px solid #bdc3c7;
 border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>
 
 ## References
 
-*1.<a name="1"> [Eloquent model in the laravel framework.](https://laravel.com/docs/10.x/eloquent) </a>*
+_1.<a name="1"> [Eloquent model in the laravel framework.](https://laravel.com/docs/10.x/eloquent) </a>_
 
-*2.<a name="2"> [Resource controllers in the laravel framework.](https://laravel.com/docs/10.x/controllers#resource-controllers) </a>*
+_2.<a name="2"> [Resource controllers in the laravel framework.](https://laravel.com/docs/10.x/controllers#resource-controllers) </a>_
