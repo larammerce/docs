@@ -98,7 +98,6 @@ module.exports = [
     ]),
   },
 ]
-
 ;[
   ...prefix('core-concepts', [
     'README',
