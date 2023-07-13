@@ -23,6 +23,7 @@ module.exports = [
       'galleries',
       'forms',
       'products',
+      'Product-limitation',
       'articles',
       'directories',
       'custom-queries',
