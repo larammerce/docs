@@ -24,6 +24,7 @@ module.exports = [
       'forms',
       'products',
       'Pop-ups-in-larammerce-template-engine',
+      'Product-limitation',
       'articles',
       'directories',
       'custom-queries',
