@@ -79,7 +79,7 @@ public function getPriceAttribute(){
 
 }
 ```
-This function enables a global check to determine whether the user is in the admin area or not, without requiring access to the `$request` object.
+
 
 Now if you set the URL to `localhost:8080/start`, the output would be:
 
@@ -147,7 +147,7 @@ ApplianceService::init();  // Pertains to the appliances, which refer to every c
 
 ```
 
-In order to determine whether the request is an admin erea or not, all of these functions need to incorporate a detection mechanism. This can be achieved by utilizing two functions, namely `setInAdminArea` and `isInAdminArea`, which are located within the `AdminRequestService.php` file. To access these functions, navigate to the following path: `Larammerce/app/Utils/CMS/AdminRequestService.php`.
+In order to determine whether the request is in the admin erea or not, all of these functions need to incorporate a detection mechanism. This can be achieved by utilizing two functions, namely `setInAdminArea` and `isInAdminArea`, which are located within the `AdminRequestService.php` file. To access these functions, navigate to the following path: `Larammerce/app/Utils/CMS/AdminRequestService.php`.
 
 
 ```php{5}
@@ -157,8 +157,8 @@ In order to determine whether the request is an admin erea or not, all of these 
 
  public static function setInAdminArea($request = null)
     {
-        $searchResult = array_search('admin', explode("/",$request->server('REQUEST_URI')));
-        $result = ($searchResult !== false and $searchResult < 2);
+        $searchResult = array_search('admin', explode("/",$request->server('REQUEST_URI'))); //searches for the string 'admin'
+        $result = ($searchResult !== false and $searchResult < 2); //This condition ensures that the function sets the in_admin_area attribute to true only when the request is being made in the admin area.
         RequestService::setAttr(self::getAdminAreaKey(), $result, $request);
     }
 
@@ -170,22 +170,16 @@ In order to determine whether the request is an admin erea or not, all of these 
     }
 ```
 
-This function sets a boolean attribute `in_admin_area` to `true` or `false`, depending on whether the current request is being made in the admin area of the application or not. The function takes in an optional parameter `$request` which represents the `HTTP` request being made.
-
-- The **first line** of the function uses the `explode()` function to split the `REQUEST_URI` server variable into an array using the forward slash `(/)` as the delimiter. The first argument of the `array_search()` function then searches for the string 'admin' within this array and returns the index of the first occurrence of the string. If the string is not found, `array_search()` returns `false`.
-
-- The **second line** of the function checks if the search result is not false (i.e., the string 'admin' was found in the URL) and if the index of the string is less than 2 (i.e., the 'admin' keyword appears in the first or second(0 or 1) segment of the URL). This condition ensures that the function sets the in_admin_area attribute to true only when the request is being made in the admin area.
-
-- Finally, the function calls `RequestService::setAttr()` to set the `in_admin_area` attribute with the boolean value determined in the previous step, using the key returned by the `self::getAdminAreaKey()` method.(You can check this in the `/Larammerce/app/Utils/Common/RequestService.php`)
 
 ```php
 public static function isInAdminArea($request = null)
     {
         return RequestService::getAttr(self::getAdminAreaKey(), $request);
     }
+    // If the attribute exists and has a non-null value, then the function will return `true`, indicating that the current request is in the admin area
 
 ```
-This function is used to check if the current request is in the admin area by accessing some attribute stored in the `$request` object using the key returned by `getAdminAreaKey()`. If the attribute exists and has a non-null value, then the function will return `true`, indicating that the current request is in the admin area. Otherwise, the function will return `false`!
+
 
 ### References
 
