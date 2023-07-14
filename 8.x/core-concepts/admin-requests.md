@@ -2,7 +2,9 @@
 
 [[toc]]
 
-This article aims to provide an in-depth analysis of the admin request functionality, covering everything from its inner workings to how you can make modifications to it. You can study about the [Request lifecycle in Laravel](#Request-lifecycle-in-Laravel) and the[Request lifecycle in Larammerce](#Request-lifecycle-in-Larammerce) in this 
+This article aims to provide an in-depth analysis of the admin request functionality, covering everything from its inner workings to how you can make modifications to it. You can study about the
+ [Request lifecycle in Laravel](#request-lifecycle-in-laravel) and the
+ [Request lifecycle in Larammerce](#request-lifecycle-in-larammerce) in this 
 article if you are interested.
 
 
@@ -18,7 +20,8 @@ Route::get("/start", function(){
 
     echo ("Hi, This is /start \n <br/>");
 
-    echo \App\Utils\CMS\AdminRequestService::isInAdminArea()? "We are in admin area" : "We are out of admin area"
+    echo \App\Utils\CMS\AdminRequestService::isInAdminArea()? 
+    "We are in admin area" : "We are out of admin area"
     
     ;
 
@@ -28,7 +31,8 @@ Route::get("/admin/start ",function(){
 
     echo ("Hi, This is /admin/start \n <br/>");
 
-    echo \App\Utils\CMS\AdminRequestService::isInAdminArea()? "We are in admin area" : "We are out of admin area"
+    echo \App\Utils\CMS\AdminRequestService::isInAdminArea()? 
+    "We are in admin area" : "We are out of admin area"
 
 });
 
@@ -40,7 +44,7 @@ Now let's test the example of the product price in which when a client accesses 
 
 To do so, add these lines to the code above:
 
-```php{7,8,18,19}
+```php{7,8,19,20}
 // larammerce-project/routes/web.php/
 
 Route::get("/start", function(){
@@ -50,7 +54,8 @@ Route::get("/start", function(){
     $product = product::find(20);
     echo "The product price is:" . product->price . "\n <br/>";
 
-    echo \App\Utils\CMS\AdminRequestService::isInAdminArea()? "We are in admin area" : "We are out of admin area";
+    echo \App\Utils\CMS\AdminRequestService::isInAdminArea()? 
+    "We are in admin area" : "We are out of admin area";
 
 });
 
@@ -61,7 +66,8 @@ Route::get("/admin/start ",function(){
     $product = product::find(20);
     echo "The product price is:" . product->price . "\n <br/>";
 
-    echo \App\Utils\CMS\AdminRequestService::isInAdminArea()? "We are in admin area" : "We are out of admin area";
+    echo \App\Utils\CMS\AdminRequestService::isInAdminArea()? 
+    "We are in admin area" : "We are out of admin area";
 
 });
 
@@ -105,15 +111,24 @@ If the request passes through all of the matched route's assigned middleware, th
 **Note:** In general, the lifecycle of a request in laravel starts from the client-side and goes through some stages. For more details study *request lifecycle in laravel* *<sup>[1](#1)</sup>* and *middleware* *<sup>[2](#2)</sup>*.
 
 
-## Request lifecycle in Larammerce
+### Request lifecycle in Larammerce
 
-In Larammerce, the first middleware layer has a tool that identifies if an incoming request is intended for the admin panel or other parts of the platform. To check this, it follows a specific path to determine whether the request is being processed within the admin panel or not.
 
-In order to generate responses and create variables, it is crucial for various components of the Larammerce platform to determine whether an incoming request is intended for the admin panel or the client side. This information helps to ensure that the appropriate actions are taken for the request and that responses are generated correctly.
+In Larammerce, the first middleware layer identifies if an incoming request is for the admin panel or other parts of the platform by following a specific path. This helps the platform to determine the appropriate actions and generate correct responses.
 
-As an example, let's consider a scenario where a request is sent to the `/any-URL` endpoint, which is intended for the client-side, while requests sent to the `/admin/any-URL` endpoint are intended for the server-side (admin). Suppose there is a `Product` class that has an accessor method. Within this method, it can be specified that if the incoming request is from the admin side, the pure price of the product should be returned, but if the request is from the client side (based on the URL), then the discounted price should be returned instead.
 
-To achieve this functionality, a middleware layer is utilized that analyzes the incoming request using a defined detector mechanism. If the authenticated user is an admin, the middleware informs all relevant components of this fact so that they can generate the appropriate response.
+Let's assume requests send to:
+
+- `/any-URL` endpoint which is intended for the client-side.
+
+and 
+
+- `/admin/any-URL` endpoint which is intended for the server-side (admin).
+
+also suppose there is a `Product class` that has an accessor method.
+ Within this method, it can be specified that if the incoming request is from the admin side, the pure price of the product should be returned, but if the request is from the client side (based on the URL), then the discounted price should be returned instead.
+
+To achieve this functionality, a middleware layer is utilized that analyzes the incoming request using a defined detector mechanism. If the authenticated user is in admin area, the middleware informs all relevant components of this fact so that they can generate the appropriate response.
 
 :::tip Class Accessor
 Accessor is a method or property that provides access to the private members of a class from outside the class. 
@@ -129,21 +144,32 @@ On the Larammerce project, path to `larammerce/app/Http/Middleware/AdminRequestM
 ...
 
 $user = get_user($guard);   // Retrieves the authenticated user.
-$systemUser = $user -> systemUser;  //  Checks whether the retrieved user is a system user or not.
-$action = Action::withRequest($request); // The system takes action to determine what the system user's request is.
+$systemUser = $user -> systemUser;
+//  Checks whether the retrieved user is a system user or not.
+$action = Action::withRequest($request); 
+// The system takes action to determine what the system user's request is.
 
-// The if statement dentifies the object that is being managed in the admin panel.
 if (!$request->has("related_model"))
-    $request->merge(["related_model" => app($action->getClassName())?->getModel()]);
-
+    $request->merge(["related_model" =>
+    app($action->getClassName())?->getModel()]);
+// The if statement dentifies the object that is being managed in the admin panel.
 ...
 
-$this->setOrderAttributes($request);  // Detects the criterion on which sorting should be based.
-$this->setLayoutAttributes($request);  // Detects the method for displaying the items, which can either be a list or a grid.
-$this->setPaginationAttributes($request); // Detects the current page of the admin panel that is being accessed.
+$this->setOrderAttributes($request);  
+// Detects the criterion on which sorting should be based.
+$this->setLayoutAttributes($request);  
+// Detects the method for displaying the items, which can either be a list
+// or a grid.
+$this->setPaginationAttributes($request); 
+// Detects the current page of the admin panel that is being accessed.
 ...
 
-ApplianceService::init();  // Pertains to the appliances, which refer to every content on the toolbar or the sub-items of each page. This function manages the arrangement of the appliances and determines which ones should be enabled or disabled based on the administrator's role.
+ApplianceService::init();  
+/* Pertains to the appliances, which refer to every content on the toolbar
+  or the sub-items of each page. This function manages the arrangement of
+  the appliances and determines which ones should be enabled or disabled 
+  based on the administrator's role.
+*/
 
 ```
 
@@ -157,8 +183,12 @@ In order to determine whether the request is in the admin erea or not, all of th
 
  public static function setInAdminArea($request = null)
     {
-        $searchResult = array_search('admin', explode("/",$request->server('REQUEST_URI'))); //searches for the string 'admin'
-        $result = ($searchResult !== false and $searchResult < 2); //This condition ensures that the function sets the in_admin_area attribute to true only when the request is being made in the admin area.
+        $searchResult = array_search('admin', 
+        explode("/",$request->server('REQUEST_URI')));
+         //searches for the string 'admin'
+        $result = ($searchResult !== false and $searchResult < 2); 
+        //This condition ensures that the function sets the in_admin_area 
+        //attribute to true only when the request is being made in the admin area.
         RequestService::setAttr(self::getAdminAreaKey(), $result, $request);
     }
 
