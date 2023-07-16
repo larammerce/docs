@@ -4,10 +4,7 @@
     class="algolia-search-wrapper search-box"
     role="search"
   >
-    <input
-      id="algolia-search-input"
-      class="search-query"
-    >
+    <input id="algolia-search-input" class="search-query" />
   </form>
 </template>
 
@@ -15,47 +12,55 @@
 export default {
   props: ['options'],
 
-  mounted () {
+  mounted() {
     this.initialize(this.options, this.$lang)
   },
 
   methods: {
-    initialize (userOptions, lang) {
+    initialize(userOptions, lang) {
       Promise.all([
-        import(/* webpackChunkName: "docsearch" */ 'docsearch.js/dist/cdn/docsearch.min.js'),
-        import(/* webpackChunkName: "docsearch" */ 'docsearch.js/dist/cdn/docsearch.min.css')
+        import(
+          /* webpackChunkName: "docsearch" */ 'docsearch.js/dist/cdn/docsearch.min.js'
+        ),
+        import(
+          /* webpackChunkName: "docsearch" */ 'docsearch.js/dist/cdn/docsearch.min.css'
+        ),
       ]).then(([docsearch]) => {
         docsearch = docsearch.default
-        const { algoliaOptions = {}} = userOptions
-        docsearch(Object.assign(
-          {},
-          userOptions,
-          {
+        const { algoliaOptions = {} } = userOptions
+        docsearch(
+          Object.assign({}, userOptions, {
             inputSelector: '#algolia-search-input',
             // #697 Make docsearch work well at i18n mode.
-            algoliaOptions: Object.assign({
-              'facetFilters': [`lang:${lang}`].concat(algoliaOptions.facetFilters || [])
-            }, algoliaOptions)
-          }
-        ))
+            algoliaOptions: Object.assign(
+              {
+                facetFilters: [`lang:${lang}`].concat(
+                  algoliaOptions.facetFilters || [],
+                ),
+              },
+              algoliaOptions,
+            ),
+          }),
+        )
       })
     },
 
-    update (options, lang) {
-      this.$el.innerHTML = '<input id="algolia-search-input" class="search-query">'
+    update(options, lang) {
+      this.$el.innerHTML =
+        '<input id="algolia-search-input" class="search-query">'
       this.initialize(options, lang)
-    }
+    },
   },
 
   watch: {
-    $lang (newValue) {
+    $lang(newValue) {
       this.update(this.options, newValue)
     },
 
-    options (newValue) {
+    options(newValue) {
       this.update(newValue, this.$lang)
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -151,5 +156,4 @@ export default {
       width 5px
       margin -3px 3px 0
       vertical-align middle
-
 </style>

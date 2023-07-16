@@ -8,7 +8,7 @@ Annotations are the tags declaring metadata for the program source code. They pr
 
 ### Annotations in Java language
 
-Historically, annotations were first introduced in Java language.*<sup>[1](#1)</sup>*
+Historically, annotations were first introduced in Java language._<sup>[1](#1)</sup>_
 
 #### Example
 
@@ -40,7 +40,7 @@ In the above example, both the superclass and subclass include the method `displ
 
 ### Annotations in PHP language
 
-There were no annotations in the PHP language before version 8.0, so the metadata was written into the `DocBlock`. A DocBlock is a piece of documentation in the source code that provides information about a specific class, method or other structural elements.*<sup>[2](#2)</sup>*
+There were no annotations in the PHP language before version 8.0, so the metadata was written into the `DocBlock`. A DocBlock is a piece of documentation in the source code that provides information about a specific class, method or other structural elements._<sup>[2](#2)</sup>_
 
 #### Benefits of use
 
@@ -91,15 +91,15 @@ So the annotations make the codes more concise and clean.
  {
     ...
  }
- ```
- 
+```
+
 `@param string $myArgument` declares that the parameter `$myArgument` is of type string.
 
 `@return void` declares that the return value for this method is void, which means that no value will be returned.
 
 ## Annotations in Larammerce platform
 
-In the Larammerce platform, a PHP `annotation-parser` package is developed based on the DocBlock.*<sup>[3](#3)</sup>* This package helps you to write the codes in the DocBlock and then execute them. Therefore the use of DocBlock in the Larammerce platform goes beyond the annotation in the PHP language.
+In the Larammerce platform, a PHP `annotation-parser` package is developed based on the DocBlock._<sup>[3](#3)</sup>_ This package helps you to write the codes in the DocBlock and then execute them. Therefore the use of DocBlock in the Larammerce platform goes beyond the annotation in the PHP language.
 
 #### Example in Larammerce platform
 
@@ -355,17 +355,18 @@ The output indicates that the mathematical calculation 10+12=22 is done into the
 
 #### Source code
 
-To understand how the annotation-parser package works, you can refer to the *[github](https://github.com/larammerce/annotation-parser/blob/master/src/AnnotationParser.php)* of this project and review the related source code.
+To understand how the annotation-parser package works, you can refer to the _[github](https://github.com/larammerce/annotation-parser/blob/master/src/AnnotationParser.php)_ of this project and review the related source code.
 
 #### References
 
-*1. <a name="1">[Annotations in the Java language.](https://docs.oracle.com/javase/tutorial/java/annotations/)</a>*
+_1. <a name="1">[Annotations in the Java language.](https://docs.oracle.com/javase/tutorial/java/annotations/)</a>_
 
-*2. <a name="2">[What is a DocBlock in the PHP language?](https://docs.phpdoc.org/3.0/guide/getting-started/what-is-a-docblock.html#what-is-a-docblock)</a>*
+_2. <a name="2">[What is a DocBlock in the PHP language?](https://docs.phpdoc.org/3.0/guide/getting-started/what-is-a-docblock.html#what-is-a-docblock)</a>_
 
-*3. <a name="3">[Annotation-parser package in the Larammerce project.](https://github.com/larammerce/annotation-parser)</a>*
+_3. <a name="3">[Annotation-parser package in the Larammerce project.](https://github.com/larammerce/annotation-parser)</a>_
 
 #### Video source
-___
+
+---
 
 <iframe src="https://www.aparat.com/video/video/embed/videohash/Kzhe6/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>

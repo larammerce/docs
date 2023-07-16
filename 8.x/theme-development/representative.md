@@ -8,17 +8,16 @@ This article serves as a comprehensive guide to effectively utilizing the repres
 
 To implement the representative management form in your application, there are a few requirements that need to be met. Firstly, you will need to ensure that you have both the `Larammerce project` and the `Larammerce-base-theme` available on your system. You can fork these projects from [Larammerce github](https://github.com/larammerce). This is a prerequisite for working with the Larammerce template. It is recommended that the [installation](https://docs.larammerce.com/8.x/getting-started/installation.html) documentation available on `Larammerce.com` be carefully reviewed before proceeding with any development work.
 
-## Representative management features 
+## Representative management features
 
 To work with these features, after cloning `larammerce-base-theme` and `larammerce` projects, follow instructions below:
 
 - **First,** run `npm run prod` in your terminal to build project resources.
 - **Second,** login as admin on `localhost:8080/admin`.
-  
+
 The application includes multiple parts, including a `shop` section that contains variouse subsections such as `representative management` section.
 
 ![representative section](/representatives/representativeSection.png)
-
 
 The representative management section allows you to access a form where you can manage the introduction method for your representatives through its various parts.
 
@@ -41,7 +40,6 @@ Save changes!
 
 ![verification form](/representatives/verificationForm.png)
 
-
 Click on the `login/register` icon on top right of the page to go to this address: `localhost:8080/customer-auth/auth/mobile`.
 Enter a random mobile number and press `confirm` button.
 
@@ -50,13 +48,12 @@ As you registered with a random number, the code will be displayed on the last l
 ```php{3}
 // storage/logs/laravel.log
 [2023-04-12 23:34:12] local.INFO: SMS Driver file: send: template sms-auth-code number: 0912****796
-{"oneTimeCode":"9139"}  
+{"oneTimeCode":"9139"}
 ```
 
 Once you verified the number, you will lead to the registration form. From now on the focus will be on customizing this form as a sample.
 
 As you see, the items defined in the representative management form, are displayed here in the registration form as the optional items into the field named "How to get familiar with us". Let's see how this happens.
-
 
 ---
 
@@ -82,6 +79,7 @@ A directive is used in `larammerce-theme/public/views/auth-mobile-register.blade
 ```php
   @include("_register-representative") #line 65
 ```
+
 The included file contains a form field for entering representative information during the registration process using `representative_is_enabled()` helper function.
 
 ```php{3}
@@ -116,7 +114,7 @@ So now if you deactivate the representative feature from the admin panel, refres
 
 ![section is enable](/representatives/repIsenable.png)
 
-### How to pass list options 
+### How to pass list options
 
 #### representative_get_options()
 
@@ -152,7 +150,7 @@ You can even replace the select/option tag with the radio button.
     {{$option}}
 <input type="radio" class="form-control" name="representative_type"
   value="{{$option}}">
- </lable>           
+ </lable>
 @endforeach
 
 ```
@@ -172,6 +170,7 @@ You can even replace the select/option tag with the radio button.
 The other function is `representative_is_customer_representative_enabled()`. By using this function you will be able to set a condition in which whether a part should be displayed or not.
 
 The function:
+
 ```php
 function representative_is_customer_representative_enabled(): bool {
         return \App\Utils\CMS\Setting\Representative\RepresentativeSettingService::isCustomerRepresentativeEnabled();
@@ -194,8 +193,8 @@ Add these codes to the `register-representative.blade.php` file:
             <div class="form-group">
                 <label for="family">شماره تماس معرف در صورت تمایل</label>
                 <input type="text" class="form-control number-control" name=representative-username"
-                placeholder="شماره تماس معرف" 
-                value="{{old('representative-username')}} " > 
+                placeholder="شماره تماس معرف"
+                value="{{old('representative-username')}} " >
             </div>
         </div>
     @endif
@@ -205,7 +204,7 @@ Add these codes to the `register-representative.blade.php` file:
 Deploy the larammerce-theme project with `./deploy.sh` and refresh the registration page to see the result.
 The second option of the representative management form(i.e. whether current customers can be considered as representatives or not), is now associated with the "representative phone number" field in the registration form.
 
- So now if you enable the second option of the representative form in your admin pannel, this part will be displayed in the registration form, otherwise the field will be removed.
+So now if you enable the second option of the representative form in your admin pannel, this part will be displayed in the registration form, otherwise the field will be removed.
 
 ![Conditional option1](/representatives/repcondition.png)
 
@@ -232,10 +231,10 @@ Suppose you add a new item named "current customers" to the "How to get familiar
     </div>
     </div>
 ```
+
 **Note:** This is a manual option and should be written out of the `foreach` loop.
 
 - Then set an `id` and a hidden display style for the `representative phone number` field into the registration form:
-
 
 ```php{3}
 //register-representative.blade.php
@@ -244,12 +243,13 @@ Suppose you add a new item named "current customers" to the "How to get familiar
         <div class="form-group">
             <label for="family">شماره تماس معرف در صورت تمایل</label>
                 <input type="text" class="form-control number-control" name=representative-username"
-                placeholder="شماره تماس معرف" 
-                value="{{old('representative-username')}} " > 
-        </div>        
+                placeholder="شماره تماس معرف"
+                value="{{old('representative-username')}} " >
+        </div>
      </div>
  @endif
 ```
+
 :::warning Applying JS Code to Blade Files
 
 There are 2 files that include `_register-representative`:
@@ -262,11 +262,13 @@ Find the code below in these files:
 ```bash
 <script>window.currentPage === "mobile-register"</script>    #line 18
 ```
+
 Replace the above code with this script:
 
 ```bash
 <script>window.currentPage === "auth-register"</script>    #line 18
 ```
+
 So you can write one js code which is applied to the both blade files.
 
 :::
@@ -274,32 +276,37 @@ So you can write one js code which is applied to the both blade files.
 The very next step is to add `javaScript` codes to set the appearance and adjust the optional elements. In the path `larammerce-theme/resources/js/require/`, create a new file named `page_auth_register.js` and write the following codes into this file:
 
 ```js
- //larammerce-theme/resources/js/require/page_auth_register.js
+//larammerce-theme/resources/js/require/page_auth_register.js
 
-if (window.currentPage === "auth-register")
-    require(["jquery"], function (jQuery) {
-        const representativeSelectEl = jQuery("select[name='representative_type']");
-        const representativeInputContainerEl = jQuery("#representative-input-container");
-        if (representativeSelectEl.length > 0 && representativeInputContainerEl.length > 0) {
-            representativeSelectEl.on("change", function (event) {
-                const optionSelected = jQuery("option:selected", this);
-                const id = optionSelected.attr("id");
+if (window.currentPage === 'auth-register')
+  require(['jquery'], function (jQuery) {
+    const representativeSelectEl = jQuery("select[name='representative_type']")
+    const representativeInputContainerEl = jQuery(
+      '#representative-input-container',
+    )
+    if (
+      representativeSelectEl.length > 0 &&
+      representativeInputContainerEl.length > 0
+    ) {
+      representativeSelectEl.on('change', function (event) {
+        const optionSelected = jQuery('option:selected', this)
+        const id = optionSelected.attr('id')
 
-                if (id === "manual-representative") {
-                    representativeInputContainerEl.fadeIn();
-                }else{
-                    representativeInputContainerEl.fadeOut();
-                }
-            });
+        if (id === 'manual-representative') {
+          representativeInputContainerEl.fadeIn()
+        } else {
+          representativeInputContainerEl.fadeOut()
         }
-    });
+      })
+    }
+  })
 ```
+
 Now deploy the larammerce-theme project with `./deploy.sh` and refresh the registration page to see the result.
 
 Here is the result: in Mode 1, the current customer is selected, so the number input field will be displayed; as you choose another option except for the "current customer" (Mode 2) this field will fade out.
 
 ![Conditional option2](/representatives/repCondition2.png)
-
 
 To better undrestand the above script, notice to its step-by-step descriptions in the following:
 
@@ -309,9 +316,10 @@ To better undrestand the above script, notice to its step-by-step descriptions i
 // public/views/register-representative.blade.php
 
  <select class="form-control number-control" name="representative_type">
- ```
+```
 
- - Now by using the option name, you can check if the option is selected or not by running script below:
+- Now by using the option name, you can check if the option is selected or not by running script below:
+
 ```php
 if (window.currentPage === "auth-register")
     require(["jquery"], function (jQuery) {
@@ -336,8 +344,8 @@ npm run watch
 ```bash
 ./deploy.sh
 ```
-:::
 
+:::
 
 To get the option element on select change, add condition below(line 6 & 7) to above script. Then log the information to the console(line 8 & 9) to see what's going on:
 
@@ -350,7 +358,7 @@ if (window.currentPage === "auth-register")
                 const optionSelected = jQuery("option:selected", this);
                 const id = valueSelected = this.value;
                 console.log(optionSelected.attr("id"));
-                console.log(valueSelected);               
+                console.log(valueSelected);
 
             });
         }
@@ -358,8 +366,7 @@ if (window.currentPage === "auth-register")
 
 ```
 
-
-Run `npm run watch` and  `./deploy.sh` and open your search engine console so to see what will happen when you select an option.
+Run `npm run watch` and `./deploy.sh` and open your search engine console so to see what will happen when you select an option.
 The output will be:
 
 ![Console log](/representatives/console-log.png)
@@ -368,13 +375,12 @@ The output will be:
 
 1. Build a container on `_register-representative.blade.php` with an specific `id` and set the default display style as hidden:
 
-
 ```php{2}
  @if(representative_is_customer_representative_enabled())
         <div class="col-md-6 col-sm-6 col-xs-12" id="representative-input-container" style="display: none">
             <div class="form-group">
                 <label for="family">شماره تماس معرف در صورت تمایل</label>
-                 <input type="text" class="form-control number-control" name="represantative_Username" 
+                 <input type="text" class="form-control number-control" name="represantative_Username"
                  placeholder="شماره تماس معرف"
                  value"{{old("represantative_Username")}} >
              </div>
@@ -408,14 +414,9 @@ Run `./deploy.sh`.
 
 Good luck!
 
-
 #### Video source
-___
+
+---
 
 <iframe src="https://www.aparat.com/video/video/embed/videohash/fZN1d/vt/frame" height="300" width="700" style="  border: 2px solid #bdc3c7;
 border-radius: 5px; opacity: 1;" allowFullScreen="true" ></iframe>
-
-
-
-
-

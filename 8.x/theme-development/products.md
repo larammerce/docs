@@ -10,54 +10,54 @@ When it comes to displaying product information on a website, you should use the
 
 The product model includes a series of **properties**, which Larammerce presented to you in the table below, along with its explanation and datatype.
 
-Num   |Property               | Datatype    |Description
-------|-----------------------|-------------|-------------
-**1** | `id`                  |integer      |Primary key.
-**2** | `title`               |string       |Product title.
-**3** | `latest_price`        |integer      |The latest product price.
-**4** | `latest_special_price`|integer      |The latest special product price.
-**5** | `previous_price`      |integer      |Previous product price.
-**6** | `tax_amount`          |integer      |Product tax amount.
-**7** | `toll_amount`         |integer      |Product toll amount.
-**8** | `pure_price`          |integer      |Pure product price.
-**9** | `extra_properties`    |string       |General information of a product.
-**10**| `description`         |string       |Product description.
-**11**| `color_code`          |string       |Product color code.
-**12**| `code`                |string       |Product code.
-**13**| `directory_id`        |integer      |The parent category of the product.
-**14**| `p_structure_id`      |integer      |Product category subject.
-**15**| `created_at`          |DateTime     |Product creation date.
-**16**| `updated_at`          |DateTime     |Product update date.
-**17**| `average_rating`      |float        |Product rating.
-**18**| `rates_count`         |int          |Number of product rates.
-**19**| `count`               |int          |Number of products in the store warehouse.
-**20**| `is_active`           |boolean      |The possibility of selling the product in the store.
-**21**| `important_at`        |DateTime     |Determines the importance of a product by the date.
-**22**| `is_important`        |boolean      |Checks if it has `important_at` or not.
-**23**| `is_accessory`        |boolean      |Checks if it is an accessory or not.
-**24**| `min_allowed_count`   |integer      |Minimum authorized product inventory in the store warehouse.
-**25**| `max_purchase_count`  |integer      |maximum number of purchases of a product.
-**26**| `min_purchase_count`  |integer      |Minimum number of purchases of a product.
-**27**| `inaccessibility_type`|integer      |Methods of introducing the non-existence of a product.
-**28**| `seo_keywords`        |string       |SEO keywords of a product.
-**29**| `seo_description`     |string       |Description of a product SEO.
-**30**| `isLiked`             |bool         |Specifies whether the user likes the product or not.
-**31**| `model_id`            |int          |Determining whether a product is a model with other products.
-**32**| `has_discount`        |bool         |Checks if a discount is set for the product.
-**33**| `is_visible`          |bool         |Specifies whether the product is displayed in the store or not.
-**34**| `attributes_content`  |json         |Stores attributes related to a product as a JSON file in the system.
-**35**| `cmc_id`              |integer      |CMC (Customer Meta Category), Checks whether information should be taken from the customer when buying the product or not purchasing the product. 
-**36**| `notice`              |string       |Is a text that you can display in a product.
-**37**| `models_count`        |integer      |Specifies that you have several different models of a product (associated with model_id).
-**38**| `discount_group_id`   |integer      |Specifies a discount plan for a product.
-**39**| `latest_sell_price`   |integer      |It is a method that calculates the sales of a product according to its latest price and special price.
-**40**| `is_new`              |boolean      |Checks whether a product is new or old.
-**41**| `is_discountable`     |boolean      |Checks if the product is discounted or not.
-**42**| `structure_sort_score`|string       |A field can be sorted for a product such as size.
-**43**| `package_id`          |integer      |Identifies products that are sold as packages.
-**44**| `is_package`          |bool         |Specifies whether the product is a package or not.
-**45**| `maximum_allowed_purchase_count`|integer|Calculates the maximum purchase of a product based on inventory and the maximum number of purchases of a product.
-**46**| `minimum_allowed_purchase_count`|integer|Calculates the maximum purchase of a product based on inventory and the minimum number of purchases of a product.
+| Num    | Property                         | Datatype | Description                                                                                                                                       |
+| ------ | -------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1**  | `id`                             | integer  | Primary key.                                                                                                                                      |
+| **2**  | `title`                          | string   | Product title.                                                                                                                                    |
+| **3**  | `latest_price`                   | integer  | The latest product price.                                                                                                                         |
+| **4**  | `latest_special_price`           | integer  | The latest special product price.                                                                                                                 |
+| **5**  | `previous_price`                 | integer  | Previous product price.                                                                                                                           |
+| **6**  | `tax_amount`                     | integer  | Product tax amount.                                                                                                                               |
+| **7**  | `toll_amount`                    | integer  | Product toll amount.                                                                                                                              |
+| **8**  | `pure_price`                     | integer  | Pure product price.                                                                                                                               |
+| **9**  | `extra_properties`               | string   | General information of a product.                                                                                                                 |
+| **10** | `description`                    | string   | Product description.                                                                                                                              |
+| **11** | `color_code`                     | string   | Product color code.                                                                                                                               |
+| **12** | `code`                           | string   | Product code.                                                                                                                                     |
+| **13** | `directory_id`                   | integer  | The parent category of the product.                                                                                                               |
+| **14** | `p_structure_id`                 | integer  | Product category subject.                                                                                                                         |
+| **15** | `created_at`                     | DateTime | Product creation date.                                                                                                                            |
+| **16** | `updated_at`                     | DateTime | Product update date.                                                                                                                              |
+| **17** | `average_rating`                 | float    | Product rating.                                                                                                                                   |
+| **18** | `rates_count`                    | int      | Number of product rates.                                                                                                                          |
+| **19** | `count`                          | int      | Number of products in the store warehouse.                                                                                                        |
+| **20** | `is_active`                      | boolean  | The possibility of selling the product in the store.                                                                                              |
+| **21** | `important_at`                   | DateTime | Determines the importance of a product by the date.                                                                                               |
+| **22** | `is_important`                   | boolean  | Checks if it has `important_at` or not.                                                                                                           |
+| **23** | `is_accessory`                   | boolean  | Checks if it is an accessory or not.                                                                                                              |
+| **24** | `min_allowed_count`              | integer  | Minimum authorized product inventory in the store warehouse.                                                                                      |
+| **25** | `max_purchase_count`             | integer  | maximum number of purchases of a product.                                                                                                         |
+| **26** | `min_purchase_count`             | integer  | Minimum number of purchases of a product.                                                                                                         |
+| **27** | `inaccessibility_type`           | integer  | Methods of introducing the non-existence of a product.                                                                                            |
+| **28** | `seo_keywords`                   | string   | SEO keywords of a product.                                                                                                                        |
+| **29** | `seo_description`                | string   | Description of a product SEO.                                                                                                                     |
+| **30** | `isLiked`                        | bool     | Specifies whether the user likes the product or not.                                                                                              |
+| **31** | `model_id`                       | int      | Determining whether a product is a model with other products.                                                                                     |
+| **32** | `has_discount`                   | bool     | Checks if a discount is set for the product.                                                                                                      |
+| **33** | `is_visible`                     | bool     | Specifies whether the product is displayed in the store or not.                                                                                   |
+| **34** | `attributes_content`             | json     | Stores attributes related to a product as a JSON file in the system.                                                                              |
+| **35** | `cmc_id`                         | integer  | CMC (Customer Meta Category), Checks whether information should be taken from the customer when buying the product or not purchasing the product. |
+| **36** | `notice`                         | string   | Is a text that you can display in a product.                                                                                                      |
+| **37** | `models_count`                   | integer  | Specifies that you have several different models of a product (associated with model_id).                                                         |
+| **38** | `discount_group_id`              | integer  | Specifies a discount plan for a product.                                                                                                          |
+| **39** | `latest_sell_price`              | integer  | It is a method that calculates the sales of a product according to its latest price and special price.                                            |
+| **40** | `is_new`                         | boolean  | Checks whether a product is new or old.                                                                                                           |
+| **41** | `is_discountable`                | boolean  | Checks if the product is discounted or not.                                                                                                       |
+| **42** | `structure_sort_score`           | string   | A field can be sorted for a product such as size.                                                                                                 |
+| **43** | `package_id`                     | integer  | Identifies products that are sold as packages.                                                                                                    |
+| **44** | `is_package`                     | bool     | Specifies whether the product is a package or not.                                                                                                |
+| **45** | `maximum_allowed_purchase_count` | integer  | Calculates the maximum purchase of a product based on inventory and the maximum number of purchases of a product.                                 |
+| **46** | `minimum_allowed_purchase_count` | integer  | Calculates the maximum purchase of a product based on inventory and the minimum number of purchases of a product.                                 |
 
 **NOTE:** `product` is a Laravel model, extends from Laravel `BaseModel`.
 
@@ -67,32 +67,31 @@ Num   |Property               | Datatype    |Description
 class product extends BaseModel implements
 ```
 
+A product is related to objects, Following, you can see these relationships in the table.
 
-A product is related to objects, Following, you can see these relationships in the table. 
-
-Num   |Property              | Datatype                         |Description
-------|----------------------|----------------------------------|------------------------------------------
-**1** | `directory`            |Directory                         |Specifies what category this product is in.
-**2** | `directories`          |Directory[]                       |There is a list of parent directories that indicate in which other directories this product is manufactured, or (Short link of goods in other directories).
-**3** | `productStructure`     |ProductStructure                  |Displays the overall structure of a product.
-**4** | `colors`               |Color[]                           |List of product colors.
-**5** | `prices`               |ProductPrice[]                    |List of previous product prices.
-**6** | `images`               |ProductImage[]                    |List of product images.
-**7** | `attributeKeys`        |ProductStructureAttributeKey[]    |List of keys as product features.
-**8** | `attributeValues`      |ProductStructureAttributeValue[]  |Values ​​that each product has recorded for itself for each key.
-**9** | `pAttributes`          |ProductAttribute[]                |Holds `attributeKeys` and` attributeValues` assignments as a relation.
-**10**| `invoices`             |Invoice[]                         |Specifies what factors the product is used for.
-**11**| `wishLists`            |CustomerUser[]                    |The list that the user wants to create in the future.
-**12**| `needLists`            |CustomerUser[]                    |List that the user wants to provide the product but is not available.
-**13**| `cartRows`             |CartRow[]                         |Specifies in which basket the product is found.
-**14**| `tags`                 |Tag[]                             |Product tags.
-**15**| `badges`               |Badge[]                           |Badges that are displayed on the product.
-**16**| `review`               |Review                            |Product reviews that include text from user reviews as well as the rates they have given to the product.
-**17**| `customerMetaCategor`  |CustomerMetaCategory              |Information the customer needs to provide to buy a particular product.
-**18**| `discountGroup`        |DiscountGroup                     |Plan of reducing the prices of the products.
-**19**| `priority`             |integer                           |Indicates the priority of the product stored within the system.
-**20**| `productPackage`       |ProductPackage                    |If there is a mixture of products creating a new product, you create a product package. So if one of the products in the database has a relation with a `ProductPackage`, it's understood that the product is a mixture.
-**21**| `productPackages`      |ProductPackage[]                  |:question:
+| Num    | Property              | Datatype                         | Description                                                                                                                                                                                                              |
+| ------ | --------------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **1**  | `directory`           | Directory                        | Specifies what category this product is in.                                                                                                                                                                              |
+| **2**  | `directories`         | Directory[]                      | There is a list of parent directories that indicate in which other directories this product is manufactured, or (Short link of goods in other directories).                                                              |
+| **3**  | `productStructure`    | ProductStructure                 | Displays the overall structure of a product.                                                                                                                                                                             |
+| **4**  | `colors`              | Color[]                          | List of product colors.                                                                                                                                                                                                  |
+| **5**  | `prices`              | ProductPrice[]                   | List of previous product prices.                                                                                                                                                                                         |
+| **6**  | `images`              | ProductImage[]                   | List of product images.                                                                                                                                                                                                  |
+| **7**  | `attributeKeys`       | ProductStructureAttributeKey[]   | List of keys as product features.                                                                                                                                                                                        |
+| **8**  | `attributeValues`     | ProductStructureAttributeValue[] | Values ​​that each product has recorded for itself for each key.                                                                                                                                                         |
+| **9**  | `pAttributes`         | ProductAttribute[]               | Holds `attributeKeys` and` attributeValues` assignments as a relation.                                                                                                                                                   |
+| **10** | `invoices`            | Invoice[]                        | Specifies what factors the product is used for.                                                                                                                                                                          |
+| **11** | `wishLists`           | CustomerUser[]                   | The list that the user wants to create in the future.                                                                                                                                                                    |
+| **12** | `needLists`           | CustomerUser[]                   | List that the user wants to provide the product but is not available.                                                                                                                                                    |
+| **13** | `cartRows`            | CartRow[]                        | Specifies in which basket the product is found.                                                                                                                                                                          |
+| **14** | `tags`                | Tag[]                            | Product tags.                                                                                                                                                                                                            |
+| **15** | `badges`              | Badge[]                          | Badges that are displayed on the product.                                                                                                                                                                                |
+| **16** | `review`              | Review                           | Product reviews that include text from user reviews as well as the rates they have given to the product.                                                                                                                 |
+| **17** | `customerMetaCategor` | CustomerMetaCategory             | Information the customer needs to provide to buy a particular product.                                                                                                                                                   |
+| **18** | `discountGroup`       | DiscountGroup                    | Plan of reducing the prices of the products.                                                                                                                                                                             |
+| **19** | `priority`            | integer                          | Indicates the priority of the product stored within the system.                                                                                                                                                          |
+| **20** | `productPackage`      | ProductPackage                   | If there is a mixture of products creating a new product, you create a product package. So if one of the products in the database has a relation with a `ProductPackage`, it's understood that the product is a mixture. |
+| **21** | `productPackages`     | ProductPackage[]                 | :question:                                                                                                                                                                                                               |
 
 ### Display product properties
 
@@ -119,9 +118,9 @@ The complete directory structure of the template for this project is shown below
 |---webpack.mix.js
 ```
 
-**TIP:** *Boilerplate is any text, documentation, or procedures that can be reused more than once in a new context without any substantial changes to the original.* *<sup>[1](#1)</sup>* 
+**TIP:** _Boilerplate is any text, documentation, or procedures that can be reused more than once in a new context without any substantial changes to the original._ _<sup>[1](#1)</sup>_
 
-**TIP:** *The blade is the simple, yet powerful templating engine that is included with Laravel.*  *<sup>[2](#2)</sup>* 
+**TIP:** _The blade is the simple, yet powerful templating engine that is included with Laravel._ _<sup>[2](#2)</sup>_
 
 Presently if you enter the product's single page, **how can you show the item properties?**
 Larammerce will tell you.
@@ -139,6 +138,7 @@ For example, You delete the entire content of the page and write the following c
 ```bash
 ./deploy.sh #to deploy the resources to the backend directory
 ```
+
 Write the following code snippet:
 
 ##### EXAMPLE
@@ -152,7 +152,7 @@ And write again in the terminal:
 ##### EXAMPLE
 
 ```bash
-./deploy.sh 
+./deploy.sh
 ```
 
 Finally, enter the browser and after refreshing, you will see that the changes have been applied and you will see the phrase "Hello World".
@@ -170,15 +170,16 @@ So, let's take some steps:
 @endphp
 ```
 
-**TIP:** *As you know, you can also use blade tags.* *<sup>[2](#2)</sup>* 
+**TIP:** _As you know, you can also use blade tags._ _<sup>[2](#2)</sup>_
 
-**TIP:** *Blade's {{ }} echo statements are automatically sent through PHP's `htmlspecialchars` function to prevent XSS attacks.* *<sup>[2](#2)</sup>*
+**TIP:** _Blade's {{ }} echo statements are automatically sent through PHP's `htmlspecialchars` function to prevent XSS attacks._ _<sup>[2](#2)</sup>_
 
 And write in the terminal:
 
 ```bash
-./deploy.sh 
+./deploy.sh
 ```
+
 Finally, go to the browser and refresh, you will see a product model and if you open the attributes field all the properties will be available to you. If you are not sure what properties to use, you can use this method.
 
 Now, you can display the product **title**, **product code**, **latest price**, **previous price**, and **count**:
@@ -200,8 +201,9 @@ Now, you can display the product **title**, **product code**, **latest price**, 
 And write in the terminal:
 
 ```bash
-./deploy.sh 
+./deploy.sh
 ```
+
 When you go to your browser and refresh the page, you can see the product title, previous price, last price, and number.
 
 You can also check if the product has a **discount plan** or not:
@@ -225,7 +227,7 @@ You can also check if the product has a **discount plan** or not:
 And write in the terminal:
 
 ```bash
-./deploy.sh 
+./deploy.sh
 ```
 
 You can specify **product categories**:
@@ -247,7 +249,7 @@ You can specify **product categories**:
 And write in the terminal:
 
 ```bash
-./deploy.sh 
+./deploy.sh
 ```
 
 **In the example above**, `getParentDirectories()` in `foreach`, which is part of the `directory`, is considered as `$parent_directory`.
@@ -273,7 +275,7 @@ You can also show **images** of your product:
 And write in the terminal:
 
 ```bash
-./deploy.sh 
+./deploy.sh
 ```
 
 **In the example above**, `$product->images` in `foreach`, is considered as `$index=>$product_image`.
@@ -309,7 +311,7 @@ url(ImageService::getImage($product_image, 'thumb'))
 
 **NOTE:** In Laravel, the relationships between objects, if you want to get the list of properties, **just write the name of the relationship**, Otherwise, if you want to create a new query on a relationship, use the "**()**" symbol and then write your query.
 
-##### EXAMPLE 
+##### EXAMPLE
 
 ```php
 $obj->relationships; #this returns a list of object related to specific object.
@@ -331,7 +333,7 @@ Well, you can also put a **description** for the product, which is as follows:
 And write in the terminal:
 
 ```bash
-./deploy.sh 
+./deploy.sh
 ```
 
 Each product mold contains a set of attributes, for example, valves is a product whose attributes can include brand, size, and body material. To display the **attributes** of a product such as brand and body material, you can proceed as follows:
@@ -359,7 +361,7 @@ Each product mold contains a set of attributes, for example, valves is a product
 And write in the terminal:
 
 ```bash
-./deploy.sh 
+./deploy.sh
 ```
 
 Below you can see the full example:
@@ -413,21 +415,21 @@ With the help of the following command in the terminal, you can return the code 
 
 ```bash
 git checkout -- public/views/product-single.blade.php
-./deploy.sh 
+./deploy.sh
 ```
 
-**NOTE:**  It is important to mention that you are absolutely free to manage and design any of the template pages using Larammerce methods and helpers. So please feel free to make your pages and be aware of the page naming.
+**NOTE:** It is important to mention that you are absolutely free to manage and design any of the template pages using Larammerce methods and helpers. So please feel free to make your pages and be aware of the page naming.
 
+#### Reference
 
+---
 
- #### Reference
-___
+_1. <a name="1">[What Is Boilerplate?](https://www.investopedia.com/terms/b/boilerplate.asp)</a>_
 
-*1. <a name="1">[What Is Boilerplate?](https://www.investopedia.com/terms/b/boilerplate.asp)</a>*
-
-*2. <a name="2">[What Is Blade Templates?](https://laravel.com/docs/8.x/blade)</a>*
+_2. <a name="2">[What Is Blade Templates?](https://laravel.com/docs/8.x/blade)</a>_
 
 #### Video source
-___
+
+---
 
 <iframe src="https://www.aparat.com/video/video/embed/videohash/rRCSt/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>
