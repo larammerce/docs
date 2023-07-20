@@ -19,7 +19,6 @@ Overall, a coupon management system can help businesses run more effective and e
 
 
 
-
 ### What are the features of coupon management?
 
 This feature explains that the administrator in the admin panel can create a coupon for each user with a desired price and expiration date.
