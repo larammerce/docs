@@ -3,8 +3,131 @@ pageClass: no-toc
 ---
 
 ## :rocket: 5 minute quick start
-Larammerce is using the Laravel framework as its core system and obviously inherits all Laravel features. for example, Larammerce uses Blade (Laravel’s templating engine), to easily create a standard page template, or layout.
 
+this document teaches you How to install the larammerce-base-theme project from GitHub
+And install the larammerce-base-theme project on larammerce
+
+::: tip you're not allowed to change the larammerce code
+The larammerce project is a separate project from larammerce-base-theme
+For example, if you want to create a project with larammerce, You don't need to change the larammerce code
+Our team to make your work easier project larammerce_base_theme provided to you and you can use it to personalize your website
+:::
+## Install larammerce-base theme
+#### To install, first enter the [larammerce](https://github.com/larammerce)website
+
+![githublarammerce](/githublarammerce1.png)
+And in the next step, you select the code button![Plus button](/codebutton.png)
+
+::: warning Copy one of the codes below
+
+
+```bash
+git clone git@github.com:larammerce/larammerce-base-theme.git 
+```
+```bash
+git clone https://github.com/larammerce/larammerce-base-theme.git
+```
+:::
+And open your terminal or cmd and paste the code
+![githublarammerce](/terminalgithubcode.png)
+
+ After installation, enter larammerce-base-theme project and enter the following code
+``` 
+npm install
+```
+And in the next step, we enter the following code
+```
+git checkout -- .
+```
+Now your project is ready to work
+Open the larammerce-base-theme project with your IDE *<sup>[1](#1)</sup>*
+
+## Launch larammerce-base-theme
+To work with larammerce-base-theme
+First, create a file called .envrc
+```
+
+|---resources/
+|---.envrc  
+|---.envrc.example
+
+```
+
+
+And put the following code in the .envrc file
+
+``` bash
+export ECOMMERCE_BASE_PATH=
+```
+and enter the larammerce project with the terminal or cmd and find the project address with the pwd command
+
+![githublarammerce](/terminalpwd.png)
+
+And copy the project address Place it like the code below
+
+``` bash
+export ECOMMERCE_BASE_PATH=/Users/mohammad/projects/larammerce
+```
+If you are using a version other than ``node.js 16`` and ``php 8.0`` Put the following code in the .envrc file
+``` bash
+export NODE_OPTIONS=--openssl-legacy-provider
+export PATH=/usr/local/lib/php/8.0:$PATH
+```
+Then save the file and enter this command in the terminal
+``` bash
+direnv allow .
+```
+
+:::danger If you don't have direnv installed on your system
+ go to [```direnv.net```](https://direnv.net/docs/installation.html) and install it according to your operating system.
+:::
+
+The next command will convert sass files to css
+```bash
+npm run watch
+```
+:::warning development or production
+Use ``npm run watch`` when programming
+and from ``npm run prod`` Use for production
+:::
+
+
+And the last command to put larammerce-base-theme project On the project larammerce Is
+
+
+```bash
+./deploy.sh
+```
+And finally enter larammerce project and run your local
+
+## How to import the database file to the larammerce project
+
+Sometimes we want to import a SQL file into the larammerce project database
+For example, the retopi_main.sql file To put it in the larammerce project
+go to terminal or cmd and go to the directory of the SQL file
+
+![githublarammerce](/Screenshotsqlfile.png)
+
+::: tip
+Create your database with the following command
+and instead of ``your password`` Enter your MYSQL password
+```bash 
+mysql -u root -p<your password> -e "create database larammerce_base"
+```
+:::
+And with the next command all the code of the retopi_main project in larammerce_base will be pasted
+
+```bash
+ mysql -u root -p<your password> larammerce_base < retopi_main.sql
+```
+And in the last step, we enter the larammerce project
+Open the ``.env`` file
+and enter your database settings
+![githublarammerce](/Screenshot-.env-sql.png)
+
+
+
+Larammerce is using the Laravel framework as its core system and obviously inherits all Laravel features. for example, Larammerce uses Blade (Laravel’s templating engine), to easily create a standard page template, or layout.
 The complete directory structure of the template for this project is shown below.
 
 ```
@@ -31,6 +154,7 @@ The template directory has two subdirectories, **public** and **resources**, whi
 >a boilerplate is a unit of writing that can be reused over and over without change.
 
 In the **public** directory, there are two subdirectories, **HCMS-assets** and **views**. and `./deploy.sh` command to deploy the **HCMS-assets** and **views** directories to the backend directory.
+
 ```
 |---public/
      |---HCMS-assets/
@@ -89,3 +213,10 @@ After all you can check to the URL of your web page in a browser and see the pag
 ___
 
 <iframe src="https://www.aparat.com/video/video/embed/videohash/fx6sa/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>
+
+<iframe src="https://www.aparat.com/video/video/embed/videohash/6a75J/vt/frame?titleShow=true"  height="300" width="700" style=" margin-top: 15px;  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>
+
+## References
+
+*1.<a name="1"> [What is IDE ?](https://aws.amazon.com/what-is/ide/#seo-faq-pairs#what-is-an-ide) </a>*
+
