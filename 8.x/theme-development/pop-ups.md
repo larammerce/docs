@@ -1,4 +1,4 @@
-## Pop ups in larammerce template engine
+## Pop ups
 
 [[toc]]
 
