@@ -19,9 +19,7 @@ Route::get("/start", function(){
     echo ("Hi, This is /start \n <br/>");
 
     echo \App\Utils\CMS\AdminRequestService::isInAdminArea()?
-    "We are in admin area" : "We are out of admin area"
-
-    ;
+    "We are in admin area" : "We are out of admin area";
 
 });
 
@@ -81,7 +79,6 @@ public function getPriceAttribute(){
    return AdminRequestService::isInAdminArea() ?
    "The admin price" :
    "The customer price";
-
 }
 ```
 
