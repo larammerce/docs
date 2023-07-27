@@ -23,6 +23,7 @@ module.exports = [
       'galleries',
       'forms',
       'products',
+      'Pop-ups-in-larammerce-template-engine',
       'Product-limitation',
       'articles',
       'directories',

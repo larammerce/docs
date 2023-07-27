@@ -25,8 +25,7 @@ The first step is to access the admin panel and adjust the necessary settings. F
 
 Once this limitation is in place, if a user chooses a product from the category and the intended geographical limit is exceeded, an error message will be displayed on the screen after they click the "Continue Shopping" button on the cart page.
 
-
-### Developing the theme 
+### Developing the theme
 
 Suppose you want to display this error message directly on the cart list instead of waiting for the user to click the "Continue Shopping" button. How can we develop this product feature together?
 
@@ -41,7 +40,6 @@ Three properties relate to product location limitations has been added to the pr
 
 ```
 
-
 ### Designing the theme
 
 Suppose you want to provide better information to users about location limitations by adding an error message on the cart page for products that have such limits. You can easily accomplish this using the three properties we discussed in the previous section.
@@ -52,43 +50,46 @@ To implement this feature, navigate to the `public/views/cart.blade.php` file an
 <!-- larammerce-base-theme/public/views/cart.blade.php -->
 
 <div class="col-lg-8 col-md-8 col-sm-7 col-xs-7">
-    ...
-    <p class="code">KIT: <span>{{cartRow->product->code}}</span><p>
+  ...
+  <p class="code">KIT: <span>{{cartRow->product->code}}</span></p>
+  <p>@if(!$cartRow->product->can_deliver)</p>
 
-    @if(!$cartRow->product->can_deliver)
-    <p class="notice"> Unfortunately, the desired product cannot be sent to your address.</p>
-    @endif
-    ...
+  <p class="notice">
+    Unfortunately, the desired product cannot be sent to your address.
+  </p>
+  @endif ...
+</div>
 ```
 
 Now run this command to see the result:
+
 ```bash
 ./deploy.sh
 ```
+
 As a result of implementing the `can_deliver`, `is_location_limited`, and `location_limitations` properties, any items that cannot be delivered based on the user's location will display an error message under their ID on the cart page.
 
 ### Creating ribbon on products
 
-To demonstrate this limitation, it is possible to display it on the product listing page. 
-Here are the steps to follow: 
+To demonstrate this limitation, it is possible to display it on the product listing page.
+Here are the steps to follow:
 
-1. In the admin panel, navigate to the directory where you previously set the limitations. 
-2. Once there, locate the `Larammerce-base-theme/public/views/_underscore_templates.blade.php` file and proceed to the `product box` section. 
+1. In the admin panel, navigate to the directory where you previously set the limitations.
+2. Once there, locate the `Larammerce-base-theme/public/views/_underscore_templates.blade.php` file and proceed to the `product box` section.
 3. Create a ribbon that will inform the user about the product limitation.
 
-
 ```html
-// larammerce-base-theme/public/views/_underscore_templates.blade.php
-<% if(product.can_deliver) { %>
-    <div class="ribbon-delivery hidden-xs"> 
-     Only 
-     <%- product.location_limitations[0].state.name %>,
-     <%- product.location_limitations[0].city.name %>
+// larammerce-base-theme/public/views/_underscore_templates.blade.php <%
+if(product.can_deliver) { %>
+<div class="ribbon-delivery hidden-xs">
+  Only <%- product.location_limitations[0].state.name %>, <%-
+  product.location_limitations[0].city.name %>
 
-    <i class="fa fa-times"></i>
-    </div>
+  <i class="fa fa-times"></i>
+</div>
 <% } %>
 ```
+
 Lines 5 and 6 represent the location limitation list.
 
 - Now design the ribbon class:
@@ -111,6 +112,7 @@ Lines 5 and 6 represent the location limitation list.
 ```
 
 Now run:
+
 ```bash
 ./deploy.sh
 ```
@@ -122,11 +124,12 @@ Create a new ribbon with a message that indicates the fast delivery option is av
 <!-- larammerce-base-theme/public/views/_underscore_templates.blade.php !-->
 
 <% if(product.is_location_limited) { %>
-    <div class="ribbon-right hidden-xs"> 
-    <i class="fa fa-truck"></i>
-    </div>
+<div class="ribbon-right hidden-xs">
+  <i class="fa fa-truck"></i>
+</div>
 <% } %>
 ```
+
 - Now design the ribbon class:
 
 ```stylus
@@ -136,7 +139,7 @@ Create a new ribbon with a message that indicates the fast delivery option is av
     position: absolute;
     top: 15px;
     right: px;
-    background: $success-color-1;  
+    background: $success-color-1;
     font-size: 11px;
     color: #fff;
     padding: 0 10px;
@@ -145,39 +148,43 @@ Create a new ribbon with a message that indicates the fast delivery option is av
     z-index: 2;
 }
 ```
+
 Now run:
+
 ```bash
 ./deploy.sh
 ```
 
 ### Add User location to the header
 
-To add a user location section to the header tab, you can follow these steps: 
+To add a user location section to the header tab, you can follow these steps:
 
 1. Navigate to the `Larammerce-base-theme/public/views/_base.blade.php` file.
 2. Locate the appropriate section in the header where you would like to add the user location information.
 3. Create a conditional `li` tag that will only be displayed if the user has provided their location. This tag should display the user's location information once it is available.
 
-
 ```html
 @if(config("cms.general.site.enable_directory_location"))
-    <li class="location-link">
-        <a data-toggle="modal"
-           data-target="{{is_customer() ? '#addresses-modal' : '#location-modal' }}">
-           <i class="icon-placeholder"></i>
-           <span class="hidden-sm hidden-xs">{{get_current_customer_location_title()}}></span>
-        </a>
-    </li>
+<li class="location-link">
+  <a
+    data-toggle="modal"
+    data-target="{{is_customer() ? '#addresses-modal' : '#location-modal' }}"
+  >
+    <i class="icon-placeholder"></i>
+    <span class="hidden-sm hidden-xs"
+      >{{get_current_customer_location_title()}}></span
+    >
+  </a>
+</li>
 @endif
 ```
+
 Once a user has selected a location on their system, the location section will be displayed in the header tab.
 
 #### Video source
-___
+
+---
 
 <div style="position:relative; padding-bottom:56.25%; padding-top:0; height:0;">
   <iframe src="https://www.aparat.com/video/video/embed/videohash/XvG5B/vt/frame" frameborder="0" style="position:absolute; top:0; left:0; width:100%; height:100%; border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowfullscreen="true"></iframe>
 </div>
-
-
-
