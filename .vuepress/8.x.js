@@ -24,7 +24,7 @@ module.exports = [
       'forms',
       'products',
       'pop-ups',
-      'product-limitations',
+      'geographical-limitations',
       'articles',
       'directories',
       'custom-queries',
