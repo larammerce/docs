@@ -23,6 +23,8 @@ module.exports = [
       'galleries',
       'forms',
       'products',
+      'pop-ups',
+      'geographical-limitations',
       'articles',
       'directories',
       'custom-queries',
