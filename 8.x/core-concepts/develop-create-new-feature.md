@@ -1,4 +1,4 @@
-## How to develop/create new feature
+## develop/create new feature
 
 [[toc]]
 
