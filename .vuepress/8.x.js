@@ -51,6 +51,7 @@ module.exports = [
       'appliances',
       'customer-requests',
       'shopping-process',
+      'develop-create-new-feature',
     ]),
   },
   {
@@ -114,6 +115,7 @@ module.exports = [
     'appliances',
     'customer-requests',
     'shopping-process',
+    'develop-create-new-featuer',
   ]),
   ...prefix('utils', [
     'README',
