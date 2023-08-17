@@ -18,9 +18,9 @@
         >
           <svg
             height="60"
-            style="height: 60px; fill: currentColor"
+            style="height: 60px; fill: white"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 52 52"
+            viewBox="0 0 50 50"
           >
             <g class="st0">
               <path
@@ -54,7 +54,7 @@
         "
       >
         <AlgoliaSearchBox v-if="isAlgoliaSearch" :options="algolia" />
-        <SearchBox v-else-if="$site.themeConfig.search !== false" />
+        <SearchBox v-else-if="$site.themeConfig.search !== false" class="search-box" />
         <NavLinks class="can-hide" />
       </div>
     </div>
@@ -93,6 +93,12 @@ export default {
     }
     handleLinksWrapWidth()
     window.addEventListener('resize', handleLinksWrapWidth, false)
+
+    const siteName = this.$refs.siteName;
+    if (siteName) {
+      siteName.classList.remove('can-hide');
+    }
+
   },
 
   computed: {
@@ -149,12 +155,22 @@ $navbar-horizontal-padding = 1.5rem
     font-size 0.9rem
     display flex
     .search-box
+      padding-top 0.2rem
       flex: 0 0 auto
       vertical-align top
 
 @media (max-width: $MQMobile)
-  .navbar
-    padding-left 4rem
+  .navbar 
+    padding-left 2.4rem
+    display flex
+    justify-content center
+    align-items center
+    fill white
+    .search-box 
+      margin-top 0.5rem
+      position fixed
+      top 2.5%
+      right 2.15rem
     .can-hide
       display none
     .links
