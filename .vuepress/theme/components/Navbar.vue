@@ -54,7 +54,10 @@
         "
       >
         <AlgoliaSearchBox v-if="isAlgoliaSearch" :options="algolia" />
-        <SearchBox v-else-if="$site.themeConfig.search !== false" class="search-box" />
+        <SearchBox
+          v-else-if="$site.themeConfig.search !== false"
+          class="search-box"
+        />
         <NavLinks class="can-hide" />
       </div>
     </div>
@@ -94,11 +97,10 @@ export default {
     handleLinksWrapWidth()
     window.addEventListener('resize', handleLinksWrapWidth, false)
 
-    const siteName = this.$refs.siteName;
+    const siteName = this.$refs.siteName
     if (siteName) {
-      siteName.classList.remove('can-hide');
+      siteName.classList.remove('can-hide')
     }
-
   },
 
   computed: {
@@ -160,13 +162,13 @@ $navbar-horizontal-padding = 1.5rem
       vertical-align top
 
 @media (max-width: $MQMobile)
-  .navbar 
+  .navbar
     padding-left 2.4rem
     display flex
     justify-content center
     align-items center
     fill white
-    .search-box 
+    .search-box
       margin-top 0.5rem
       position fixed
       top 2.5%
