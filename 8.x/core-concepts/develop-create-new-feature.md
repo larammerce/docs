@@ -1,4 +1,4 @@
-## develop/create new feature
+## Develop/Create new feature
 
 [[toc]]
 
@@ -76,7 +76,7 @@ Add this function:
 
 **NOTE:** This function has a one-to-many relationship. For example, a customer has a database relationship with several coupons.<sup>[1](#1)</sup>
 
-The next step is to put the code in the /larammerce/config/cms/appliances.php file.
+The next step is to put the code in the ```/larammerce/config/cms/appliances.php``` file.
 To create coupons in the section
 Shop supplies:
 
@@ -290,7 +290,7 @@ And you need to create coupon system routes.
 
 At this stage, you should focus on the structure of the blade and create the blade files and design its theme
 To create the theme file, go to ``/larammerce-project/resources/views/admin/pages``
-Go and create a directory named ``coupon`` and create the theme in this directory. 
+Go and create a directory named ``coupon`` and create the theme in this directory.
 
 ```
 |---coupon/
@@ -747,4 +747,5 @@ What are php time data types? ](https://www.php.net/manual/en/datetime.format.ph
 
 <iframe src="https://www.aparat.com/video/video/embed/videohash/lscVX/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>
 <iframe src="https://www.aparat.com/video/video/embed/videohash/ZPiEz/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>
+
 
