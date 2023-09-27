@@ -2543,9 +2543,9 @@ function get_invoice_tax_heading(): string {
 }
 ```
 
-This function provides the invoice tax heading for the theme developer, for example, if the admin changes the 
+This function provides the invoice tax heading for the theme developer, for example, if the admin changes the
 heading of the invoice tax, the theme developer can use this function to get the new heading.
-also this function automatically detects the configured tax+toll percentage and shows it in the heading if the 
+also this function automatically detects the configured tax+toll percentage and shows it in the heading if the
 `show_tax_percentage_in_invoice_heading` is set to true in the dashboard.
 
 ---

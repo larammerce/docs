@@ -2,7 +2,6 @@
 
 [[toc]]
 
-
 ### What Is A Coupon Management System Exactly?
 
 A coupon management system is a software platform that helps businesses create, distribute, and track the performance of their coupon campaigns. The system typically includes features for creating coupon codes, setting up rules for how those codes can be redeemed, and monitoring the usage and effectiveness of each coupon.
@@ -13,15 +12,13 @@ In addition to creating and distributing coupons, a coupon management system can
 
 Overall, a coupon management system can help businesses run more effective and efficient coupon campaigns, leading to increased customer engagement, higher sales, and improved customer loyalty.
 
-
-
 ### What are the features of coupon management?
 
 This feature explains that the administrator in the admin panel can create a coupon for each user with a desired price and expiration date.
 The coupon is for that user and the user can use it while shopping, and it will be deducted from the invoice amount.
 
 | Coupon feature       | Condition | type               |
-|----------------------|-----------|--------------------|
+| -------------------- | --------- | ------------------ |
 | **id**               | not null  | Incremental        |
 | **title**            | not null  | String             |
 | **customer_user_id** | not null  | unsignedInteger    |
@@ -30,7 +27,6 @@ The coupon is for that user and the user can use it while shopping, and it will 
 | **updated_at**       | datetime  | date time          |
 | **used_at**          | nullable  | timestamp          |
 | **expire_at**        | nullable  | timestamp          |
-
 
 ### Create coupon management
 
@@ -65,7 +61,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 ```
 
-And in the ``CustomerUser.php`` file
+And in the `CustomerUser.php` file
 Add this function:
 
 ```php
@@ -76,10 +72,9 @@ Add this function:
 
 **NOTE:** This function has a one-to-many relationship. For example, a customer has a database relationship with several coupons.<sup>[1](#1)</sup>
 
-The next step is to put the code in the ```/larammerce/config/cms/appliances.php``` file.
+The next step is to put the code in the `/larammerce/config/cms/appliances.php` file.
 To create coupons in the section
 Shop supplies:
-
 
 ```php
    [
@@ -91,6 +86,7 @@ Shop supplies:
       ]
    ],
 ```
+
 Then create a controller file to write the coupon management system functions
 And create the functions as follows:
 
@@ -197,25 +193,21 @@ class CouponController extends BaseController
 }
 ```
 
-
-Then go to ``public/views/invoice-payment.blade.php`` file,
+Then go to `public/views/invoice-payment.blade.php` file,
 And put the following codes inside it:
-
 
 ```php
  ...
  * @property Coupon coupon
  ...
- 
+
  public function coupon(): HasOne {
         return $this->hasOne(Coupon::class, 'invoice_id', "id");
     }
 ```
 
-
-And go to the ``app/Http/Controllers/Customer/InvoiceController.php`` file,
+And go to the `app/Http/Controllers/Customer/InvoiceController.php` file,
 And put the following codes inside it:
-
 
 ```php
  $invoice = InvoiceService::getTheNew();
@@ -273,12 +265,12 @@ And you need to create coupon system routes.
 ```php
    //Private customer routes
     Route::post("check-coupon/{coupon}", ["as" => "check-coupon", "uses" => "InvoiceController@checkCoupon"]);
- 
+
     Route::group(["prefix" => "coupon", "as" => "coupon."],
             function () {
                 Route::get("/", ["as" => "index", "uses" => "CouponController@index"]);
             });
-            
+
   //Coupon
         Route::group(["prefix" => "coupon", "as" => "admin.coupon."],
             function () {
@@ -287,70 +279,78 @@ And you need to create coupon system routes.
         Route::resource("coupon", "CouponController", ["as" => "admin"]);
 ```
 
-
 At this stage, you should focus on the structure of the blade and create the blade files and design its theme
-To create the theme file, go to ``/larammerce-project/resources/views/admin/pages``
-Go and create a directory named ``coupon`` and create the theme in this directory.
+To create the theme file, go to `/larammerce-project/resources/views/admin/pages`
+Go and create a directory named `coupon` and create the theme in this directory.
 
 ```
 |---coupon/
      |---layout/
-          |---list.blade.php   
+          |---list.blade.php
     |---create.blade.php
     |---edit.blade.php
     |---index.blade.php
 ```
 
-
-First, in the ``coupon/layout/list.blade.php`` file
+First, in the `coupon/layout/list.blade.php` file
 To display the list of coupons
 Put the following codes inside it:
 
 ```html
 @foreach($coupons as $coupon)
-    <div
-            class="col-lg-offset-1 col-lg-10 col-md-offset-0 col-md-12 col-sm-offset-0 col-sm-12 col-xs-offset-0 col-xs-12 list-row roles">
-        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-6 col">
-            <div class="label">شناسه</div>
-            <div>{{$coupon->id}}#</div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 col">
-            <div class="label">عنوان</div>
-            <div>{{$coupon->title}} - ({{$coupon->customer->user->full_name}})</div>
-        </div>
-        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 col">
-            <div class="label">مبلغ</div>
-            <div class="price-data">{{$coupon->amount}}</div>
-        </div>
-        <div class="col-lg-1 col-md-1 col-sm-4 col-xs-6 col">
-            <div class="label">تاریخ استفاده</div>
-            @if($coupon->is_used)
-                <div>{{JDate::forge($coupon->used_at)->format("%Y/%m/%d %H:i")}}</div>
-            @else
-                <div>-</div>
-            @endif
-        </div>
-        <div class="col-lg-1 col-md-1 col-sm-4 col-xs-6 col">
-            <div class="label">تاریخ اتقضا</div>
-            <div>{{JDate::forge($coupon->expire_at)->format("%Y/%m/%d %H:i")}}</div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col">
-            <div class="label">عملیات</div>
-            <div class="actions-container">
-                <a class="btn btn-sm btn-primary" href="{{route('admin.coupon.edit', $coupon)}}">
-                    <i class="fa fa-pencil"></i>
-                </a>
-                <a class="btn btn-sm btn-danger virt-form"
-                   data-action="{{ route('admin.coupon.destroy', $coupon) }}"
-                   data-method="DELETE" confirm>
-                    <i class="fa fa-trash"></i>
-                </a>
-                <a class="btn btn-sm btn-success" href="{{route('admin.coupon.show', $coupon)}}">
-                    <i class="fa fa-eye"></i>
-                </a>
-            </div>
-        </div>
+<div
+  class="col-lg-offset-1 col-lg-10 col-md-offset-0 col-md-12 col-sm-offset-0 col-sm-12 col-xs-offset-0 col-xs-12 list-row roles"
+>
+  <div class="col-lg-1 col-md-1 col-sm-2 col-xs-6 col">
+    <div class="label">شناسه</div>
+    <div>{{$coupon->id}}#</div>
+  </div>
+  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 col">
+    <div class="label">عنوان</div>
+    <div>{{$coupon->title}} - ({{$coupon->customer->user->full_name}})</div>
+  </div>
+  <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 col">
+    <div class="label">مبلغ</div>
+    <div class="price-data">{{$coupon->amount}}</div>
+  </div>
+  <div class="col-lg-1 col-md-1 col-sm-4 col-xs-6 col">
+    <div class="label">تاریخ استفاده</div>
+    @if($coupon->is_used)
+    <div>{{JDate::forge($coupon->used_at)->format("%Y/%m/%d %H:i")}}</div>
+    @else
+    <div>-</div>
+    @endif
+  </div>
+  <div class="col-lg-1 col-md-1 col-sm-4 col-xs-6 col">
+    <div class="label">تاریخ اتقضا</div>
+    <div>{{JDate::forge($coupon->expire_at)->format("%Y/%m/%d %H:i")}}</div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col">
+    <div class="label">عملیات</div>
+    <div class="actions-container">
+      <a
+        class="btn btn-sm btn-primary"
+        href="{{route('admin.coupon.edit', $coupon)}}"
+      >
+        <i class="fa fa-pencil"></i>
+      </a>
+      <a
+        class="btn btn-sm btn-danger virt-form"
+        data-action="{{ route('admin.coupon.destroy', $coupon) }}"
+        data-method="DELETE"
+        confirm
+      >
+        <i class="fa fa-trash"></i>
+      </a>
+      <a
+        class="btn btn-sm btn-success"
+        href="{{route('admin.coupon.show', $coupon)}}"
+      >
+        <i class="fa fa-eye"></i>
+      </a>
     </div>
+  </div>
+</div>
 @endforeach
 ```
 
@@ -400,73 +400,93 @@ Enter the following codes on the index page:
 @endsection
 ```
 
-
 And created on the page,
 To create a coupon
 put the following codes inside it:
 
-
 ```html
-@section('form_attributes') action="{{route('admin.coupon.store')}}" method="POST" enctype="multipart/form-data"  @endsection
+@section('form_attributes') action="{{route('admin.coupon.store')}}"
+method="POST" enctype="multipart/form-data" @endsection @section('form_body')
+<div class="input-group group-sm col-lg-12 col-sm-12 col-md-12 col-xs-12">
+  <span class="label">عنوان</span>
+  <input class="form-control input-sm" name="title" value="{{old('title')}}" />
+</div>
+<div class="input-group group-sm col-lg-12 col-sm-12 col-md-12 col-xs-12">
+  <span class="label">مبلغ</span>
+  <input
+    class="form-control input-sm"
+    act="price"
+    type="text"
+    name="amount"
+    value="{{old('amount')}}"
+  />
+</div>
+<div class="input-group group-sm col-lg-12 col-sm-12 col-md-12 col-xs-12">
+  <span class="label">تاریخ انقضا</span>
+  <input class="form-control input-sm" name="expire_at_datepicker"
+  data-name="expire_at" value="{{old("expire_at")}}">
+  <input type="hidden" name="expire_at" />
+</div>
+<div class="input-group group-sm col-lg-12 col-sm-12 col-md-12 col-xs-12">
+  <span class="label">شماره تماس کاربر</span>
+  <input
+    class="form-control input-sm"
+    type="text"
+    name="phone_number"
+    value="{{old('phone_number')}}"
+  />
+</div>
 
-@section('form_body')
-    <div class="input-group group-sm col-lg-12 col-sm-12 col-md-12 col-xs-12">
-        <span class="label">عنوان</span>
-        <input class="form-control input-sm" name="title" value="{{old('title')}}">
-    </div>
-    <div class="input-group group-sm col-lg-12 col-sm-12 col-md-12 col-xs-12">
-        <span class="label">مبلغ</span>
-        <input class="form-control input-sm" act="price" type="text" name="amount" value="{{old('amount')}}">
-    </div>
-    <div class="input-group group-sm col-lg-12 col-sm-12 col-md-12 col-xs-12">
-        <span class="label">تاریخ انقضا</span>
-        <input class="form-control input-sm" name="expire_at_datepicker" data-name="expire_at" value="{{old("expire_at")}}">
-        <input type="hidden" name="expire_at">
-    </div>
-    <div class="input-group group-sm col-lg-12 col-sm-12 col-md-12 col-xs-12">
-        <span class="label">شماره تماس کاربر</span>
-        <input class="form-control input-sm" type="text" name="phone_number" value="{{old('phone_number')}}">
-    </div>
-
-
-@endsection
-
-@section('form_footer')
-    <button type="submit" class="btn btn-default btn-sm">ذخیره</button>
+@endsection @section('form_footer')
+<button type="submit" class="btn btn-default btn-sm">ذخیره</button>
 ```
-
 
 And on the edit page,
 To edit the coupon
 Put the following codes inside it:
 
 ```html
-@section('form_body')
-    {{ method_field('PUT') }}
-    <div class="input-group group-sm col-lg-12 col-sm-12 col-md-12 col-xs-12">
-        <span class="label">عنوان</span>
-        <input class="form-control input-sm" name="title" value="{{old('title', $coupon->title)}}">
-    </div>
-    <div class="input-group group-sm col-lg-12 col-sm-12 col-md-12 col-xs-12">
-        <span class="label">مبلغ</span>
-        <input class="form-control input-sm" act="price" type="text" name="amount" value="{{old('amount', $coupon->amount)}}">
-    </div>
-    <div class="input-group group-sm col-lg-12 col-sm-12 col-md-12 col-xs-12">
-        <span class="label">تاریخ انقضا</span>
-        <input class="form-control input-sm" name="expire_at_datepicker" data-name="expire_at" value="{{old("expire_at", $coupon->expire_at->format("Y-m-d H:i:s"))}}">
-        <input type="hidden" name="expire_at">
-    </div>
-    <div class="input-group group-sm col-lg-12 col-sm-12 col-md-12 col-xs-12">
-        <span class="label">شماره تماس کاربر</span>
-        <input class="form-control input-sm" type="text" name="phone_number" value="{{old('phone_number', $coupon->customer->main_phone)}}">
-    </div>
+@section('form_body') {{ method_field('PUT') }}
+<div class="input-group group-sm col-lg-12 col-sm-12 col-md-12 col-xs-12">
+  <span class="label">عنوان</span>
+  <input
+    class="form-control input-sm"
+    name="title"
+    value="{{old('title', $coupon->title)}}"
+  />
+</div>
+<div class="input-group group-sm col-lg-12 col-sm-12 col-md-12 col-xs-12">
+  <span class="label">مبلغ</span>
+  <input
+    class="form-control input-sm"
+    act="price"
+    type="text"
+    name="amount"
+    value="{{old('amount', $coupon->amount)}}"
+  />
+</div>
+<div class="input-group group-sm col-lg-12 col-sm-12 col-md-12 col-xs-12">
+  <span class="label">تاریخ انقضا</span>
+  <input class="form-control input-sm" name="expire_at_datepicker"
+  data-name="expire_at" value="{{old("expire_at",
+  $coupon->expire_at->format("Y-m-d H:i:s"))}}">
+  <input type="hidden" name="expire_at" />
+</div>
+<div class="input-group group-sm col-lg-12 col-sm-12 col-md-12 col-xs-12">
+  <span class="label">شماره تماس کاربر</span>
+  <input
+    class="form-control input-sm"
+    type="text"
+    name="phone_number"
+    value="{{old('phone_number', $coupon->customer->main_phone)}}"
+  />
+</div>
 
 @endsection
 ```
 
 ::: tip Change data time
-To set the time of the desired data<sup>[2](#2)</sup>, you must specify it in the ``format`` section like the code below:
-
+To set the time of the desired data<sup>[2](#2)</sup>, you must specify it in the `format` section like the code below:
 
 ```php
     $coupon->expire_at->format("Y-m-d H:i:s"))}}
@@ -474,30 +494,25 @@ To set the time of the desired data<sup>[2](#2)</sup>, you must specify it in th
 
 :::
 
-
-After designing the theme, go to the source ``/larammerce-project/resources/lang/fa/general.php`` file, Enter the translation in the ``shop`` section like the code below:
+After designing the theme, go to the source `/larammerce-project/resources/lang/fa/general.php` file, Enter the translation in the `shop` section like the code below:
 
 ```php
    "coupons" => "کوپن ها"
 ```
 
-
-And then go to the ``/larammerce-project/resources/lang/fa/structures.php`` file,
+And then go to the `/larammerce-project/resources/lang/fa/structures.php` file,
 And translate like the code below:
 
-
 ```php
-   //attributes 
+   //attributes
    'expire_at' => 'تاریخ انقضا',
    'used_at' => 'تاریخ استفاده'
    //classes
    'coupon' => 'کوپن ها'
 ```
 
-
-And in the  ``/larammerce-project/resources/lang/fa/messages.php`` file,
+And in the `/larammerce-project/resources/lang/fa/messages.php` file,
 create a section called Coupon and translate it like the following code:
-
 
 ```php
   "coupon" => [
@@ -506,9 +521,7 @@ create a section called Coupon and translate it like the following code:
     ]
 ```
 
-
-And go to the ``resources/lang/fa/system_messages.php`` file, And put the following codes inside it:
-
+And go to the `resources/lang/fa/system_messages.php` file, And put the following codes inside it:
 
 ```php
  'coupon' => [
@@ -518,8 +531,7 @@ And go to the ``resources/lang/fa/system_messages.php`` file, And put the follow
 ```
 
 At this stage, you should create a helper so that if someone wants to design a theme, they can use your helpers.
-To create a helper, you need to go to the file ``app/Utils/CMS/Template/helpers.php`` and create the helper like the code below:
-
+To create a helper, you need to go to the file `app/Utils/CMS/Template/helpers.php` and create the helper like the code below:
 
 ```php
 if (!function_exists("get_not_used_coupons")) {
@@ -530,10 +542,8 @@ if (!function_exists("get_not_used_coupons")) {
 }
 ```
 
-
-And then you need to create a ``service`` file at, ``app/Services/Coupon/CouponService.php`` To write queries,
+And then you need to create a `service` file at, `app/Services/Coupon/CouponService.php` To write queries,
 And enter it like the code below:
-
 
 ```php
 <?php
@@ -557,10 +567,8 @@ class CouponService {
 }
 ```
 
-
-And then you need to create a controller file in, ``app/Http/Controllers/Customer/CouponController.php``
+And then you need to create a controller file in, `app/Http/Controllers/Customer/CouponController.php`
 And enter the following code:
-
 
 ```php
 <?php
@@ -577,25 +585,25 @@ class CouponController extends BaseController {
 }
 ```
 
-After finishing, you should enter the ``Larammerce_base_theme`` project and design the coupon management theme.
+After finishing, you should enter the `Larammerce_base_theme` project and design the coupon management theme.
 
 :::warning Install Larammerce_base_theme
 If you do not have the Larammerce_base_theme project installed, with the help of the [5minute quick start](https://docs.larammerce.com/8.x/theme-development/#_5-minute-quick-start)page
 Install and run it.
 :::
 
-First, in the ``public/views/base.blade.php`` file,
+First, in the `public/views/base.blade.php` file,
 Create the coupon design like the code below:
 
-
 ```html
-  <li>
-     <a href="{{route('customer.coupon.index')}}" title="لیست کوپن ها">لیست
-       کوپن ها</a>
-  </li>
+<li>
+  <a href="{{route('customer.coupon.index')}}" title="لیست کوپن ها"
+    >لیست کوپن ها</a
+  >
+</li>
 ```
 
-Then you need to create a file called ``coupons.blade.php`` and design the coupon theme in it like the code below:
+Then you need to create a file called `coupons.blade.php` and design the coupon theme in it like the code below:
 
 ```php
 @extends('_base')
@@ -633,9 +641,8 @@ Then you need to create a file called ``coupons.blade.php`` and design the coupo
 ```
 
 In the next step, you need to add the coupon on the product payment page.
-Go to ``public/views/invoice-payment.blade.php`` file,
+Go to `public/views/invoice-payment.blade.php` file,
 And put the following codes inside it:
-
 
 ```php
  <div class="sum-price-coupon" id="coupon-row">
@@ -663,52 +670,52 @@ And put the following codes inside it:
 ```
 
 In this step, the JavaScript code of the coupon must be created,
-Go to the ``resources/assets/js/require/page_invoice_payment.js`` file,
+Go to the `resources/assets/js/require/page_invoice_payment.js` file,
 
 And put the following codes inside it:
 
-
 ```javascript
- const couponRow = jQuery('#coupon-row');
-        const couponSelect = couponRow.find('.coupon-form select[name="coupon_id"]');
-        const couponSubmitButton = couponRow.find('.coupon-form a.btn.submit');
-        
+const couponRow = jQuery('#coupon-row')
+const couponSelect = couponRow.find('.coupon-form select[name="coupon_id"]')
+const couponSubmitButton = couponRow.find('.coupon-form a.btn.submit')
+
 couponSubmitButton.on('click', function (_event) {
-    _event.preventDefault();
-    _event.stopPropagation();
+  _event.preventDefault()
+  _event.stopPropagation()
 
-    if (couponSelect.val() === '')
-        return false;
+  if (couponSelect.val() === '') return false
 
-    jQuery.ajax({
-        url: `/customer/invoice/check-coupon/${couponSelect.val()}`,
-        method: 'POST',
-        data: {
-            _token: window.csrfToken,
-        }
-    }).done(function (_result) {
-        let messages = _result.transmission.messages;
-        if (messages.length > 0) {
-            noteContainer.removeClass('danger-discount');
-            noteContainer.addClass('success-discount');
-            noteContainer.find('div.ttl').text(messages[0]);
-            LocalCartService.setCouponAmount((_result.data.discount_amount / 10));
-        }
+  jQuery
+    .ajax({
+      url: `/customer/invoice/check-coupon/${couponSelect.val()}`,
+      method: 'POST',
+      data: {
+        _token: window.csrfToken,
+      },
+    })
+    .done(function (_result) {
+      let messages = _result.transmission.messages
+      if (messages.length > 0) {
+        noteContainer.removeClass('danger-discount')
+        noteContainer.addClass('success-discount')
+        noteContainer.find('div.ttl').text(messages[0])
+        LocalCartService.setCouponAmount(_result.data.discount_amount / 10)
+      }
+    })
+    .fail(function (_result) {
+      let messages = _result.responseJSON.transmission.messages
+      if (messages.length > 0) {
+        noteContainer.removeClass('success-discount')
+        noteContainer.addClass('danger-discount')
+        noteContainer.find('div.ttl').text(messages[0])
+      }
+    })
 
-    }).fail(function (_result) {
-        let messages = _result.responseJSON.transmission.messages;
-        if (messages.length > 0) {
-            noteContainer.removeClass('success-discount');
-            noteContainer.addClass('danger-discount');
-            noteContainer.find('div.ttl').text(messages[0]);
-        }
-    });
-
-    return false;
-});
+  return false
+})
 ```
 
-Then go to the ``resources/assets/js/define/local_cart_service.js`` file,
+Then go to the `resources/assets/js/define/local_cart_service.js` file,
 And put the following codes inside it:
 
 ```javascript
@@ -733,6 +740,7 @@ setCouponAmount : function(amount) {
 ```
 
 Now you have managed to create and use a new feature called coupon management.
+
 #### References
 
 _1. <a name="1">[
@@ -740,12 +748,10 @@ What is the one-to-many relationship? ](https://laravel.com/docs/8.x/eloquent-re
 
 _2. <a name="2">[
 What are php time data types? ](https://www.php.net/manual/en/datetime.format.php)</a>_
+
 #### Video source
 
 ---
 
-
 <iframe src="https://www.aparat.com/video/video/embed/videohash/lscVX/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>
 <iframe src="https://www.aparat.com/video/video/embed/videohash/ZPiEz/vt/frame"  height="300" width="700" style="  border: 2px solid #bdc3c7; border-radius: 5px; opacity: 1;" allowFullScreen="true"></iframe>
-
-
