@@ -2553,9 +2553,9 @@ also this function automatically detects the configured tax+toll percentage and 
 #### should_show_tax_percentage_in_invoice_heading
 
 ```php
-    function should_show_tax_percentage_in_invoice_heading(): bool {
-        return \App\Utils\FinancialManager\ConfigProvider::shouldShowTaxPercentageInInvoiceHeading();
-    }
+function should_show_tax_percentage_in_invoice_heading(): bool {
+    return \App\Utils\FinancialManager\ConfigProvider::shouldShowTaxPercentageInInvoiceHeading();
+}
 ```
 
 This function only returns the value of the `show_tax_percentage_in_invoice_heading` config in the dashboard.
