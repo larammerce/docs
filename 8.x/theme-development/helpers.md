@@ -2531,6 +2531,35 @@ This function returns the current date(date object).
 
 This function specifies the maximum amount of transactions that are allowed to handle by the system. In other words, it tells you the maximum amount of each invoice you create for your clients. This limitation is according to the payment IPGs' policies.
 
+#### get_invoice_tax_heading
+
+```php
+function get_invoice_tax_heading(): string {
+    $heading = \App\Utils\FinancialManager\ConfigProvider::getInvoiceTaxHeading();
+    if (should_show_tax_percentage_in_invoice_heading()) {
+        $heading .= " (" . (get_default_tax_percentage() + get_default_toll_percentage()) . "%)";
+    }
+    return $heading;
+}
+```
+
+This function provides the invoice tax heading for the theme developer, for example, if the admin changes the 
+heading of the invoice tax, the theme developer can use this function to get the new heading.
+also this function automatically detects the configured tax+toll percentage and shows it in the heading if the 
+`show_tax_percentage_in_invoice_heading` is set to true in the dashboard.
+
+---
+
+#### should_show_tax_percentage_in_invoice_heading
+
+```php
+    function should_show_tax_percentage_in_invoice_heading(): bool {
+        return \App\Utils\FinancialManager\ConfigProvider::shouldShowTaxPercentageInInvoiceHeading();
+    }
+```
+
+This function only returns the value of the `show_tax_percentage_in_invoice_heading` config in the dashboard.
+
 ---
 
 ## References
